@@ -54,7 +54,7 @@ void exec :: user()
 
 void exec :: print(bool time)
 	{
-		
+		//goals create linked list and print raw info
     }
     
 void exec::run()
