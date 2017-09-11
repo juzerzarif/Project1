@@ -17,12 +17,12 @@ int node::getValue() const
 	return(m_value);
 }
 
-void node::setNext(Node* prev)
+void node::setNext(node* prev)
 {
 	m_next = prev; 
 }
 
-Node* node::getNext() const
+node* node::getNext() const
 {
 	return(m_next);
 }

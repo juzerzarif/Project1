@@ -16,8 +16,8 @@ class node
 	int getValue() const;
 	
 	//set and get methods for the pointer of each node 
-	void setNext(Node* prev);
-	Node* getNext() const;
+	void setNext(node* prev);
+	node* getNext() const;
 };
 
 #endif

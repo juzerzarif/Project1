@@ -17,7 +17,7 @@ linkedList::~linkedList()
 	}
 	else
 	{
-		Node* tempNode = m_front; 
+		node* tempNode = m_front; 
 		
 		while(m_front->getNext() != nullptr)//loops until only one node remaining 
 		{
@@ -52,7 +52,7 @@ int linkedList::size() const
 
 bool linkedList::search(int value) const
 {
-	Node* tempNode = m_front; //pointer to headnode //pointer to headnode 
+	node* tempNode = m_front; //pointer to headnode //pointer to headnode 
 
 	//returns true if the value exists in any node
 	//returns false otherwise
@@ -86,7 +86,7 @@ void linkedList::printList() const
 	
 	//Node* tempNode = new Node(); //head node
 	
-	Node* tempNode = m_front; //pointer to headnode 
+	node* tempNode = m_front; //pointer to headnode 
 	
 	//prints the list to the console
 	//if list is empty print empty string 
@@ -110,7 +110,7 @@ void linkedList::printList() const
 void linkedList::addBack(int value)
 {
 	//create a new node with data input and set to nullptr
-	Node* newNode = new Node();
+	node* newNode = new node();
 	newNode-> setValue(value);
 	newNode-> setNext(nullptr); 
 	
@@ -121,7 +121,7 @@ void linkedList::addBack(int value)
 	}
 	else //else traverse list till last ndoe then set next node  
 	{
-		Node* lastNode = m_front; 		
+		node* lastNode = m_front; 		
 		while(lastNode-> getNext() != nullptr)
 		{
 			lastNode = lastNode-> getNext();				
@@ -137,7 +137,7 @@ void linkedList::addBack(int value)
 void linkedList::addFront(int value)
 {
 	//create a new node with data input and set to nullptr
-	Node* newNode = new Node();
+	node* newNode = new node();
 	newNode-> setValue(value);
 	newNode-> setNext(nullptr); 
 
@@ -152,7 +152,7 @@ void linkedList::addFront(int value)
 bool linkedList::removeBack()
 {
 	
-	Node* tempNode = m_front;
+	node* tempNode = m_front;
 
 	//One element is removed from the back of the list.
 	//Returns true if the back element was removed, false if the list is empty.
@@ -163,7 +163,7 @@ bool linkedList::removeBack()
 	else
 	{
 		
-		Node* lastNode = m_front;
+		node* lastNode = m_front;
 		
 		while(lastNode-> getNext() != nullptr)
 		{
@@ -193,7 +193,7 @@ bool linkedList::removeBack()
 bool linkedList::removeFront()
 {
 	
-	Node* tempNode = m_front;
+	node* tempNode = m_front;
 
 	//One element is removed from the front of the list.
 	//Returns true if the front element was removed, false if the list is empty.
@@ -230,7 +230,7 @@ std::vector<int> linkedList::toVector() const
 
 	if(m_front != nullptr)
 	{
-		Node* tempNode = m_front; 
+		node* tempNode = m_front; 
 				
 		for(int i=0; i<m_size; i++)//traverse list and input values into vector
 		{
