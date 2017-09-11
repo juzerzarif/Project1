@@ -5,6 +5,16 @@
 #include <iostream>
 
 
+exec :: exec()
+	{
+
+	}
+
+exec :: ~exec()
+	{
+
+	}
+
 void exec :: admin()
 	{
 
