@@ -42,13 +42,10 @@ class exec
 		*/
 		void run();
 
+		void test();
+
 };
 
 #include "exec.hpp"
 
-<<<<<<< HEAD
 #endif
-=======
-
-#endif
->>>>>>> print-method-branch

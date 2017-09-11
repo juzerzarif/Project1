@@ -140,11 +140,9 @@ void exec :: print(bool time)
     }
     
 
-void exec::run()
+void exec::test()
     {
 		std::cout<<"test" << '\n' << '\n';
-
-		print(true);
 		
     }
 
