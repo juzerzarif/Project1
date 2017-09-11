@@ -20,4 +20,6 @@ class node
 	node* getNext() const;
 };
 
+#include "linkedList.hpp"
+
 #endif

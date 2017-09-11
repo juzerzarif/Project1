@@ -31,5 +31,10 @@ class exec
 		*/
 		void print(bool time);
 
+		void run();
+
 };
+
+#include "exec.hpp"
+
 #endif

@@ -3,8 +3,9 @@
 int main()
 {
     //Call executive
-    exec Executive();
+    exec Executive;
     Executive.run();
+    return(0);
 }
 
 #include "exec.h"

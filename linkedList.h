@@ -50,4 +50,6 @@ class linkedList
 		std::vector<int> toVector() const;
 };
 
+#include "linkedList.hpp"
+
 #endif
