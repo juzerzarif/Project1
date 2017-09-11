@@ -1,7 +1,7 @@
 #ifndef LINKEDLIST
 #define LINKEDLIST
 
-#include "Node.h"
+#include "node.h"
 #include<iostream>
 #include<vector>
 

@@ -1,14 +1,14 @@
-#include"LinkedList.h"
-#include"Node.h"
+#include"linkedList.h"
+#include"node.h"
 #include<iostream>
 
-linkedList::LinkedList()
+linkedList::linkedList()
 {
 	m_front= nullptr; 
 	m_size = 0; 
 }
 
-linkedList::~LinkedList()
+linkedList::~linkedList()
 {
 	//deletes all nodes in the list avoid memory errors
 	if(isEmpty())
