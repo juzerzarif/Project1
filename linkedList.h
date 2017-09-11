@@ -6,12 +6,13 @@
 #include<vector>
 
 
+template <typename T>
 class linkedList
 {
 	private:
 		//private memory variables 		
-		node* m_front;
-		int m_size; 
+		node<T>* m_front;
+		T m_size;
 		
 	public: 
 		//constructor and deconstructor 		
@@ -27,16 +28,16 @@ class linkedList
 
 		//returns true if the value exists in any node
 		//returns false otherwise
-		bool search(int value) const; 
+		bool search(T value) const; 
 
 		//prints the list to the console
 		//if list is empty print empty string 
-		void printList() const;
+		//void printList() const;
 
 		//adds 1 new node to back or front of the list
 		//increments size
-		void addBack(int value);
-		void addFront(int value); 
+		void addBack(T value);
+		void addFront(T value); 
 	
 		//removes 1 node to back or front of the list
 		//decrements size
@@ -47,7 +48,8 @@ class linkedList
 		//copy contents of list into vector
 		//returns a standard vector with the contents of the list inside
 		//used by test class to varify contents of list 
-		std::vector<int> toVector() const;
+		std::vector<T> toVector() const;
+		
 };
 
 #include "linkedList.hpp"

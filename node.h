@@ -1,25 +1,26 @@
 #ifndef NODE
 #define NODE
 
+template <typename T>
 class node
 {
 	private:
-	int m_value;	//value in the node 
-	node* m_next;	//pointer to another node
+	T m_value;	//value in the node 
+	node<T>* m_next;	//pointer to another node
 
 	public:
 	//constructor for each node includes a value and a pointer to another node	
-	node();
+	node(T value);
 
 	//set and get methods for the value within the node
-	void setValue(int val);
-	int getValue() const;
+	void setValue(T val);
+	T getValue() const;
 	
 	//set and get methods for the pointer of each node 
-	void setNext(node* prev);
-	node* getNext() const;
+	void setNext(node<T>* prev);
+	node<T>* getNext() const;
 };
 
-#include "linkedList.hpp"
+#include "node.hpp"
 
 #endif

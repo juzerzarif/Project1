@@ -1,28 +1,32 @@
-#include"node.h"
 
-node::node()
+template <typename T>
+node<T>::node(T value)
 {
 	//constructor initilizes each node to a value of 0 and the pointer to null	
 	m_value = 0;
 	m_next = nullptr; 
 }
 
-void node::setValue(int val)
+template <typename T>
+void node<T>::setValue(T val)
 {
 	m_value = val;
 }
 
-int node::getValue() const
+template <typename T>
+T node<T>::getValue() const
 {
 	return(m_value);
 }
 
-void node::setNext(node* prev)
+template <typename T>
+void node<T>::setNext(node<T>* prev)
 {
 	m_next = prev; 
 }
 
-node* node::getNext() const
+template <typename T>
+node<T>* node<T>::getNext() const
 {
 	return(m_next);
 }

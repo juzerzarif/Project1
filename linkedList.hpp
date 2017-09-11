@@ -1,36 +1,23 @@
-#include"linkedList.h"
-#include"node.h"
-#include<iostream>
 
-linkedList::linkedList()
+
+template <typename T>
+linkedList<T>::linkedList()
 {
 	m_front= nullptr; 
 	m_size = 0; 
 }
 
-linkedList::~linkedList()
+template <typename T>
+linkedList<T>::~linkedList()
 {
-	//deletes all nodes in the list avoid memory errors
-	if(isEmpty())
+	while(!isEmpty())
 	{
-		m_front = nullptr;
-	}
-	else
-	{
-		node* tempNode = m_front; 
-		
-		while(m_front->getNext() != nullptr)//loops until only one node remaining 
-		{
-			tempNode = m_front->getNext();//sets tempNode to point to the second Node
-			delete(m_front); //deletes the current front node
-			m_front = tempNode; //new front is node behind first
-		}
-		delete(m_front); //deletes final node
-		m_front = nullptr;
+		removeFront();
 	}
 }
 
-bool linkedList::isEmpty() const
+template <typename T>
+bool linkedList<T>::isEmpty() const
 {
 	//returns true if list is empty
 	//returns false otherwise
@@ -45,14 +32,17 @@ bool linkedList::isEmpty() const
 	
 }
 
-int linkedList::size() const
+
+template <typename T>
+int linkedList<T>::size() const
 {
 	return(m_size); 
 }
 
-bool linkedList::search(int value) const
+template <typename T>
+bool linkedList<T>::search(T value) const
 {
-	node* tempNode = m_front; //pointer to headnode //pointer to headnode 
+	node<T>* tempNode = m_front; //pointer to headnode //pointer to headnode 
 
 	//returns true if the value exists in any node
 	//returns false otherwise
@@ -80,13 +70,14 @@ bool linkedList::search(int value) const
 	}
 }
 
+/*
 void linkedList::printList() const
 {
 	
 	
 	//Node* tempNode = new Node(); //head node
 	
-	node* tempNode = m_front; //pointer to headnode 
+	node<T>* tempNode = m_front; //pointer to headnode 
 	
 	//prints the list to the console
 	//if list is empty print empty string 
@@ -106,11 +97,13 @@ void linkedList::printList() const
 	}
 
 }
+*/
 
-void linkedList::addBack(int value)
+template <typename T>
+void linkedList<T>::addBack(T value)
 {
 	//create a new node with data input and set to nullptr
-	node* newNode = new node();
+	node<T>* newNode = new node<T>();
 	newNode-> setValue(value);
 	newNode-> setNext(nullptr); 
 	
@@ -121,7 +114,7 @@ void linkedList::addBack(int value)
 	}
 	else //else traverse list till last ndoe then set next node  
 	{
-		node* lastNode = m_front; 		
+		node<T>* lastNode = m_front; 		
 		while(lastNode-> getNext() != nullptr)
 		{
 			lastNode = lastNode-> getNext();				
@@ -134,10 +127,11 @@ void linkedList::addBack(int value)
 
 }
 
-void linkedList::addFront(int value)
+template <typename T>
+void linkedList<T>::addFront(T value)
 {
 	//create a new node with data input and set to nullptr
-	node* newNode = new node();
+	node<T>* newNode = new node<T>();
 	newNode-> setValue(value);
 	newNode-> setNext(nullptr); 
 
@@ -149,10 +143,11 @@ void linkedList::addFront(int value)
 		
 }
 
-bool linkedList::removeBack()
+template <typename T>
+bool linkedList<T>::removeBack()
 {
 	
-	node* tempNode = m_front;
+	node<T>* tempNode = m_front;
 
 	//One element is removed from the back of the list.
 	//Returns true if the back element was removed, false if the list is empty.
@@ -163,7 +158,7 @@ bool linkedList::removeBack()
 	else
 	{
 		
-		node* lastNode = m_front;
+		node<T>* lastNode = m_front;
 		
 		while(lastNode-> getNext() != nullptr)
 		{
@@ -190,10 +185,11 @@ bool linkedList::removeBack()
 	}		
 }
 
-bool linkedList::removeFront()
+template <typename T>
+bool linkedList<T>::removeFront()
 {
 	
-	node* tempNode = m_front;
+	node<T>* tempNode = m_front;
 
 	//One element is removed from the front of the list.
 	//Returns true if the front element was removed, false if the list is empty.
@@ -222,23 +218,18 @@ bool linkedList::removeFront()
 	}
 }
 
-std::vector<int> linkedList::toVector() const
+template <typename T>
+std::vector<T> linkedList<T>::toVector() const
 {
- 
-	std::vector<int> listContents;//creates new vector to hold values
-	
+	std::vector<T> vec;
+	node<T>* temp = m_front;
 
-	if(m_front != nullptr)
+	while( temp != nullptr )
 	{
-		node* tempNode = m_front; 
-				
-		for(int i=0; i<m_size; i++)//traverse list and input values into vector
-		{
-			listContents.push_back(tempNode->getValue());
-			tempNode = tempNode->getNext(); 
-		}
-		
+		vec.push_back(temp->getValue());
+		temp = temp->getNext();
 	}
 
-	return(listContents); 
+	return(vec);	
+	
 }
