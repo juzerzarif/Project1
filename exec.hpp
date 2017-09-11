@@ -1,6 +1,3 @@
-#include "exec.h"
-#include<iostream>
-
 //ADMIN AND USER METHODS
 
 #include "exec.h"
@@ -17,6 +14,30 @@ exec :: ~exec()
 	{
 
 	}
+
+void exec :: run()
+    	{
+		int choice;
+	
+		std::cout << "Please select a login in mode:\n";
+		std::cout << "1) Admin\n";
+		std::cout << "2) User\n";
+	
+		std::cin >> choice;
+	
+		if( choice == 1)
+		{
+			//call to the admin method
+		}
+		else if (choice == 2)
+		{
+			//call to the user method
+		}
+		else
+		{
+			//error	
+		}
+    	}
 
 void exec :: admin()
 	{
@@ -57,7 +78,4 @@ void exec :: print(bool time)
 		
     }
     
-void exec::run()
-    {
-        std::cout<<"test";
-    }
+
