@@ -142,7 +142,22 @@ void exec :: print(bool time)
 
 void exec::test()
     {
-		std::cout<<"test" << '\n' << '\n';
+		int choice;
+		
+			std::cout << "Please select a login in mode:\n";
+			std::cout << "1) Admin\n";
+			std::cout << "2) User\n";
+		
+			std::cin >> choice;
+		
+			if( choice == 1)
+			{
+				admin();
+			}
+			else if (choice == 2)
+			{
+				user();
+			}
 		
     }
 
