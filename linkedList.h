@@ -10,13 +10,13 @@ class linkedList
 {
 	private:
 		//private memory variables 		
-		Node* m_front;
+		node* m_front;
 		int m_size; 
 		
 	public: 
 		//constructor and deconstructor 		
-		LinkedList();
-		~LinkedList();
+		linkedList();
+		~linkedList();
 		
 		//returns true if list is empty
 		//returns false otherwise
