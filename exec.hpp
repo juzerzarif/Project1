@@ -1,11 +1,7 @@
-#include "exec.h"
-#include<iostream>
+
 
 //ADMIN AND USER METHODS
 
-#include "exec.h"
-#include "linkedList.h"
-#include <iostream>
 
 
 exec :: exec()
@@ -54,10 +50,76 @@ void exec :: user()
 
 void exec :: print(bool time)
 	{
-		
+		//goals create linked list and print raw info
+
+		//linkedList<date> events;
+		date eventDate;
+
+		std::ifstream readFile; 
+		readFile.open("eventFile.txt");
+
+		int year = 0;
+		int month = 0;
+		int day = 0;
+		std::string timeClock;
+		std::string eventName;
+		int attending = 0;
+
+
+		//read each value and assign to a date object
+
+		if(readFile.is_open())
+		{
+			while(!readFile.eof())
+			{
+				std::string entry;
+
+				std::getline(readFile, entry, ':');
+				year = std::stoi(entry);
+
+				std::getline(readFile, entry, ':');
+				month = std::stoi(entry);
+
+				std::getline(readFile, entry, ':');
+				day = std::stoi(entry);
+
+				std::getline(readFile, entry, ':');
+				timeClock = entry;
+
+				std::getline(readFile, entry, ':');
+				eventName = entry;
+
+				std::getline(readFile, entry, ':');
+				attending = std::stoi(entry);
+
+				std::cout << "Event Info: " << year << " " << month << " " << day << " " << timeClock << " " << eventName << " " << attending << '\n' << '\n';
+
+				eventDate.setYear(year);
+				eventDate.setMonth(month);
+				eventDate.setDay(day);
+				eventDate.setTime(timeClock);
+				eventDate.setEvent(eventName);
+				eventDate.setAttendance(attending);
+
+
+
+			}
+			readFile.close();//close file
+		}
+		else
+		{
+			std::cout << "Error Opening File!" << '\n'; 
+
+		}
+
+
+
     }
     
 void exec::run()
     {
-        std::cout<<"test";
+		std::cout<<"test" << '\n' << '\n';
+
+		print(true);
+		
     }

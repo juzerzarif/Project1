@@ -1,7 +1,13 @@
 //ADMIN AND USER METHODS
-
 #ifndef EXEC_H
 #define EXEC_H
+
+#include <iostream>
+#include <fstream>
+#include <istream>
+#include <string>
+
+#include "date.h"
 
 class exec
 {
@@ -40,4 +46,9 @@ class exec
 
 #include "exec.hpp"
 
+<<<<<<< HEAD
 #endif
+=======
+
+#endif
+>>>>>>> print-method-branch
