@@ -7,5 +7,3 @@ int main()
     Executive.run();
     return(0);
 }
-
-#include "exec.h"

@@ -1,12 +1,11 @@
-#include "date.h"
 
 date::date()
 {
   year = 0;
   month = 0;
   day = 0;
-  time = 0;
-  event = 0;
+  time = "";
+  event = "";
   attendance = 0;
 }
 
@@ -40,27 +39,28 @@ int date::getDay()
   return day;
 }
 
-void date::setTime(int t)
+void date::setTime(std::string t)
 {
   time = t;
 }
 
-int date::getTime()
+std::string date::getTime()
 {
   return time;
 }
 
-void date::setEvent(string e)
+void date::setEvent(std::string e)
 {
   event = e;
 }
 
-string date::getEvent()
+std::string date::getEvent()
 {
   return event;
 }
 
 void date::setAttendance(int a)
+{
   attendance = a;
 }
 
