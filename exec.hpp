@@ -28,9 +28,9 @@ void exec :: user()
 		int choice;
 		bool hourclock = true;
 
-		std::cout << "Would you like your times displayed on a 12 hour or 24hour clock?\n"
-		std::cout << "1) 12 hour clock\n"
-		std::cout << "2) 24 hour clock\n"
+		std::cout << "Would you like your times displayed on a 12 hour or 24hour clock?\n";
+		std::cout << "1) 12 hour clock\n";
+		std::cout << "2) 24 hour clock\n";
 
 		std::cin >> choice;
 
