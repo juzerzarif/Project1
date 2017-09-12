@@ -25,16 +25,31 @@ void exec :: run()
 	
 		if( choice == 1)
 		{
+			admin();
 			//call to the admin method
 		}
 		else if (choice == 2)
 		{
+			user();
 			//call to the user method
 		}
-		else
+		else //if the user gives something that isnt a vaild input it will tell them it is invalid and restart
 		{
-			//error	
-		}
+			if( std::cin.fail() )//checks for bad input, by checking that it is the correct type,then checking it was a option listed
+	    		{
+	      			std::cin.clear(); // unset failbit
+	      			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // skip bad input
+					std::cout << '\n';
+	     			std::cout << "Sorry, your input was not a number, quitting now\n";
+					std::cout << '\n';
+	   			}
+			else if((choice > 2) || (choice <= 0))//checks that it is a valid numerical input
+				{
+					std:: cout << "Invaid input, quitting now.\n";
+					std::cout << '\n';
+				}
+
+				}
     	}
 
 void exec :: admin()
