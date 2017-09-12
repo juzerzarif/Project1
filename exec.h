@@ -6,6 +6,7 @@
 #include <fstream>
 #include <istream>
 #include <string>
+#include <sstream>
 
 #include "date.h"
 
