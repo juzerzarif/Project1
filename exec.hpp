@@ -169,10 +169,39 @@ void exec :: admin()
 				eventTime = eventTime + " "; //Adds a space between times when event is added
 
 				std::cout << "At what time will your event start again?\n";
-				std::cin >> initialTime; //TODO: Check if time does not overlap when there is a break
+				
+				do
+				{
+					std::cin >> initialTime; //TODO: Check if time does not overlap when there is a break
+					int i = initialTime;
+					int len = 1;
+	
+					if (i > 0) { //Count number of digits in given time.
+						for (len = 0; i > 0; len++) {
+							i = i / 10;
+						}
+					}
+	
+					repeat = timeCheck(initialTime, len);
+				}while(repeat);
+
 
 				std::cout << "At what time will your event end? (If there are more breaks in the event, input the end time before a break)\n";
-				std::cin >> endTime;
+
+				do
+				{
+					std::cin >> initialTime; //TODO: Check if time does not overlap when there is a break
+					int i = initialTime;
+					int len = 1;
+	
+					if (i > 0) { //Count number of digits in given time.
+						for (len = 0; i > 0; len++) {
+							i = i / 10;
+						}
+					}
+	
+					repeat = timeCheck(initialTime, len);
+				}while(repeat);
 
 				for(int i = initialTime; i < endTime-60; i+=30)
 				{
@@ -337,26 +366,6 @@ void exec::test()
 			if( choice == 1)
 			{
 				admin();
-
-				int initialTime;
-				bool repeat = false;
-
-				do
-				{
-					std::cin >> initialTime;
-	
-					int i = initialTime;
-					int len = 1;
-	
-					if (i > 0) { //Count number of digits in given time.
-						for (len = 0; i > 0; len++) {
-							i = i / 10;
-						}
-					}
-	
-					repeat = timeCheck(initialTime, len);
-				}while(repeat);
-
 			}
 			else if (choice == 2)
 			{
