@@ -140,7 +140,7 @@ void linkedList<T>::addFront(T value)
 	m_front = newNode; //set the new front as the new node
 
 	m_size ++;//increment size
-		
+
 }
 
 template <typename T>
@@ -156,15 +156,13 @@ void linkedList<T>::addInOrder(T value)
 	}
 	else
 	{
-			node<T>* lesserNode = m_front;
-			node<T>* transferNode = m_front->getNext();
-			while(lesserNode->getValue()->getMonth() <  newNode->getValue()->getMonth())
+			node<T>*currentNode = m_front;
+			while(currentNode->getValue()->getMonth() <  newNode->getValue()->getMonth() && currentNode->getNext() != nullptr)
 			{
-				lesserNode = lesserNode->getNext();
-				transferNode = transferNode->getNext();
+				currentNode = currentNode->getNext();
 			}
-			newNode = lesserNode;
-			newNode->setNext(transferNode);
+			newNode->setNext(currentNode->getNext());
+			currentNode->setNext(newNode);
 	}
 
 }
