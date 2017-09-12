@@ -79,7 +79,7 @@ void exec :: print(bool time)
 		date eventDate;
 
 		std::ifstream readFile;
-		readFile.open("eventFile.txt");
+		readFile.open("eventFileInOrder.txt");
 
 		int year = 0;
 		int month = 0;
@@ -125,6 +125,8 @@ void exec :: print(bool time)
 					eventDate.setTime(timeClock);
 					eventDate.setEvent(eventName);
 					eventDate.setAttendance(attending);
+
+					eventList.addInOrder(eventDate);
 				}
 
 			}
@@ -143,6 +145,43 @@ void exec :: print(bool time)
 
 void exec::test()
     {
-		std::cout<<"test" << '\n' << '\n';
+
+		date eventDate;
+		int year = 0;
+		int month = 0;
+		int day = 0;
+		std::string timeClock;
+		std::string eventName;
+		int attending = 0;
+
+		std::cout << '\n' << "Testing print, add to linked list, and print again." << '\n';
+		std::cout << "///////////////////////////////////////////////////" << '\n' << '\n';
+
+		print(true);
+
+		std::cout << "Enter Year:";
+		std::cin >> year;
+		std::cout << "Enter Month:";
+		std::cin >> month;
+		std::cout << "Enter Day:";
+		std::cin >> day;
+		std::cout << "Enter Time:";
+		std::cin.ignore(1, '\n');
+		std::getline(std::cin, timeClock);
+		std::cout << "Enter Event Name:";
+		std::cin.ignore(0, '\n');
+		std::getline(std::cin, eventName);
+
+		eventDate.setYear(year);
+		eventDate.setMonth(month);
+		eventDate.setDay(day);
+		eventDate.setTime(timeClock);
+		eventDate.setEvent(eventName);
+		eventDate.setAttendance(attending);
+
+		eventList.addInOrder(eventDate);
+
+		std::cout << '\n';
+		eventList.printList();
 
     }
