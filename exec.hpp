@@ -16,13 +16,13 @@ exec :: ~exec()
 void exec :: run()
     	{
 		int choice;
-	
+
 		std::cout << "Please select a login in mode:\n";
 		std::cout << "1) Admin\n";
 		std::cout << "2) User\n";
-	
+
 		std::cin >> choice;
-	
+
 		if( choice == 1)
 		{
 			//call to the admin method
@@ -33,13 +33,13 @@ void exec :: run()
 		}
 		else
 		{
-			//error	
+			//error
 		}
     	}
 
 void exec :: admin()
 	{
-		
+
 	}
 
 void exec :: user()
@@ -78,7 +78,7 @@ void exec :: print(bool time)
 		//linkedList<date> events;
 		date eventDate;
 
-		std::ifstream readFile; 
+		std::ifstream readFile;
 		readFile.open("eventFile.txt");
 
 		int year = 0;
@@ -98,13 +98,13 @@ void exec :: print(bool time)
 				std::string entry;
 
 				std::getline(readFile, entry, ':');
-				year = std::stoi(entry);
+				year = std::atoi(entry.c_str());
 
 				std::getline(readFile, entry, ':');
-				month = std::stoi(entry);
+				month = std::atoi(entry.c_str());
 
 				std::getline(readFile, entry, ':');
-				day = std::stoi(entry);
+				day = std::atoi(entry.c_str());
 
 				std::getline(readFile, entry, ':');
 				timeClock = entry;
@@ -112,37 +112,37 @@ void exec :: print(bool time)
 				std::getline(readFile, entry, ':');
 				eventName = entry;
 
-				std::getline(readFile, entry, ':');
-				attending = std::stoi(entry);
+				std::getline(readFile, entry, '\n');
+				attending = std::atoi(entry.c_str());
 
-				std::cout << "Event Info: " << year << " " << month << " " << day << " " << timeClock << " " << eventName << " " << attending << '\n' << '\n';
+				if(year != 0)
+				{
+					std::cout << "Event Info: " << year << " " << month << " " << day << " " << timeClock << " " << eventName << " " << attending << '\n' << '\n';
 
-				eventDate.setYear(year);
-				eventDate.setMonth(month);
-				eventDate.setDay(day);
-				eventDate.setTime(timeClock);
-				eventDate.setEvent(eventName);
-				eventDate.setAttendance(attending);
-
-
+					eventDate.setYear(year);
+					eventDate.setMonth(month);
+					eventDate.setDay(day);
+					eventDate.setTime(timeClock);
+					eventDate.setEvent(eventName);
+					eventDate.setAttendance(attending);
+				}
 
 			}
 			readFile.close();//close file
 		}
 		else
 		{
-			std::cout << "Error Opening File!" << '\n'; 
+			std::cout << "Error Opening File!" << '\n';
 
 		}
 
 
 
     }
-    
+
 
 void exec::test()
     {
 		std::cout<<"test" << '\n' << '\n';
-		
-    }
 
+    }
