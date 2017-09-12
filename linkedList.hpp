@@ -70,34 +70,29 @@ bool linkedList<T>::search(T value) const
 	}
 }
 
-/*
-void linkedList::printList() const
+template <typename T>
+void linkedList<T>::printList() const
 {
 
+	node<T>* temp = m_front;
 
-	//Node* tempNode = new Node(); //head node
-
-	node<T>* tempNode = m_front; //pointer to headnode
-
-	//prints the list to the console
-	//if list is empty print empty string
-	if(m_size == 0)
+	if(temp == nullptr)
 	{
-		std::cout << "";
+		std::cout << "Nothing here to print. Empty List...";
 	}
 	else
 	{
-		std::cout << tempNode -> getValue() << '\n';
-		while(tempNode-> getNext() != nullptr)
+		while(temp->getNext() != nullptr)
 		{
-			tempNode = tempNode -> getNext();
-			std::cout << tempNode-> getValue() << '\n';
+			std::cout << "Event Info: " << temp->getValue().getYear() << " " <<
+			temp->getValue().getMonth() << " " << temp->getValue().getDay() << " " <<
+			temp->getValue().getTime() << " " << temp->getValue().getEvent() << " " <<
+			temp->getValue().getAttendance() << '\n' << '\n';
 
+			temp = temp->getNext();
 		}
 	}
-
 }
-*/
 
 template <typename T>
 void linkedList<T>::addBack(T value)
@@ -156,8 +151,8 @@ void linkedList<T>::addInOrder(T value)
 	}
 	else
 	{
-			node<T>*currentNode = m_front;
-			while(currentNode->getValue()->getMonth() <  newNode->getValue()->getMonth() && currentNode->getNext() != nullptr)
+			node<T>* currentNode = m_front;
+			while(currentNode->getValue().getMonth() <  newNode->getValue().getMonth() && currentNode->getNext() != nullptr)
 			{
 				currentNode = currentNode->getNext();
 			}
