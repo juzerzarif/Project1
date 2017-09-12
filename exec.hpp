@@ -1,7 +1,7 @@
 
 //ADMIN AND USER METHODS
 
-
+#include <fstream>
 
 exec :: exec()
 	{
@@ -50,9 +50,11 @@ void exec :: admin()
 		int eventYear = 0;
 		int eventMonth = 0;
 		int eventDay = 0;
-		int halfInterval = 0;
+		int eventBreak = 0;
 		int peopleAttending = 1;
-		std::string activityName;
+		int initialTime = 0;
+		int endTime = 0;
+		std::string eventName;
 		std::string eventTime;
 
 		std::cout << "Select an option:\n";
@@ -65,7 +67,7 @@ void exec :: admin()
 		{
 			std::cout << "Please enter the name of the activity:\n";
 			std::cin.ignore();
-			std::getline (std::cin,activityName,'\n');
+			std::getline (std::cin,eventName,'\n');
 
 			std::cout << "What year will the event be on?\n";
 			std::cin >> eventYear;
@@ -88,31 +90,104 @@ void exec :: admin()
 			std::cout << "What day will you event be on?\n";
 			std::cin >> eventDay; //TODO: Check if valid day.
 
-			std::cout << "At what time will your event take place? (Time is meassured in half hour intervals. If your event spans multiple half hours, please enter the initial half hour interval.)\n";
-			std::cout << "Examples: 1100 indicates 11 a.m. 2130 indicates 9:30 p.m.\n";
-			std::cin.ignore();
-			std::getline (std::cin,eventTime,'\n');
+			std::cout << "At what time will your event start? (Time is meassured in half hour intervals)\n";
+			std::cin >> initialTime;
 
-			std::cout << "Does your event span another half hour interval?\n";
+			std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break)\n";
+			std::cin >> endTime;
+
+			for(int i = initialTime; i < endTime-60; i+=30)
+			{
+				if((i/10)%10 == 6) //if third digit of time is 6, go to the closest next hour
+				{
+					i += 40;
+				}
+				if((endTime/10)%10 == 3) //Bunch of if's to remove space after final time
+				{
+					if(i == endTime-30)
+					{
+						eventTime = eventTime + std::to_string(i);
+						break;
+					}
+				}
+				else if((endTime/10)%10 == 0)
+				{
+					if(i == endTime-70)
+					{
+						eventTime = eventTime + std::to_string(i);
+						break;
+					}
+				}
+				eventTime = eventTime + std::to_string(i) + " ";
+			}
+
+
+
+			std::cout << "Are there breaks in your event?\n";
 			std::cout << "1) Yes\n";
 			std::cout << "2) No\n";
-			std::cin >> halfInterval; //TODO check if valid time
+			std::cin >> eventBreak; //TODO check if valid time
 
-			while(halfInterval == 1)
+			while(eventBreak == 1)
 			{
 				std::string additionalTime = "";
-				std::cout << "What other interval of time will your event be taking? (Time is meassured in half hour intervals. If your event spans multiple half hours, please enter the initial half hour interval.)\n";
-				std::cout << "Examples: 1100 indicates 11 a.m. 2130 indicates 9:30 p.m.\n";
-				std::cin.ignore();
-				std::getline (std::cin,additionalTime,'\n');
-				eventTime = eventTime + " " + additionalTime;
 
-				std::cout << "Does your event span another half hour interval?\n";
+				eventTime = eventTime + " "; //Adds a space between times when event is added
+
+				std::cout << "At what time will your event start again?\n";
+				std::cin >> initialTime; //TODO: Check if time does not overlap when there is a break
+
+				std::cout << "At what time will your event end? (If there are more breaks in the event, input the end time before a break)\n";
+				std::cin >> endTime;
+
+				for(int i = initialTime; i < endTime-60; i+=30)
+				{
+					if((i/10)%10 == 6) //if third digit of time is 6, go to the closest next hour
+					{
+						i += 40;
+					}
+					if((endTime/10)%10 == 3) //Bunch of if's to remove space after final time
+					{
+						if(i == endTime-30)
+						{
+							eventTime = eventTime + std::to_string(i);
+							break;
+						}
+					}
+					else if((endTime/10)%10 == 0)
+					{
+						if(i == endTime-70)
+						{
+							eventTime = eventTime + std::to_string(i);
+							break;
+						}
+					}
+					eventTime = eventTime + std::to_string(i) + " ";
+				}
+
+				std::cout << "Are there any more breaks in your event?\n";
 				std::cout << "1) Yes\n";
 				std::cout << "2) No\n";
-				std::cin >> halfInterval;
+				std::cin >> eventBreak;
 			}
-			//std::cout << eventTime;
+
+
+			std::ifstream fileExists("eventFile.txt");
+			if(fileExists) //If file exists, start at the end, add new line and add info
+			{
+				std::ofstream outFile;
+				outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
+				outFile << '\n' << eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending; 
+				outFile.close();
+			}
+			else //If file does not exist, create it and add info
+			{
+				std::ofstream outFile;
+				outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
+				outFile << eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
+				outFile.close();
+			}
+
 		}
 	
 	}
