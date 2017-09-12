@@ -44,6 +44,8 @@ class exec
 
 		void test();
 
+		bool timeCheck (int time, int len);
+
 };
 
 #include "exec.hpp"

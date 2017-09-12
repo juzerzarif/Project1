@@ -2,6 +2,7 @@
 //ADMIN AND USER METHODS
 
 #include <fstream>
+#include <math.h>
 
 exec :: exec()
 	{
@@ -56,6 +57,7 @@ void exec :: admin()
 		int endTime = 0;
 		std::string eventName;
 		std::string eventTime;
+		bool repeat = true;
 
 		std::cout << "Select an option:\n";
 		std::cout << "1) Create new activity\n";
@@ -91,10 +93,42 @@ void exec :: admin()
 			std::cin >> eventDay; //TODO: Check if valid day.
 
 			std::cout << "At what time will your event start? (Time is meassured in half hour intervals)\n";
-			std::cin >> initialTime;
+			std::cout << "Example times: 12:30 is 1230. 9:00 is either 0900 or 900.\n";
+			
+			do
+			{
+				std::cin >> initialTime;
 
+				int i = initialTime;
+				int len = 1;
+
+				if (i > 0) { //Count number of digits in given time.
+					for (len = 0; i > 0; len++) {
+						i = i / 10;
+					}
+				}
+
+				repeat = timeCheck(initialTime, len);
+			}while(repeat);
+			
 			std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break)\n";
-			std::cin >> endTime;
+
+			do
+			{
+				std::cin >> endTime;
+
+				int i = endTime;
+				int len = 1;
+
+				if (i > 0) { //Count number of digits in given time.
+					for (len = 0; i > 0; len++) {
+						i = i / 10;
+					}
+				}
+
+				repeat = timeCheck(endTime, len);
+			}while(repeat);
+
 
 			for(int i = initialTime; i < endTime-60; i+=30)
 			{
@@ -303,11 +337,56 @@ void exec::test()
 			if( choice == 1)
 			{
 				admin();
+
+				int initialTime;
+				bool repeat = false;
+
+				do
+				{
+					std::cin >> initialTime;
+	
+					int i = initialTime;
+					int len = 1;
+	
+					if (i > 0) { //Count number of digits in given time.
+						for (len = 0; i > 0; len++) {
+							i = i / 10;
+						}
+					}
+	
+					repeat = timeCheck(initialTime, len);
+				}while(repeat);
+
 			}
 			else if (choice == 2)
 			{
 				user();
 			}
 		
-    }
+	}
+
+
+bool exec::timeCheck (int time, int len)
+{
+	if (time != 0 && time != 30 && len != 3 && len != 4)
+	{
+		std::cout << "Invalid time. Example times: 12:30 is 1230. 9:00 is either 0900 or 900.\n";
+		return true;
+	}
+	else if (time < 0 || time > 2330)
+	{
+		std::cout << "Invalid time. Time must be between 0000 and 2330.\n";
+		return true;
+	}
+	else if ((time/10)%10 != 0 && (time/10)%10 != 3)
+	{
+		std::cout << "Invalid time. Times must be in thirty minute intervals i.e. End in 00 or 30.\n";
+		std::cout << (time/10)%10;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
