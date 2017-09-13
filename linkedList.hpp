@@ -131,6 +131,31 @@ void linkedList<T>::addFront(T value)
 	m_size++;
 }
 
+
+template <typename T>
+void linkedList<T>::addInOrder(T value)
+{
+	node<T>* newNode = new node<T>();
+	newNode->setValue(value);
+
+	if(m_front == nullptr)
+	{
+		m_front = newNode;
+		newNode->setNext(nullptr);
+	}
+	else
+	{
+			node<T>* currentNode = m_front;
+			while(currentNode->getValue().getMonth() <  newNode->getValue().getMonth() && currentNode->getNext() != nullptr)
+			{
+				currentNode = currentNode->getNext();
+			}
+			newNode->setNext(currentNode->getNext());
+			currentNode->setNext(newNode);
+	}
+
+}
+
 template <typename T>
 bool linkedList<T>::removeBack()
 {
