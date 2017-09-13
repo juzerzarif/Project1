@@ -1,9 +1,6 @@
 
 //ADMIN AND USER METHODS
 
-#include <fstream>
-#include <math.h>
-
 exec :: exec()
 	{
 
@@ -67,9 +64,24 @@ void exec :: admin()
 
 		if(choice == 1)
 		{
-			std::cout << "Please enter the name of the activity:\n";
-			std::cin.ignore();
-			std::getline (std::cin,eventName,'\n');
+			bool eventNameCheck = true;
+			std::cout << "Enter the name of the activity. Please no colons (:).\n";
+			do
+			{
+				std::cin.ignore();
+				std::getline (std::cin,eventName,'\n');
+
+				if(eventName.find(':') != std::string::npos || eventName[0] == ':')
+				{
+					std::cout << "Invalid event name. Please no colons (:) in the name of the event: \n";
+					eventNameCheck = true;
+				}
+				else
+				{
+					eventNameCheck = false;
+				}
+			}while(eventNameCheck);
+
 
 			std::cout << "What year will the event be on?\n";
 			std::cin >> eventYear;
@@ -86,7 +98,7 @@ void exec :: admin()
 			std::cout << "9) September\n";
 			std::cout << "10) October\n";
 			std::cout << "11) November\n";
-			std::cout << "12) December\n \n";
+			std::cout << "12) December\n";
 			std::cin >> eventMonth;
 
 			std::cout << "What day will you event be on?\n";
