@@ -164,7 +164,8 @@ void exec :: admin()
 
 			while(eventBreak == 1)
 			{
-				std::string additionalTime = "";
+				int initialTime = 0;
+				int endTime = 0;
 
 				eventTime = eventTime + " "; //Adds a space between times when event is added
 
@@ -190,8 +191,8 @@ void exec :: admin()
 
 				do
 				{
-					std::cin >> initialTime; //TODO: Check if time does not overlap when there is a break
-					int i = initialTime;
+					std::cin >> endTime; //TODO: Check if time does not overlap when there is a break
+					int i = endTime;
 					int len = 1;
 	
 					if (i > 0) { //Count number of digits in given time.
@@ -200,33 +201,33 @@ void exec :: admin()
 						}
 					}
 	
-					repeat = timeCheck(initialTime, len);
+					repeat = timeCheck(endTime, len);
 				}while(repeat);
 
-				for(int i = initialTime; i < endTime-60; i+=30)
+			for(int i = initialTime; i < endTime-60; i+=30)
+			{
+				if((i/10)%10 == 6) //if third digit of time is 6, go to the closest next hour
 				{
-					if((i/10)%10 == 6) //if third digit of time is 6, go to the closest next hour
-					{
-						i += 40;
-					}
-					if((endTime/10)%10 == 3) //Bunch of if's to remove space after final time
-					{
-						if(i == endTime-30)
-						{
-							eventTime = eventTime + std::to_string(i);
-							break;
-						}
-					}
-					else if((endTime/10)%10 == 0)
-					{
-						if(i == endTime-70)
-						{
-							eventTime = eventTime + std::to_string(i);
-							break;
-						}
-					}
-					eventTime = eventTime + std::to_string(i) + " ";
+					i += 40;
 				}
+				if((endTime/10)%10 == 3) //Bunch of if's to remove space after final time
+				{
+					if(i == endTime-30)
+					{
+						eventTime = eventTime + std::to_string(i);
+						break;
+					}
+				}
+				else if((endTime/10)%10 == 0)
+				{
+					if(i == endTime-70)
+					{
+						eventTime = eventTime + std::to_string(i);
+						break;
+					}
+				}
+				eventTime = eventTime + std::to_string(i) + " ";
+			}
 
 				std::cout << "Are there any more breaks in your event?\n";
 				std::cout << "1) Yes\n";
