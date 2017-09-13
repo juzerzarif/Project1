@@ -82,7 +82,7 @@ void linkedList<T>::printList() const
 	}
 	else
 	{
-		while(temp->getNext() != nullptr)
+		while(temp != nullptr)
 		{
 			std::cout << "Event Info: " << temp->getValue().getYear() << " " <<
 			temp->getValue().getMonth() << " " << temp->getValue().getDay() << " " <<
@@ -147,20 +147,11 @@ void linkedList<T>::addInOrder(T value)
 template <typename T>
 void linkedList<T>::sortList()
 {
-  node<T>* counterNode = m_front;
   node<T>* currentNode = nullptr;
   node<T>* prevNode = nullptr;
   node<T>* temp = nullptr;
 
-	int counter = 0;
-
-  while(counterNode->getNext() != nullptr)
-	{
-    counter++;
-   	counterNode = counterNode->getNext();
-  }
-
-  for(int i = 0; i <= counter; i++)
+  for(int i = 0; i <= size(); i++)
 	{
 		currentNode = m_front;
 		prevNode = m_front;
@@ -168,11 +159,11 @@ void linkedList<T>::sortList()
     while(currentNode->getNext() != nullptr)
 		{
       if (currentNode->getValue().getYear() < currentNode->getNext()->getValue().getYear())
-			{
+		{
         temp = currentNode->getNext();
         currentNode->setNext(currentNode->getNext()->getNext());
         temp->setNext(currentNode);
-
+        
         if(currentNode == m_front)
 				{
 					prevNode = temp;
@@ -183,7 +174,7 @@ void linkedList<T>::sortList()
 					prevNode->setNext(temp);
         	currentNode = temp;
 				}
-      }
+    	}
       prevNode = currentNode;
       currentNode = currentNode->getNext();
     }
