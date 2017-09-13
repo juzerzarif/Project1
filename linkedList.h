@@ -38,7 +38,7 @@ class linkedList
 		//increments size
 		void addBack(T value);
 		void addFront(T value);
-		void addInOrder(T value);
+		//void addInOrder(T value);
 
 		//removes 1 node to back or front of the list
 		//decrements size
