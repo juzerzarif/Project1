@@ -94,7 +94,7 @@ void exec :: print(bool time)
 		std::string nameMonth;
 		int startTime = 0;
 		int endTime = 0;
-
+		int timeKeeper [48];
 
 		//read each value and assign to a date object
 		//insert date object into the sorted linked list
@@ -135,6 +135,42 @@ void exec :: print(bool time)
 					eventDate.setEvent(eventName);
 					eventDate.setAttendance(attending);
 
+					//inputs blocks of time into an array timeKeeper
+					std::istringstream sortedTime(timeClock);
+					int lastPosition = 0;
+					
+					while (sortedTime) 
+					{
+						int temp;
+						std::string timeBlock;
+						sortedTime >> timeBlock;
+						if(timeBlock != "")//skip extra space at end
+						{
+							temp = std::stoi(timeBlock);
+							timeKeeper[lastPosition]=temp; 
+							lastPosition++;
+						}
+
+					}
+
+					//parse array for start and end times of each block, append to end of string
+					timeClock = ""; 
+					for(int i = 0; i < lastPosition; i++)
+					{
+						if(i=0)
+						{
+							startTime = timeKeeper[i];
+							if(timeKeeper[i+1] != (startTime + 30))
+							{
+								//print time as a block 
+							}
+						}
+						else
+						{
+							
+						}
+					}
+
 					
 					/*
 					TO DO: PUT ON LINKED LIST TO SORT 
@@ -157,14 +193,7 @@ void exec :: print(bool time)
 						case 12 : nameMonth = "December";  break;
 					}
 
-					std::istringstream sortedTime(timeClock);
-					int tempTime = 0;
-					while (sortedTime) 
-					{
-						std::string timeBlock;
-						sortedTime >> timeBlock;
-						tempTime = std::stoi(timeBlock);
-					}
+
 
 
 					std::cout << "Event: " << eventName << "\n";
