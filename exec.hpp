@@ -111,24 +111,36 @@ void exec :: admin()
 				repeat = timeCheck(initialTime, len);
 			}while(repeat);
 			
-			std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break)\n";
-
-			do
+			if (initialTime != 2330)
 			{
-				std::cin >> endTime;
 
-				int i = endTime;
-				int len = 1;
-
-				if (i > 0) { //Count number of digits in given time.
-					for (len = 0; i > 0; len++) {
-						i = i / 10;
+				std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break)\n";
+			
+				do
+				{
+					std::cin >> endTime;
+			
+					int i = endTime;
+					int len = 1;
+			
+					if (i > 0) { //Count number of digits in given time.
+						for (len = 0; i > 0; len++) {
+							i = i / 10;
+						}
 					}
-				}
-
-				repeat = timeCheck(endTime, len);
-			}while(repeat);
-
+			
+					repeat = timeCheck(endTime, len);
+					if (endTime < initialTime)
+					{
+						std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time\n";
+						repeat = true;
+					}
+				}while(repeat);
+			}
+			else
+			{
+				std::cout << "Event started at 23:30. It will run until 23:59.\n";
+			}
 
 			for(int i = initialTime; i < endTime-60; i+=30)
 			{
@@ -160,13 +172,10 @@ void exec :: admin()
 			std::cout << "Are there breaks in your event?\n";
 			std::cout << "1) Yes\n";
 			std::cout << "2) No\n";
-			std::cin >> eventBreak; //TODO check if valid time
+			std::cin >> eventBreak;
 
 			while(eventBreak == 1)
 			{
-				int initialTime = 0;
-				int endTime = 0;
-
 				eventTime = eventTime + " "; //Adds a space between times when event is added
 
 				std::cout << "At what time will your event start again?\n";
@@ -184,25 +193,37 @@ void exec :: admin()
 					}
 	
 					repeat = timeCheck(initialTime, len);
-				}while(repeat);
-
-
-				std::cout << "At what time will your event end? (If there are more breaks in the event, input the end time before a break)\n";
-
-				do
-				{
-					std::cin >> endTime; //TODO: Check if time does not overlap when there is a break
-					int i = endTime;
-					int len = 1;
-	
-					if (i > 0) { //Count number of digits in given time.
-						for (len = 0; i > 0; len++) {
-							i = i / 10;
-						}
+					if(initialTime < endTime)
+					{
+						std::cout << "Can't continue from break after previous end time. Please input a valid time: \n";
+						repeat = true;
 					}
-	
-					repeat = timeCheck(endTime, len);
 				}while(repeat);
+
+				if (initialTime != 2330)
+				{	
+					std::cout << "At what time will your event end? (If there are more breaks in the event, input the end time before a break)\n";
+
+					do
+					{
+						std::cin >> endTime; //TODO: Check if time does not overlap when there is a break
+						int i = endTime;
+						int len = 1;
+		
+						if (i > 0) { //Count number of digits in given time.
+							for (len = 0; i > 0; len++) {
+								i = i / 10;
+							}
+						}
+		
+						repeat = timeCheck(endTime, len);
+						if (endTime < initialTime)
+						{
+							std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time\n";
+							repeat = true;
+						}
+					}while(repeat);
+				}
 
 			for(int i = initialTime; i < endTime-60; i+=30)
 			{
