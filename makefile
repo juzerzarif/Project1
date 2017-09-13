@@ -1,7 +1,7 @@
 Project1: main.o
-	g++ -std=c++11 -g -Wall -o Project1 main.o
+	g++ -std=c++11 -g -Wall main.o -o Project1
 
-main.o: exec.h main.cpp
+main.o: main.cpp
 	g++ -std=c++11 -g -Wall -c main.cpp
 
 clean:

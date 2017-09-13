@@ -6,15 +6,19 @@
 #include <fstream>
 #include <istream>
 #include <string>
+#include <limits>
+#include <algorithm>
 #include <math.h>
 
 #include "date.h"
+#include "linkedList.h"
 
 class exec
 {
 	private:
 
-	
+		linkedList<date> eventList;
+
 	public:
 		//constructor and destructor
 		exec();
@@ -37,13 +41,15 @@ class exec
 		* @return Print list in readable form to terminal (uses time parameter to determine 12/24 hr clock)
 		*/
 		void print(bool time);
-	
-		/* 
+
+		/*
 		* Method runs the program and calls to the admin or user based on what is selected
 		*/
 		void run();
 
 		void test();
+		
+		bool update(std::string eventNameCheck);
 
 		bool timeCheck (int time, int len);
 

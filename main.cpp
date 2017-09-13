@@ -4,6 +4,6 @@ int main()
 {
     //Call executive
     exec Executive;
-    Executive.test();
+    Executive.run();
     return(0);
 }
