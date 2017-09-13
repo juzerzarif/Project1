@@ -9,6 +9,7 @@
 #include <sstream>
 
 #include "date.h"
+#include "linkedList.h"
 
 class exec
 {

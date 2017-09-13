@@ -12,7 +12,7 @@ class linkedList
 	private:
 		//private memory variables 		
 		node<T>* m_front;
-		T m_size;
+		int m_size;
 		
 	public: 
 		//constructor and deconstructor 		
