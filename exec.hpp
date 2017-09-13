@@ -65,6 +65,7 @@ void exec :: admin()
 		std::string eventTime;
 		bool repeat = true;
 		bool eventDayCheck = true;
+		bool eventMonthCheck = true;
 
 		std::cout << "Select an option:\n";
 		std::cout << "1) Create new event\n";
@@ -95,21 +96,33 @@ void exec :: admin()
 
 			std::cout << "What year will the event be on?\n";
 			std::cin >> eventYear;
+			
+			do
+			{
+				std::cout << "What month will the event be on?:\n";
+				std::cout << "1) January\n";
+				std::cout << "2) February\n";
+				std::cout << "3) March\n";
+				std::cout << "4) April\n";
+				std::cout << "5) May\n";
+				std::cout << "6) June\n";
+				std::cout << "7) July\n";
+				std::cout << "8) August\n";
+				std::cout << "9) September\n";
+				std::cout << "10) October\n";
+				std::cout << "11) November\n";
+				std::cout << "12) December\n";
+				std::cin >> eventMonth;
 
-			std::cout << "What month will the event be on?:\n";
-			std::cout << "1) January\n";
-			std::cout << "2) February\n";
-			std::cout << "3) March\n";
-			std::cout << "4) April\n";
-			std::cout << "5) May\n";
-			std::cout << "6) June\n";
-			std::cout << "7) July\n";
-			std::cout << "8) August\n";
-			std::cout << "9) September\n";
-			std::cout << "10) October\n";
-			std::cout << "11) November\n";
-			std::cout << "12) December\n";
-			std::cin >> eventMonth;
+				if(eventMonth < 1 || eventMonth > 12)
+				{
+					std::cout << "\nINVALID INPUT. Please choose a valid option: \n \n";
+				}
+				else
+				{
+					eventMonthCheck = false;
+				}
+			}while(eventMonthCheck);
 
 			std::cout << "What day will you event be on?\n";
 
@@ -128,7 +141,34 @@ void exec :: admin()
 						eventDayCheck = false;
 					}
 				}
-				else if (eventMonth == 4)
+				else if (eventMonth == 4 || eventMonth == 6 || eventMonth == 9 || eventMonth == 11)
+				{
+					if(eventDay < 0 || eventDay > 30)
+					{
+						std::cout << "Invalid day for the chosen month. Please enter a valid day:\n";
+						eventDayCheck = true;
+					}
+					else
+					{
+						eventDayCheck = false;
+					}
+				}
+				else if (eventMonth == 2)
+				{
+					if(eventDay < 0 || eventDay > 28)
+					{
+						std::cout << "Invalid day for the chosen month. Please enter a valid day:\n";
+						eventDayCheck = true;
+					}
+					else
+					{
+						eventDayCheck = false;
+					}
+				}
+				else
+				{
+					std::cout << "This should never print";
+				}
 			}while(eventDayCheck);
 
 			std::cout << "At what time will your event start? (Time is meassured in half hour intervals)\n";
@@ -221,7 +261,7 @@ void exec :: admin()
 				
 				do
 				{
-					std::cin >> initialTime; //TODO: Check if time does not overlap when there is a break
+					std::cin >> initialTime;
 					int i = initialTime;
 					int len = 1;
 	
