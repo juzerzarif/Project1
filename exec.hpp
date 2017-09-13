@@ -74,27 +74,24 @@ void exec :: user()
 void exec :: print(bool time)
 	{
 		//goals create linked list and print raw info
-
-		//linkedList<date> events;
-		date eventDate;
-
 		std::ifstream readFile;
 		readFile.open("eventFileInOrder.txt");
 
-		int year = 0;
-		int month = 0;
-		int day = 0;
-		std::string timeClock;
-		std::string eventName;
-		int attending = 0;
-
-
 		//read each value and assign to a date object
-
 		if(readFile.is_open())
 		{
 			while(!readFile.eof())
 			{
+
+				//linkedList<date> events;
+				date eventDate;
+				int year = 0;
+				int month = 0;
+				int day = 0;
+				std::string timeClock;
+				std::string eventName;
+				int attending = 0;
+
 				std::string entry;
 
 				std::getline(readFile, entry, ':');
@@ -160,7 +157,7 @@ void exec::test()
 
 		print(true);
 
-		std::cout << "Enter Year:";
+		/*std::cout << "Enter Year:";
 		std::cin >> year;
 		std::cout << "Enter Month:";
 		std::cin >> month;
@@ -171,7 +168,7 @@ void exec::test()
 		std::getline(std::cin, timeClock);
 		std::cout << "Enter Event Name:";
 		std::cin.ignore(0, '\n');
-		std::getline(std::cin, eventName);
+		std::getline(std::cin, eventName);*/
 
 		eventDate.setYear(year);
 		eventDate.setMonth(month);
