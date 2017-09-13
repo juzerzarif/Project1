@@ -138,28 +138,70 @@ void linkedList<T>::addFront(T value)
 
 }
 
+//DOESN'T WORK YET. WOKRING ON sortList instead
 template <typename T>
 void linkedList<T>::addInOrder(T value)
 {
-	node<T>* newNode = new node<T>();
-	newNode->setValue(value);
 
-	if(m_front == nullptr)
+node<T>* newNode = new node<T>;
+newNode->setValue(value);
+
+node<T>* currentNode = m_front;
+node<T>** prevNode = &m_front;
+while(currentNode->getValue().getYear() >  newNode->getValue().getYear()) //&& currentNode->getNext() != nullptr)
+{
+   *prevNode = currentNode->getNext();
+   currentNode = currentNode->getNext();
+}
+*prevNode = newNode;
+newNode->setNext(currentNode);
+}
+
+//TODO bubble sort
+template <typename T>
+void linkedList<T>::sortList()
+{
+  node<T>* counterNode = m_front;
+  node<T>* currentNode = nullptr;
+  node<T>* prevNode = nullptr;
+  node<T>* temp = nullptr;
+
+	int counter = 0;
+
+  while(counterNode->getNext() != nullptr)
 	{
-		m_front = newNode;
-		newNode->setNext(nullptr);
-	}
-	else
+    counter++;
+   	counterNode = counterNode->getNext();
+  }
+
+  for(int i = 0; i <= counter; i++)
 	{
-			node<T>* currentNode = m_front;
-			while(currentNode->getValue().getMonth() <  newNode->getValue().getMonth() && currentNode->getNext() != nullptr)
+
+    currentNode = m_front;
+		prevNode = m_front;
+
+    while(currentNode->getNext() != nullptr) {
+      if (currentNode->getValue().getYear() < currentNode->getNext()->getValue().getYear())
 			{
-				currentNode = currentNode->getNext();
-			}
-			newNode->setNext(currentNode->getNext());
-			currentNode->setNext(newNode);
-	}
+        temp = currentNode->getNext();
+        currentNode->setNext(currentNode->getNext()->getNext());
+        temp->setNext(currentNode);
 
+        if(currentNode == m_front)
+				{
+					prevNode = temp;
+					m_front = prevNode;
+				}
+        else
+				{
+					prevNode->setNext(temp);
+        	currentNode = temp;
+				}
+      }
+      prevNode = currentNode;
+      currentNode = currentNode->getNext();
+    }
+  }
 }
 
 template <typename T>
