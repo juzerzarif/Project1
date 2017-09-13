@@ -1,9 +1,9 @@
-
 template <typename T>
-node<T>::node()
+node<T>::node(T value)
 {
-	//constructor initilizes each node to a value of 0 and the pointer to null
-	m_next = nullptr;
+	//constructor initilizes each node to a value of 0 and the pointer to null	
+	m_value = value;
+	m_next = nullptr; 
 }
 
 template <typename T>
@@ -21,7 +21,7 @@ T node<T>::getValue() const
 template <typename T>
 void node<T>::setNext(node<T>* prev)
 {
-	m_next = prev;
+	m_next = prev; 
 }
 
 template <typename T>
