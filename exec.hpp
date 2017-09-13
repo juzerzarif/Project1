@@ -362,7 +362,9 @@ void exec :: print(bool time)
 	int startTime = 0;
 	int endTime = 0;
 	int timeKeeper [48];
-		
+	
+	int cn = 1;//used for testing linked lists
+	
 	//read each value and assign to a date object
 	//insert date object into the sorted linked list
 	//output error if file is not open
@@ -403,8 +405,12 @@ void exec :: print(bool time)
 				eventDate.setTime(timeClock);
 				eventDate.setEvent(eventName);
 				eventDate.setAttendance(attending);
-		
-				events.addFront(eventDate);
+			
+				std::cout << "Trying to add back... Step: " << cn << '\n';
+				events.addBack(eventDate);
+				std::cout << "Success! Step: " << cn << '\n' << '\n';
+				//events.printList();
+				cn++;
 			}
 		}
 		readFile.close();//close file
@@ -556,7 +562,7 @@ void exec::test()
 		std::cout << '\n' << "Testing print, add to linked list, and print again." << '\n';
 		std::cout << "///////////////////////////////////////////////////" << '\n' << '\n';
 
-		print(true);
+		//print(true);
 
 		/*std::cout << "Enter Year:";
 		std::cin >> year;
@@ -582,7 +588,7 @@ void exec::test()
 		//eventList.addInOrder(eventDate);
 
 		std::cout << '\n';
-		eventList.printList();
+		//eventList.printList();
 	
 	}
 
