@@ -284,3 +284,16 @@ bool linkedList<T>::insert(int position, T value) const
     return(true);
   }
 }
+
+template<typename T>
+T linkedList<T>::getEntry(int position) const
+{
+	node<T>* temp = m_front;
+	int tempPos = 1;
+	while(tempPos < position) //Traverses list and gets entry
+	{
+		temp = temp->getNext(); 
+		tempPos++; 
+	}
+	return temp->getValue();
+}

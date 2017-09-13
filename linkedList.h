@@ -55,6 +55,8 @@ class linkedList
 
 		bool insert(int position, T value) const;
 
+		T getEntry(int position) const;
+
 };
 
 #include "linkedList.hpp"
