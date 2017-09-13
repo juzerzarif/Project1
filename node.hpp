@@ -1,4 +1,3 @@
-
 template <typename T>
 node<T>::node(T value)
 {
@@ -22,7 +21,7 @@ T node<T>::getValue() const
 template <typename T>
 void node<T>::setNext(node<T>* prev)
 {
-	m_next = prev;
+	m_next = prev; 
 }
 
 template <typename T>

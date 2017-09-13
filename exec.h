@@ -9,6 +9,7 @@
 #include <sstream>
 #include <limits>
 #include <algorithm>
+#include <math.h>
 
 #include "date.h"
 #include "linkedList.h"
