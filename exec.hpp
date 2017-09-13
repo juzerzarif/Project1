@@ -599,7 +599,7 @@ void exec::test()
 		eventDate.setEvent(eventName);
 		eventDate.setAttendance(attending);
 
-		eventList.addInOrder(eventDate);
+		//eventList.addInOrder(eventDate);
 
 		std::cout << '\n';
 		eventList.printList();

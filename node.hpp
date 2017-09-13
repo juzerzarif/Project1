@@ -1,6 +1,6 @@
 
 template <typename T>
-node<T>::node()
+node<T>::node(T value)
 {
 	//constructor initilizes each node to a value of 0 and the pointer to null	
 	m_value = value;

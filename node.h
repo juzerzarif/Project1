@@ -10,7 +10,7 @@ class node
 
 	public:
 	//constructor for each node includes a value and a pointer to another node
-	node();
+	node(T value);
 
 	//set and get methods for the value within the node
 	void setValue(T val);
