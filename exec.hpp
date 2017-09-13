@@ -60,7 +60,7 @@ void exec :: admin()
 void exec :: user()
 	{
 		int choice;
-		bool hourclock = true;
+		std::string eventName;
 
 		std::cout << "Would you like your times displayed on a 12 hour or 24hour clock?\n";
 		std::cout << "1) 12 hour clock\n";
@@ -70,19 +70,43 @@ void exec :: user()
 
 		if(choice == 1)
 		{
-			//print
+			print(true);
 		}
 		else if(choice == 2)
 		{
-
+			print(false);
 		}
-		else
+		else //if the user gives something that isnt a vaild input it will tell them it is invalid and restart
 		{
+			if( std::cin.fail() )//checks for bad input, by checking that it is the correct type,then checking it was a option listed
+	    		{
+	      			std::cin.clear(); // unset failbit
+	      			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // skip bad input
+					std::cout << '\n';
+	     			std::cout << "Sorry, your input was not a number, quitting now\n";
+					std::cout << '\n';
+	   			}
+			else if((choice > 2) || (choice <= 0))//checks that it is a valid numerical input
+				{
+					std:: cout << "Invaid input, quitting now.\n";
+					std::cout << '\n';
+				}
+				
+			exit(0);
 
 		}
+    
 
 		//call to print method
-		std::cout << "Please choose an event from the list above";
+		std::cout << "Please enter the number of the event you wish to attend.";
+		std::cin >> eventNumber;
+		
+		
+		
+		
+		
+		
+		
 
 	}
 
