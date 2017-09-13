@@ -135,10 +135,9 @@ void exec :: print(bool time)
 					eventDate.setEvent(eventName);
 					eventDate.setAttendance(attending);
 
-					//inputs blocks of time into an array timeKeeper
+					//inputs blocks of time into an integer array timeKeeper
 					std::istringstream sortedTime(timeClock);
 					int lastPosition = 0;
-					
 					while (sortedTime) 
 					{
 						int temp;
@@ -155,19 +154,80 @@ void exec :: print(bool time)
 
 					//parse array for start and end times of each block, append to end of string
 					timeClock = ""; 
-					for(int i = 0; i < lastPosition; i++)
+					int i = 0; //position in array
+					int officialEndTime = 0; //end time to be printed for each block
+					while(i <= lastPosition)
 					{
-						if(i=0)
+						if(i==0)
 						{
 							startTime = timeKeeper[i];
-							if(timeKeeper[i+1] != (startTime + 30))
-							{
-								//print time as a block 
-							}
+							i++;
 						}
 						else
 						{
-							
+							//Check to determine whether time is on an hour or 30-minute interval
+							//update officialTime to be used for appropriate output 
+							if(endTime == 0)
+							{
+								if(startTime % 100 != 0)
+								{
+
+									officialEndTime = 70;
+								}
+								else
+								{
+									officialEndTime = 30;
+								}
+							}
+							else
+							{
+								if(endTime % 100 != 0)
+								{
+
+									officialEndTime = 70;
+								}
+								else
+								{
+									officialEndTime = 30;
+								}
+							}
+
+							//Check to determine if endTime should be updated 
+							//or if time block complete and move to next time block 
+							if(startTime == (timeKeeper[i] - officialEndTime))
+							{
+								endTime = timeKeeper[i];
+								
+							}
+							else if(endTime ==(timeKeeper[i] - officialEndTime))
+							{
+								endTime = timeKeeper[i];
+								
+							}
+							else
+							{
+								if (endTime == 0)
+								{
+									timeClock.append(std::to_string(startTime));
+									timeClock.append(" - ");
+									timeClock.append(std::to_string(startTime+officialEndTime));
+									timeClock.append(", ");
+									startTime = timeKeeper[i];
+									
+								}
+								else
+								{
+									timeClock.append(std::to_string(startTime));
+									timeClock.append(" - ");
+									timeClock.append(std::to_string(endTime+officialEndTime));
+									timeClock.append(", ");
+
+									startTime = timeKeeper[i];
+									endTime = 0;
+								}
+							}
+							i++;
+
 						}
 					}
 
@@ -194,13 +254,14 @@ void exec :: print(bool time)
 					}
 
 
-
+					/*
 
 					std::cout << "Event: " << eventName << "\n";
 					std::cout << "Date: " << nameMonth << " " << day << ", " << year << "\n"; 
 					
 					std::cout << "Time: " << timeClock << '\n';
 					std::cout << "Attending: " << attending << '\n' << '\n';
+					*/
 
 
 				}
