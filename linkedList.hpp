@@ -130,17 +130,10 @@ void linkedList<T>::addBack(T value)
 template <typename T>
 void linkedList<T>::addFront(T value)
 {
-	//create a new node with data input and set to nullptr
-	node<T>* newNode = new node<T>();
-	newNode-> setValue(value);
-	newNode-> setNext(nullptr); 
-
-	//adds 1 new node to front of the list
-	newNode-> setNext(m_front); //set the new node point to the current front
-	m_front = newNode; //set the new front as the new node
-	
-	m_size ++;//increment size	
-		
+	node<T>* temp = m_front;
+	m_front = new node<T>(value);
+	m_front->setNext( temp );
+	m_size++;
 }
 
 template <typename T>

@@ -3,7 +3,7 @@ template <typename T>
 node<T>::node(T value)
 {
 	//constructor initilizes each node to a value of 0 and the pointer to null	
-	m_value = 0;
+	m_value = value;
 	m_next = nullptr; 
 }
 

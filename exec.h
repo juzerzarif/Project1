@@ -6,8 +6,10 @@
 #include <fstream>
 #include <istream>
 #include <string>
+#include <sstream>
 
 #include "date.h"
+#include "linkedList.h"
 
 class exec
 {
