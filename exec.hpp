@@ -497,7 +497,6 @@ bool exec::timeCheck (int time, int len)
 		return false;
 	}
 }
->>>>>>> e43f7ffc49166e1deb2d3ca45f7dd514f626d6de
 
 
 bool exec::update(std::string eventNameCheck)
