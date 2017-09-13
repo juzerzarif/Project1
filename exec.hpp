@@ -387,10 +387,19 @@ bool exec::timeCheck (int time, int len)
 		std::cout << "Invalid time. Time must be between 0000 and 2330.\n";
 		return true;
 	}
-	else if ((time/10)%10 != 0 && (time/10)%10 != 3)
+	else if ((len == 4 && (time/10)%10 != 0) && (len == 4 && (time/10)%10 != 3))
 	{
 		std::cout << "Invalid time. Times must be in thirty minute intervals i.e. End in 00 or 30.\n";
-		std::cout << (time/10)%10;
+		return true;
+	}
+	else if ((len == 3 && (time%10) != 0) && (len == 3 && (time%10) !=3))
+	{
+		std::cout << "Invalid time. Times must be in thirty minute intervals i.e. End in 00 or 30.\n";
+		return true;
+	}
+	else if ((time%10) != 0)
+	{
+		std::cout << "Invalid time. Times must be in thirty minute intervals i.e. End in 00 or 30.\n";
 		return true;
 	}
 	else
