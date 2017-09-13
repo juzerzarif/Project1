@@ -61,7 +61,7 @@ void exec :: admin()
 void exec :: user()
 	{
 		int choice;
-		int eventNumber;
+		std::string eventName;
 
 		std::cout << "Would you like your times displayed on a 12 hour or 24hour clock?\n";
 		std::cout << "1) 12 hour clock\n";
@@ -100,7 +100,29 @@ void exec :: user()
 
 		//call to print method
 		std::cout << "Please enter the number of the event you wish to attend.";
-		std::cin >> eventNumber;
+		std::cin >> eventName;
+		
+		if( std::cin.fail() )//checks for bad input, by checking that it is the correct type,then checking it was a option listed
+	    		{
+	      			std::cin.clear(); // unset failbit
+	      			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // skip bad input
+					std::cout << '\n';
+	     			std::cout << "Sorry, your input was not a number, quitting now\n";
+					std::cout << '\n';
+					exit(0);
+	   			}
+	   	
+	   	//eventList.search()//need function to go x number of nodes into the linked list
+	   	
+	   	update(eventName);
+	   	
+	   	
+	   	
+	   	
+	   	//use same function to access the given node from the list
+	   	
+	   	
+		
 		
 		
 		
@@ -228,3 +250,54 @@ void exec::test()
 		eventList.printList();
 
     }
+
+
+bool exec::update(std::string eventNameCheck)
+	{
+		std::ifstream readFile;
+		readFile.open("eventFile.txt");
+		std::string entry;
+		
+		std::string search_string = eventNameCheck;
+		std::string replace_string = "oranges";
+		std::string inbuf;
+		std::fstream input_file("eventFile.txt", std::ios::in);
+		std::ofstream output_file("result.txt");
+			
+			  while (!input_file.eof())
+			  {
+			      std::getline(input_file, inbuf);
+			
+			      int spot = inbuf.find(search_string);
+			      if(spot >= 0)
+			      {
+			         std::string tmpstring = inbuf.substr(0,spot);
+			         tmpstring += replace_string;
+			         tmpstring += inbuf.substr(spot+search_string.length(), inbuf.length());
+			         inbuf = tmpstring;
+			      }
+			
+			      output_file << inbuf << std::endl;
+			      
+			      return(true);
+			  }
+			
+			  //TODO: delete demo.txt and rename result.txt to demo.txt
+			  // to achieve the REPLACE effect.
+			
+			/*
+					while((!readFile.eof()) && ())
+			{
+				
+				std::getline(readFile, entry, ':');
+				std::getline(readFile, entry, ':');
+				std::getline(readFile, entry, ':');
+				std::getline(readFile, entry, ':');
+				std::getline(readFile, entry, ':');
+				eventName = entry;
+
+				std::getline(readFile, entry, '\n');
+				attending = std::atoi(entry.c_str());
+			}
+			*/
+	}

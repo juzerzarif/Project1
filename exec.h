@@ -7,6 +7,7 @@
 #include <istream>
 #include <string>
 #include <limits>
+#include <algorithm>
 
 #include "date.h"
 #include "linkedList.h"
@@ -46,6 +47,8 @@ class exec
 		void run();
 
 		void test();
+		
+		bool update(std::string eventNameCheck);
 
 };
 
