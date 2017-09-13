@@ -53,13 +53,6 @@ void exec :: run()
 
 void exec :: admin()
 	{
-		/* 1. Name of event
-		* 2. Year
-		* 3. Month
-		* 4. Day
-		* 5. Time
-		* 6. Number of people attending (1)*/
-
 		int choice = 0;
 		int eventYear = 0;
 		int eventMonth = 0;
@@ -71,9 +64,10 @@ void exec :: admin()
 		std::string eventName;
 		std::string eventTime;
 		bool repeat = true;
+		bool eventDayCheck = true;
 
 		std::cout << "Select an option:\n";
-		std::cout << "1) Create new activity\n";
+		std::cout << "1) Create new event\n";
 		std::cout << "2) View current activities\n";
 		
 		std::cin >> choice;
@@ -118,7 +112,24 @@ void exec :: admin()
 			std::cin >> eventMonth;
 
 			std::cout << "What day will you event be on?\n";
-			std::cin >> eventDay; //TODO: Check if valid day.
+
+			do
+			{
+				std::cin >> eventDay;
+				if (eventMonth == 1 || eventMonth == 3 || eventMonth == 5 || eventMonth == 7 || eventMonth == 8 || eventMonth == 10 || eventMonth == 12)
+				{
+					if(eventDay < 0 || eventDay > 31)
+					{
+						std::cout << "Invalid day for the chosen month. Please enter a valid day:\n";
+						eventDayCheck = true;
+					}
+					else
+					{
+						eventDayCheck = false;
+					}
+				}
+				else if (eventMonth == 4)
+			}while(eventDayCheck);
 
 			std::cout << "At what time will your event start? (Time is meassured in half hour intervals)\n";
 			std::cout << "Example times: 12:30 is 1230. 9:00 is either 0900 or 900.\n";
