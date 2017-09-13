@@ -252,3 +252,35 @@ std::vector<T> linkedList<T>::toVector() const
 	return(vec);
 
 }
+
+template<typename T>
+bool linkedList<T>::insert(int position, T value) const
+{
+
+  if(position > m_size || position < 1) 
+  { 
+	  return(false); 
+  }
+  else if(position == 1) //If the position is at the front we use addfront instead
+  {
+    addFront(value);
+    return(true);
+
+  }
+  else
+  {
+    node<T>* newNode = new node<T>(value);
+    node<T>* temp = m_front;
+    int tempPos = 1;
+
+    while(tempPos < (position-1))
+    {
+		temp = temp->getNext();
+		tempPos++;
+    }
+    newNode->setNext(temp->getNext());
+    temp->setNext(newNode);
+	m_size++; //Keeps track of the length
+    return(true);
+  }
+}

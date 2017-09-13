@@ -53,6 +53,8 @@ class linkedList
 		//used by test class to varify contents of list
 		std::vector<T> toVector() const;
 
+		bool insert(int position, T value) const;
+
 };
 
 #include "linkedList.hpp"
