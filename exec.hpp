@@ -276,7 +276,7 @@ void exec :: user()
 		int choice;
 		std::string eventName;
 
-		std::cout << "Would you like your times displayed on a 12 hour or 24hour clock?\n";
+		std::cout << "Would you like your times displayed on a 12 hour or 24 hour clock?\n";
 		std::cout << "1) 12 hour clock\n";
 		std::cout << "2) 24 hour clock\n";
 
@@ -312,7 +312,7 @@ void exec :: user()
     
 
 		//call to print method
-		std::cout << "Please enter the number of the event you wish to attend.";
+		std::cout << "Please enter the name of the event you wish to attend.";
 		std::cin >> eventName;
 		
 		if( std::cin.fail() )//checks for bad input, by checking that it is the correct type,then checking it was a option listed
@@ -518,33 +518,21 @@ bool exec::update(std::string eventNameCheck)
 			      int spot = inbuf.find(search_string);
 			      if(spot >= 0)
 			      {
-			         std::string tmpstring = inbuf.substr(0,spot);
+			         std::string tmpstring = inbuf.substr(0,spot + search_string.length() + 1);
+			         
 			         tmpstring += replace_string;
-			         tmpstring += inbuf.substr(spot+search_string.length(), inbuf.length());
+			         tmpstring += inbuf.substr(spot + search_string.length(), inbuf.length());
 			         inbuf = tmpstring;
 			      }
+			         output_file << inbuf << std::endl;
 			
-			      output_file << inbuf << std::endl;
+
 			      
-			      return(true);
+			      
 			  }
 			
 			  //TODO: delete demo.txt and rename result.txt to demo.txt
 			  // to achieve the REPLACE effect.
-			
-			/*
-					while((!readFile.eof()) && ())
-			{
-				
-				std::getline(readFile, entry, ':');
-				std::getline(readFile, entry, ':');
-				std::getline(readFile, entry, ':');
-				std::getline(readFile, entry, ':');
-				std::getline(readFile, entry, ':');
-				eventName = entry;
-
-				std::getline(readFile, entry, '\n');
-				attending = std::atoi(entry.c_str());
-			}
-			*/
+			  
+			return(true);
 	}
