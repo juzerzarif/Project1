@@ -98,12 +98,10 @@ template <typename T>
 void linkedList<T>::addBack(T value)
 {
 	node<T>* temp = nullptr;
-	node<T>* newNode = new node<T>();
-	newNode->setValue(value);
-	newNode->setNext(nullptr);
+	
 	if(isEmpty())
 	{
-		m_front = newNode;
+		m_front = new node<T>(value);
 	}
 	else
 	{
@@ -112,7 +110,7 @@ void linkedList<T>::addBack(T value)
 		{
 			temp = temp->getNext();
 		}
-		temp->setNext(newNode);
+		temp->setNext(new node<T>(value));
 	}
 	m_size++;
 }
@@ -131,8 +129,8 @@ template <typename T>
 void linkedList<T>::addInOrder(T value)
 {
 
-	node<T>* newNode = new node<T>;
-	newNode->setValue(value);
+	node<T>* newNode = new node<T>(value);
+	//newNode->setValue(value);
 
 	node<T>* currentNode = m_front;
 	node<T>** prevNode = &m_front;
@@ -284,7 +282,7 @@ std::vector<T> linkedList<T>::toVector() const
 }
 
 template<typename T>
-bool linkedList<T>::insert(int position, T value) const
+bool linkedList<T>::insert(int position, T value)
 {
 
   if(position > m_size || position < 1) 
