@@ -6,6 +6,10 @@
 #include <fstream>
 #include <istream>
 #include <string>
+#include <sstream>
+#include <limits>
+#include <algorithm>
+#include <math.h>
 
 #include "date.h"
 #include "linkedList.h"
@@ -45,6 +49,10 @@ class exec
 		void run();
 
 		void test();
+		
+		bool update(std::string eventNameCheck);
+
+		bool timeCheck (int time, int len);
 
 };
 
