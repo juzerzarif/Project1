@@ -7,7 +7,6 @@ class node
 	private:
 	T m_value;	//value in the node 
 	node<T>* m_next;	//pointer to another node
-	node<T>* m_prev;
 
 	public:
 	//constructor for each node includes a value and a pointer to another node	
@@ -20,9 +19,6 @@ class node
 	//set and get methods for the pointer of each node
 	void setNext(node<T>* next);
 	node<T>* getNext() const;
-
-	void setPrev(node<T>* prev);
-	node<T>* getPrev() const;
 };
 
 #include "node.hpp"
