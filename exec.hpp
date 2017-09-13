@@ -81,10 +81,10 @@ void exec :: admin()
 		if(choice == 1)
 		{
 			bool eventNameCheck = true;
+			std::cin.ignore();
 			std::cout << "Enter the name of the activity. Please no colons (:).\n";
 			do
 			{
-				std::cin.ignore();
 				std::getline (std::cin,eventName,'\n');
 
 				if(eventName.find(':') != std::string::npos || eventName[0] == ':')
@@ -300,7 +300,7 @@ void exec :: admin()
 				outFile << eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
 				outFile.close();
 			}
-
+			std::cout << "Event created!\n";
 		}
 	}
 
