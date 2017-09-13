@@ -50,6 +50,8 @@ class exec
 		
 		bool update(std::string eventNameCheck);
 
+		bool timeCheck (int time, int len);
+
 };
 
 #include "exec.hpp"
