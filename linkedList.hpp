@@ -97,29 +97,24 @@ void linkedList<T>::printList() const
 template <typename T>
 void linkedList<T>::addBack(T value)
 {
-	//create a new node with data input and set to nullptr
+	node<T>* temp = nullptr;
 	node<T>* newNode = new node<T>();
-	newNode-> setValue(value);
-	newNode-> setNext(nullptr);
-
-	//adds 1 new node to the end of the list
-	if(m_front == nullptr) //if list is empty create a new node
+	newNode->setValue(value);
+	newNode->setNext(nullptr);
+	if(isEmpty())
 	{
 		m_front = newNode;
 	}
-	else //else traverse list till last ndoe then set next node
+	else
 	{
-		node<T>* lastNode = m_front;
-		while(lastNode-> getNext() != nullptr)
+		temp = m_front;
+		while(temp->getNext() != nullptr)
 		{
-			lastNode = lastNode-> getNext();
+			temp = temp->getNext();
 		}
-		lastNode->setNext(newNode);
-
+		temp->setNext(newNode);
 	}
-
-	m_size ++;//increment size
-
+	m_size++;
 }
 
 template <typename T>
@@ -143,18 +138,18 @@ template <typename T>
 void linkedList<T>::addInOrder(T value)
 {
 
-node<T>* newNode = new node<T>;
-newNode->setValue(value);
+	node<T>* newNode = new node<T>;
+	newNode->setValue(value);
 
-node<T>* currentNode = m_front;
-node<T>** prevNode = &m_front;
-while(currentNode->getValue().getYear() >  newNode->getValue().getYear()) //&& currentNode->getNext() != nullptr)
-{
-   *prevNode = currentNode->getNext();
-   currentNode = currentNode->getNext();
-}
-*prevNode = newNode;
-newNode->setNext(currentNode);
+	node<T>* currentNode = m_front;
+	node<T>** prevNode = &m_front;
+	while(currentNode->getValue().getYear() >  newNode->getValue().getYear()) //&& currentNode->getNext() != nullptr)
+	{
+	   *prevNode = currentNode->getNext();
+	   currentNode = currentNode->getNext();
+	}
+	*prevNode = newNode;
+	newNode->setNext(currentNode);
 }
 
 //TODO bubble sort
@@ -176,11 +171,11 @@ void linkedList<T>::sortList()
 
   for(int i = 0; i <= counter; i++)
 	{
-
-    currentNode = m_front;
+		currentNode = m_front;
 		prevNode = m_front;
 
-    while(currentNode->getNext() != nullptr) {
+    while(currentNode->getNext() != nullptr)
+		{
       if (currentNode->getValue().getYear() < currentNode->getNext()->getValue().getYear())
 			{
         temp = currentNode->getNext();
