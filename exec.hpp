@@ -35,7 +35,6 @@ void exec :: run()
 		}
 		else //if the user gives something that isnt a vaild input it will tell them it is invalid and restart
 		{
-<<<<<<< HEAD
 			if( std::cin.fail() )//checks for bad input, by checking that it is the correct type,then checking it was a option listed
 	    		{
 	      			std::cin.clear(); // unset failbit
@@ -51,8 +50,7 @@ void exec :: run()
 				}
 
 				}
-		}
->>>>>>> origin/james-branch
+		
     	}
 
 void exec :: admin()
@@ -63,7 +61,7 @@ void exec :: admin()
 void exec :: user()
 	{
 		int choice;
-		std::string eventName;
+		int eventNumber;
 
 		std::cout << "Would you like your times displayed on a 12 hour or 24hour clock?\n";
 		std::cout << "1) 12 hour clock\n";
@@ -126,6 +124,7 @@ void exec :: print(bool time)
 		int year = 0;
 		int month = 0;
 		int day = 0;
+		int count = 1;
 		std::string timeClock;
 		std::string eventName;
 		int attending = 0;
@@ -159,7 +158,7 @@ void exec :: print(bool time)
 
 				if(year != 0)
 				{
-					std::cout << "Event Info: " << year << " " << month << " " << day << " " << timeClock << " " << eventName << " " << attending << '\n' << '\n';
+					std::cout << "Event " << count << " details: " << year << " " << month << " " << day << " " << timeClock << " " << eventName << " " << attending << '\n' << '\n';
 
 					eventDate.setYear(year);
 					eventDate.setMonth(month);
@@ -169,6 +168,8 @@ void exec :: print(bool time)
 					eventDate.setAttendance(attending);
 
 					eventList.addInOrder(eventDate);
+					
+					count ++;
 				}
 
 			}
