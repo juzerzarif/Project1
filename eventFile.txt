@@ -3,4 +3,3 @@
 2015:01:01:1400 1700:New Years:5
 2018:03:17:1500 2100:St. Patricks Day:0
 2011:04:25:1400 1800:Birthday:3
-2014:07:04:1800 2100:It was the Forth of July:8
