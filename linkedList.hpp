@@ -97,29 +97,24 @@ void linkedList<T>::printList() const
 template <typename T>
 void linkedList<T>::addBack(T value)
 {
-	//create a new node with data input and set to nullptr
+	node<T>* temp = nullptr;
 	node<T>* newNode = new node<T>();
-	newNode-> setValue(value);
-	newNode-> setNext(nullptr);
-
-	//adds 1 new node to the end of the list
-	if(m_front == nullptr) //if list is empty create a new node
+	newNode->setValue(value);
+	newNode->setNext(nullptr);
+	if(isEmpty())
 	{
 		m_front = newNode;
 	}
-	else //else traverse list till last ndoe then set next node
+	else
 	{
-		node<T>* lastNode = m_front;
-		while(lastNode-> getNext() != nullptr)
+		temp = m_front;
+		while(temp->getNext() != nullptr)
 		{
-			lastNode = lastNode-> getNext();
+			temp = temp->getNext();
 		}
-		lastNode->setNext(newNode);
-
+		temp->setNext(newNode);
 	}
-
-	m_size ++;//increment size
-
+	m_size++;
 }
 
 template <typename T>
@@ -131,29 +126,70 @@ void linkedList<T>::addFront(T value)
 	m_size++;
 }
 
-
+//DOESN'T WORK YET. WOKRING ON sortList instead
 template <typename T>
 void linkedList<T>::addInOrder(T value)
 {
-	node<T>* newNode = new node<T>();
+
+	node<T>* newNode = new node<T>;
 	newNode->setValue(value);
 
-	if(m_front == nullptr)
+	node<T>* currentNode = m_front;
+	node<T>** prevNode = &m_front;
+	while(currentNode->getValue().getYear() >  newNode->getValue().getYear()) //&& currentNode->getNext() != nullptr)
 	{
-		m_front = newNode;
-		newNode->setNext(nullptr);
+	   *prevNode = currentNode->getNext();
+	   currentNode = currentNode->getNext();
 	}
-	else
-	{
-			node<T>* currentNode = m_front;
-			while(currentNode->getValue().getMonth() <  newNode->getValue().getMonth() && currentNode->getNext() != nullptr)
-			{
-				currentNode = currentNode->getNext();
-			}
-			newNode->setNext(currentNode->getNext());
-			currentNode->setNext(newNode);
-	}
+	*prevNode = newNode;
+	newNode->setNext(currentNode);
+}
 
+//TODO bubble sort
+template <typename T>
+void linkedList<T>::sortList()
+{
+  node<T>* counterNode = m_front;
+  node<T>* currentNode = nullptr;
+  node<T>* prevNode = nullptr;
+  node<T>* temp = nullptr;
+
+	int counter = 0;
+
+  while(counterNode->getNext() != nullptr)
+	{
+    counter++;
+   	counterNode = counterNode->getNext();
+  }
+
+  for(int i = 0; i <= counter; i++)
+	{
+		currentNode = m_front;
+		prevNode = m_front;
+
+    while(currentNode->getNext() != nullptr)
+		{
+      if (currentNode->getValue().getYear() < currentNode->getNext()->getValue().getYear())
+			{
+        temp = currentNode->getNext();
+        currentNode->setNext(currentNode->getNext()->getNext());
+        temp->setNext(currentNode);
+
+        if(currentNode == m_front)
+				{
+					prevNode = temp;
+					m_front = prevNode;
+				}
+        else
+				{
+					prevNode->setNext(temp);
+        	currentNode = temp;
+				}
+      }
+      prevNode = currentNode;
+      currentNode = currentNode->getNext();
+    }
+  }
 }
 
 template <typename T>

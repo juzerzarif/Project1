@@ -46,6 +46,7 @@ class linkedList
 		bool removeFront();
 
 		void printList() const;
+		void sortList();
 
 		//creates new vector
 		//copy contents of list into vector

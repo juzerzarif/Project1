@@ -558,7 +558,7 @@ void exec::test()
 
 		print(true);
 
-		std::cout << "Enter Year:";
+		/*std::cout << "Enter Year:";
 		std::cin >> year;
 		std::cout << "Enter Month:";
 		std::cin >> month;
@@ -569,7 +569,7 @@ void exec::test()
 		std::getline(std::cin, timeClock);
 		std::cout << "Enter Event Name:";
 		std::cin.ignore(0, '\n');
-		std::getline(std::cin, eventName);
+		std::getline(std::cin, eventName);*/
 
 		eventDate.setYear(year);
 		eventDate.setMonth(month);
@@ -577,6 +577,7 @@ void exec::test()
 		eventDate.setTime(timeClock);
 		eventDate.setEvent(eventName);
 		eventDate.setAttendance(attending);
+
 
 		//eventList.addInOrder(eventDate);
 
