@@ -346,7 +346,7 @@ void exec :: print(bool time)
 	TO DO: 2 portions below to complete
 	*/
 
-	linkedList<date> events;
+	//linkedList<date> events;
 		
 	std::ifstream readFile; 
 	readFile.open("eventFile.txt");
@@ -363,8 +363,6 @@ void exec :: print(bool time)
 	int endTime = 0;
 	int timeKeeper [48];
 	
-	int cn = 1;//used for testing linked lists
-	
 	//read each value and assign to a date object
 	//insert date object into the sorted linked list
 	//output error if file is not open
@@ -379,7 +377,7 @@ void exec :: print(bool time)
 			if(entry != "") //check for case in which return is done after last line in text file
 			{
 		
-				date eventDate;
+				date eventDate = date();
 		
 				year = std::stoi(entry);
 							
@@ -406,11 +404,9 @@ void exec :: print(bool time)
 				eventDate.setEvent(eventName);
 				eventDate.setAttendance(attending);
 			
-				std::cout << "Trying to add back... Step: " << cn << '\n';
-				events.addBack(eventDate);
-				std::cout << "Success! Step: " << cn << '\n' << '\n';
-				//events.printList();
-				cn++;
+				eventList.addBack(eventDate);//adds new date to back of the list
+				eventList.sortList();//sorts list
+				//eventList.printList();//prints list
 			}
 		}
 		readFile.close();//close file
