@@ -275,6 +275,7 @@ void exec :: user()
 	{
 		int choice;
 		std::string eventName;
+		//bool foundCheck;
 
 		std::cout << "Would you like your times displayed on a 12 hour or 24 hour clock?\n";
 		std::cout << "1) 12 hour clock\n";
@@ -297,12 +298,12 @@ void exec :: user()
 	      			std::cin.clear(); // unset failbit
 	      			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // skip bad input
 					std::cout << '\n';
-	     			std::cout << "Sorry, your input was not a number, quitting now\n";
+	     			std::cout << "Sorry, your input was not a choice, quitting now\n";
 					std::cout << '\n';
 	   			}
 			else if((choice > 2) || (choice <= 0))//checks that it is a valid numerical input
 				{
-					std:: cout << "Invaid input, quitting now.\n";
+					std::cout << "Sorry, your input was not a choice, quitting now\n";
 					std::cout << '\n';
 				}
 				
@@ -310,39 +311,21 @@ void exec :: user()
 
 		}
     
-
-		//call to print method
-		std::cout << "Please enter the name of the event you wish to attend.";
-		std::cin >> eventName;
+		std::cout << "Please enter the name of the event you wish to attend: ";
 		
-		if( std::cin.fail() )//checks for bad input, by checking that it is the correct type,then checking it was a option listed
-	    		{
-	      			std::cin.clear(); // unset failbit
-	      			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // skip bad input
-					std::cout << '\n';
-	     			std::cout << "Sorry, your input was not a number, quitting now\n";
-					std::cout << '\n';
-					exit(0);
-	   			}
+		std::cin.ignore();
+		std::getline (std::cin,eventName,'\n');
 	   	
-	   	//eventList.search()//need function to go x number of nodes into the linked list
+	   	bool foundCheck = updateEvent(eventName);
 	   	
-	   	update(eventName);
-	   	
-	   	
-	   	
-	   	
-	   	//use same function to access the given node from the list
-	   	
-	   	
-		
-		
-		
-		
-		
-		
-		
-		
+	   	if(foundCheck == true)
+	   	{
+	   		std::cout << "You are now signed up for the event, don't forget to go!\n";
+	   	}
+	   	else
+	   	{
+	   		std::cout << "The event name you entered was not found in the list of events.\n";
+	   	}
 
 	}
 
@@ -354,7 +337,7 @@ void exec :: print(bool time)
 		date eventDate;
 
 		std::ifstream readFile;
-		readFile.open("eventFileInOrder.txt");
+		readFile.open("eventFile.txt");
 
 		int year = 0;
 		int month = 0;
@@ -499,40 +482,117 @@ bool exec::timeCheck (int time, int len)
 }
 
 
-bool exec::update(std::string eventNameCheck)
+bool exec::updateEvent(std::string eventNameCheck)
 	{
-		std::ifstream readFile;
-		readFile.open("eventFile.txt");
-		std::string entry;
+		int year = 0;
+		int attending = 0;
 		
+		std::ifstream readFile;
+		std::string temp;
+		std::string yearString;
+		std::string month;
+		std::string day;
+		std::string timeClock;
+		std::string eventName;
+		std::string attendingString;
+		std::string replace_string;
 		std::string search_string = eventNameCheck;
-		std::string replace_string = "oranges";
+		
+		char oldFileName[] ="update.txt";
+		char newFileName[] ="eventFile.txt";
+		
+		bool removeCheck = false;
+
+
+		//read each value and assign to a date object
+
+		readFile.open("eventFile.txt");
+
+		if(readFile.is_open())
+		{
+			while(!readFile.eof())
+			{
+				std::string entry;
+
+				std::getline(readFile, entry, ':');
+				year = std::atoi(entry.c_str());
+				yearString = entry;
+
+				std::getline(readFile, entry, ':');
+				month = entry;
+
+				std::getline(readFile, entry, ':');
+				day = entry;
+
+				std::getline(readFile, entry, ':');
+				timeClock = entry;
+
+				std::getline(readFile, entry, ':');
+				eventName = entry;
+
+				std::getline(readFile, entry, '\n');
+				attending = std::atoi(entry.c_str());
+
+					if((year != 0) && (eventName == eventNameCheck))
+					{
+						removeCheck = true;
+						
+						attendingString = std::to_string(attending);
+						
+						search_string = yearString + ":" + month + ":" + day + ":" + timeClock + ":" + eventName + ":" + attendingString;
+						
+						/*
+						std::cout << "Find: ";
+						std::cout << search_string ;
+						std::cout << '\n';
+						*/
+						attending++;
+						
+						attendingString = std::to_string(attending);
+						
+						replace_string  = yearString + ":" + month + ":" + day + ":" + timeClock + ":" + eventName + ":" + attendingString;
+						/*
+						std::cout << "Replace with: ";
+						std::cout << replace_string;
+						*/
+						
+						
+					}
+				
+
+			}
+			readFile.close();//close file
+		}
+		else
+		{
+			std::cout << "Error Opening File!" << '\n';
+
+		}
+		
 		std::string inbuf;
 		std::fstream input_file("eventFile.txt", std::ios::in);
-		std::ofstream output_file("result.txt");
+		std::ofstream output_file("update.txt");
 			
 			  while (!input_file.eof())
 			  {
 			      std::getline(input_file, inbuf);
 			
 			      int spot = inbuf.find(search_string);
+			      
 			      if(spot >= 0)
 			      {
-			         std::string tmpstring = inbuf.substr(0,spot + search_string.length() + 1);
-			         
+			         std::string tmpstring = inbuf.substr(0,spot);
 			         tmpstring += replace_string;
 			         tmpstring += inbuf.substr(spot + search_string.length(), inbuf.length());
 			         inbuf = tmpstring;
 			      }
 			         output_file << inbuf << std::endl;
-			
-
-			      
 			      
 			  }
-			
-			  //TODO: delete demo.txt and rename result.txt to demo.txt
-			  // to achieve the REPLACE effect.
 			  
-			return(true);
+			remove("eventFile.txt");
+			
+			rename(oldFileName, newFileName);
+			
+			return(removeCheck);
 	}

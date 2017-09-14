@@ -48,7 +48,7 @@ class exec
 
 		void test();
 		
-		bool update(std::string eventNameCheck);
+		bool updateEvent(std::string eventNameCheck);
 
 		bool timeCheck (int time, int len);
 
