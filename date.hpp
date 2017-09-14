@@ -9,20 +9,10 @@ date::date()
   attendance = 0;
 }
 
-bool operator == (const date& date1, const date& date2)
+/*bool operator == (const date& date1, const date& date2)
 {
-  return(date1.year == date2.year && date1.month == date2.month && date1.day == date2.day);
-}
-
-bool operator > (const date& date1, const date& date2)
-{
-  return(date1.year < date2.year && date1.month < date2.month && date1.day < date2.day);
-}
-
-bool operator < (const date& date1, const date& date2)
-{
-  return(date1.year > date2.year && date1.month > date2.month && date1.day > date2.day);
-}
+  return(year == year && month == month && day == day)
+}*/
 
 void date::setYear(int y)
 {

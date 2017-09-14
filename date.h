@@ -15,9 +15,10 @@ class date
 
 	public:
 	
-		friend bool operator == (const date& date1, const date& date2);
-		friend bool operator > (const date& date1, const date& date2);
-		friend bool operator < (const date& date1, const date& date2);
+		//if we want to implement operator overloads in the future
+		//friend bool operator == (const date& date1, const date& date2);
+		//friend bool operator > (const date& date1, const date& date2);
+		//friend bool operator < (const date& date1, const date& date2);
   
 		date();
 
