@@ -418,15 +418,15 @@ void exec :: print(bool time)
 	==========
 	*/
 		
-	for(int pos = 1; pos <= events.size(); pos++)
+	for(int pos = 1; pos <= eventList.size(); pos++)
 	{
 		
-		year = events.getEntry(pos).getYear();
-		month = events.getEntry(pos).getMonth();
-		day = events.getEntry(pos).getDay();
-		timeClock = events.getEntry(pos).getTime();
-		eventName = events.getEntry(pos).getEvent();
-		attending = events.getEntry(pos).getAttendance();
+		year = eventList.getEntry(pos).getYear();
+		month = eventList.getEntry(pos).getMonth();
+		day = eventList.getEntry(pos).getDay();
+		timeClock = eventList.getEntry(pos).getTime();
+		eventName = eventList.getEntry(pos).getEvent();
+		attending = eventList.getEntry(pos).getAttendance();
 	
 		//inputs blocks of time into an integer array timeKeeper
 		std::istringstream sortedTime(timeClock);
