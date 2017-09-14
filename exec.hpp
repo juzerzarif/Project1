@@ -54,7 +54,8 @@ void exec :: run()
 
 void exec :: admin()
 	{
-		int choice = 0;
+		//int choice = 0;
+		std::string stringChoice;
 		int eventYear = 0;
 		int eventMonth = 0;
 		int eventDay = 0;
@@ -110,52 +111,45 @@ void exec :: admin()
 		std::cout << "1) Create new event\n";
 		std::cout << "2) View current activities\n";
 		
-		std::cin >> choice;
+		std::cin.ignore();	
 
 		do
 		{
 			superBool = true;
 
-			/*if(std::to_string(choice).find('.') != std::string::npos || std::to_string(choice)[0] == '.')
+			std::getline(std::cin, stringChoice);
+			
+			while(stringChoice.find('.') != std::string::npos)
 			{
 				std::cout << "Invalid input. Please enter a valid input:\n";
-				std::cin >> choice;
+				std::getline(std::cin, stringChoice);
 				superBool = false;
-			}*/
-			std::string input;
-
-			/*for (std::string::const_iterator i = input.begin(); choice && i != input.end(); ++i) {
-				if (!isdigit(*i)) {
-					superBool = false;
-				}
-			}*/
+			}
 			
 			while(std::cin.fail())
 			{
 				std::cout << "Invalid input. Please enter a valid input:\n";
 				std::cin.clear();
 				std::cin.ignore(256,'\n');
-				std::cin >> choice;
 				superBool = false;
 			}
 
-			if (choice == 1 || choice == 2)
+			if (stringChoice == "1" || stringChoice == "2")
 			{
 				superBool = true;
 			}
 
-			if(choice != 1 && choice != 2)
+			if(stringChoice != "1" && stringChoice != "2")
 			{
 				std::cout << "Invalid input. Please enter a valid input:\n";
-				std::cin >> choice;
 				superBool = false;
 			}
 		}while(!superBool);
 
-		if(choice == 1)
+		if(stringChoice == "1")
 		{
 			bool eventNameCheck = true;
-			std::cin.ignore();
+
 			std::cout << "Enter the name of the activity. Please no colons (:).\n";
 			do
 			{
@@ -724,7 +718,7 @@ void exec :: admin()
 			}
 			std::cout << "Event created!\n";
 		}
-		else if (choice ==2)
+		else if(stringChoice == "2")
 		{
 			print(true);
 		}
