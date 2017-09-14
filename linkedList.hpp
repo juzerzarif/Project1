@@ -124,26 +124,6 @@ void linkedList<T>::addFront(T value)
 	m_size++;
 }
 
-//DOESN'T WORK YET. WOKRING ON sortList instead
-template <typename T>
-void linkedList<T>::addInOrder(T value)
-{
-
-	node<T>* newNode = new node<T>(value);
-	//newNode->setValue(value);
-
-	node<T>* currentNode = m_front;
-	node<T>** prevNode = &m_front;
-	while(currentNode->getValue().getYear() >  newNode->getValue().getYear()) //&& currentNode->getNext() != nullptr)
-	{
-	   *prevNode = currentNode->getNext();
-	   currentNode = currentNode->getNext();
-	}
-	*prevNode = newNode;
-	newNode->setNext(currentNode);
-}
-
-//TODO bubble sort
 template <typename T>
 void linkedList<T>::sortList()
 {
@@ -157,8 +137,8 @@ void linkedList<T>::sortList()
 		prevNode = m_front;
 
     while(currentNode->getNext() != nullptr)
-		{
-      if (currentNode->getValue().getYear() < currentNode->getNext()->getValue().getYear())
+	{
+      if (compareDates(currentNode->getValue(), currentNode->getNext()->getValue()) == true)
 		{
         temp = currentNode->getNext();
         currentNode->setNext(currentNode->getNext()->getNext());
@@ -179,6 +159,30 @@ void linkedList<T>::sortList()
       currentNode = currentNode->getNext();
     }
   }
+}
+
+template <typename T>
+bool linkedList<T>::compareDates(T value0, T value1)
+{
+	bool comparer = false;
+  
+	if(value0.getYear() < value1.getYear())
+	{
+		comparer = true;
+		return(comparer);
+	}
+	if(value0.getYear() == value1.getYear() && value0.getMonth() < value1.getMonth())
+	{
+		comparer = true;
+		return(comparer);
+	}
+	if(value0.getYear() == value1.getYear() && value0.getMonth() == value1.getMonth() && value0.getDay() < value1.getDay())
+	{
+		comparer = true;
+		return(comparer);
+	}
+	  
+	return(comparer);
 }
 
 template <typename T>

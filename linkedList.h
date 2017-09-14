@@ -38,7 +38,6 @@ class linkedList
 		//increments size
 		void addBack(T value);
 		void addFront(T value);
-		void addInOrder(T value);
 
 		//removes 1 node to back or front of the list
 		//decrements size
@@ -47,6 +46,7 @@ class linkedList
 
 		void printList() const;
 		void sortList();
+		bool compareDates(T value0, T value1);
 
 		//creates new vector
 		//copy contents of list into vector
