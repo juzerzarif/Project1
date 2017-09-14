@@ -68,7 +68,7 @@ void exec :: admin()
 		bool repeat = true;
 		bool eventDayCheck = true;
 		bool eventMonthCheck = true;
-		int hoursChoice = 0;
+		std::string hoursChoice;
 		bool hoursChoiceBool = true;
 		bool superBool = false;
 
@@ -76,25 +76,21 @@ void exec :: admin()
 		std::cout << "1) 12 hour clock\n";
 		std::cout << "2) 24 hour clock\n";
 
-		std::cin >> hoursChoice;
+		std::cin.ignore();
 
+		//Choose 12 or 24 hours
 		do
 		{
 			superBool = false;
 
-			while(std::cin.fail()) {
-				std::cout << "Invalid input. Please enter a valid input:\n";
-				std::cin.clear();
-				std::cin.ignore(256,'\n');
-				std::cin >> hoursChoice;
-			}
+			std::getline(std::cin, hoursChoice);
 
-			if(hoursChoice == 2) //24 hours
+			if(hoursChoice == "2") //24 hours
 			{
 				hoursChoiceBool = true;
 				superBool = true;
 			}
-			else if (hoursChoice == 1) //12 hours
+			else if (hoursChoice == "1") //12 hours
 			{
 				hoursChoiceBool = false;
 				superBool = true;
@@ -102,7 +98,7 @@ void exec :: admin()
 			else
 			{
 				std::cout << "Invalid input. Please enter a valid input:\n";
-				std::cin >> hoursChoice;
+				superBool = false;
 			}
 		}while(!superBool);
 
@@ -111,28 +107,14 @@ void exec :: admin()
 		std::cout << "1) Create new event\n";
 		std::cout << "2) View current activities\n";
 		
-		std::cin.ignore();	
+		//std::cin.ignore();	
 
+		//Choose Add Event or Show Events
 		do
 		{
 			superBool = true;
 
 			std::getline(std::cin, stringChoice);
-			
-			while(stringChoice.find('.') != std::string::npos)
-			{
-				std::cout << "Invalid input. Please enter a valid input:\n";
-				std::getline(std::cin, stringChoice);
-				superBool = false;
-			}
-			
-			while(std::cin.fail())
-			{
-				std::cout << "Invalid input. Please enter a valid input:\n";
-				std::cin.clear();
-				std::cin.ignore(256,'\n');
-				superBool = false;
-			}
 
 			if (stringChoice == "1" || stringChoice == "2")
 			{
@@ -150,7 +132,9 @@ void exec :: admin()
 		{
 			bool eventNameCheck = true;
 
-			std::cout << "Enter the name of the activity. Please no colons (:).\n";
+			std::cout << "Enter the name of the event. Please no colons (:).\n";
+
+			//Choose name of event
 			do
 			{
 				std::getline (std::cin,eventName,'\n');
@@ -169,11 +153,12 @@ void exec :: admin()
 
 			std::cout << "What year will the event be on?\n";
 
+			//Choose year of event
 			do
 			{
 				superBool = true;
 
-				std::cin >> eventYear;
+				std::cin >> eventYear;	
 				if(std::cin.fail())
 				{
 					while(std::cin.fail()) {
@@ -190,6 +175,7 @@ void exec :: admin()
 				}
 			}while(!superBool);
 
+			//Choose month of event
 			do
 			{
 				std::cout << "What month will the event be on?:\n";
@@ -226,6 +212,7 @@ void exec :: admin()
 
 			std::cout << "What day will you event be on?\n";
 
+			//Choose day of event
 			do
 			{
 				std::cin >> eventDay;
@@ -519,7 +506,8 @@ void exec :: admin()
 			std::cout << "2) No\n";
 			std::cin >> eventBreak;
 
-			while(eventBreak == 1)
+			//Choose if break
+			while(eventBreak == 1) //TODO: Change this to string
 			{
 				eventTime = eventTime + " "; //Adds a space between times when event is added
 
