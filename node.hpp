@@ -5,8 +5,6 @@ node<T>::node(T value) : m_value(value), m_next(nullptr)
 	m_next = nullptr;
 }
 
-}
-
 template <typename T>
 T node<T>::getValue() const
 {
