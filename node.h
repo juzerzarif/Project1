@@ -15,9 +15,9 @@ class node
 	//set and get methods for the value within the node
 	void setValue(T val);
 	T getValue() const;
-	
-	//set and get methods for the pointer of each node 
-	void setNext(node<T>* prev);
+
+	//set and get methods for the pointer of each node
+	void setNext(node<T>* next);
 	node<T>* getNext() const;
 };
 

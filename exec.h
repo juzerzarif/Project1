@@ -18,7 +18,7 @@ class exec
 {
 	private:
 
-		linkedList<date> eventList;
+		
 
 	public:
 		//constructor and destructor
@@ -57,6 +57,9 @@ class exec
 		bool updateEvent(std::string eventNameCheck);
 
 		bool timeCheck (int time, int len);
+		
+		linkedList<date> eventList;
+		bool timeCheck (int time, int len, bool timeMode);
 
 };
 

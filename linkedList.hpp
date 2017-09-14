@@ -82,7 +82,7 @@ void linkedList<T>::printList() const
 	}
 	else
 	{
-		while(temp->getNext() != nullptr)
+		while(temp != nullptr)
 		{
 			std::cout << "Event Info: " << temp->getValue().getYear() << " " <<
 			temp->getValue().getMonth() << " " << temp->getValue().getDay() << " " <<
@@ -97,29 +97,22 @@ void linkedList<T>::printList() const
 template <typename T>
 void linkedList<T>::addBack(T value)
 {
-	//create a new node with data input and set to nullptr
-	node<T>* newNode = new node<T>();
-	newNode-> setValue(value);
-	newNode-> setNext(nullptr);
-
-	//adds 1 new node to the end of the list
-	if(m_front == nullptr) //if list is empty create a new node
+	node<T>* temp = nullptr;
+	
+	if(isEmpty())
 	{
-		m_front = newNode;
+		m_front = new node<T>(value);
 	}
-	else //else traverse list till last ndoe then set next node
+	else
 	{
-		node<T>* lastNode = m_front;
-		while(lastNode-> getNext() != nullptr)
+		temp = m_front;
+		while(temp->getNext() != nullptr)
 		{
-			lastNode = lastNode-> getNext();
+			temp = temp->getNext();
 		}
-		lastNode->setNext(newNode);
-
+		temp->setNext(new node<T>(value));
 	}
-
-	m_size ++;//increment size
-
+	m_size++;
 }
 
 template <typename T>
@@ -133,27 +126,64 @@ void linkedList<T>::addFront(T value)
 
 
 template <typename T>
-void linkedList<T>::addInOrder(T value)
+void linkedList<T>::sortList()
 {
-	node<T>* newNode = new node<T>();
-	newNode->setValue(value);
+  node<T>* currentNode = nullptr;
+  node<T>* prevNode = nullptr;
+  node<T>* temp = nullptr;
 
-	if(m_front == nullptr)
+  for(int i = 0; i <= size(); i++)
 	{
-		m_front = newNode;
-		newNode->setNext(nullptr);
-	}
-	else
-	{
-			node<T>* currentNode = m_front;
-			while(currentNode->getValue().getMonth() <  newNode->getValue().getMonth() && currentNode->getNext() != nullptr)
-			{
-				currentNode = currentNode->getNext();
-			}
-			newNode->setNext(currentNode->getNext());
-			currentNode->setNext(newNode);
-	}
+		currentNode = m_front;
+		prevNode = m_front;
 
+    while(currentNode->getNext() != nullptr)
+	{
+      if (compareDates(currentNode->getValue(), currentNode->getNext()->getValue()) == true)
+		{
+        temp = currentNode->getNext();
+        currentNode->setNext(currentNode->getNext()->getNext());
+        temp->setNext(currentNode);
+        
+        if(currentNode == m_front)
+				{
+					prevNode = temp;
+					m_front = prevNode;
+				}
+        else
+				{
+					prevNode->setNext(temp);
+        	currentNode = temp;
+				}
+    	}
+      prevNode = currentNode;
+      currentNode = currentNode->getNext();
+    }
+  }
+}
+
+template <typename T>
+bool linkedList<T>::compareDates(T value0, T value1)
+{
+	bool comparer = false;
+  
+	if(value0.getYear() < value1.getYear())
+	{
+		comparer = true;
+		return(comparer);
+	}
+	if(value0.getYear() == value1.getYear() && value0.getMonth() < value1.getMonth())
+	{
+		comparer = true;
+		return(comparer);
+	}
+	if(value0.getYear() == value1.getYear() && value0.getMonth() == value1.getMonth() && value0.getDay() < value1.getDay())
+	{
+		comparer = true;
+		return(comparer);
+	}
+	  
+	return(comparer);
 }
 
 template <typename T>
