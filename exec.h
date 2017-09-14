@@ -50,7 +50,11 @@ class exec
 
 		void test();
 		
-		bool update(std::string eventNameCheck);
+		
+		/* Method searches the .txt file and updates attendence
+		*@return if the event was found in the list
+		*/
+		bool updateEvent(std::string eventNameCheck);
 
 		bool timeCheck (int time, int len);
 		

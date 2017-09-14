@@ -275,6 +275,7 @@ void exec :: user()
 	{
 		int choice;
 		std::string eventName;
+		//bool foundCheck;
 
 		std::cout << "Would you like your times displayed on a 12 hour or 24 hour clock?\n";
 		std::cout << "1) 12 hour clock\n";
@@ -297,12 +298,12 @@ void exec :: user()
 	      			std::cin.clear(); // unset failbit
 	      			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // skip bad input
 					std::cout << '\n';
-	     			std::cout << "Sorry, your input was not a number, quitting now\n";
+	     			std::cout << "Sorry, your input was not a choice, quitting now\n";
 					std::cout << '\n';
 	   			}
 			else if((choice > 2) || (choice <= 0))//checks that it is a valid numerical input
 				{
-					std:: cout << "Invaid input, quitting now.\n";
+					std::cout << "Sorry, your input was not a choice, quitting now\n";
 					std::cout << '\n';
 				}
 				
@@ -310,40 +311,31 @@ void exec :: user()
 
 		}
     
+		std::cout << "Please enter the name of the event you wish to attend: ";
+		
+		std::cin.ignore();
+		std::getline (std::cin,eventName,'\n');
+	   	
+	   	bool foundCheck = updateEvent(eventName);
+	   	
+	   	if(foundCheck == true)
+	   	{
+	   		std::cout << "You are now signed up for the event, don't forget to go!\n";
+	   	}
+	   	else
+	   	{
+	   		std::cout << "The event name you entered was not found in the list of events.\n";
+	   	}
 
-		//call to print method
-		std::cout << "Please enter the name of the event you wish to attend.";
-		std::cin >> eventName;
-		
-		if( std::cin.fail() )//checks for bad input, by checking that it is the correct type,then checking it was a option listed
-	    		{
-	      			std::cin.clear(); // unset failbit
-	      			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // skip bad input
-					std::cout << '\n';
-	     			std::cout << "Sorry, your input was not a number, quitting now\n";
-					std::cout << '\n';
-					exit(0);
-	   			}
-	   	
-	   	//eventList.search()//need function to go x number of nodes into the linked list
-	   	
-	   	update(eventName);
-	   	
-	   	
-	   	
-	   	
-	   	//use same function to access the given node from the list
-	   	
-	   	
-		
-	
 
 	}
 
 void exec :: print(bool time)
 {
 	/*
-	TO DO: 2 portions below to complete
+	TO DO:
+	-Change linkedList.addFront() to .insertSorted()
+	-Check TO DO portion pelow
 	*/
 
 	//linkedList<date> events;
@@ -368,12 +360,13 @@ void exec :: print(bool time)
 	//output error if file is not open
 	if(readFile.is_open())
 	{
+		
 		while(!readFile.eof())
 		{
 			std::string entry;
 		
 			std::getline(readFile, entry, ':' ); //read line by ':' separated value
-		
+			
 			if(entry != "") //check for case in which return is done after last line in text file
 			{
 		
@@ -417,129 +410,143 @@ void exec :: print(bool time)
 		
 	}
 		
-		
 	/*
-	TO DO: Print out each node in sorted array in readable format
+	===========
+	TO DO: 
+	-Print in 12Hr time
+	-Edit to remove commas at end of time
+	==========
 	*/
 		
-		
-		
-		
-		
-	//inputs blocks of time into an integer array timeKeeper
-	std::istringstream sortedTime(timeClock);
-	int lastPosition = 0;
-	while (sortedTime) 
+	for(int pos = 1; pos <= events.size(); pos++)
 	{
-		int temp;
-		std::string timeBlock;
-		sortedTime >> timeBlock;
-		if(timeBlock != "")//skip extra space at end
+		
+		year = events.getEntry(pos).getYear();
+		month = events.getEntry(pos).getMonth();
+		day = events.getEntry(pos).getDay();
+		timeClock = events.getEntry(pos).getTime();
+		eventName = events.getEntry(pos).getEvent();
+		attending = events.getEntry(pos).getAttendance();
+	
+		//inputs blocks of time into an integer array timeKeeper
+		std::istringstream sortedTime(timeClock);
+		int lastPosition = 0;
+		while (sortedTime)
 		{
+			int temp;
+			std::string timeBlock;
+			sortedTime >> timeBlock;
+			if(timeBlock != "")//skip extra space at end
+			{
 			temp = std::stoi(timeBlock);
 			timeKeeper[lastPosition]=temp; 
 			lastPosition++;
+			}
+		
 		}
 		
-	}
-		
-	//parse array for start and end times of each block, append to end of string
-	timeClock = ""; 
-	int i = 0; //position in array
-	int officialEndTime = 0; //end time to be printed for each block
-	while(i <= lastPosition)
-	{
-		if(i==0)
-		{
-			startTime = timeKeeper[i];
-			i++;
-		}
-		else
-		{
-			//Check to determine whether time is on an hour or 30-minute interval
-			//update officialTime to be used for appropriate output 
-			if(endTime == 0)
+		//parse array for start and end times of each block, append to end of string
+		timeClock = ""; 
+		int i = 0; //position in array
+		int officialEndTime = 0; //end time to be printed for each block
+		while(i <= lastPosition)
+		{	
+			if(i==0)
 			{
-				if(startTime % 100 != 0)
-				{
-					officialEndTime = 70;
-				}
-				else
-				{
-					officialEndTime = 30;
-				}
+				startTime = timeKeeper[i];
+				i++;
 			}
 			else
 			{
-				if(endTime % 100 != 0)
+				//Check to determine whether time is on an hour or 30-minute interval
+				//update officialTime to be used for appropriate output 
+				if(endTime == 0)
 				{
-					officialEndTime = 70;
+					if(startTime % 100 != 0)
+					{
+						officialEndTime = 70;
+					}
+					else
+					{
+						officialEndTime = 30;
+					}
 				}
 				else
 				{
-					officialEndTime = 30;
+					if(endTime % 100 != 0)
+					{
+						officialEndTime = 70;
+					}
+					else
+					{
+						officialEndTime = 30;
+					}
 				}
-			}
-		
-			//Check to determine if endTime should be updated 
-			//or if time block complete and move to next time block 
-			if(startTime == (timeKeeper[i] - officialEndTime))
-			{
-				endTime = timeKeeper[i];	
-			}
-			else if(endTime ==(timeKeeper[i] - officialEndTime))
-			{
-				endTime = timeKeeper[i];
-			}
-			else
-			{
-				if (endTime == 0)
+			
+				//Check to determine if endTime should be updated 
+				//or if time block complete and move to next time block 
+				if(startTime == (timeKeeper[i] - officialEndTime))
 				{
-					timeClock.append(std::to_string(startTime));
-					timeClock.append(" - ");
-					timeClock.append(std::to_string(startTime+officialEndTime));
-					timeClock.append(", ");
-					startTime = timeKeeper[i];		
+					endTime = timeKeeper[i];	
+				}
+				else if(endTime ==(timeKeeper[i] - officialEndTime))
+				{
+					endTime = timeKeeper[i];
 				}
 				else
 				{
-					timeClock.append(std::to_string(startTime));
-					timeClock.append(" - ");
-					timeClock.append(std::to_string(endTime+officialEndTime));
-					timeClock.append(", ");
-		
-					startTime = timeKeeper[i];
-					endTime = 0;
+					if (endTime == 0)
+					{
+						timeClock.append(std::to_string(startTime));
+						timeClock.append(" - ");
+						timeClock.append(std::to_string(startTime+officialEndTime));
+						timeClock.append(", ");
+						startTime = timeKeeper[i];		
+					}
+					else
+					{
+						timeClock.append(std::to_string(startTime));
+						timeClock.append(" - ");
+						timeClock.append(std::to_string(endTime+officialEndTime));
+						timeClock.append(", ");
+			
+						startTime = timeKeeper[i];
+						endTime = 0;
+					}
 				}
+				i++;
 			}
-			i++;
 		}
+		
+		//this will be moved to be used for printing (Currently testing)
+		switch(month) 
+		{
+			case 1 : nameMonth = "January";  break;       
+			case 2 : nameMonth = "February";  break;
+			case 3 : nameMonth = "March";  break;       
+			case 4 : nameMonth = "April";  break;
+			case 5 : nameMonth = "May";  break;       
+			case 6 : nameMonth = "June";  break;
+			case 7 : nameMonth = "July";  break;       
+			case 8 : nameMonth = "August";  break;
+			case 9 : nameMonth = "September";  break;       
+			case 10 : nameMonth = "October";  break;
+			case 11 : nameMonth = "November";  break;       
+			case 12 : nameMonth = "December";  break;
+		}
+
+		
+		std::cout << "Event: " << eventName << "\n";
+		std::cout << "Date: " << nameMonth << " " << day << ", " << year << "\n"; 
+									
+		std::cout << "Time: " << timeClock << '\n';
+		std::cout << "Attending: " << attending << '\n' << '\n';
+		
 	}
 		
-	//this will be moved to be used for printing (Currently testing)
-	switch(month) 
-	{
-		case 1 : nameMonth = "January";  break;       
-		case 2 : nameMonth = "February";  break;
-		case 3 : nameMonth = "March";  break;       
-		case 4 : nameMonth = "April";  break;
-		case 5 : nameMonth = "May";  break;       
-		case 6 : nameMonth = "June";  break;
-		case 7 : nameMonth = "July";  break;       
-		case 8 : nameMonth = "August";  break;
-		case 9 : nameMonth = "September";  break;       
-		case 10 : nameMonth = "October";  break;
-		case 11 : nameMonth = "November";  break;       
-		case 12 : nameMonth = "December";  break;
-	}
+
 		
-	/* TESTING
-	std::cout << "Event: " << eventName << "\n";
-	std::cout << "Date: " << nameMonth << " " << day << ", " << year << "\n"; 
-							
-	std::cout << "Time: " << timeClock << '\n';
-	std::cout << "Attending: " << attending << '\n' << '\n';
-	*/
+
 
 }
 
@@ -623,40 +630,117 @@ bool exec::timeCheck (int time, int len)
 }
 
 
-bool exec::update(std::string eventNameCheck)
+bool exec::updateEvent(std::string eventNameCheck)
 	{
-		std::ifstream readFile;
-		readFile.open("eventFile.txt");
-		std::string entry;
+		int year = 0;
+		int attending = 0;
 		
+		std::ifstream readFile;
+		std::string temp;
+		std::string yearString;
+		std::string month;
+		std::string day;
+		std::string timeClock;
+		std::string eventName;
+		std::string attendingString;
+		std::string replace_string;
 		std::string search_string = eventNameCheck;
-		std::string replace_string = "oranges";
+		
+		char oldFileName[] ="update.txt";
+		char newFileName[] ="eventFile.txt";
+		
+		bool removeCheck = false;
+
+
+		//read each value and assign to a date object
+
+		readFile.open("eventFile.txt");
+
+		if(readFile.is_open())
+		{
+			while(!readFile.eof())
+			{
+				std::string entry;
+
+				std::getline(readFile, entry, ':');
+				year = std::atoi(entry.c_str());
+				yearString = entry;
+
+				std::getline(readFile, entry, ':');
+				month = entry;
+
+				std::getline(readFile, entry, ':');
+				day = entry;
+
+				std::getline(readFile, entry, ':');
+				timeClock = entry;
+
+				std::getline(readFile, entry, ':');
+				eventName = entry;
+
+				std::getline(readFile, entry, '\n');
+				attending = std::atoi(entry.c_str());
+
+					if((year != 0) && (eventName == eventNameCheck))
+					{
+						removeCheck = true;
+						
+						attendingString = std::to_string(attending);
+						
+						search_string = yearString + ":" + month + ":" + day + ":" + timeClock + ":" + eventName + ":" + attendingString;
+						
+						/*
+						std::cout << "Find: ";
+						std::cout << search_string ;
+						std::cout << '\n';
+						*/
+						attending++;
+						
+						attendingString = std::to_string(attending);
+						
+						replace_string  = yearString + ":" + month + ":" + day + ":" + timeClock + ":" + eventName + ":" + attendingString;
+						/*
+						std::cout << "Replace with: ";
+						std::cout << replace_string;
+						*/
+						
+						
+					}
+				
+
+			}
+			readFile.close();//close file
+		}
+		else
+		{
+			std::cout << "Error Opening File!" << '\n';
+
+		}
+		
 		std::string inbuf;
 		std::fstream input_file("eventFile.txt", std::ios::in);
-		std::ofstream output_file("result.txt");
+		std::ofstream output_file("update.txt");
 			
 			  while (!input_file.eof())
 			  {
 			      std::getline(input_file, inbuf);
 			
 			      int spot = inbuf.find(search_string);
+			      
 			      if(spot >= 0)
 			      {
-			         std::string tmpstring = inbuf.substr(0,spot + search_string.length() + 1);
-			         
+			         std::string tmpstring = inbuf.substr(0,spot);
 			         tmpstring += replace_string;
 			         tmpstring += inbuf.substr(spot + search_string.length(), inbuf.length());
 			         inbuf = tmpstring;
 			      }
 			         output_file << inbuf << std::endl;
-			
-
-			      
 			      
 			  }
-			
-			  //TODO: delete demo.txt and rename result.txt to demo.txt
-			  // to achieve the REPLACE effect.
 			  
-			return(true);
+			remove("eventFile.txt");
+			
+			rename(oldFileName, newFileName);
+			
+			return(removeCheck);
 	}
