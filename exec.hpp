@@ -255,7 +255,12 @@ void exec :: admin()
 				}
 				else if (eventMonth == 2)
 				{
-					if(eventDay < 0 || eventDay > 28)
+					if(eventYear != 2020 && (eventDay < 0 || eventDay > 28))
+					{
+						std::cout << "Invalid day for the chosen month. Please enter a valid day:\n";
+						eventDayCheck = true;
+					}
+					else if(eventYear == 2020 && (eventDay < 0 || eventDay > 29))
 					{
 						std::cout << "Invalid day for the chosen month. Please enter a valid day:\n";
 						eventDayCheck = true;
@@ -708,7 +713,7 @@ void exec :: admin()
 		}
 		else if(stringChoice == "2")
 		{
-			print(true);
+			print(hoursChoiceBool);
 		}
 	}
 
