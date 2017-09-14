@@ -227,7 +227,7 @@ std::vector<T> linkedList<T>::toVector() const
 }
 
 template<typename T>
-bool linkedList<T>::insert(int position, T value) const
+bool linkedList<T>::insert(int position, T value)
 {
 
   if(position > m_size || position < 1) 
