@@ -13,9 +13,9 @@ class linkedList
 		//private memory variables
 		node<T>* m_front;
 		int m_size;
-
-	public:
-		//constructor and deconstructor
+		
+	public: 
+		//constructor and deconstructor 		
 		linkedList();
 		~linkedList();
 
@@ -52,6 +52,10 @@ class linkedList
 		//returns a standard vector with the contents of the list inside
 		//used by test class to varify contents of list
 		std::vector<T> toVector() const;
+
+		bool insert(int position, T value) const;
+
+		T getEntry(int position) const;
 
 };
 

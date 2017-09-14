@@ -125,18 +125,12 @@ void linkedList<T>::addBack(T value)
 template <typename T>
 void linkedList<T>::addFront(T value)
 {
-	//create a new node with data input and set to nullptr
-	node<T>* newNode = new node<T>();
-	newNode-> setValue(value);
-	newNode-> setNext(nullptr);
-
-	//adds 1 new node to front of the list
-	newNode-> setNext(m_front); //set the new node point to the current front
-	m_front = newNode; //set the new front as the new node
-
-	m_size ++;//increment size
-
+	node<T>* temp = m_front;
+	m_front = new node<T>(value);
+	m_front->setNext( temp );
+	m_size++;
 }
+
 
 template <typename T>
 void linkedList<T>::addInOrder(T value)
@@ -165,76 +159,55 @@ void linkedList<T>::addInOrder(T value)
 template <typename T>
 bool linkedList<T>::removeBack()
 {
-
-	node<T>* tempNode = m_front;
-
-	//One element is removed from the back of the list.
-	//Returns true if the back element was removed, false if the list is empty.
-	if(m_front == nullptr)
+	node<T>* lastNode = nullptr;
+	node<T>* secondintoLast = nullptr;
+	bool isRemoved = false;
+	
+	if(m_size==0)
 	{
-		return(false);
+		isRemoved = false; 
 	}
 	else
 	{
-
-		node<T>* lastNode = m_front;
-
+		lastNode = m_front;
+		secondintoLast = m_front;
+		
 		while(lastNode-> getNext() != nullptr)
 		{
-			lastNode = lastNode-> getNext();//sets lastNode to last Node
+			lastNode = lastNode -> getNext();
 			if(lastNode-> getNext() != nullptr)
 			{
-				tempNode = tempNode-> getNext();//sets tempNode to node before last
+				secondintoLast = secondintoLast -> getNext();
 			}
 		}
-
+		
 		delete(lastNode);
-		tempNode->setNext(nullptr);
+		secondintoLast -> setNext(nullptr);
 		lastNode = nullptr;
-		m_size --; //decrement size
+		m_size--;
+		isRemoved = true;
+
 	}
 
-	if(m_size == 0)
-	{
-		return(false);
-	}
-	else
-	{
-		return(true);
-	}
+	return(isRemoved);
 }
 
 template <typename T>
 bool linkedList<T>::removeFront()
 {
+	node<T>* temp = nullptr;
+	bool isRemoved = false;
 
-	node<T>* tempNode = m_front;
+	if(!isEmpty())
+	{
+		temp = m_front;
+		m_front = temp->getNext();
+		delete temp;
+		m_size--;
+		isRemoved = true;
+	}
 
-	//One element is removed from the front of the list.
-	//Returns true if the front element was removed, false if the list is empty.
-	if(m_front == nullptr)
-	{
-		delete(tempNode);//free the memory
-		tempNode = nullptr;
-		return(false);
-	}
-	else if(tempNode-> getNext() == nullptr)//case if only one item in list
-	{
-		delete(m_front);
-		m_front = nullptr;
-		m_size --; //decrement size
-		delete(tempNode);//free the memory
-		tempNode = nullptr;
-		return(false);
-	}
-	else
-	{
-		m_front = tempNode->getNext(); //sets front pointer to the next node
-		delete(tempNode);//free the memory
-		tempNode = nullptr;
-		m_size --; //decrement size
-		return(true);
-	}
+	return(isRemoved);
 }
 
 template <typename T>
@@ -251,4 +224,49 @@ std::vector<T> linkedList<T>::toVector() const
 
 	return(vec);
 
+}
+
+template<typename T>
+bool linkedList<T>::insert(int position, T value) const
+{
+
+  if(position > m_size || position < 1) 
+  { 
+	  return(false); 
+  }
+  else if(position == 1) //If the position is at the front we use addfront instead
+  {
+    addFront(value);
+    return(true);
+
+  }
+  else
+  {
+    node<T>* newNode = new node<T>(value);
+    node<T>* temp = m_front;
+    int tempPos = 1;
+
+    while(tempPos < (position-1))
+    {
+		temp = temp->getNext();
+		tempPos++;
+    }
+    newNode->setNext(temp->getNext());
+    temp->setNext(newNode);
+	m_size++; //Keeps track of the length
+    return(true);
+  }
+}
+
+template<typename T>
+T linkedList<T>::getEntry(int position) const
+{
+	node<T>* temp = m_front;
+	int tempPos = 1;
+	while(tempPos < position) //Traverses list and gets entry
+	{
+		temp = temp->getNext(); 
+		tempPos++; 
+	}
+	return temp->getValue();
 }
