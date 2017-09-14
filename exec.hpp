@@ -555,6 +555,10 @@ void exec :: admin()
 			}
 			std::cout << "Event created!\n";
 		}
+		else if (choice ==2)
+		{
+			print(true);
+		}
 	}
 
 void exec :: user()
