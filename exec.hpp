@@ -1,8 +1,6 @@
 
 //ADMIN AND USER METHODS
 
-
-
 exec :: exec()
 	{
 
@@ -798,6 +796,8 @@ void exec :: print(bool time)
 	-Change linkedList.addFront() to .insertSorted()
 	-Check TO DO portion pelow
 	*/
+	
+	std::cout << "Made it to print.\n";
 
 	//linkedList<date> events;
 		
@@ -1105,6 +1105,7 @@ bool exec::timeCheck (int time, int len, bool timeMode)
 
 bool exec::updateEvent(std::string eventNameCheck)
 	{
+		//define used varibles
 		int year = 0;
 		int attending = 0;
 		
@@ -1116,6 +1117,7 @@ bool exec::updateEvent(std::string eventNameCheck)
 		std::string timeClock;
 		std::string eventName;
 		std::string attendingString;
+		std::string inbuf;
 		std::string replace_string;
 		std::string search_string = eventNameCheck;
 		
@@ -1125,14 +1127,16 @@ bool exec::updateEvent(std::string eventNameCheck)
 		bool removeCheck = false;
 
 
-		//read each value and assign to a date object
+		//open the event file
 
 		readFile.open("eventFile.txt");
 
 		if(readFile.is_open())
 		{
+			//read through the whole list
 			while(!readFile.eof())
 			{
+				//store each value of each event in temparary varibles
 				std::string entry;
 
 				std::getline(readFile, entry, ':');
@@ -1153,26 +1157,35 @@ bool exec::updateEvent(std::string eventNameCheck)
 
 				std::getline(readFile, entry, '\n');
 				attending = std::atoi(entry.c_str());
-
+				
+					//check that the line isnt blank, and that the temprary even name read in equals the one we are searching for
 					if((year != 0) && (eventName == eventNameCheck))
 					{
+						//set the fact that we found the event to true
 						removeCheck = true;
 						
+						//set the attending string to the number that is was found
 						attendingString = std::to_string(attending);
 						
+						//assemble the string that includes the event name as one string that can be searched
 						search_string = yearString + ":" + month + ":" + day + ":" + timeClock + ":" + eventName + ":" + attendingString;
 						
-						/*
+						/* //was used to check that search_string was outputting correctly
 						std::cout << "Find: ";
 						std::cout << search_string ;
 						std::cout << '\n';
 						*/
+						
+						//increment the attendence
 						attending++;
 						
+						//update the attending string to reflect the incremented attendence
 						attendingString = std::to_string(attending);
 						
+						//set the replace string to the original string with the new incremented attendence
 						replace_string  = yearString + ":" + month + ":" + day + ":" + timeClock + ":" + eventName + ":" + attendingString;
-						/*
+						
+						/* //was used to check that replace_string was outputting correctly
 						std::cout << "Replace with: ";
 						std::cout << replace_string;
 						*/
@@ -1186,34 +1199,50 @@ bool exec::updateEvent(std::string eventNameCheck)
 		}
 		else
 		{
+			//if file dint open for some reason output that.
 			std::cout << "Error Opening File!" << '\n';
 
 		}
 		
-		std::string inbuf;
+		//open the input file
 		std::fstream input_file("eventFile.txt", std::ios::in);
+		//open the output file
 		std::ofstream output_file("update.txt");
 			
 			  while (!input_file.eof())
 			  {
+			  	  //each line to a tempoary varible inbuf
 			      std::getline(input_file, inbuf);
 			
+				  //search each tempoary string for the search string, and record location in spot
 			      int spot = inbuf.find(search_string);
 			      
 			      if(spot >= 0)
 			      {
+			      	 //subtract search string from the file and record location in tmpstring
 			         std::string tmpstring = inbuf.substr(0,spot);
+			         //replace the subtracted string with the replace string in that place
 			         tmpstring += replace_string;
 			         tmpstring += inbuf.substr(spot + search_string.length(), inbuf.length());
 			         inbuf = tmpstring;
 			      }
-			         output_file << inbuf << std::endl;
 			      
-			  }
+			      //doesnt print any empty lines
+			      if ( ! inbuf.empty() ) 
+			      {
+			         output_file << inbuf << std::endl;
+			      }
 			  
+			  
+
+				}
+			  
+			//deletes the original textfile
 			remove("eventFile.txt");
 			
+			//renames the newly created textfile to the old name
 			rename(oldFileName, newFileName);
 			
+			//returns if the event was found
 			return(removeCheck);
 	}
