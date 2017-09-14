@@ -7,6 +7,9 @@
 #include <istream>
 #include <string>
 #include <sstream>
+#include <limits>
+#include <algorithm>
+#include <math.h>
 
 #include "date.h"
 #include "linkedList.h"
@@ -15,7 +18,7 @@ class exec
 {
 	private:
 
-		linkedList<date> eventList;
+		
 
 	public:
 		//constructor and destructor
@@ -46,6 +49,17 @@ class exec
 		void run();
 
 		void test();
+		
+		
+		/* Method searches the .txt file and updates attendence
+		*@return if the event was found in the list
+		*/
+		bool updateEvent(std::string eventNameCheck);
+
+		bool timeCheck (int time, int len);
+		
+		linkedList<date> eventList;
+		bool timeCheck (int time, int len, bool timeMode);
 
 };
 

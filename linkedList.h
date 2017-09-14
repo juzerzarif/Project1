@@ -13,9 +13,9 @@ class linkedList
 		//private memory variables
 		node<T>* m_front;
 		int m_size;
-
-	public:
-		//constructor and deconstructor
+		
+	public: 
+		//constructor and deconstructor 		
 		linkedList();
 		~linkedList();
 
@@ -38,7 +38,6 @@ class linkedList
 		//increments size
 		void addBack(T value);
 		void addFront(T value);
-		void addInOrder(T value);
 
 		//removes 1 node to back or front of the list
 		//decrements size
@@ -47,12 +46,17 @@ class linkedList
 
 		void printList() const;
 		void sortList();
+		bool compareDates(T value0, T value1);
 
 		//creates new vector
 		//copy contents of list into vector
 		//returns a standard vector with the contents of the list inside
 		//used by test class to varify contents of list
 		std::vector<T> toVector() const;
+
+		bool insert(int position, T value);
+
+		T getEntry(int position) const;
 
 };
 

@@ -9,6 +9,11 @@ date::date()
   attendance = 0;
 }
 
+/*bool operator == (const date& date1, const date& date2)
+{
+  return(year == year && month == month && day == day)
+}*/
+
 void date::setYear(int y)
 {
   year = y;
