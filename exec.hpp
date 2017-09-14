@@ -525,6 +525,10 @@ void exec :: admin()
 				std::cin >> eventBreak;
 			}
 
+			if(initialTime == 2330)
+			{
+				eventTime = eventTime + "2330";
+			}
 
 			std::ifstream fileExists("eventFile.txt");
 			if(fileExists) //If file exists, start at the end, add new line and add info
@@ -741,9 +745,15 @@ void exec::test()
 
 bool exec::timeCheck (int time, int len)
 {
+	std::cout << "I'm here\n";
 	if (time != 0 && time != 30 && len != 3 && len != 4)
 	{
 		std::cout << "Invalid time. Example times: 12:30 is 1230. 9:00 is either 0900 or 900.\n";
+		return true;
+	}
+	if(len == 3 && (time/10)%10 != 3 && (time/10)%10 != 0)
+	{
+		std::cout << "Invalid time. Times must be in thirty minute intervals i.e. End in 00 or 30.\n";
 		return true;
 	}
 	else if (time < 0 || time > 2330)
