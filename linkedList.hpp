@@ -124,6 +124,7 @@ void linkedList<T>::addFront(T value)
 	m_size++;
 }
 
+
 template <typename T>
 void linkedList<T>::sortList()
 {

@@ -1,6 +1,10 @@
 template <typename T>
 node<T>::node(T value) : m_value(value), m_next(nullptr)
 {
+	//constructor initilizes each node to a value of 0 and the pointer to null
+	m_next = nullptr;
+	m_prev = nullptr;
+}
 
 }
 
