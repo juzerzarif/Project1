@@ -146,7 +146,12 @@ void exec :: admin()
 			do
 			{
 				std::cin >> eventDay;
-				if (eventMonth == 1 || eventMonth == 3 || eventMonth == 5 || eventMonth == 7 || eventMonth == 8 || eventMonth == 10 || eventMonth == 12)
+				if(eventDay < 1)
+				{
+					std::cout << "Invalid day.\n";
+					eventDayCheck = true;
+				}
+				else if (eventMonth == 1 || eventMonth == 3 || eventMonth == 5 || eventMonth == 7 || eventMonth == 8 || eventMonth == 10 || eventMonth == 12)
 				{
 					if(eventDay < 0 || eventDay > 31)
 					{
@@ -745,7 +750,6 @@ void exec::test()
 
 bool exec::timeCheck (int time, int len)
 {
-	std::cout << "I'm here\n";
 	if (time != 0 && time != 30 && len != 3 && len != 4)
 	{
 		std::cout << "Invalid time. Example times: 12:30 is 1230. 9:00 is either 0900 or 900.\n";
