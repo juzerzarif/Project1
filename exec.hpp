@@ -211,7 +211,7 @@ void exec :: admin()
 						}
 					}
 	
-					repeat = timeCheck(initialTime, len);
+					repeat = timeCheck(initialTime, len, hoursChoiceBool);
 				}while(repeat);
 			}
 			else
@@ -262,7 +262,7 @@ void exec :: admin()
 							initialTime = 0;
 						}
 						std::cout << initialTime << '\n';
-						repeat = timeCheck(initialTime, len);
+						repeat = timeCheck(initialTime, len, hoursChoiceBool);
 					}
 				}while(repeat);
 			}
@@ -286,8 +286,8 @@ void exec :: admin()
 							}
 						}
 					
-						repeat = timeCheck(endTime, len);
-						if (endTime < initialTime)
+						repeat = timeCheck(endTime, len, hoursChoiceBool);
+						if (endTime <= initialTime)
 						{
 							std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time\n";
 							repeat = true;
@@ -338,7 +338,7 @@ void exec :: admin()
 							{
 								endTime = 0;
 							}
-							repeat = timeCheck(endTime, len);
+							repeat = timeCheck(endTime, len, hoursChoiceBool);
 						}
 					}while(repeat);
 				}
@@ -406,7 +406,7 @@ void exec :: admin()
 							}
 						}
 		
-						repeat = timeCheck(initialTime, len);
+						repeat = timeCheck(initialTime, len, hoursChoiceBool);
 						if(initialTime < endTime)
 						{
 							std::cout << "Can't continue from break after previous end time. Please input a valid time: \n";
@@ -458,7 +458,7 @@ void exec :: admin()
 								initialTime = 0;
 							}
 							std::cout << initialTime << '\n';
-							repeat = timeCheck(initialTime, len);
+							repeat = timeCheck(initialTime, len, hoursChoiceBool);
 						}
 					}while(repeat);
 				}
@@ -479,7 +479,7 @@ void exec :: admin()
 							}
 						}
 		
-						repeat = timeCheck(endTime, len);
+						repeat = timeCheck(endTime, len, hoursChoiceBool);
 						if (endTime < initialTime)
 						{
 							std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time\n";
@@ -748,7 +748,7 @@ void exec::test()
 	}
 
 
-bool exec::timeCheck (int time, int len)
+bool exec::timeCheck (int time, int len, bool timeMode)
 {
 	if (time != 0 && time != 30 && len != 3 && len != 4)
 	{
@@ -762,7 +762,14 @@ bool exec::timeCheck (int time, int len)
 	}
 	else if (time < 0 || time > 2330)
 	{
-		std::cout << "Invalid time. Time must be between 0000 and 2330.\n";
+		if(timeMode)
+		{
+			std::cout << "Invalid time. Time must be between 0000 and 2330.\n";
+		}
+		else
+		{
+			std::cout << "Invalid time. Time must be between 100 and 1230.\n";
+		}
 		return true;
 	}
 	else if ((len == 4 && (time/10)%10 != 0) && (len == 4 && (time/10)%10 != 3))
