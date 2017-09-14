@@ -406,9 +406,9 @@ void exec :: print(bool time)
 			
 				eventList.addBack(eventDate);//adds new date to back of the list
 				eventList.sortList();//sorts list
-				//eventList.printList();//prints list
 			}
 		}
+		//eventList.printList();//prints list
 		readFile.close();//close file
 	}
 	else

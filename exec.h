@@ -55,8 +55,6 @@ class exec
 		bool timeCheck (int time, int len);
 		
 		linkedList<date> eventList;
-		
-		void sort(date eventDate);
 
 };
 
