@@ -787,7 +787,8 @@ void exec :: user()
 		std::cin.ignore();
 		std::getline (std::cin,eventName,'\n');
 	   	
-	   	bool foundCheck = updateEvent(eventName);
+	   	bool foundCheck = eventCheck(eventName);
+	   	
 	   	
 	   	if(foundCheck == true)
 	   	{
@@ -1257,4 +1258,61 @@ bool exec::updateEvent(std::string eventNameCheck)
 			
 			//returns if the event was found
 			return(removeCheck);
+	}
+	
+bool exec::eventCheck(std::string eventNameCheck)
+	{
+		//define used varibles
+		int year = 0;
+		
+		std::ifstream readFile;
+		std::string temp;
+		std::string eventName = eventNameCheck;
+		bool removeCheck = false;
+		
+		//open the event file
+
+		readFile.open("eventFile.txt");
+
+		if(readFile.is_open())
+		{
+			//read through the whole list
+			while(!readFile.eof())
+			{
+				//store each value of each event in temparary varibles
+				std::string entry;
+
+				std::getline(readFile, entry, ':');
+				year = std::atoi(entry.c_str());
+
+				/*
+				* ignore the info we dont care about
+				*/
+				std::getline(readFile, entry, ':');
+				std::getline(readFile, entry, ':');
+				std::getline(readFile, entry, ':');
+				
+				std::getline(readFile, entry, ':');
+				eventName = entry;
+
+				std::getline(readFile, entry, '\n');
+				
+					//check that the line isnt blank, and that the temprary even name read in equals the one we are searching for
+					if((year != 0) && (eventName == eventNameCheck))
+					{
+						//set the fact that we found the event to true
+						removeCheck = true;
+					}
+				
+
+			}
+			readFile.close();//close file
+		}
+		else
+		{
+			//if file dint open for some reason output that.
+			std::cout << "Error Opening File!" << '\n';
+
+		}
+		return(removeCheck);
 	}
