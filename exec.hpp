@@ -85,6 +85,7 @@ void exec :: admin()
 		std::string hoursChoice = "";
 		bool hoursChoiceBool = true;
 		bool superBool = false;
+		bool noMore = false;
 
 		std::cout << "Would you like your times displayed on a 12 hour or 24 hour clock?\n";
 		std::cout << "1) 12 hour clock\n";
@@ -478,6 +479,7 @@ void exec :: admin()
 				}
 				else
 				{
+					noMore = true;
 					if(hoursChoiceBool)
 					{
 						std::cout << "Event started at 11:30 p.m. It will run until 11:59 p.m.\n";
@@ -512,12 +514,22 @@ void exec :: admin()
 					}
 					eventTime = eventTime + std::to_string(i) + " ";
 				}
-	
-				std::cout << "Are there breaks in your event?\n";
-				std::cout << "1) Yes\n";
-				std::cout << "2) No\n";
-				std::cin >> eventBreak;
-	
+
+				if(endTime == 2330) //Dont allow user to input breaks if end time is 11:30 pm
+				{
+					noMore = true;
+				}
+				if(!noMore) 
+				{
+					std::cout << "Are there breaks in your event?\n";
+					std::cout << "1) Yes\n";
+					std::cout << "2) No\n";
+					std::cin >> eventBreak;
+				}
+				else
+				{
+					eventBreak = 2;
+				}
 
 				//Choose if break
 				while(eventBreak == 1) //TODO: Change this to string
@@ -734,6 +746,7 @@ void exec :: admin()
 					}
 					else
 					{
+						noMore = true;
 						if(hoursChoiceBool)
 						{
 							std::cout << "Break started at 11:30 p.m. It will run until 11:59 p.m.\n";
@@ -768,11 +781,15 @@ void exec :: admin()
 					}
 					eventTime = eventTime + std::to_string(i) + " ";
 					}
-	
-					std::cout << "Are there any more breaks in your event?\n";
-					std::cout << "1) Yes\n";
-					std::cout << "2) No\n";
-					std::cin >> eventBreak;
+					
+					if(!noMore)
+					{
+						std::cout << "Are there any more breaks in your event?\n";
+						std::cout << "1) Yes\n";
+						std::cout << "2) No\n";
+						std::cin >> eventBreak;
+					}
+
 					if(eventBreak == 1)
 					{
 						bogo = true;
