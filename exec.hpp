@@ -352,18 +352,33 @@ void exec :: admin()
 							}
 							else
 							{
-								int timeOfDay = 0;
-								std::cout << "Do you want a.m. or p.m.?\n";
-								std::cout << "1) a.m.\n";
-								std::cout << "2) p.m.\n";
+								superBool = true;
+
+								std::string timeOfDay;
+								std::cin.ignore();
+								while(superBool)
+								{
+									std::cout << "Do you want a.m. or p.m.?\n";
+									std::cout << "1) a.m.\n";
+									std::cout << "2) p.m.\n";
+			
+									std::getline(std::cin, timeOfDay);
+
+									if(timeOfDay == "1" || timeOfDay == "2")
+									{
+										superBool = false;
+									}
+									else
+									{
+										std::cout << "Invalid input. Please enter a vallid input.\n";
+									}
+								}
 		
-								std::cin >> timeOfDay;
-		
-								if(timeOfDay == 2 && initialTime != 1200 && initialTime != 1230) //if time is pm, add 1200 to it to make it 24 hours
+								if(timeOfDay == "2" && initialTime != 1200 && initialTime != 1230) //if time is pm, add 1200 to it to make it 24 hours
 								{
 									initialTime += 1200;
 								}
-								else if (timeOfDay == 1 && initialTime == 1200) //If time is 12am, change to 0
+								else if (timeOfDay == "1" && initialTime == 1200) //If time is 12am, change to 0
 								{
 									initialTime = 0;
 								}
@@ -450,18 +465,33 @@ void exec :: admin()
 								}
 								else
 								{
-									int timeOfDay = 0;
-									std::cout << "Do you want a.m. or p.m.?\n";
-									std::cout << "1) a.m.\n";
-									std::cout << "2) p.m.\n";
+									superBool = true;
+									std::string timeOfDay;
+									std::cin.ignore();
+
+									while(superBool)
+									{
+										std::cout << "Do you want a.m. or p.m.?\n";
+										std::cout << "1) a.m.\n";
+										std::cout << "2) p.m.\n";
+				
+										std::getline(std::cin, timeOfDay);
+
+										if(timeOfDay == "1" || timeOfDay == "2")
+										{
+											superBool = false;
+										}
+										else
+										{
+											std::cout << "Invalid input. Please enter a vallid input.\n";
+										}
+									}
 		
-									std::cin >> timeOfDay;
-		
-									if(timeOfDay == 2 && endTime != 1200 && endTime != 1230) //if time is pm, add 1200 to it to make it 24 hours
+									if(timeOfDay == "2" && endTime != 1200 && endTime != 1230) //if time is pm, add 1200 to it to make it 24 hours
 									{
 										endTime += 1200;
 									}
-									else if (timeOfDay == 1 && endTime == 1200) //If time is 12am, change to 0
+									else if (timeOfDay == "1" && endTime == 1200) //If time is 12am, change to 0
 									{
 										endTime = 0;
 									}
@@ -522,7 +552,6 @@ void exec :: admin()
 				if(!noMore) 
 				{
 					superBool = true;
-					std::cin.ignore();
 					while(superBool)
 					{
 						std::cout << "Are there breaks in your event?\n";
@@ -631,18 +660,33 @@ void exec :: admin()
 								}
 								else
 								{
-									int timeOfDay = 0;
+								superBool = true;
+								std::string timeOfDay;
+								std::cin.ignore();
+
+								while(superBool)
+								{
 									std::cout << "Do you want a.m. or p.m.?\n";
 									std::cout << "1) a.m.\n";
 									std::cout << "2) p.m.\n";
+			
+									std::getline(std::cin, timeOfDay);
+
+									if(timeOfDay == "1" || timeOfDay == "2")
+									{
+										superBool = false;
+									}
+									else
+									{
+										std::cout << "Invalid input. Please enter a vallid input.\n";
+									}
+								}
 		
-									std::cin >> timeOfDay;
-		
-									if(timeOfDay == 2 && initialTime != 1200 && initialTime != 1230) //if time is pm, add 1200 to it to make it 24 hours
+									if(timeOfDay == "2" && initialTime != 1200 && initialTime != 1230) //if time is pm, add 1200 to it to make it 24 hours
 									{
 										initialTime += 1200;
 									}
-									else if (timeOfDay == 1 && initialTime == 1200) //If time is 12am, change to 0
+									else if (timeOfDay == "1" && initialTime == 1200) //If time is 12am, change to 0
 									{
 										initialTime = 0;
 									}
@@ -735,18 +779,33 @@ void exec :: admin()
 									}
 									else
 									{
-										int timeOfDay = 0;
-										std::cout << "Do you want a.m. or p.m.?\n";
-										std::cout << "1) a.m.\n";
-										std::cout << "2) p.m.\n";
+										superBool = true;
+										std::string timeOfDay;
+										std::cin.ignore();
+
+										while(superBool)
+										{
+											std::cout << "Do you want a.m. or p.m.?\n";
+											std::cout << "1) a.m.\n";
+											std::cout << "2) p.m.\n";
+					
+											std::getline(std::cin, timeOfDay);
+
+											if(timeOfDay == "1" || timeOfDay == "2")
+											{
+												superBool = false;
+											}
+											else
+											{
+												std::cout << "Invalid input. Please enter a vallid input.\n";
+											}
+										}
 			
-										std::cin >> timeOfDay;
-			
-										if(timeOfDay == 2 && endTime != 1200 && endTime != 1230) //if time is pm, add 1200 to it to make it 24 hours
+										if(timeOfDay == "2" && endTime != 1200 && endTime != 1230) //if time is pm, add 1200 to it to make it 24 hours
 										{
 											endTime += 1200;
 										}
-										else if (timeOfDay == 1 && endTime == 1200) //If time is 12am, change to 0
+										else if (timeOfDay == "1" && endTime == 1200) //If time is 12am, change to 0
 										{
 											endTime = 0;
 										}
@@ -803,7 +862,8 @@ void exec :: admin()
 					{
 						superBool = true;
 
-						std::cin.ignore();
+						//std::cin.ignore();
+						//std::cin.ignore();
 
 						while(superBool)
 						{
