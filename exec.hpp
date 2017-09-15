@@ -935,42 +935,56 @@ void exec :: user()
 	{
 		int choice;
 		std::string eventName;
-		//bool foundCheck;
+		bool aproval = false;
 
-		std::cout << "Would you like your times displayed on a 12 hour or 24 hour clock?\n";
-		std::cout << "1) 12 hour clock\n";
-		std::cout << "2) 24 hour clock\n";
-
-		std::cin >> choice;
-
-		if(choice == 1)
+		do
 		{
-			print(true);
-		}
-		else if(choice == 2)
-		{
-			print(false);
-		}
-		else //if the user gives something that isnt a vaild input it will tell them it is invalid and restart
-		{
-			if( std::cin.fail() )//checks for bad input, by checking that it is the correct type,then checking it was a option listed
-	    		{
-	      			std::cin.clear(); // unset failbit
-	      			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // skip bad input
-					std::cout << '\n';
-	     			std::cout << "Sorry, your input was not a choice, quitting now\n";
-					std::cout << '\n';
-	   			}
-			else if((choice > 2) || (choice <= 0))//checks that it is a valid numerical input
+				std::cout << "****************************************\n\n";
+				std::cout << "Would you like your times displayed on a 12 hour or 24 hour clock?\n";
+				std::cout << "1) 12 hour clock\n";
+				std::cout << "2) 24 hour clock\n";
+		
+				std::cin >> choice;
+		
+				if(choice == 1)
 				{
-					std::cout << "Sorry, your input was not a choice, quitting now\n";
-					std::cout << '\n';
+					std::cout << "\n****************************************\n";
+					print(true);
+
+					aproval = true;
+					
+				}
+				else if(choice == 2)
+				{
+					std::cout << "\n****************************************\n";
+					print(false);
+
+					aproval = true;
+					
+				}
+				else //if the user gives something that isnt a vaild input it will tell them it is invalid and restart
+				{
+					if( std::cin.fail() )//checks for bad input, by checking that it is the correct type,then checking it was a option listed
+			    		{
+			      			std::cin.clear(); // unset failbit
+			      			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // skip bad input
+							std::cout << '\n';
+			     			std::cout << "Sorry, your input was not a number choice, try again\n";
+							std::cout << '\n';
+			   			}
+					else if((choice > 2) || (choice <= 0))//checks that it is a valid numerical input
+						{
+							std::cout << "Sorry, your number selection was not an option, try again.\n";
+							std::cout << '\n';
+						}
+						
+					aproval = false;
+		
 				}
 				
-			exit(0);
-
-		}
+		}while(!aproval);
     
+    	std::cout << "****************************************\n\n";
 		std::cout << "Please enter the name of the event you wish to attend: ";
 		
 		std::cin.ignore();
@@ -984,7 +998,7 @@ void exec :: user()
 	   	}
 	   	else
 	   	{
-	   		std::cout << "The event name you entered was not found in the list of events.\n";
+	   		std::cout << "The event name you entered was unfortunatly not found in the list of events.\n";
 	   	}
 
 
