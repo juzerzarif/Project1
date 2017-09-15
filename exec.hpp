@@ -162,7 +162,8 @@ void exec :: admin()
 	
 					
 					std::cin >> eventYear;
-					std::cin.ignore();
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					
 					if(std::cin.fail())
 					{
 						while(std::cin.fail()) {
@@ -196,7 +197,7 @@ void exec :: admin()
 					std::cout << "11) November\n";
 					std::cout << "12) December\n";
 					std::cin >> eventMonth;
-					std::cin.ignore();
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	
 					if(std::cin.fail()) {
 						//std::cout << "Invalid input. Please enter a valid input:\n";
@@ -221,6 +222,7 @@ void exec :: admin()
 				do
 				{
 					std::cin >> eventDay;
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	
 					if(std::cin.fail()) {
 						//std::cout << "Invalid input. Please enter a valid input:\n";
@@ -289,7 +291,7 @@ void exec :: admin()
 					do
 					{
 						std::cin >> initialTime;
-						std::cin.ignore();
+						std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	
 						if(std::cin.fail())
 						{
@@ -324,7 +326,7 @@ void exec :: admin()
 						bool shouldSkip = false; //Determines whether given time is valid by checking if its between 1 and 1230. True if invalid time is given
 	
 						std::cin >> initialTime;
-						std::cin.ignore();
+						std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	
 						if(std::cin.fail())
 						{
@@ -401,7 +403,7 @@ void exec :: admin()
 						do
 						{
 							std::cin >> endTime;
-							std::cin.ignore();
+							std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 						
 							if(std::cin.fail())
 							{
@@ -439,7 +441,7 @@ void exec :: admin()
 							repeat = true;
 	
 							std::cin >> endTime;
-							std::cin.ignore();
+							std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	
 							if(std::cin.fail())
 							{
@@ -642,7 +644,7 @@ void exec :: admin()
 							bool shouldSkip = false; //Determines whether given time is valid by checking if its between 1 and 1230. True if invalid time is given
 	
 							std::cin >> initialTime;
-							std::cin.ignore();
+							std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	
 							if(std::cin.fail())
 							{
@@ -675,7 +677,6 @@ void exec :: admin()
 								{
 								superBool = true;
 								std::string timeOfDay;
-								std::cin.ignore();
 
 								while(superBool)
 								{
@@ -725,7 +726,7 @@ void exec :: admin()
 							do
 							{
 								std::cin >> endTime;
-								std::cin.ignore();
+								std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 							
 								if(std::cin.fail())
 								{
@@ -763,7 +764,7 @@ void exec :: admin()
 								repeat = true;
 		
 								std::cin >> endTime;
-								std::cin.ignore();
+								std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		
 								if(std::cin.fail())
 								{
