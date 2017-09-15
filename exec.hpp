@@ -1020,11 +1020,10 @@ void exec :: print(bool time)
 {
 	/*
 	TO DO:
-	-Change linkedList.addFront() to .insertSorted()
 	-Check TO DO portion pelow
 	*/
 	
-	
+	std::cout << "====================" << '\n' << "Events List" << '\n' << "====================" << '\n';
 
 	linkedList<date> eventsList;
 		
@@ -1118,6 +1117,7 @@ void exec :: print(bool time)
 		attending = eventsList.getEntry(pos).getAttendance();
 	
 
+
 		//Puts time blocks in readable format
 		//inputs blocks of time into an integer array timeKeeper
 		std::istringstream sortedTime(timeClock);
@@ -1139,8 +1139,9 @@ void exec :: print(bool time)
 		timeClock = ""; 
 		int i = 0; //position in array
 		int officialEndTime = 0; //end time to be printed for each block
-		while(i <= lastPosition)
+		while(i < lastPosition)
 		{	
+			std::cout << "TIME IN ARRAY: " << timeKeeper[i] << '\n';
 			if(i==0)
 			{
 				startTime = timeKeeper[i];
@@ -1187,14 +1188,24 @@ void exec :: print(bool time)
 				{
 					if (endTime == 0)
 					{
+						
 						timeClock.append(std::to_string(startTime));
 						timeClock.append(" - ");
 						timeClock.append(std::to_string(startTime+officialEndTime));
 						timeClock.append(", ");
-						startTime = timeKeeper[i];		
+
+						startTime = timeKeeper[i];	
+						if (i == lastPosition-1)
+						{
+							timeClock.append(std::to_string(startTime));
+							timeClock.append(" - ");
+							timeClock.append(std::to_string(startTime+officialEndTime));
+						} 
+						std::cout << "0: " << timeClock << '\n';
 					}
 					else
 					{
+						
 						timeClock.append(std::to_string(startTime));
 						timeClock.append(" - ");
 						timeClock.append(std::to_string(endTime+officialEndTime));
@@ -1202,6 +1213,17 @@ void exec :: print(bool time)
 			
 						startTime = timeKeeper[i];
 						endTime = 0;
+						
+
+						if (i == lastPosition-1)
+						{
+							timeClock.append(std::to_string(startTime));
+							timeClock.append(" - ");
+							timeClock.append(std::to_string(startTime+officialEndTime));
+						} 
+						std::cout << "not zero: " << timeClock << '\n';
+
+
 					}
 				}
 				i++;
@@ -1226,7 +1248,7 @@ void exec :: print(bool time)
 			case 12 : nameMonth = "December";  break;
 		}
 
-		
+		std::cout << '\n' << '\n';
 		std::cout << "Event: " << eventName << "\n";
 		std::cout << "Date: " << nameMonth << " " << day << ", " << year << "\n"; 
 									
@@ -1235,10 +1257,7 @@ void exec :: print(bool time)
 		
 	}
 		
-
-		
-
-
+	std::cout << "====================" << '\n' <<  "====================" << '\n';
 }
 
 
