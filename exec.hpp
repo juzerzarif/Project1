@@ -42,21 +42,6 @@ void exec :: run()
 			}
 			else //if the user gives something that isnt a vaild input it will tell them it is invalid and restart
 			{
-				/*if( std::cin.fail() )//checks for bad input, by checking that it is the correct type,then checking it was a option listed
-					{
-						  std::cin.clear(); // unset failbit
-						  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // skip bad input
-						std::cout << '\n';
-						 std::cout << "Sorry, your input was not a number, quitting now\n";
-						std::cout << '\n';
-					   }
-				else if((choice > 2) || (choice <= 0))//checks that it is a valid numerical input
-					{
-						std:: cout << "Invaid input, quitting now.\n";
-						std::cout << '\n';
-					}
-
-					}*/
 
 					std::cout << "Invalid input.\n\n";
 
@@ -66,11 +51,9 @@ void exec :: run()
 
 void exec :: admin()
 	{
-		bool adminLoop = true;
-		bool superBool = false;
-		bool hoursChoiceBool = true;
-
-		//int choice = 0;
+		bool adminLoop = true; //Handles looping of the admin method
+		bool superBool = false; //Handles looping of various while loops
+		bool hoursChoiceBool = true; //Handles looping of the choice of 12 or 24 hours
 
 		std::cout << "Would you like your times displayed on a 12 hour or 24 hour clock?\n";
 		std::cout << "1) 12 hour clock\n";
@@ -105,21 +88,21 @@ void exec :: admin()
 
 		while(adminLoop)
 		{
-			std::string stringChoice = "";
-			int eventYear = 0;
-			int eventMonth = 0;
-			int eventDay = 0;
-			std::string eventBreak = "";
-			int peopleAttending = 1;
-			int initialTime = 0;
-			int endTime = 0;
-			std::string eventName = "";
-			std::string eventTime = "";
-			bool repeat = true;
-			bool eventDayCheck = true;
-			bool eventMonthCheck = true;
-			bool noMore = false;
-			bool bogo = true;
+			std::string stringChoice = ""; //Choice on creating event, looking at events, or quitting
+			int eventYear = 0; //Takes year
+			int eventMonth = 0; //Takes month
+			int eventDay = 0; //Takes day
+			std::string eventBreak = ""; //1 if user wants a break. 2 if not
+			int peopleAttending = 1; //Will default to 1 when event is created
+			int initialTime = 0; //Gets initial time of event or initial time after break
+			int endTime = 0; //Gets end time of event or end time after break
+			std::string eventName = ""; //Takes name of event. Can't have colons (:)
+			std::string eventTime = ""; //Contains all the event times. Adds initialTime and endTime every time they are given
+			bool repeat = true; //Handles looping of various while loops
+			bool eventDayCheck = true; //Handles looping of choosing day
+			bool eventMonthCheck = true; //Handles looping of choosing month
+			bool noMore = false; //If a time of 23:30 or 11:30 pm is given, noMore will turn true and skip any further asking for times.
+			bool bogo = true; //Tells program whether or not to add a space after user gives breaks
 
 			std::cout << "Select an option:\n";
 			std::cout << "1) Create new event\n";
@@ -134,7 +117,7 @@ void exec :: admin()
 
 			if(stringChoice == "1")
 			{
-				bool eventNameCheck = true;
+				bool eventNameCheck = true; //Handles looping of event name
 
 				std::cout << "Enter the name of the event. Please no colons (:).\n";
 
@@ -146,6 +129,11 @@ void exec :: admin()
 					if(eventName.find(':') != std::string::npos || eventName[0] == ':')
 					{
 						std::cout << "Invalid event name. Please no colons (:) in the name of the event: \n";
+						eventNameCheck = true;
+					}
+					else if(eventCheck(eventName))
+					{
+						std::cout << "Event name already exists please pick a new one: \n";
 						eventNameCheck = true;
 					}
 					else
@@ -162,7 +150,10 @@ void exec :: admin()
 				{
 					superBool = true;
 
+
 					std::cin >> eventYear;
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
 					if(std::cin.fail())
 					{
 						while(std::cin.fail()) {
@@ -196,6 +187,7 @@ void exec :: admin()
 					std::cout << "11) November\n";
 					std::cout << "12) December\n";
 					std::cin >> eventMonth;
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 					if(std::cin.fail()) {
 						//std::cout << "Invalid input. Please enter a valid input:\n";
@@ -220,6 +212,7 @@ void exec :: admin()
 				do
 				{
 					std::cin >> eventDay;
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 					if(std::cin.fail()) {
 						//std::cout << "Invalid input. Please enter a valid input:\n";
@@ -288,6 +281,7 @@ void exec :: admin()
 					do
 					{
 						std::cin >> initialTime;
+						std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 						if(std::cin.fail())
 						{
@@ -319,9 +313,12 @@ void exec :: admin()
 
 					do
 					{
-						bool shouldSkip = false;
+						bool shouldSkip = false; //Determines whether given time is valid by checking if its between 1 and 1230. True if invalid time is given
 
 						std::cin >> initialTime;
+						std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+						std::cout << "Im here!\n";
+
 
 						if(std::cin.fail())
 						{
@@ -332,8 +329,8 @@ void exec :: admin()
 						}
 						else
 						{
-							int i = initialTime;
-							int len = 1;
+							int i = initialTime; //Tempotaty variable to check for int length
+							int len = 1; //Temporary variable to check for int length
 
 							if (i > 0) { //Count number of digits in given time.
 								for (len = 0; i > 0; len++) {
@@ -355,7 +352,7 @@ void exec :: admin()
 								superBool = true;
 
 								std::string timeOfDay;
-								std::cin.ignore();
+								//std::cin.ignore();
 								while(superBool)
 								{
 									std::cout << "Do you want a.m. or p.m.?\n";
@@ -398,6 +395,7 @@ void exec :: admin()
 						do
 						{
 							std::cin >> endTime;
+							std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 							if(std::cin.fail())
 							{
@@ -431,10 +429,11 @@ void exec :: admin()
 						std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break)\n";
 						do
 						{
-							bool shouldSkip = false;
+							bool shouldSkip = false; //Determines whether given time is valid by checking if its between 1 and 1230. True if invalid time is given
 							repeat = true;
 
 							std::cin >> endTime;
+							std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 							if(std::cin.fail())
 							{
@@ -467,7 +466,7 @@ void exec :: admin()
 								{
 									superBool = true;
 									std::string timeOfDay;
-									std::cin.ignore();
+									//std::cin.ignore();
 
 									while(superBool)
 									{
@@ -549,6 +548,12 @@ void exec :: admin()
 				{
 					noMore = true;
 				}
+				if(initialTime == 2300 && endTime == 2330)
+				{
+					noMore = true;
+					endTime = endTime - 30;
+					eventTime = std::to_string(initialTime) + " " + std::to_string(endTime);
+				}
 				if(!noMore)
 				{
 					superBool = true;
@@ -578,7 +583,7 @@ void exec :: admin()
 				}
 
 				//Choose if break
-				while(eventBreak == "1") //TODO: Change this to string
+				while(eventBreak == "1")
 				{
 					if(bogo)
 					{
@@ -593,6 +598,8 @@ void exec :: admin()
 							repeat = true;
 
 							std::cin >> initialTime;
+							std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+							std::cout << "Im here\n";
 
 							if(std::cin.fail())
 							{
@@ -627,9 +634,10 @@ void exec :: admin()
 						{
 							repeat = true;
 
-							bool shouldSkip = false;
+							bool shouldSkip = false; //Determines whether given time is valid by checking if its between 1 and 1230. True if invalid time is given
 
 							std::cin >> initialTime;
+							std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 							if(std::cin.fail())
 							{
@@ -662,7 +670,6 @@ void exec :: admin()
 								{
 								superBool = true;
 								std::string timeOfDay;
-								std::cin.ignore();
 
 								while(superBool)
 								{
@@ -712,6 +719,7 @@ void exec :: admin()
 							do
 							{
 								std::cin >> endTime;
+								std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 								if(std::cin.fail())
 								{
@@ -745,10 +753,11 @@ void exec :: admin()
 							std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break)\n";
 							do
 							{
-								bool shouldSkip = false;
+								bool shouldSkip = false; //Determines whether given time is valid by checking if its between 1 and 1230. True if invalid time is given
 								repeat = true;
 
 								std::cin >> endTime;
+								std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 								if(std::cin.fail())
 								{
@@ -781,7 +790,7 @@ void exec :: admin()
 									{
 										superBool = true;
 										std::string timeOfDay;
-										std::cin.ignore();
+										//std::cin.ignore();
 
 										while(superBool)
 										{
@@ -823,6 +832,13 @@ void exec :: admin()
 					else
 					{
 						noMore = true;
+
+						if(initialTime == 2300 && endTime == 2330)
+						{
+							endTime = endTime - 30;
+							eventTime = std::to_string(initialTime) + " " + std::to_string(endTime);
+						}
+
 						if(hoursChoiceBool)
 						{
 							std::cout << "Break started at 11:30 p.m. It will run until 11:59 p.m.\n";
@@ -831,6 +847,13 @@ void exec :: admin()
 						{
 							std::cout << "Break started at 23:30. It will run until 23:59.\n";
 						}
+						eventBreak = "2";
+					}
+
+					if(endTime == 2330)
+					{
+						noMore = true;
+						eventBreak = "2";
 					}
 
 					for(int i = initialTime; i < endTime-60; i+=30)
@@ -992,13 +1015,14 @@ void exec :: user()
 
 	   	bool foundCheck = updateEvent(eventName);
 
+
 	   	if(foundCheck == true)
 	   	{
-	   		std::cout << "You are now signed up for the event, don't forget to go!\n";
+	   		std::cout << "You are now signed up for the event, don't forget to go!\n\n";
 	   	}
 	   	else
 	   	{
-	   		std::cout << "The event name you entered was unfortunatly not found in the list of events.\n";
+	   		std::cout << "The event name you entered was unfortunatly not found in the list of events.\n\n";
 	   	}
 
 
@@ -1460,4 +1484,60 @@ bool exec::updateEvent(std::string eventNameCheck)
 
 			//returns if the event was found
 			return(removeCheck);
+	}
+
+bool exec::eventCheck(std::string eventNameCheck)
+	{
+		//define used varibles
+		int year = 0;
+
+		std::ifstream readFile;
+		std::string eventName = eventNameCheck;
+		bool removeCheck = false;
+
+		//open the event file
+
+		readFile.open("eventFile.txt");
+
+		if(readFile.is_open())
+		{
+			//read through the whole list
+			while(!readFile.eof())
+			{
+				//store each value of each event in temparary varibles
+				std::string entry;
+
+				std::getline(readFile, entry, ':');
+				year = std::atoi(entry.c_str());
+
+				/*
+				* ignore the info we dont care about
+				*/
+				std::getline(readFile, entry, ':');
+				std::getline(readFile, entry, ':');
+				std::getline(readFile, entry, ':');
+
+				std::getline(readFile, entry, ':');
+				eventName = entry;
+
+				std::getline(readFile, entry, '\n');
+
+					//check that the line isnt blank, and that the temprary even name read in equals the one we are searching for
+					if((year != 0) && (eventName == eventNameCheck))
+					{
+						//set the fact that we found the event to true
+						removeCheck = true;
+					}
+
+
+			}
+			readFile.close();//close file
+		}
+		else
+		{
+			//if file dint open for some reason output that.
+			std::cout << "Error Opening File!" << '\n';
+
+		}
+		return(removeCheck);
 	}
