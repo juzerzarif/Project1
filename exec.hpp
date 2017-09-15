@@ -162,7 +162,9 @@ void exec :: admin()
 				{
 					superBool = true;
 	
-					std::cin >> eventYear;	
+					
+					std::cin >> eventYear;
+					std::cin.ignore();
 					if(std::cin.fail())
 					{
 						while(std::cin.fail()) {
@@ -196,6 +198,7 @@ void exec :: admin()
 					std::cout << "11) November\n";
 					std::cout << "12) December\n";
 					std::cin >> eventMonth;
+					std::cin.ignore();
 	
 					if(std::cin.fail()) {
 						//std::cout << "Invalid input. Please enter a valid input:\n";
@@ -288,6 +291,7 @@ void exec :: admin()
 					do
 					{
 						std::cin >> initialTime;
+						std::cin.ignore();
 	
 						if(std::cin.fail())
 						{
@@ -322,6 +326,7 @@ void exec :: admin()
 						bool shouldSkip = false;
 	
 						std::cin >> initialTime;
+						std::cin.ignore();
 	
 						if(std::cin.fail())
 						{
@@ -398,6 +403,7 @@ void exec :: admin()
 						do
 						{
 							std::cin >> endTime;
+							std::cin.ignore();
 						
 							if(std::cin.fail())
 							{
@@ -435,6 +441,7 @@ void exec :: admin()
 							repeat = true;
 	
 							std::cin >> endTime;
+							std::cin.ignore();
 	
 							if(std::cin.fail())
 							{
@@ -593,6 +600,7 @@ void exec :: admin()
 							repeat = true;
 
 							std::cin >> initialTime;
+							std::cin.ignore();
 	
 							if(std::cin.fail())
 							{
@@ -630,6 +638,7 @@ void exec :: admin()
 							bool shouldSkip = false;
 	
 							std::cin >> initialTime;
+							std::cin.ignore();
 	
 							if(std::cin.fail())
 							{
@@ -712,6 +721,7 @@ void exec :: admin()
 							do
 							{
 								std::cin >> endTime;
+								std::cin.ignore();
 							
 								if(std::cin.fail())
 								{
@@ -749,6 +759,7 @@ void exec :: admin()
 								repeat = true;
 		
 								std::cin >> endTime;
+								std::cin.ignore();
 		
 								if(std::cin.fail())
 								{
@@ -995,11 +1006,11 @@ void exec :: user()
 	   	
 	   	if(foundCheck == true)
 	   	{
-	   		std::cout << "You are now signed up for the event, don't forget to go!\n";
+	   		std::cout << "You are now signed up for the event, don't forget to go!\n\n";
 	   	}
 	   	else
 	   	{
-	   		std::cout << "The event name you entered was unfortunatly not found in the list of events.\n";
+	   		std::cout << "The event name you entered was unfortunatly not found in the list of events.\n\n";
 	   	}
 
 
@@ -1469,7 +1480,6 @@ bool exec::eventCheck(std::string eventNameCheck)
 		int year = 0;
 		
 		std::ifstream readFile;
-		std::string temp;
 		std::string eventName = eventNameCheck;
 		bool removeCheck = false;
 		
