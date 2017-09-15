@@ -63,7 +63,7 @@ class exec
 
 		bool timeCheck (int time, int len);
 		
-		linkedList<date> eventList;
+		//linkedList<date> eventList;
 		bool timeCheck (int time, int len, bool timeMode);
 
 };

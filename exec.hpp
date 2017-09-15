@@ -1024,9 +1024,9 @@ void exec :: print(bool time)
 	-Check TO DO portion pelow
 	*/
 	
-	std::cout << "Made it to print.\n";
+	
 
-	//linkedList<date> events;
+	linkedList<date> eventsList;
 		
 	std::ifstream readFile; 
 	readFile.open("eventFile.txt");
@@ -1085,11 +1085,11 @@ void exec :: print(bool time)
 				eventDate.setEvent(eventName);
 				eventDate.setAttendance(attending);
 			
-				eventList.addBack(eventDate);//adds new date to back of the list
-				eventList.sortList();//sorts list
+				eventsList.addBack(eventDate);//adds new date to back of the list
+				eventsList.sortList();//sorts list
 			}
 		}
-		//eventList.printList();//prints list
+		
 		readFile.close();//close file
 	}
 	else
@@ -1106,16 +1106,19 @@ void exec :: print(bool time)
 	==========
 	*/
 		
-	for(int pos = 1; pos <= eventList.size(); pos++)
+	//Prints all objects in linkedList in readable format
+	for(int pos = 1; pos <= eventsList.size(); pos++)
 	{
 		
-		year = eventList.getEntry(pos).getYear();
-		month = eventList.getEntry(pos).getMonth();
-		day = eventList.getEntry(pos).getDay();
-		timeClock = eventList.getEntry(pos).getTime();
-		eventName = eventList.getEntry(pos).getEvent();
-		attending = eventList.getEntry(pos).getAttendance();
+		year = eventsList.getEntry(pos).getYear();
+		month = eventsList.getEntry(pos).getMonth();
+		day = eventsList.getEntry(pos).getDay();
+		timeClock = eventsList.getEntry(pos).getTime();
+		eventName = eventsList.getEntry(pos).getEvent();
+		attending = eventsList.getEntry(pos).getAttendance();
 	
+
+		//Puts time blocks in readable format
 		//inputs blocks of time into an integer array timeKeeper
 		std::istringstream sortedTime(timeClock);
 		int lastPosition = 0;
@@ -1132,7 +1135,6 @@ void exec :: print(bool time)
 			}
 		
 		}
-		
 		//parse array for start and end times of each block, append to end of string
 		timeClock = ""; 
 		int i = 0; //position in array
@@ -1206,7 +1208,8 @@ void exec :: print(bool time)
 			}
 		}
 		
-		//this will be moved to be used for printing (Currently testing)
+
+		//Puts month selection in readable format
 		switch(month) 
 		{
 			case 1 : nameMonth = "January";  break;       
