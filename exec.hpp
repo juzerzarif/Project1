@@ -1189,7 +1189,6 @@ void exec :: print(bool time)
 						{
 							naturalTimeInterval = 30;
 						}
-<<<<<<< HEAD
 					}
 				
 					//Check to determine if endTime should be updated 
@@ -1200,18 +1199,6 @@ void exec :: print(bool time)
 					{
 						endTime = timeKeeper[i];	
 					}
-=======
-					}
-				
-					//Check to determine if endTime should be updated 
-					//or if time block complete and move to next time block 
-					//append completed time to string
-					//2400 becomes 2359
-					if(startTime == (timeKeeper[i]-naturalTimeInterval))
-					{
-						endTime = timeKeeper[i];	
-					}
->>>>>>> Lammey-branch
 					else if(endTime == (timeKeeper[i] - naturalTimeInterval))
 					{
 						endTime = timeKeeper[i];
