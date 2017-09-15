@@ -1040,7 +1040,7 @@ void exec :: print(bool time)
 	std::string nameMonth;
 	int startTime = 0;
 	int endTime = 0;
-	int timeKeeper [48];
+
 	
 	//read each value and assign to a date object
 	//insert date object into the sorted linked list
@@ -1122,6 +1122,7 @@ void exec :: print(bool time)
 		//inputs blocks of time into an integer array timeKeeper
 		std::istringstream sortedTime(timeClock);
 		int lastPosition = 0;
+		int timeKeeper [48];
 		while (sortedTime)
 		{
 			int temp;
@@ -1138,10 +1139,14 @@ void exec :: print(bool time)
 		//parse array for start and end times of each block, append to end of string
 		timeClock = ""; 
 		int i = 0; //position in array
-		int officialEndTime = 0; //end time to be printed for each block
-		while(i < lastPosition)
+		int naturalTimeInterval = 0; //end time to be printed for each block
+
+		lastPosition--;
+		std::cout<< "SIZE OF ARRAY: " << lastPosition << '\n';
+		
+		while(i <= lastPosition)
 		{	
-			std::cout << "TIME IN ARRAY: " << timeKeeper[i] << '\n';
+
 			if(i==0)
 			{
 				startTime = timeKeeper[i];
@@ -1155,32 +1160,32 @@ void exec :: print(bool time)
 				{
 					if(startTime % 100 != 0)
 					{
-						officialEndTime = 70;
+						naturalTimeInterval = 70;
 					}
 					else
 					{
-						officialEndTime = 30;
+						naturalTimeInterval = 30;
 					}
 				}
 				else
 				{
 					if(endTime % 100 != 0)
 					{
-						officialEndTime = 70;
+						naturalTimeInterval = 70;
 					}
 					else
 					{
-						officialEndTime = 30;
+						naturalTimeInterval = 30;
 					}
 				}
 			
 				//Check to determine if endTime should be updated 
 				//or if time block complete and move to next time block 
-				if(startTime == (timeKeeper[i] - officialEndTime))
+				if(startTime == (timeKeeper[i]-naturalTimeInterval))
 				{
 					endTime = timeKeeper[i];	
 				}
-				else if(endTime ==(timeKeeper[i] - officialEndTime))
+				else if(endTime == (timeKeeper[i] - naturalTimeInterval))
 				{
 					endTime = timeKeeper[i];
 				}
@@ -1191,38 +1196,53 @@ void exec :: print(bool time)
 						
 						timeClock.append(std::to_string(startTime));
 						timeClock.append(" - ");
-						timeClock.append(std::to_string(startTime+officialEndTime));
+						timeClock.append(std::to_string(startTime+naturalTimeInterval));
 						timeClock.append(", ");
 
 						startTime = timeKeeper[i];	
-						if (i == lastPosition-1)
+						if (i == lastPosition)
 						{
+							if(startTime % 100 != 0)
+							{
+								naturalTimeInterval = 70;
+							}
+							else
+							{
+								naturalTimeInterval = 30;
+							}
+
 							timeClock.append(std::to_string(startTime));
 							timeClock.append(" - ");
-							timeClock.append(std::to_string(startTime+officialEndTime));
+							timeClock.append(std::to_string(startTime+naturalTimeInterval));
 						} 
-						std::cout << "0: " << timeClock << '\n';
 					}
 					else
 					{
 						
 						timeClock.append(std::to_string(startTime));
 						timeClock.append(" - ");
-						timeClock.append(std::to_string(endTime+officialEndTime));
+						timeClock.append(std::to_string(endTime+naturalTimeInterval));
 						timeClock.append(", ");
 			
 						startTime = timeKeeper[i];
 						endTime = 0;
 						
 
-						if (i == lastPosition-1)
+						if (i == lastPosition)
 						{
+							if(startTime % 100 != 0)
+							{
+								naturalTimeInterval = 70;
+							}
+							else
+							{
+								naturalTimeInterval = 30;
+							}
+
 							timeClock.append(std::to_string(startTime));
 							timeClock.append(" - ");
-							timeClock.append(std::to_string(startTime+officialEndTime));
-						} 
-						std::cout << "not zero: " << timeClock << '\n';
-
+							timeClock.append(std::to_string(startTime+naturalTimeInterval));
+						}
 
 					}
 				}
@@ -1230,6 +1250,12 @@ void exec :: print(bool time)
 			}
 		}
 		
+
+
+
+
+
+
 
 		//Puts month selection in readable format
 		switch(month) 
@@ -1254,6 +1280,7 @@ void exec :: print(bool time)
 									
 		std::cout << "Time: " << timeClock << '\n';
 		std::cout << "Attending: " << attending << '\n' << '\n';
+		
 		
 	}
 		
