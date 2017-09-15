@@ -67,29 +67,15 @@ void exec :: run()
 void exec :: admin()
 	{
 		bool adminLoop = true;
+		bool superBool = false;
+		bool hoursChoiceBool = true;
 		
 		//int choice = 0;
-		std::string stringChoice = "";
-		int eventYear = 0;
-		int eventMonth = 0;
-		int eventDay = 0;
-		std::string eventBreak = "";
-		int peopleAttending = 1;
-		int initialTime = 0;
-		int endTime = 0;
-		std::string eventName = "";
-		std::string eventTime = "";
-		bool repeat = true;
-		bool eventDayCheck = true;
-		bool eventMonthCheck = true;
-		std::string hoursChoice = "";
-		bool hoursChoiceBool = true;
-		bool superBool = false;
-		bool noMore = false;
 
 		std::cout << "Would you like your times displayed on a 12 hour or 24 hour clock?\n";
 		std::cout << "1) 12 hour clock\n";
 		std::cout << "2) 24 hour clock\n";
+		std::string hoursChoice = "";
 
 		//std::cin.ignore();
 
@@ -119,6 +105,20 @@ void exec :: admin()
 
 		while(adminLoop)
 		{
+			std::string stringChoice = "";
+			int eventYear = 0;
+			int eventMonth = 0;
+			int eventDay = 0;
+			std::string eventBreak = "";
+			int peopleAttending = 1;
+			int initialTime = 0;
+			int endTime = 0;
+			std::string eventName = "";
+			std::string eventTime = "";
+			bool repeat = true;
+			bool eventDayCheck = true;
+			bool eventMonthCheck = true;
+			bool noMore = false;
 			bool bogo = true;
 
 			std::cout << "Select an option:\n";
@@ -852,6 +852,7 @@ void exec :: admin()
 					outFile.close();
 				}
 				std::cout << "Event created!\n";
+				eventBreak = "";
 				//std::cin.ignore();
 			}
 			else if(stringChoice == "2")
