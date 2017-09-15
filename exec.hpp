@@ -42,21 +42,6 @@ void exec :: run()
 			}
 			else //if the user gives something that isnt a vaild input it will tell them it is invalid and restart
 			{
-				/*if( std::cin.fail() )//checks for bad input, by checking that it is the correct type,then checking it was a option listed
-					{
-						  std::cin.clear(); // unset failbit
-						  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // skip bad input
-						std::cout << '\n';
-						 std::cout << "Sorry, your input was not a number, quitting now\n";
-						std::cout << '\n';
-					   }
-				else if((choice > 2) || (choice <= 0))//checks that it is a valid numerical input
-					{
-						std:: cout << "Invaid input, quitting now.\n";
-						std::cout << '\n';
-					}
-	
-					}*/
 
 					std::cout << "Invalid input.\n\n";
 			
@@ -144,6 +129,11 @@ void exec :: admin()
 					if(eventName.find(':') != std::string::npos || eventName[0] == ':')
 					{
 						std::cout << "Invalid event name. Please no colons (:) in the name of the event: \n";
+						eventNameCheck = true;
+					}
+					else if(eventCheck(eventName))
+					{
+						std::cout << "Event name already exists please pick a new one: \n";
 						eventNameCheck = true;
 					}
 					else
@@ -327,6 +317,8 @@ void exec :: admin()
 	
 						std::cin >> initialTime;
 						std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+						std::cout << "Im here!\n";
+						
 	
 						if(std::cin.fail())
 						{
@@ -360,7 +352,7 @@ void exec :: admin()
 								superBool = true;
 
 								std::string timeOfDay;
-								std::cin.ignore();
+								//std::cin.ignore();
 								while(superBool)
 								{
 									std::cout << "Do you want a.m. or p.m.?\n";
@@ -474,7 +466,7 @@ void exec :: admin()
 								{
 									superBool = true;
 									std::string timeOfDay;
-									std::cin.ignore();
+									//std::cin.ignore();
 
 									while(superBool)
 									{
@@ -600,7 +592,8 @@ void exec :: admin()
 							repeat = true;
 
 							std::cin >> initialTime;
-							std::cin.ignore();
+							std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+							std::cout << "Im here\n";
 	
 							if(std::cin.fail())
 							{
@@ -791,7 +784,7 @@ void exec :: admin()
 									{
 										superBool = true;
 										std::string timeOfDay;
-										std::cin.ignore();
+										//std::cin.ignore();
 
 										while(superBool)
 										{
@@ -1000,7 +993,7 @@ void exec :: user()
 		std::cin.ignore();
 		std::getline (std::cin,eventName,'\n');
 	   	
-	   	bool foundCheck = eventCheck(eventName);
+	   	bool foundCheck = updateEvent(eventName);
 	   	
 	   	
 	   	if(foundCheck == true)
