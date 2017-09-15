@@ -22,14 +22,9 @@ void exec :: run()
 			std::cout << "1) Admin\n";
 			std::cout << "2) User\n";
 			std::cout << "3) Quit\n";
-	
+
 			std::getline(std::cin, choice);
 
-<<<<<<< HEAD
-				}
-
-    	}
-=======
 			if(choice == "1")
 			{
 				admin();
@@ -60,12 +55,11 @@ void exec :: run()
 						std:: cout << "Invaid input, quitting now.\n";
 						std::cout << '\n';
 					}
-	
+
 					}*/
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 
 					std::cout << "Invalid input.\n\n";
-			
+
 			}
 		}
 	}
@@ -75,7 +69,7 @@ void exec :: admin()
 		bool adminLoop = true;
 		bool superBool = false;
 		bool hoursChoiceBool = true;
-		
+
 		//int choice = 0;
 
 		std::cout << "Would you like your times displayed on a 12 hour or 24 hour clock?\n";
@@ -109,19 +103,7 @@ void exec :: admin()
 			}
 		}while(!superBool);
 
-<<<<<<< HEAD
-
-		std::cout << "Select an option:\n";
-		std::cout << "1) Create new event\n";
-		std::cout << "2) View current activities\n";
-
-		//std::cin.ignore();
-
-		//Choose Add Event or Show Events
-		do
-=======
 		while(adminLoop)
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 		{
 			std::string stringChoice = "";
 			int eventYear = 0;
@@ -145,124 +127,22 @@ void exec :: admin()
 			std::cout << "3) Back to Login selection\n";
 
 			std::getline(std::cin, stringChoice);
-<<<<<<< HEAD
 
-			if (stringChoice == "1" || stringChoice == "2")
-			{
-				superBool = true;
-			}
+			//std::cin.ignore();
 
-			if(stringChoice != "1" && stringChoice != "2")
-			{
-				std::cout << "Invalid input. Please enter a valid input:\n";
-				superBool = false;
-			}
-		}while(!superBool);
-
-		if(stringChoice == "1")
-		{
-			bool eventNameCheck = true;
-
-			std::cout << "Enter the name of the event. Please no colons (:).\n";
-
-			//Choose name of event
-			do
-			{
-				std::getline (std::cin,eventName,'\n');
-
-				if(eventName.find(':') != std::string::npos || eventName[0] == ':')
-				{
-					std::cout << "Invalid event name. Please no colons (:) in the name of the event: \n";
-					eventNameCheck = true;
-				}
-				else
-				{
-					eventNameCheck = false;
-				}
-			}while(eventNameCheck);
-
-
-			std::cout << "What year will the event be on?\n";
-
-			//Choose year of event
-			do
-			{
-				superBool = true;
-
-				std::cin >> eventYear;
-				if(std::cin.fail())
-				{
-					while(std::cin.fail()) {
-						std::cout << "Invalid input. Please enter a valid input:\n";
-						std::cin.clear();
-						std::cin.ignore(256,'\n');
-						superBool = false;
-					}
-				}
-				else if(eventYear < 2017 || eventYear > 2021)
-				{
-					std::cout << "Invalid year.\n";
-					superBool = false;
-				}
-			}while(!superBool);
-
-			//Choose month of event
-			do
-			{
-				std::cout << "What month will the event be on?:\n";
-				std::cout << "1) January\n";
-				std::cout << "2) February\n";
-				std::cout << "3) March\n";
-				std::cout << "4) April\n";
-				std::cout << "5) May\n";
-				std::cout << "6) June\n";
-				std::cout << "7) July\n";
-				std::cout << "8) August\n";
-				std::cout << "9) September\n";
-				std::cout << "10) October\n";
-				std::cout << "11) November\n";
-				std::cout << "12) December\n";
-				std::cin >> eventMonth;
-
-				if(std::cin.fail()) {
-					//std::cout << "Invalid input. Please enter a valid input:\n";
-					std::cin.clear();
-					std::cin.ignore(256,'\n');
-					eventMonthCheck = true;
-				}
-
-				if(eventMonth < 1 || eventMonth > 12)
-				{
-					std::cout << "\nINVALID INPUT. Please choose a valid option: \n \n";
-				}
-				else
-				{
-					eventMonthCheck = false;
-				}
-			}while(eventMonthCheck);
-
-			std::cout << "What day will you event be on?\n";
-
-			//Choose day of event
-			do
-=======
-			
-			//std::cin.ignore();	
-	
 			//Choose Add Event or Show Events
-	
+
 			if(stringChoice == "1")
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 			{
 				bool eventNameCheck = true;
-	
+
 				std::cout << "Enter the name of the event. Please no colons (:).\n";
-	
+
 				//Choose name of event
 				do
 				{
 					std::getline (std::cin,eventName,'\n');
-	
+
 					if(eventName.find(':') != std::string::npos || eventName[0] == ':')
 					{
 						std::cout << "Invalid event name. Please no colons (:) in the name of the event: \n";
@@ -273,16 +153,16 @@ void exec :: admin()
 						eventNameCheck = false;
 					}
 				}while(eventNameCheck);
-	
-	
+
+
 				std::cout << "What year will the event be on? It can be from 2017 to 2021.\n";
-	
+
 				//Choose year of event
 				do
 				{
 					superBool = true;
-	
-					std::cin >> eventYear;	
+
+					std::cin >> eventYear;
 					if(std::cin.fail())
 					{
 						while(std::cin.fail()) {
@@ -298,7 +178,7 @@ void exec :: admin()
 						superBool = false;
 					}
 				}while(!superBool);
-	
+
 				//Choose month of event
 				do
 				{
@@ -316,14 +196,14 @@ void exec :: admin()
 					std::cout << "11) November\n";
 					std::cout << "12) December\n";
 					std::cin >> eventMonth;
-	
+
 					if(std::cin.fail()) {
 						//std::cout << "Invalid input. Please enter a valid input:\n";
 						std::cin.clear();
 						std::cin.ignore(256,'\n');
 						eventMonthCheck = true;
 					}
-	
+
 					if(eventMonth < 1 || eventMonth > 12)
 					{
 						std::cout << "\nINVALID INPUT. Please choose a valid option: \n \n";
@@ -333,21 +213,21 @@ void exec :: admin()
 						eventMonthCheck = false;
 					}
 				}while(eventMonthCheck);
-	
+
 				std::cout << "What day will you event be on?\n";
-	
+
 				//Choose day of event
 				do
 				{
 					std::cin >> eventDay;
-	
+
 					if(std::cin.fail()) {
 						//std::cout << "Invalid input. Please enter a valid input:\n";
 						std::cin.clear();
 						std::cin.ignore(256,'\n');
 						eventDayCheck = true;
 					}
-	
+
 					if(eventDay < 1)
 					{
 						std::cout << "Invalid day.\n";
@@ -355,18 +235,6 @@ void exec :: admin()
 					}
 					else if (eventMonth == 1 || eventMonth == 3 || eventMonth == 5 || eventMonth == 7 || eventMonth == 8 || eventMonth == 10 || eventMonth == 12)
 					{
-<<<<<<< HEAD
-						int i = initialTime;
-						int len = 1;
-
-						if (i > 0) { //Count number of digits in given time.
-							for (len = 0; i > 0; len++) {
-								i = i / 10;
-							}
-						}
-
-						repeat = timeCheck(initialTime, len, hoursChoiceBool);
-=======
 						if(eventDay < 0 || eventDay > 31)
 						{
 							std::cout << "Invalid day for the chosen month. Please enter a valid day:\n";
@@ -376,7 +244,6 @@ void exec :: admin()
 						{
 							eventDayCheck = false;
 						}
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 					}
 					else if (eventMonth == 4 || eventMonth == 6 || eventMonth == 9 || eventMonth == 11)
 					{
@@ -392,71 +259,18 @@ void exec :: admin()
 					}
 					else if (eventMonth == 2)
 					{
-<<<<<<< HEAD
-						int i = initialTime;
-						int len = 1;
-
-						if (i > 0) { //Count number of digits in given time.
-							for (len = 0; i > 0; len++) {
-								i = i / 10;
-							}
-						}
-
-						if(initialTime > 1300 || initialTime < 100)
-=======
 						if(eventYear != 2020 && (eventDay < 0 || eventDay > 28))
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 						{
 							std::cout << "Invalid day for the chosen month. Please enter a valid day:\n";
 							eventDayCheck = true;
 						}
-<<<<<<< HEAD
-
-						if(shouldSkip)
-=======
 						else if(eventYear == 2020 && (eventDay < 0 || eventDay > 29))
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 						{
 							std::cout << "Invalid day for the chosen month. Please enter a valid day:\n";
 							eventDayCheck = true;
 						}
 						else
 						{
-<<<<<<< HEAD
-							int timeOfDay = 0;
-							std::cout << "Do you want a.m. or p.m.?\n";
-							std::cout << "1) a.m.\n";
-							std::cout << "2) p.m.\n";
-
-							std::cin >> timeOfDay;
-
-							if(timeOfDay == 2 && initialTime != 1200 && initialTime != 1230) //if time is pm, add 1200 to it to make it 24 hours
-							{
-								initialTime += 1200;
-							}
-							else if (timeOfDay == 1 && initialTime == 1200) //If time is 12am, change to 0
-							{
-								initialTime = 0;
-							}
-							std::cout << initialTime << '\n';
-							repeat = timeCheck(initialTime, len, hoursChoiceBool);
-						}
-					}
-
-				}while(repeat);
-			}
-
-			if (initialTime != 2330)
-			{
-				if(hoursChoiceBool)
-				{
-					std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break)\n";
-
-					do
-					{
-						std::cin >> endTime;
-
-=======
 							eventDayCheck = false;
 						}
 					}
@@ -465,17 +279,16 @@ void exec :: admin()
 						std::cout << "This should never print";
 					}
 				}while(eventDayCheck);
-	
+
 				if(hoursChoiceBool)
 				{
 					std::cout << "At what time will your event start? (Time is meassured in half hour intervals)\n";
 					std::cout << "Example times: 14:30 is 1430. 9:00 is either 0900 or 900.\n";
-	
+
 					do
 					{
 						std::cin >> initialTime;
-	
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
+
 						if(std::cin.fail())
 						{
 								std::cout << "Invalid input. Please enter a valid input:\n";
@@ -487,28 +300,14 @@ void exec :: admin()
 						{
 							int i = initialTime;
 							int len = 1;
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 							if (i > 0) { //Count number of digits in given time.
 								for (len = 0; i > 0; len++) {
 									i = i / 10;
 								}
 							}
-<<<<<<< HEAD
 
-							repeat = timeCheck(endTime, len, hoursChoiceBool);
-							if (endTime <= initialTime)
-							{
-								std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time\n";
-								repeat = true;
-							}
-=======
-		
 							repeat = timeCheck(initialTime, len, hoursChoiceBool);
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 						}
 					}while(repeat);
 				}
@@ -517,13 +316,13 @@ void exec :: admin()
 					std::cout << "At what time will your event start? (Time is meassured in half hour intervals)\n";
 					std::cout << "Example times: 12:30 is 1230. 9:00 is either 0900 or 900.\n";
 					std::cout << "a.m. or p.m. will be asked later. Just input the number.\n";
-	
+
 					do
 					{
 						bool shouldSkip = false;
-	
+
 						std::cin >> initialTime;
-	
+
 						if(std::cin.fail())
 						{
 								std::cout << "Invalid input. Please enter a valid input:\n";
@@ -535,47 +334,24 @@ void exec :: admin()
 						{
 							int i = initialTime;
 							int len = 1;
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 							if (i > 0) { //Count number of digits in given time.
 								for (len = 0; i > 0; len++) {
 									i = i / 10;
 								}
 							}
-<<<<<<< HEAD
 
-							if(endTime > 1300 || endTime < 100)
-							{
-								shouldSkip = true;
-							}
-
-=======
-		
 							if(initialTime > 1230 || initialTime < 100)
 							{
 								shouldSkip = true;
 							}
-		
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
+
 							if(shouldSkip)
 							{
 								std::cout << "Invalid time. Please input a time between 100 and 1230:\n";
 							}
 							else
 							{
-<<<<<<< HEAD
-								int timeOfDay = 0;
-								std::cout << "Do you want a.m. or p.m.?\n";
-								std::cout << "1) a.m.\n";
-								std::cout << "2) p.m.\n";
-
-								std::cin >> timeOfDay;
-
-								if(timeOfDay == 2 && endTime != 1200 && endTime != 1230) //if time is pm, add 1200 to it to make it 24 hours
-=======
 								superBool = true;
 
 								std::string timeOfDay;
@@ -585,7 +361,7 @@ void exec :: admin()
 									std::cout << "Do you want a.m. or p.m.?\n";
 									std::cout << "1) a.m.\n";
 									std::cout << "2) p.m.\n";
-			
+
 									std::getline(std::cin, timeOfDay);
 
 									if(timeOfDay == "1" || timeOfDay == "2")
@@ -597,9 +373,8 @@ void exec :: admin()
 										std::cout << "Invalid input. Please enter a vallid input.\n";
 									}
 								}
-		
+
 								if(timeOfDay == "2" && initialTime != 1200 && initialTime != 1230) //if time is pm, add 1200 to it to make it 24 hours
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 								{
 									initialTime += 1200;
 								}
@@ -610,46 +385,20 @@ void exec :: admin()
 								repeat = timeCheck(initialTime, len, hoursChoiceBool);
 							}
 						}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 					}while(repeat);
 				}
-				
+
 				if (initialTime != 2330)
 				{
 					if(hoursChoiceBool)
 					{
-<<<<<<< HEAD
-						eventTime = eventTime + std::to_string(i);
-						break;
-					}
-				}
-				eventTime = eventTime + std::to_string(i) + " ";
-			}
-
-			std::cout << "Are there breaks in your event?\n";
-			std::cout << "1) Yes\n";
-			std::cout << "2) No\n";
-			std::cin >> eventBreak;
-
-			//Choose if break
-			while(eventBreak == 1) //TODO: Change this to string
-			{
-				eventTime = eventTime + " "; //Adds a space between times when event is added
-
-				std::cout << "At what time will your event start again?\n";
-
-				if(hoursChoiceBool)
-=======
 						std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break)\n";
-						
+
 						do
 						{
 							std::cin >> endTime;
-						
+
 							if(std::cin.fail())
 							{
 									std::cout << "Invalid input. Please enter a valid input:\n";
@@ -661,13 +410,13 @@ void exec :: admin()
 							{
 								int i = endTime;
 								int len = 1;
-							
+
 								if (i > 0) { //Count number of digits in given time.
 									for (len = 0; i > 0; len++) {
 										i = i / 10;
 									}
 								}
-							
+
 								repeat = timeCheck(endTime, len, hoursChoiceBool);
 								if (endTime <= initialTime)
 								{
@@ -684,9 +433,9 @@ void exec :: admin()
 						{
 							bool shouldSkip = false;
 							repeat = true;
-	
+
 							std::cin >> endTime;
-	
+
 							if(std::cin.fail())
 							{
 									std::cout << "Invalid input. Please enter a valid input:\n";
@@ -698,18 +447,18 @@ void exec :: admin()
 							{
 								int i = endTime;
 								int len = 1;
-				
+
 								if (i > 0) { //Count number of digits in given time.
 									for (len = 0; i > 0; len++) {
 										i = i / 10;
 									}
 								}
-		
+
 								if(endTime > 1230 || endTime < 100)
 								{
 									shouldSkip = true;
 								}
-				
+
 								if(shouldSkip)
 								{
 									std::cout << "Invalid time. Please input a time between 100 and 1230:\n";
@@ -725,7 +474,7 @@ void exec :: admin()
 										std::cout << "Do you want a.m. or p.m.?\n";
 										std::cout << "1) a.m.\n";
 										std::cout << "2) p.m.\n";
-				
+
 										std::getline(std::cin, timeOfDay);
 
 										if(timeOfDay == "1" || timeOfDay == "2")
@@ -737,7 +486,7 @@ void exec :: admin()
 											std::cout << "Invalid input. Please enter a vallid input.\n";
 										}
 									}
-		
+
 									if(timeOfDay == "2" && endTime != 1200 && endTime != 1230) //if time is pm, add 1200 to it to make it 24 hours
 									{
 										endTime += 1200;
@@ -756,10 +505,9 @@ void exec :: admin()
 							}
 						}while(repeat);
 					}
-	
+
 				}
 				else
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 				{
 					noMore = true;
 					if(hoursChoiceBool)
@@ -771,7 +519,7 @@ void exec :: admin()
 						std::cout << "Event started at 23:30. It will run until 23:59.\n";
 					}
 				}
-	
+
 				for(int i = initialTime; i < endTime-60; i+=30)
 				{
 					if((i/10)%10 == 6) //if third digit of time is 6, go to the closest next hour
@@ -790,26 +538,8 @@ void exec :: admin()
 					{
 						if(i == endTime-70)
 						{
-<<<<<<< HEAD
-							int i = initialTime;
-							int len = 1;
-
-							if (i > 0) { //Count number of digits in given time.
-								for (len = 0; i > 0; len++) {
-									i = i / 10;
-								}
-							}
-
-							repeat = timeCheck(initialTime, len, hoursChoiceBool);
-							if(initialTime < endTime)
-							{
-								std::cout << "Can't continue from break after previous end time. Please input a valid time: \n";
-								repeat = true;
-							}
-=======
 							eventTime = eventTime + std::to_string(i);
 							break;
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 						}
 					}
 					eventTime = eventTime + std::to_string(i) + " ";
@@ -819,7 +549,7 @@ void exec :: admin()
 				{
 					noMore = true;
 				}
-				if(!noMore) 
+				if(!noMore)
 				{
 					superBool = true;
 					while(superBool)
@@ -836,41 +566,11 @@ void exec :: admin()
 						}
 						else
 						{
-<<<<<<< HEAD
-							int i = initialTime;
-							int len = 1;
-
-							if (i > 0) { //Count number of digits in given time.
-								for (len = 0; i > 0; len++) {
-									i = i / 10;
-								}
-							}
-
-							if(initialTime > 1300 || initialTime < 100)
-							{
-								shouldSkip = true;
-							}
-
-							if(shouldSkip)
-							{
-								std::cout << "Invalid time. Please input a time between 100 and 1230:\n";
-							}
-							else
-							{
-								int timeOfDay = 0;
-								std::cout << "Do you want a.m. or p.m.?\n";
-								std::cout << "1) a.m.\n";
-								std::cout << "2) p.m.\n";
-
-								std::cin >> timeOfDay;
-
-								if(timeOfDay == 2 && initialTime != 1200 && initialTime != 1230) //if time is pm, add 1200 to it to make it 24 hours
-=======
 							std::cout << "Invalid input. Please enter a valid input.\n";
 						}
 
 					}
-				
+
 				}
 				else
 				{
@@ -879,7 +579,7 @@ void exec :: admin()
 
 				//Choose if break
 				while(eventBreak == "1") //TODO: Change this to string
-				{	
+				{
 					if(bogo)
 					{
 						eventTime = eventTime + " "; //Adds a space between times when event is added
@@ -893,7 +593,7 @@ void exec :: admin()
 							repeat = true;
 
 							std::cin >> initialTime;
-	
+
 							if(std::cin.fail())
 							{
 									std::cout << "Invalid input. Please enter a valid input:\n";
@@ -905,13 +605,13 @@ void exec :: admin()
 							{
 								int i = initialTime;
 								int len = 1;
-				
+
 								if (i > 0) { //Count number of digits in given time.
 									for (len = 0; i > 0; len++) {
 										i = i / 10;
 									}
 								}
-				
+
 								repeat = timeCheck(initialTime, len, hoursChoiceBool);
 								if(endTime <= initialTime)
 								{
@@ -928,9 +628,9 @@ void exec :: admin()
 							repeat = true;
 
 							bool shouldSkip = false;
-	
+
 							std::cin >> initialTime;
-	
+
 							if(std::cin.fail())
 							{
 									std::cout << "Invalid input. Please enter a valid input:\n";
@@ -942,19 +642,18 @@ void exec :: admin()
 							{
 								int i = initialTime;
 								int len = 1;
-				
+
 								if (i > 0) { //Count number of digits in given time.
 									for (len = 0; i > 0; len++) {
 										i = i / 10;
 									}
 								}
-		
+
 								if(initialTime > 1230 || initialTime < 100)
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 								{
 									shouldSkip = true;
 								}
-				
+
 								if(shouldSkip)
 								{
 									std::cout << "Invalid time. Please input a time between 100 and 1230:\n";
@@ -970,7 +669,7 @@ void exec :: admin()
 									std::cout << "Do you want a.m. or p.m.?\n";
 									std::cout << "1) a.m.\n";
 									std::cout << "2) p.m.\n";
-			
+
 									std::getline(std::cin, timeOfDay);
 
 									if(timeOfDay == "1" || timeOfDay == "2")
@@ -982,7 +681,7 @@ void exec :: admin()
 										std::cout << "Invalid input. Please enter a vallid input.\n";
 									}
 								}
-		
+
 									if(timeOfDay == "2" && initialTime != 1200 && initialTime != 1230) //if time is pm, add 1200 to it to make it 24 hours
 									{
 										initialTime += 1200;
@@ -1000,20 +699,20 @@ void exec :: admin()
 									}
 								}
 							}
-			
+
 						}while(repeat);
 					}
-					
+
 					if (initialTime != 2330)
-					{	
+					{
 						if(hoursChoiceBool)
 						{
 							std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break)\n";
-							
+
 							do
 							{
 								std::cin >> endTime;
-							
+
 								if(std::cin.fail())
 								{
 										std::cout << "Invalid input. Please enter a valid input:\n";
@@ -1025,13 +724,13 @@ void exec :: admin()
 								{
 									int i = endTime;
 									int len = 1;
-								
+
 									if (i > 0) { //Count number of digits in given time.
 										for (len = 0; i > 0; len++) {
 											i = i / 10;
 										}
 									}
-								
+
 									repeat = timeCheck(endTime, len, hoursChoiceBool);
 									if (endTime <= initialTime)
 									{
@@ -1041,21 +740,6 @@ void exec :: admin()
 								}
 							}while(repeat);
 						}
-<<<<<<< HEAD
-
-					}while(repeat);
-				}
-
-				if (initialTime != 2330)
-				{
-					std::cout << "At what time will your event end? (If there are more breaks in the event, input the end time before a break)\n";
-
-					do
-					{
-						std::cin >> endTime;
-
-						if(std::cin.fail())
-=======
 						else
 						{
 							std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break)\n";
@@ -1063,9 +747,9 @@ void exec :: admin()
 							{
 								bool shouldSkip = false;
 								repeat = true;
-		
+
 								std::cin >> endTime;
-		
+
 								if(std::cin.fail())
 								{
 										std::cout << "Invalid input. Please enter a valid input:\n";
@@ -1077,18 +761,18 @@ void exec :: admin()
 								{
 									int i = endTime;
 									int len = 1;
-					
+
 									if (i > 0) { //Count number of digits in given time.
 										for (len = 0; i > 0; len++) {
 											i = i / 10;
 										}
 									}
-			
+
 									if(endTime > 1230 || endTime < 100)
 									{
 										shouldSkip = true;
 									}
-					
+
 									if(shouldSkip)
 									{
 										std::cout << "Invalid time. Please input a time between 100 and 1230:\n";
@@ -1104,7 +788,7 @@ void exec :: admin()
 											std::cout << "Do you want a.m. or p.m.?\n";
 											std::cout << "1) a.m.\n";
 											std::cout << "2) p.m.\n";
-					
+
 											std::getline(std::cin, timeOfDay);
 
 											if(timeOfDay == "1" || timeOfDay == "2")
@@ -1116,7 +800,7 @@ void exec :: admin()
 												std::cout << "Invalid input. Please enter a vallid input.\n";
 											}
 										}
-			
+
 										if(timeOfDay == "2" && endTime != 1200 && endTime != 1230) //if time is pm, add 1200 to it to make it 24 hours
 										{
 											endTime += 1200;
@@ -1140,29 +824,15 @@ void exec :: admin()
 					{
 						noMore = true;
 						if(hoursChoiceBool)
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 						{
 							std::cout << "Break started at 11:30 p.m. It will run until 11:59 p.m.\n";
 						}
 						else
 						{
-<<<<<<< HEAD
-							int i = endTime;
-							int len = 1;
-
-							if (i > 0) { //Count number of digits in given time.
-								for (len = 0; i > 0; len++) {
-									i = i / 10;
-								}
-							}
-
-							repeat = timeCheck(endTime, len, hoursChoiceBool);
-							if (endTime <= initialTime)
-=======
 							std::cout << "Break started at 23:30. It will run until 23:59.\n";
 						}
 					}
-	
+
 					for(int i = initialTime; i < endTime-60; i+=30)
 					{
 						if((i/10)%10 == 6) //if third digit of time is 6, go to the closest next hour
@@ -1172,7 +842,6 @@ void exec :: admin()
 						if((endTime/10)%10 == 3) //Bunch of if's to remove space after final time
 						{
 							if(i == endTime-30)
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 							{
 								eventTime = eventTime + std::to_string(i);
 								break;
@@ -1188,7 +857,7 @@ void exec :: admin()
 					}
 					eventTime = eventTime + std::to_string(i) + " ";
 					}
-					
+
 					if(!noMore)
 					{
 						superBool = true;
@@ -1212,7 +881,7 @@ void exec :: admin()
 							{
 								std::cout << "Invalid input. Please enter a valid input.\n";
 							}
-	
+
 						}
 					}
 
@@ -1221,18 +890,18 @@ void exec :: admin()
 						bogo = true;
 					}
 				}
-	
+
 				if(initialTime == 2330)
 				{
 					eventTime = eventTime + "2330";
 				}
-	
+
 				std::ifstream fileExists("eventFile.txt");
 				if(fileExists) //If file exists, start at the end, add new line and add info
 				{
 					std::ofstream outFile;
 					outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
-					outFile << '\n' << eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending; 
+					outFile << '\n' << eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
 					outFile.close();
 				}
 				else //If file does not exist, create it and add info
@@ -1252,15 +921,8 @@ void exec :: admin()
 			}
 			else if(stringChoice == "3")
 			{
-<<<<<<< HEAD
-				std::ofstream outFile;
-				outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
-				outFile << '\n' << eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
-				outFile.close();
-=======
 				std::cout << '\n';
 				adminLoop = false;
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 			}
 			else
 			{
@@ -1281,16 +943,16 @@ void exec :: user()
 				std::cout << "Would you like your times displayed on a 12 hour or 24 hour clock?\n";
 				std::cout << "1) 12 hour clock\n";
 				std::cout << "2) 24 hour clock\n";
-		
+
 				std::cin >> choice;
-		
+
 				if(choice == 1)
 				{
 					std::cout << "\n****************************************\n";
 					print(true);
 
 					aproval = true;
-					
+
 				}
 				else if(choice == 2)
 				{
@@ -1298,7 +960,7 @@ void exec :: user()
 					print(false);
 
 					aproval = true;
-					
+
 				}
 				else //if the user gives something that isnt a vaild input it will tell them it is invalid and restart
 				{
@@ -1315,22 +977,14 @@ void exec :: user()
 							std::cout << "Sorry, your number selection was not an option, try again.\n";
 							std::cout << '\n';
 						}
-						
+
 					aproval = false;
-		
+
 				}
-<<<<<<< HEAD
 
-			exit(0);
-
-		}
-
-=======
-				
 		}while(!aproval);
-    
+
     	std::cout << "****************************************\n\n";
->>>>>>> 2c7ed2e8720a09fe0e35dfb6bbf7d9048f7fe47e
 		std::cout << "Please enter the name of the event you wish to attend: ";
 
 		std::cin.ignore();
