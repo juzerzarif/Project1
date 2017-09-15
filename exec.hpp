@@ -152,7 +152,7 @@ void exec :: admin()
 				}while(eventNameCheck);
 	
 	
-				std::cout << "What year will the event be on?\n";
+				std::cout << "What year will the event be on? It can be from 2017 to 2021.\n";
 	
 				//Choose year of event
 				do
@@ -171,7 +171,7 @@ void exec :: admin()
 					}
 					else if(eventYear < 2017 || eventYear > 2021)
 					{
-						std::cout << "Invalid year.\n";
+						std::cout << "Invalid year. Years have to be between 2017 and 2021.\n";
 						superBool = false;
 					}
 				}while(!superBool);
@@ -338,7 +338,7 @@ void exec :: admin()
 								}
 							}
 		
-							if(initialTime > 1300 || initialTime < 100)
+							if(initialTime > 1230 || initialTime < 100)
 							{
 								shouldSkip = true;
 							}
@@ -364,7 +364,6 @@ void exec :: admin()
 								{
 									initialTime = 0;
 								}
-								std::cout << initialTime << '\n';
 								repeat = timeCheck(initialTime, len, hoursChoiceBool);
 							}
 						}
@@ -415,6 +414,7 @@ void exec :: admin()
 						do
 						{
 							bool shouldSkip = false;
+							repeat = true;
 	
 							std::cin >> endTime;
 	
@@ -436,7 +436,7 @@ void exec :: admin()
 									}
 								}
 		
-								if(endTime > 1300 || endTime < 100)
+								if(endTime > 1230 || endTime < 100)
 								{
 									shouldSkip = true;
 								}
@@ -463,9 +463,13 @@ void exec :: admin()
 										endTime = 0;
 									}
 									repeat = timeCheck(endTime, len, hoursChoiceBool);
+									if (endTime <= initialTime)
+									{
+										std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time\n";
+										repeat = true;
+									}
 								}
 							}
-			
 						}while(repeat);
 					}
 	
@@ -711,6 +715,7 @@ void exec :: admin()
 					outFile.close();
 				}
 				std::cout << "Event created!\n";
+				std::cin.ignore();
 			}
 			else if(stringChoice == "2")
 			{
