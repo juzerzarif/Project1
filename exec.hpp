@@ -1032,13 +1032,12 @@ void exec :: print(bool time)
 {
 	/*
 	TO DO:
-	-Change linkedList.addFront() to .insertSorted()
 	-Check TO DO portion pelow
 	*/
 	
-	std::cout << "Made it to print.\n";
+	std::cout << "====================" << '\n' << "Events List" << '\n' << "====================" << '\n';
 
-	//linkedList<date> events;
+	linkedList<date> eventsList;
 		
 	std::ifstream readFile; 
 	readFile.open("eventFile.txt");
@@ -1053,7 +1052,7 @@ void exec :: print(bool time)
 	std::string nameMonth;
 	int startTime = 0;
 	int endTime = 0;
-	int timeKeeper [48];
+
 	
 	//read each value and assign to a date object
 	//insert date object into the sorted linked list
@@ -1097,11 +1096,11 @@ void exec :: print(bool time)
 				eventDate.setEvent(eventName);
 				eventDate.setAttendance(attending);
 			
-				eventList.addBack(eventDate);//adds new date to back of the list
-				eventList.sortList();//sorts list
+				eventsList.addBack(eventDate);//adds new date to back of the list
+				eventsList.sortList();//sorts list
 			}
 		}
-		//eventList.printList();//prints list
+		
 		readFile.close();//close file
 	}
 	else
@@ -1114,23 +1113,27 @@ void exec :: print(bool time)
 	===========
 	TO DO: 
 	-Print in 12Hr time
-	-Edit to remove commas at end of time
 	==========
 	*/
 		
-	for(int pos = 1; pos <= eventList.size(); pos++)
+	//Prints all objects in linkedList in readable format
+	for(int pos = 1; pos <= eventsList.size(); pos++)
 	{
 		
-		year = eventList.getEntry(pos).getYear();
-		month = eventList.getEntry(pos).getMonth();
-		day = eventList.getEntry(pos).getDay();
-		timeClock = eventList.getEntry(pos).getTime();
-		eventName = eventList.getEntry(pos).getEvent();
-		attending = eventList.getEntry(pos).getAttendance();
+		year = eventsList.getEntry(pos).getYear();
+		month = eventsList.getEntry(pos).getMonth();
+		day = eventsList.getEntry(pos).getDay();
+		timeClock = eventsList.getEntry(pos).getTime();
+		eventName = eventsList.getEntry(pos).getEvent();
+		attending = eventsList.getEntry(pos).getAttendance();
 	
+
+
+
 		//inputs blocks of time into an integer array timeKeeper
 		std::istringstream sortedTime(timeClock);
 		int lastPosition = 0;
+		int timeKeeper [48];
 		while (sortedTime)
 		{
 			int temp;
@@ -1145,80 +1148,242 @@ void exec :: print(bool time)
 		
 		}
 		
-		//parse array for start and end times of each block, append to end of string
-		timeClock = ""; 
-		int i = 0; //position in array
-		int officialEndTime = 0; //end time to be printed for each block
-		while(i <= lastPosition)
-		{	
-			if(i==0)
+		//Prints in either 12 or 24 hour
+		if(time == true) //24 hour
+		{
+			//parse array for start and end times of each block, append to end of string
+			timeClock = ""; 
+			int i = 0; //position in array
+			int naturalTimeInterval = 0; //end time to be printed for each block
+			lastPosition--;
+			while(i <= lastPosition)
+			{	
+
+				if(i==0)
+				{
+					startTime = timeKeeper[i];
+					i++;
+				}
+				else
+				{
+					//Check to determine whether time is on an hour or 30-minute interval
+					//update officialTime to be used for appropriate output 
+					if(endTime == 0)
+					{
+						if(startTime % 100 != 0)
+						{
+							naturalTimeInterval = 70;
+						}
+						else
+						{
+							naturalTimeInterval = 30;
+						}
+					}
+					else
+					{
+						if(endTime % 100 != 0)
+						{
+							naturalTimeInterval = 70;
+						}
+						else
+						{
+							naturalTimeInterval = 30;
+						}
+					}
+				
+					//Check to determine if endTime should be updated 
+					//or if time block complete and move to next time block 
+					//append completed time to string
+					//2400 becomes 2359
+					if(startTime == (timeKeeper[i]-naturalTimeInterval))
+					{
+						endTime = timeKeeper[i];	
+					}
+					else if(endTime == (timeKeeper[i] - naturalTimeInterval))
+					{
+						endTime = timeKeeper[i];
+					}
+					else
+					{
+						if (endTime == 0)
+						{
+							
+							timeClock.append(std::to_string(startTime));
+							timeClock.append(" - ");
+							timeClock.append(std::to_string(startTime+naturalTimeInterval));
+							timeClock.append(", ");
+
+							startTime = timeKeeper[i];	
+							if (i == lastPosition)
+							{
+								if(startTime % 100 != 0)
+								{
+									naturalTimeInterval = 70;
+								}
+								else
+								{
+									naturalTimeInterval = 30;
+								}
+
+								timeClock.append(std::to_string(startTime));
+								timeClock.append(" - ");
+								timeClock.append(std::to_string(startTime+naturalTimeInterval));
+							} 
+						}
+						else
+						{
+							
+							timeClock.append(std::to_string(startTime));
+							timeClock.append(" - ");
+							timeClock.append(std::to_string(endTime+naturalTimeInterval));
+							timeClock.append(", ");
+				
+							startTime = timeKeeper[i];
+							endTime = 0;
+							
+
+							if (i == lastPosition)
+							{
+								if(startTime % 100 != 0)
+								{
+									naturalTimeInterval = 70;
+								}
+								else
+								{
+									naturalTimeInterval = 30;
+								}
+
+								timeClock.append(std::to_string(startTime));
+								timeClock.append(" - ");
+								timeClock.append(std::to_string(startTime+naturalTimeInterval));
+							}
+
+						}
+					}
+					i++;
+				}
+			}
+		}
+		else //12 hour
+		{
+//parse array for start and end times of each block, append to end of string
+timeClock = ""; 
+int i = 0; //position in array
+int naturalTimeInterval = 0; //end time to be printed for each block
+lastPosition--;
+while(i <= lastPosition)
+{	
+
+	if(i==0)
+	{
+		startTime = timeKeeper[i];
+		i++;
+	}
+	else
+	{
+		//Check to determine whether time is on an hour or 30-minute interval
+		//update officialTime to be used for appropriate output 
+		if(endTime == 0)
+		{
+			if(startTime % 100 != 0)
 			{
-				startTime = timeKeeper[i];
-				i++;
+				naturalTimeInterval = 70;
 			}
 			else
 			{
-				//Check to determine whether time is on an hour or 30-minute interval
-				//update officialTime to be used for appropriate output 
-				if(endTime == 0)
+				naturalTimeInterval = 30;
+			}
+		}
+		else
+		{
+			if(endTime % 100 != 0)
+			{
+				naturalTimeInterval = 70;
+			}
+			else
+			{
+				naturalTimeInterval = 30;
+			}
+		}
+	
+		//Check to determine if endTime should be updated 
+		//or if time block complete and move to next time block 
+		//append completed time to string
+		//2400 becomes 2359
+		if(startTime == (timeKeeper[i]-naturalTimeInterval))
+		{
+			endTime = timeKeeper[i];	
+		}
+		else if(endTime == (timeKeeper[i] - naturalTimeInterval))
+		{
+			endTime = timeKeeper[i];
+		}
+		else
+		{
+			if (endTime == 0)
+			{
+				
+				timeClock.append(std::to_string(startTime));
+				timeClock.append(" - ");
+				timeClock.append(std::to_string(startTime+naturalTimeInterval));
+				timeClock.append(", ");
+
+				startTime = timeKeeper[i];	
+				if (i == lastPosition)
 				{
 					if(startTime % 100 != 0)
 					{
-						officialEndTime = 70;
+						naturalTimeInterval = 70;
 					}
 					else
 					{
-						officialEndTime = 30;
+						naturalTimeInterval = 30;
 					}
-				}
-				else
+
+					timeClock.append(std::to_string(startTime));
+					timeClock.append(" - ");
+					timeClock.append(std::to_string(startTime+naturalTimeInterval));
+				} 
+			}
+			else
+			{
+				
+				timeClock.append(std::to_string(startTime));
+				timeClock.append(" - ");
+				timeClock.append(std::to_string(endTime+naturalTimeInterval));
+				timeClock.append(", ");
+	
+				startTime = timeKeeper[i];
+				endTime = 0;
+				
+
+				if (i == lastPosition)
 				{
-					if(endTime % 100 != 0)
+					if(startTime % 100 != 0)
 					{
-						officialEndTime = 70;
+						naturalTimeInterval = 70;
 					}
 					else
 					{
-						officialEndTime = 30;
+						naturalTimeInterval = 30;
 					}
+
+					timeClock.append(std::to_string(startTime));
+					timeClock.append(" - ");
+					timeClock.append(std::to_string(startTime+naturalTimeInterval));
 				}
-			
-				//Check to determine if endTime should be updated 
-				//or if time block complete and move to next time block 
-				if(startTime == (timeKeeper[i] - officialEndTime))
-				{
-					endTime = timeKeeper[i];	
-				}
-				else if(endTime ==(timeKeeper[i] - officialEndTime))
-				{
-					endTime = timeKeeper[i];
-				}
-				else
-				{
-					if (endTime == 0)
-					{
-						timeClock.append(std::to_string(startTime));
-						timeClock.append(" - ");
-						timeClock.append(std::to_string(startTime+officialEndTime));
-						timeClock.append(", ");
-						startTime = timeKeeper[i];		
-					}
-					else
-					{
-						timeClock.append(std::to_string(startTime));
-						timeClock.append(" - ");
-						timeClock.append(std::to_string(endTime+officialEndTime));
-						timeClock.append(", ");
-			
-						startTime = timeKeeper[i];
-						endTime = 0;
-					}
-				}
-				i++;
+
 			}
 		}
-		
-		//this will be moved to be used for printing (Currently testing)
+		i++;
+	}
+}
+		}
+
+
+
+
+		//Puts month selection in readable format
 		switch(month) 
 		{
 			case 1 : nameMonth = "January";  break;       
@@ -1235,19 +1400,17 @@ void exec :: print(bool time)
 			case 12 : nameMonth = "December";  break;
 		}
 
-		
+		std::cout << '\n' << '\n';
 		std::cout << "Event: " << eventName << "\n";
 		std::cout << "Date: " << nameMonth << " " << day << ", " << year << "\n"; 
 									
 		std::cout << "Time: " << timeClock << '\n';
 		std::cout << "Attending: " << attending << '\n' << '\n';
 		
+		
 	}
 		
-
-		
-
-
+	std::cout << "====================" << '\n' <<  "====================" << '\n';
 }
 
 
