@@ -13,8 +13,44 @@ exec :: ~exec()
 
 void exec :: run()
     {
+		std::ifstream fileExists("eventFile.txt");
+
 		std::string choice;
 		int choiceRepeat = true;
+
+		if(!fileExists)
+		{
+			while(choiceRepeat)
+			{
+				std::cout << "Please select a login in mode:\n";
+				std::cout << "1) Admin\n";
+				std::cout << "2) User\n";
+				std::cout << "3) Quit\n";
+		
+				std::getline(std::cin, choice);
+				if(choice == "1")
+				{
+					admin();
+					//call to the admin method
+				}
+				else if (choice == "2")
+				{
+					std::cout << "No save file found! Create a save file by going through admin first.";
+					//call to the user method
+				}
+				else if(choice == "3")
+				{
+					choiceRepeat = false;
+					std::cout << "Bye!\n";
+				}
+				else //if the user gives something that isnt a vaild input it will tell them it is invalid and restart
+				{
+	
+						std::cout << "Invalid input.\n\n";
+				
+				}
+			}
+		}
 
 		while(choiceRepeat)
 		{
@@ -24,7 +60,6 @@ void exec :: run()
 			std::cout << "3) Quit\n";
 	
 			std::getline(std::cin, choice);
-
 			if(choice == "1")
 			{
 				admin();
@@ -599,7 +634,7 @@ void exec :: admin()
 
 							std::cin >> initialTime;
 							std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-							std::cout << "Im here\n";
+							//std::cout << "Im here\n";
 	
 							if(std::cin.fail())
 							{
@@ -620,7 +655,7 @@ void exec :: admin()
 								}
 				
 								repeat = timeCheck(initialTime, len, hoursChoiceBool);
-								if(endTime <= initialTime)
+								if(initialTime <= endTime)
 								{
 									std::cout << "Can't continue from break after previous end time. Please input a valid time: \n";
 									repeat = true;
@@ -1699,7 +1734,7 @@ bool exec::eventCheck(std::string eventNameCheck)
 		else
 		{
 			//if file dint open for some reason output that.
-			std::cout << "Error Opening File!" << '\n';
+			//std::cout << "Error Opening File!" << '\n';
 
 		}
 		return(removeCheck);
