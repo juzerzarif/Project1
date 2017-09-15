@@ -1043,6 +1043,8 @@ void exec :: print(bool time)
 	std::ifstream readFile;
 	readFile.open("eventFile.txt");
 
+	linkedList<date> eventList;
+	
 	int year = 0;
 	int month = 0;
 	int day = 0;

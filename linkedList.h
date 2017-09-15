@@ -7,6 +7,10 @@
 
 /**
  *	Templated linkedList class. This defines all of the linkedList private member variables and public linkedList methods.
+ *	@author	Giovanni Artavia
+ *	@author Brandon Lammey
+ *	@author	Dylan Herrig
+ *	@author James Glass
  */
 template <typename T>
 class linkedList
@@ -99,28 +103,34 @@ class linkedList
 		 *	Public method that takes in two arguments and returns a bool.
 		 *	Details: Compares dates of two adjacent nodes and determines which is more recent.
 		 *	@param value0 is the first argument.
-		 *	@param value 1 is the second argument.
+		 *	@param value1 is the second argument.
 		 *	@return true if value0 is less than value1, false otherwise.
 		 */
 		bool compareDates(T value0, T value1);
 
 		/**
 		 *	Public method that takes in no arguments and returns a vector of type T.
-		 *	Details: Creates new vector. Copies contents of linkedList into new cvecotr.
-		 *	@param value0 is the first argument.
-		 *	@param value 1 is the second argument.
-		 *	@return true if value0 is less than value1, false otherwise.
+		 *	Details: Creates new vector. Copies contents of linkedList into new vecotr.
+		 *	@return a standard vector with the contents of the linkedList inside.
 		 */
-		//creates new vector
-		//copy contents of list into vector
-		//returns a standard vector with the contents of the list inside
-		//used by test class to varify contents of list
 		std::vector<T> toVector() const;
 
+		/**
+		 *	Public method that takes in two arguments and returns a bool.
+		 *	Details: Adds node containing value of type T to a given spot in the linkedList. Increments size.
+		 *	@param position is the first argument.
+		 *	@param value is the second argument.
+		 *	@return true if value is inserted succesfully at correct position, false otherwise.
+		 */
 		bool insert(int position, T value);
 
+		/**
+		 *	Public method that takes in one argument and returns a value of type T.
+		 *	Details: Grabs value of type T from given position in the linkedList.
+		 *	@param position is the first argument.
+		 *	@return value from position in the linkedList.
+		 */
 		T getEntry(int position) const;
-
 };
 
 #include "linkedList.hpp"
