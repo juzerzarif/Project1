@@ -73,7 +73,7 @@ void exec :: admin()
 		int eventYear = 0;
 		int eventMonth = 0;
 		int eventDay = 0;
-		int eventBreak = 0;
+		std::string eventBreak = "";
 		int peopleAttending = 1;
 		int initialTime = 0;
 		int endTime = 0;
@@ -521,18 +521,35 @@ void exec :: admin()
 				}
 				if(!noMore) 
 				{
-					std::cout << "Are there breaks in your event?\n";
-					std::cout << "1) Yes\n";
-					std::cout << "2) No\n";
-					std::cin >> eventBreak;
+					superBool = true;
+					std::cin.ignore();
+					while(superBool)
+					{
+						std::cout << "Are there breaks in your event?\n";
+						std::cout << "1) Yes\n";
+						std::cout << "2) No\n";
+
+						std::getline(std::cin, eventBreak);
+
+						if(eventBreak == "1" || eventBreak == "2")
+						{
+							superBool = false;
+						}
+						else
+						{
+							std::cout << "Invalid input. Please enter a valid input.\n";
+						}
+
+					}
+				
 				}
 				else
 				{
-					eventBreak = 2;
+					eventBreak = "2";
 				}
 
 				//Choose if break
-				while(eventBreak == 1) //TODO: Change this to string
+				while(eventBreak == "1") //TODO: Change this to string
 				{	
 					if(bogo)
 					{
@@ -784,13 +801,31 @@ void exec :: admin()
 					
 					if(!noMore)
 					{
-						std::cout << "Are there any more breaks in your event?\n";
-						std::cout << "1) Yes\n";
-						std::cout << "2) No\n";
-						std::cin >> eventBreak;
+						superBool = true;
+
+						std::cin.ignore();
+
+						while(superBool)
+						{
+							std::cout << "Are there any more breaks in your event?\n";
+							std::cout << "1) Yes\n";
+							std::cout << "2) No\n";
+
+							std::getline(std::cin, eventBreak);
+
+							if(eventBreak == "1" || eventBreak == "2")
+							{
+								superBool = false;
+							}
+							else
+							{
+								std::cout << "Invalid input. Please enter a valid input.\n";
+							}
+	
+						}
 					}
 
-					if(eventBreak == 1)
+					if(eventBreak == "1")
 					{
 						bogo = true;
 					}
@@ -817,7 +852,7 @@ void exec :: admin()
 					outFile.close();
 				}
 				std::cout << "Event created!\n";
-				std::cin.ignore();
+				//std::cin.ignore();
 			}
 			else if(stringChoice == "2")
 			{
