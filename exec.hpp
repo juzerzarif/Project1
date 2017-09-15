@@ -160,7 +160,9 @@ void exec :: admin()
 				{
 					superBool = true;
 	
-					std::cin >> eventYear;	
+					
+					std::cin >> eventYear;
+					std::cin.ignore();
 					if(std::cin.fail())
 					{
 						while(std::cin.fail()) {
@@ -194,6 +196,7 @@ void exec :: admin()
 					std::cout << "11) November\n";
 					std::cout << "12) December\n";
 					std::cin >> eventMonth;
+					std::cin.ignore();
 	
 					if(std::cin.fail()) {
 						//std::cout << "Invalid input. Please enter a valid input:\n";
@@ -286,6 +289,7 @@ void exec :: admin()
 					do
 					{
 						std::cin >> initialTime;
+						std::cin.ignore();
 	
 						if(std::cin.fail())
 						{
@@ -320,6 +324,7 @@ void exec :: admin()
 						bool shouldSkip = false; //Determines whether given time is valid by checking if its between 1 and 1230. True if invalid time is given
 	
 						std::cin >> initialTime;
+						std::cin.ignore();
 	
 						if(std::cin.fail())
 						{
@@ -396,6 +401,7 @@ void exec :: admin()
 						do
 						{
 							std::cin >> endTime;
+							std::cin.ignore();
 						
 							if(std::cin.fail())
 							{
@@ -433,6 +439,7 @@ void exec :: admin()
 							repeat = true;
 	
 							std::cin >> endTime;
+							std::cin.ignore();
 	
 							if(std::cin.fail())
 							{
@@ -591,6 +598,7 @@ void exec :: admin()
 							repeat = true;
 
 							std::cin >> initialTime;
+							std::cin.ignore();
 	
 							if(std::cin.fail())
 							{
@@ -628,6 +636,7 @@ void exec :: admin()
 							bool shouldSkip = false; //Determines whether given time is valid by checking if its between 1 and 1230. True if invalid time is given
 	
 							std::cin >> initialTime;
+							std::cin.ignore();
 	
 							if(std::cin.fail())
 							{
@@ -710,6 +719,7 @@ void exec :: admin()
 							do
 							{
 								std::cin >> endTime;
+								std::cin.ignore();
 							
 								if(std::cin.fail())
 								{
@@ -747,6 +757,7 @@ void exec :: admin()
 								repeat = true;
 		
 								std::cin >> endTime;
+								std::cin.ignore();
 		
 								if(std::cin.fail())
 								{
@@ -988,15 +999,16 @@ void exec :: user()
 		std::cin.ignore();
 		std::getline (std::cin,eventName,'\n');
 	   	
-	   	bool foundCheck = updateEvent(eventName);
+	   	bool foundCheck = eventCheck(eventName);
+	   	
 	   	
 	   	if(foundCheck == true)
 	   	{
-	   		std::cout << "You are now signed up for the event, don't forget to go!\n";
+	   		std::cout << "You are now signed up for the event, don't forget to go!\n\n";
 	   	}
 	   	else
 	   	{
-	   		std::cout << "The event name you entered was unfortunatly not found in the list of events.\n";
+	   		std::cout << "The event name you entered was unfortunatly not found in the list of events.\n\n";
 	   	}
 
 
@@ -1458,4 +1470,60 @@ bool exec::updateEvent(std::string eventNameCheck)
 			
 			//returns if the event was found
 			return(removeCheck);
+	}
+	
+bool exec::eventCheck(std::string eventNameCheck)
+	{
+		//define used varibles
+		int year = 0;
+		
+		std::ifstream readFile;
+		std::string eventName = eventNameCheck;
+		bool removeCheck = false;
+		
+		//open the event file
+
+		readFile.open("eventFile.txt");
+
+		if(readFile.is_open())
+		{
+			//read through the whole list
+			while(!readFile.eof())
+			{
+				//store each value of each event in temparary varibles
+				std::string entry;
+
+				std::getline(readFile, entry, ':');
+				year = std::atoi(entry.c_str());
+
+				/*
+				* ignore the info we dont care about
+				*/
+				std::getline(readFile, entry, ':');
+				std::getline(readFile, entry, ':');
+				std::getline(readFile, entry, ':');
+				
+				std::getline(readFile, entry, ':');
+				eventName = entry;
+
+				std::getline(readFile, entry, '\n');
+				
+					//check that the line isnt blank, and that the temprary even name read in equals the one we are searching for
+					if((year != 0) && (eventName == eventNameCheck))
+					{
+						//set the fact that we found the event to true
+						removeCheck = true;
+					}
+				
+
+			}
+			readFile.close();//close file
+		}
+		else
+		{
+			//if file dint open for some reason output that.
+			std::cout << "Error Opening File!" << '\n';
+
+		}
+		return(removeCheck);
 	}
