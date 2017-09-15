@@ -55,6 +55,11 @@ class exec
 		*@return if the event was found in the list
 		*/
 		bool updateEvent(std::string eventNameCheck);
+		
+		/* Method searches the .txt file for the event
+		*@return if the event was found in the list
+		*/
+		bool eventCheck(std::string eventNameCheck);
 
 		bool timeCheck (int time, int len);
 		
