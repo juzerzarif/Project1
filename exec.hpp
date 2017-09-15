@@ -554,6 +554,12 @@ void exec :: admin()
 				{
 					noMore = true;
 				}
+				if(initialTime == 2300 && endTime == 2330)
+				{
+					noMore = true;
+					endTime = endTime - 30;
+					eventTime = std::to_string(initialTime) + " " + std::to_string(endTime);
+				}
 				if(!noMore) 
 				{
 					superBool = true;
@@ -583,7 +589,7 @@ void exec :: admin()
 				}
 
 				//Choose if break
-				while(eventBreak == "1") //TODO: Change this to string
+				while(eventBreak == "1")
 				{	
 					if(bogo)
 					{
@@ -832,6 +838,13 @@ void exec :: admin()
 					else
 					{
 						noMore = true;
+
+						if(initialTime == 2300 && endTime == 2330)
+						{
+							endTime = endTime - 30;
+							eventTime = std::to_string(initialTime) + " " + std::to_string(endTime);
+						}
+
 						if(hoursChoiceBool)
 						{
 							std::cout << "Break started at 11:30 p.m. It will run until 11:59 p.m.\n";
@@ -840,6 +853,13 @@ void exec :: admin()
 						{
 							std::cout << "Break started at 23:30. It will run until 23:59.\n";
 						}
+						eventBreak = "2";
+					}
+
+					if(endTime == 2330)
+					{
+						noMore = true;
+						eventBreak = "2";
 					}
 	
 					for(int i = initialTime; i < endTime-60; i+=30)
