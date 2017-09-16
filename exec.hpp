@@ -1217,12 +1217,8 @@ void exec :: user()
 
 void exec :: print(bool time)
 {
-	/*
-	TO DO:
-	-Check TO DO portion pelow
-	*/
 
-	std::cout << "==============================" << '\n' << "Events List" << '\n' << "==============================" << '\n';
+	std::cout << "==============================" << '\n' << "Events List" << '\n' << "==============================" << '\n' <<'\n';
 
 	linkedList<date> eventsList;
 
@@ -1294,16 +1290,9 @@ void exec :: print(bool time)
 	}
 	else
 	{
-		std::cout << "Error Opening File!" << '\n';
-
+		std::cout << "Empty Calendar!" << '\n';
 	}
 
-	/*
-	===========
-	TO DO:
-	-Print in 12Hr time
-	==========
-	*/
 
 	//Prints all objects in linkedList in readable format
 	for(int pos = 1; pos <= eventsList.size(); pos++)
@@ -1315,8 +1304,6 @@ void exec :: print(bool time)
 		timeClock = eventsList.getEntry(pos).getTime();
 		eventName = eventsList.getEntry(pos).getEvent();
 		attending = eventsList.getEntry(pos).getAttendance();
-
-
 
 
 		//inputs blocks of time into an integer array timeKeeper
@@ -1336,10 +1323,12 @@ void exec :: print(bool time)
 			}
 
 		}
+		
 
 		//Prints in either 12 or 24 hour
 		if(time == true) //24 hour
 		{
+			
 			//parse array for start and end times of each block, append to end of string
 			timeClock = "";
 			int i = 0; //position in array
@@ -1347,10 +1336,10 @@ void exec :: print(bool time)
 
 			while(i < lastPosition)
 			{
-
 				if(i==0)
 				{
 					startTime = timeKeeper[i];
+					endTime = 0;
 					i++;
 
 					if(lastPosition == i)
@@ -1373,15 +1362,13 @@ void exec :: print(bool time)
 						}
 						else
 						{
+							
 							timeClock.append(format24Hr(startTime));
 							timeClock.append(" - ");
 							timeClock.append(format24Hr(startTime+naturalTimeInterval));
 
 						}
-
-
 					}
-
 				}
 				else
 				{
@@ -1417,10 +1404,42 @@ void exec :: print(bool time)
 					if(startTime == (timeKeeper[i]-naturalTimeInterval))
 					{
 						endTime = timeKeeper[i];
+
+						if(i == lastPosition-1)
+						{
+							if(endTime % 100 != 0)
+							{
+								naturalTimeInterval = 70;
+							}
+							else
+							{
+								naturalTimeInterval = 30;
+							}
+							timeClock.append(format24Hr(startTime));
+							timeClock.append(" - ");
+							timeClock.append(format24Hr(endTime+naturalTimeInterval));
+						}
+
 					}
 					else if(endTime == (timeKeeper[i] - naturalTimeInterval))
 					{
+
 						endTime = timeKeeper[i];
+
+						if(i == lastPosition-1)
+						{
+							if(endTime % 100 != 0)
+							{
+								naturalTimeInterval = 70;
+							}
+							else
+							{
+								naturalTimeInterval = 30;
+							}
+							timeClock.append(format24Hr(startTime));
+							timeClock.append(" - ");
+							timeClock.append(format24Hr(endTime+naturalTimeInterval));
+						}
 
 					}
 					else //complete time block
@@ -1428,7 +1447,7 @@ void exec :: print(bool time)
 						if (endTime == 0)
 						{
 
-
+							
 							if(startTime % 100 != 0)
 							{
 								naturalTimeInterval = 70;
@@ -1461,7 +1480,7 @@ void exec :: print(bool time)
 								{
 									naturalTimeInterval = 30;
 								}
-
+								
 								timeClock.append(format24Hr(startTime));
 								timeClock.append(" - ");
 								timeClock.append(format24Hr(startTime+naturalTimeInterval));
@@ -1520,10 +1539,13 @@ void exec :: print(bool time)
 
 					i++;
 				}
+				
 			}
 		}
 		else //12 hour
 		{
+			
+			
 			//parse array for start and end times of each block, append to end of string
 			timeClock = "";
 			int i = 0; //position in array
@@ -1531,10 +1553,10 @@ void exec :: print(bool time)
 
 			while(i < lastPosition)
 			{
-
 				if(i==0)
 				{
 					startTime = timeKeeper[i];
+					endTime = 0;
 					i++;
 
 					if(lastPosition == i)
@@ -1557,15 +1579,13 @@ void exec :: print(bool time)
 						}
 						else
 						{
+							
 							timeClock.append(make12Hr(startTime));
 							timeClock.append(" - ");
 							timeClock.append(make12Hr(startTime+naturalTimeInterval));
 
 						}
-
-
 					}
-
 				}
 				else
 				{
@@ -1601,10 +1621,42 @@ void exec :: print(bool time)
 					if(startTime == (timeKeeper[i]-naturalTimeInterval))
 					{
 						endTime = timeKeeper[i];
+
+						if(i == lastPosition-1)
+						{
+							if(endTime % 100 != 0)
+							{
+								naturalTimeInterval = 70;
+							}
+							else
+							{
+								naturalTimeInterval = 30;
+							}
+							timeClock.append(make12Hr(startTime));
+							timeClock.append(" - ");
+							timeClock.append(make12Hr(endTime+naturalTimeInterval));
+						}
+
 					}
 					else if(endTime == (timeKeeper[i] - naturalTimeInterval))
 					{
+
 						endTime = timeKeeper[i];
+
+						if(i == lastPosition-1)
+						{
+							if(endTime % 100 != 0)
+							{
+								naturalTimeInterval = 70;
+							}
+							else
+							{
+								naturalTimeInterval = 30;
+							}
+							timeClock.append(make12Hr(startTime));
+							timeClock.append(" - ");
+							timeClock.append(make12Hr(endTime+naturalTimeInterval));
+						}
 
 					}
 					else //complete time block
@@ -1612,7 +1664,7 @@ void exec :: print(bool time)
 						if (endTime == 0)
 						{
 
-
+							
 							if(startTime % 100 != 0)
 							{
 								naturalTimeInterval = 70;
@@ -1645,7 +1697,7 @@ void exec :: print(bool time)
 								{
 									naturalTimeInterval = 30;
 								}
-
+								
 								timeClock.append(make12Hr(startTime));
 								timeClock.append(" - ");
 								timeClock.append(make12Hr(startTime+naturalTimeInterval));
@@ -1698,16 +1750,12 @@ void exec :: print(bool time)
 									timeClock.append(make12Hr(startTime+naturalTimeInterval));
 								}
 							}
-
 						}
 					}
-
 					i++;
-				}
+				}	
 			}
 		}
-
-
 
 
 		//Puts month selection in readable format
@@ -1727,13 +1775,11 @@ void exec :: print(bool time)
 			case 12 : nameMonth = "December";  break;
 		}
 
-		std::cout << '\n' << '\n';
+		
 		std::cout << "Event: " << eventName << "\n";
 		std::cout << "Date: " << nameMonth << " " << day << ", " << year << "\n";
-
 		std::cout << "Time: " << timeClock << '\n';
-		std::cout << "Attending: " << attending << '\n' << '\n';
-
+		std::cout << "Attending: " << attending << '\n'<<'\n';
 
 	}
 
