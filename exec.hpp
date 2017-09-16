@@ -678,7 +678,7 @@ void exec :: admin()
 				}
 				else if(endTime == (initialTime + 30))
 				{
-					eventTime = std::to_string(initialTime) + " " +std::to_string(endTime);
+					eventTime = std::to_string(initialTime);
 				}
 				if(!noMore)
 				{
@@ -980,6 +980,11 @@ void exec :: admin()
 								}
 							}while(repeat);
 						}
+						if(initialTime == 2300 && endTime == 2330)
+						{
+							eventTime = eventTime + std::to_string(initialTime);
+						}
+
 					}
 					else
 					{
