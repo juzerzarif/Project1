@@ -423,6 +423,10 @@ void exec :: admin()
 								{
 									initialTime = 0;
 								}
+								else if (timeOfDay == "1" && initialTime == 1230) //If time is 12:30am, change to 30
+								{
+									initialTime = 30;
+								}
 								repeat = timeCheck(initialTime, len, hoursChoiceBool);
 							}
 						}
@@ -558,6 +562,10 @@ void exec :: admin()
 											else if (timeOfDay == "1" && endTime == 1200) //If time is 12am, change to 0
 											{
 												endTime = 0;
+											}
+											else if (timeOfDay == "1" && initialTime == 1230) //If time is 12:30am, change to 30
+											{
+												initialTime = 30;
 											}
 											repeat = timeCheck(endTime, len, hoursChoiceBool);
 											if (endTime <= initialTime)
