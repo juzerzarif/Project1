@@ -65,6 +65,8 @@ class exec
 		
 		//linkedList<date> eventList;
 		bool timeCheck (int time, int len, bool timeMode);
+		
+		void cleanFile();
 
 };
 
