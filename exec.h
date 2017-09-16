@@ -54,6 +54,10 @@ class exec
 		 */
 		void print(bool time);
 
+
+		std::string make12Hr(int num);
+		std::string format24Hr(int num);
+
 		/**
 		 *	Public method that takes in no arguments and does not return.
 		 * 	Details: Runs the program and calls to admin or user based on user input.
