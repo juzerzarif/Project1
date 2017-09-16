@@ -674,8 +674,11 @@ void exec :: admin()
 				if(initialTime == 2300 && endTime == 2330)
 				{
 					noMore = true;
-					endTime = endTime - 30;
-					eventTime = std::to_string(initialTime) + " " + std::to_string(endTime);
+					eventTime = std::to_string(initialTime);
+				}
+				else if(endTime == (initialTime + 30))
+				{
+					eventTime = std::to_string(initialTime) + " " +std::to_string(endTime);
 				}
 				if(!noMore)
 				{
@@ -984,8 +987,7 @@ void exec :: admin()
 
 						if(initialTime == 2300 && endTime == 2330)
 						{
-							endTime = endTime - 30;
-							eventTime = std::to_string(initialTime) + " " + std::to_string(endTime);
+							eventTime = eventTime + std::to_string(initialTime);
 						}
 
 						if(hoursChoiceBool)
@@ -1003,6 +1005,10 @@ void exec :: admin()
 					{
 						noMore = true;
 						eventBreak = "2";
+					}
+					else if(endTime == (initialTime + 30))
+					{
+						eventTime = eventTime + std::to_string(initialTime) + " " +std::to_string(endTime);
 					}
 
 					if(!skipAll)
@@ -1065,7 +1071,6 @@ void exec :: admin()
 						//eventTime = eventTime + "2330";
 						noMore = true;
 					}
-
 
 					if(!noMore)
 					{
