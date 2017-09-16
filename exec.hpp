@@ -22,10 +22,12 @@ void exec :: run()
 		{
 			while(choiceRepeat)
 			{
+				std::cout << "==============================\n";
 				std::cout << "Please select a login in mode:\n";
 				std::cout << "1) Admin\n";
 				std::cout << "2) User\n";
 				std::cout << "3) Quit\n";
+				std::cout << "==============================\n";
 
 				std::getline(std::cin, choice);
 				if(choice == "1")
@@ -54,10 +56,12 @@ void exec :: run()
 
 		while(choiceRepeat)
 		{
+			std::cout << "==============================\n";
 			std::cout << "Please select a login in mode:\n";
 			std::cout << "1) Admin\n";
 			std::cout << "2) User\n";
 			std::cout << "3) Quit\n";
+			std::cout << "==============================\n";
 
 			std::getline(std::cin, choice);
 			if(choice == "1")
@@ -90,9 +94,11 @@ void exec :: admin()
 		bool superBool = false; //Handles looping of various while loops
 		bool hoursChoiceBool = true; //Handles looping of the choice of 12 or 24 hours
 
+		std::cout << "==============================\n";
 		std::cout << "Would you like your times displayed on a 12 hour or 24 hour clock?\n";
 		std::cout << "1) 12 hour clock\n";
 		std::cout << "2) 24 hour clock\n";
+		std::cout << "==============================\n";
 		std::string hoursChoice = "";
 
 		//std::cin.ignore();
@@ -139,10 +145,12 @@ void exec :: admin()
 			bool noMore = false; //If a time of 23:30 or 11:30 pm is given, noMore will turn true and skip any further asking for times.
 			bool bogo = true; //Tells program whether or not to add a space after user gives breaks
 
+			std::cout << "==============================\n";
 			std::cout << "Select an option:\n";
 			std::cout << "1) Create new event\n";
 			std::cout << "2) View current activities\n";
 			std::cout << "3) Back to Login selection\n";
+			std::cout << "==============================\n";
 
 			std::getline(std::cin, stringChoice);
 
@@ -208,6 +216,7 @@ void exec :: admin()
 				//Choose month of event
 				do
 				{
+					std::cout << "==============================\n";
 					std::cout << "What month will the event be on?:\n";
 					std::cout << "1) January\n";
 					std::cout << "2) February\n";
@@ -221,6 +230,7 @@ void exec :: admin()
 					std::cout << "10) October\n";
 					std::cout << "11) November\n";
 					std::cout << "12) December\n";
+					std::cout << "==============================\n";
 					std::cin >> eventMonth;
 					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
@@ -310,9 +320,10 @@ void exec :: admin()
 
 				if(hoursChoiceBool)
 				{
+					std::cout << "==============================\n";
 					std::cout << "At what time will your event start? (Time is meassured in half hour intervals)\n";
 					std::cout << "Example times: 14:30 is 1430. 9:00 is either 0900 or 900.\n";
-
+					std::cout << "==============================\n";
 					do
 					{
 						std::cin >> initialTime;
@@ -342,9 +353,11 @@ void exec :: admin()
 				}
 				else
 				{
+					std::cout << "==============================\n";
 					std::cout << "At what time will your event start? (Time is meassured in half hour intervals)\n";
 					std::cout << "Example times: 12:30 is 1230. 9:00 is either 0900 or 900.\n";
 					std::cout << "a.m. or p.m. will be asked later. Just input the number.\n";
+					std::cout << "==============================\n";
 
 					do
 					{
@@ -390,9 +403,11 @@ void exec :: admin()
 								//std::cin.ignore();
 								while(superBool)
 								{
+									std::cout << "==============================\n";
 									std::cout << "Do you want a.m. or p.m.?\n";
 									std::cout << "1) a.m.\n";
 									std::cout << "2) p.m.\n";
+									std::cout << "==============================\n";
 
 									std::getline(std::cin, timeOfDay);
 
@@ -505,9 +520,11 @@ void exec :: admin()
 
 									while(superBool)
 									{
+										std::cout << "==============================\n";
 										std::cout << "Do you want a.m. or p.m.?\n";
 										std::cout << "1) a.m.\n";
 										std::cout << "2) p.m.\n";
+										std::cout << "==============================\n";
 
 										std::getline(std::cin, timeOfDay);
 
@@ -594,9 +611,11 @@ void exec :: admin()
 					superBool = true;
 					while(superBool)
 					{
+						std::cout << "==============================\n";
 						std::cout << "Are there breaks in your event?\n";
 						std::cout << "1) Yes\n";
 						std::cout << "2) No\n";
+						std::cout << "==============================\n";
 
 						std::getline(std::cin, eventBreak);
 
@@ -708,9 +727,11 @@ void exec :: admin()
 
 								while(superBool)
 								{
+									std::cout << "==============================\n";
 									std::cout << "Do you want a.m. or p.m.?\n";
 									std::cout << "1) a.m.\n";
 									std::cout << "2) p.m.\n";
+									std::cout << "==============================\n";
 
 									std::getline(std::cin, timeOfDay);
 
@@ -829,9 +850,11 @@ void exec :: admin()
 
 										while(superBool)
 										{
+											std::cout << "==============================\n";
 											std::cout << "Do you want a.m. or p.m.?\n";
 											std::cout << "1) a.m.\n";
 											std::cout << "2) p.m.\n";
+											std::cout << "==============================\n";
 
 											std::getline(std::cin, timeOfDay);
 
@@ -925,9 +948,11 @@ void exec :: admin()
 
 						while(superBool)
 						{
+							std::cout << "==============================\n";
 							std::cout << "Are there any more breaks in your event?\n";
 							std::cout << "1) Yes\n";
 							std::cout << "2) No\n";
+							std::cout << "==============================\n";
 
 							std::getline(std::cin, eventBreak);
 
@@ -997,16 +1022,16 @@ void exec :: user()
 
 		do
 		{
-				std::cout << "****************************************\n\n";
+				std::cout << "==============================\n";
 				std::cout << "Would you like your times displayed on a 12 hour or 24 hour clock?\n";
 				std::cout << "1) 12 hour clock\n";
 				std::cout << "2) 24 hour clock\n";
+				std::cout << "==============================\n";
 
 				std::cin >> choice;
 
 				if(choice == 1)
 				{
-					std::cout << "\n****************************************\n";
 					print(true);
 
 					aproval = true;
@@ -1014,7 +1039,6 @@ void exec :: user()
 				}
 				else if(choice == 2)
 				{
-					std::cout << "\n****************************************\n";
 					print(false);
 
 					aproval = true;
@@ -1042,8 +1066,8 @@ void exec :: user()
 
 		}while(!aproval);
 
-    	std::cout << "****************************************\n\n";
-		std::cout << "Please enter the name of the event you wish to attend: ";
+			std::cout << "==============================" << '\n';
+			std::cout << "Please enter the name of the event you wish to attend: ";
 
 		std::cin.ignore();
 		std::getline (std::cin,eventName,'\n');
@@ -1070,7 +1094,7 @@ void exec :: print(bool time)
 	-Check TO DO portion pelow
 	*/
 
-	std::cout << "====================" << '\n' << "Events List" << '\n' << "====================" << '\n';
+	std::cout << "==============================" << '\n' << "Events List" << '\n' << "==============================" << '\n';
 
 	linkedList<date> eventsList;
 
@@ -1163,8 +1187,8 @@ void exec :: print(bool time)
 		timeClock = eventsList.getEntry(pos).getTime();
 		eventName = eventsList.getEntry(pos).getEvent();
 		attending = eventsList.getEntry(pos).getAttendance();
-	
-		
+
+
 
 
 		//inputs blocks of time into an integer array timeKeeper
@@ -1192,10 +1216,10 @@ void exec :: print(bool time)
 			timeClock = "";
 			int i = 0; //position in array
 			int naturalTimeInterval = 0; //end time to be printed for each block
-			
+
 			while(i < lastPosition)
-			{	
-				
+			{
+
 				if(i==0)
 				{
 					startTime = timeKeeper[i];
@@ -1203,7 +1227,7 @@ void exec :: print(bool time)
 
 					if(lastPosition == i)
 					{
-						
+
 						if(startTime % 100 != 0)
 						{
 							naturalTimeInterval = 70;
@@ -1224,7 +1248,7 @@ void exec :: print(bool time)
 							timeClock.append(format24Hr(startTime));
 							timeClock.append(" - ");
 							timeClock.append(format24Hr(startTime+naturalTimeInterval));
-							
+
 						}
 
 
@@ -1275,7 +1299,7 @@ void exec :: print(bool time)
 					{
 						if (endTime == 0)
 						{
-							
+
 
 							if(startTime % 100 != 0)
 							{
@@ -1285,7 +1309,7 @@ void exec :: print(bool time)
 							{
 								naturalTimeInterval = 30;
 							}
-							
+
 							if(startTime == 2330)
 							{
 								timeClock.append(format24Hr(startTime));
@@ -1322,12 +1346,12 @@ void exec :: print(bool time)
 								timeClock.append(", ");
 							}
 
-							startTime = timeKeeper[i];	
+							startTime = timeKeeper[i];
 
 						}
 						else
 						{
-							
+
 
 							timeClock.append(format24Hr(startTime));
 							timeClock.append(" - ");
@@ -1376,10 +1400,10 @@ void exec :: print(bool time)
 			timeClock = "";
 			int i = 0; //position in array
 			int naturalTimeInterval = 0; //end time to be printed for each block
-			
+
 			while(i < lastPosition)
-			{	
-				
+			{
+
 				if(i==0)
 				{
 					startTime = timeKeeper[i];
@@ -1387,7 +1411,7 @@ void exec :: print(bool time)
 
 					if(lastPosition == i)
 					{
-						
+
 						if(startTime % 100 != 0)
 						{
 							naturalTimeInterval = 70;
@@ -1408,7 +1432,7 @@ void exec :: print(bool time)
 							timeClock.append(make12Hr(startTime));
 							timeClock.append(" - ");
 							timeClock.append(make12Hr(startTime+naturalTimeInterval));
-							
+
 						}
 
 
@@ -1459,7 +1483,7 @@ void exec :: print(bool time)
 					{
 						if (endTime == 0)
 						{
-							
+
 
 							if(startTime % 100 != 0)
 							{
@@ -1469,7 +1493,7 @@ void exec :: print(bool time)
 							{
 								naturalTimeInterval = 30;
 							}
-							
+
 							if(startTime == 2330)
 							{
 								timeClock.append(make12Hr(startTime));
@@ -1506,12 +1530,12 @@ void exec :: print(bool time)
 								timeClock.append(", ");
 							}
 
-							startTime = timeKeeper[i];	
+							startTime = timeKeeper[i];
 
 						}
 						else
 						{
-							
+
 
 							timeClock.append(make12Hr(startTime));
 							timeClock.append(" - ");
@@ -1585,7 +1609,7 @@ void exec :: print(bool time)
 
 	}
 
-	std::cout << "====================" << '\n' <<  "====================" << '\n';
+	std::cout << "==============================" << '\n';
 }
 
 
