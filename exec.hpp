@@ -1203,7 +1203,7 @@ void exec :: print(bool time)
 
 					if(lastPosition == i)
 					{
-						std::cout << "Last position" << '\n';
+						
 						if(startTime % 100 != 0)
 						{
 							naturalTimeInterval = 70;
@@ -1215,15 +1215,15 @@ void exec :: print(bool time)
 
 						if(startTime == 2330)
 						{
-							timeClock.append(std::to_string(startTime));
+							timeClock.append(format24Hr(startTime));
 							timeClock.append(" - ");
-							timeClock.append(std::to_string(2359));
+							timeClock.append(format24Hr(2359));
 						}
 						else
 						{
-							timeClock.append(std::to_string(startTime));
+							timeClock.append(format24Hr(startTime));
 							timeClock.append(" - ");
-							timeClock.append(std::to_string(startTime+naturalTimeInterval));
+							timeClock.append(format24Hr(startTime+naturalTimeInterval));
 							
 						}
 
@@ -1288,15 +1288,15 @@ void exec :: print(bool time)
 							
 							if(startTime == 2330)
 							{
-								timeClock.append(std::to_string(startTime));
+								timeClock.append(format24Hr(startTime));
 								timeClock.append(" - ");
-								timeClock.append(std::to_string(2359));
+								timeClock.append(format24Hr(2359));
 							}
 							else if(i == lastPosition-1)
 							{
-								timeClock.append(std::to_string(startTime));
+								timeClock.append(format24Hr(startTime));
 								timeClock.append(" - ");
-								timeClock.append(std::to_string(startTime+naturalTimeInterval));
+								timeClock.append(format24Hr(startTime+naturalTimeInterval));
 								timeClock.append(", ");
 
 								//print last option
@@ -1310,15 +1310,15 @@ void exec :: print(bool time)
 									naturalTimeInterval = 30;
 								}
 
-								timeClock.append(std::to_string(startTime));
+								timeClock.append(format24Hr(startTime));
 								timeClock.append(" - ");
-								timeClock.append(std::to_string(startTime+naturalTimeInterval));
+								timeClock.append(format24Hr(startTime+naturalTimeInterval));
 							}
 							else
 							{
-								timeClock.append(std::to_string(startTime));
+								timeClock.append(format24Hr(startTime));
 								timeClock.append(" - ");
-								timeClock.append(std::to_string(startTime+naturalTimeInterval));
+								timeClock.append(format24Hr(startTime+naturalTimeInterval));
 								timeClock.append(", ");
 							}
 
@@ -1329,9 +1329,9 @@ void exec :: print(bool time)
 						{
 							
 
-							timeClock.append(std::to_string(startTime));
+							timeClock.append(format24Hr(startTime));
 							timeClock.append(" - ");
-							timeClock.append(std::to_string(endTime+naturalTimeInterval));
+							timeClock.append(format24Hr(endTime+naturalTimeInterval));
 							timeClock.append(", ");
 
 							startTime = timeKeeper[i];
@@ -1351,15 +1351,15 @@ void exec :: print(bool time)
 
 								if(startTime == 2330)
 								{
-									timeClock.append(std::to_string(startTime));
+									timeClock.append(format24Hr(startTime));
 									timeClock.append(" - ");
-									timeClock.append(std::to_string(2359));
+									timeClock.append(format24Hr(2359));
 								}
 								else
 								{
-									timeClock.append(std::to_string(startTime));
+									timeClock.append(format24Hr(startTime));
 									timeClock.append(" - ");
-									timeClock.append(std::to_string(startTime+naturalTimeInterval));
+									timeClock.append(format24Hr(startTime+naturalTimeInterval));
 								}
 							}
 
@@ -1399,15 +1399,15 @@ void exec :: print(bool time)
 
 						if(startTime == 2330)
 						{
-							timeClock.append(std::to_string(startTime));
+							timeClock.append(make12Hr(startTime));
 							timeClock.append(" - ");
-							timeClock.append(std::to_string(2359));
+							timeClock.append(make12Hr(2359));
 						}
 						else
 						{
-							timeClock.append(std::to_string(startTime));
+							timeClock.append(make12Hr(startTime));
 							timeClock.append(" - ");
-							timeClock.append(std::to_string(startTime+naturalTimeInterval));
+							timeClock.append(make12Hr(startTime+naturalTimeInterval));
 							
 						}
 
@@ -1472,15 +1472,15 @@ void exec :: print(bool time)
 							
 							if(startTime == 2330)
 							{
-								timeClock.append(std::to_string(startTime));
+								timeClock.append(make12Hr(startTime));
 								timeClock.append(" - ");
-								timeClock.append(std::to_string(2359));
+								timeClock.append(make12Hr(2359));
 							}
 							else if(i == lastPosition-1)
 							{
-								timeClock.append(std::to_string(startTime));
+								timeClock.append(make12Hr(startTime));
 								timeClock.append(" - ");
-								timeClock.append(std::to_string(startTime+naturalTimeInterval));
+								timeClock.append(make12Hr(startTime+naturalTimeInterval));
 								timeClock.append(", ");
 
 								//print last option
@@ -1494,15 +1494,15 @@ void exec :: print(bool time)
 									naturalTimeInterval = 30;
 								}
 
-								timeClock.append(std::to_string(startTime));
+								timeClock.append(make12Hr(startTime));
 								timeClock.append(" - ");
-								timeClock.append(std::to_string(startTime+naturalTimeInterval));
+								timeClock.append(make12Hr(startTime+naturalTimeInterval));
 							}
 							else
 							{
-								timeClock.append(std::to_string(startTime));
+								timeClock.append(make12Hr(startTime));
 								timeClock.append(" - ");
-								timeClock.append(std::to_string(startTime+naturalTimeInterval));
+								timeClock.append(make12Hr(startTime+naturalTimeInterval));
 								timeClock.append(", ");
 							}
 
@@ -1513,9 +1513,9 @@ void exec :: print(bool time)
 						{
 							
 
-							timeClock.append(std::to_string(startTime));
+							timeClock.append(make12Hr(startTime));
 							timeClock.append(" - ");
-							timeClock.append(std::to_string(endTime+naturalTimeInterval));
+							timeClock.append(make12Hr(endTime+naturalTimeInterval));
 							timeClock.append(", ");
 
 							startTime = timeKeeper[i];
@@ -1535,15 +1535,15 @@ void exec :: print(bool time)
 
 								if(startTime == 2330)
 								{
-									timeClock.append(std::to_string(startTime));
+									timeClock.append(make12Hr(startTime));
 									timeClock.append(" - ");
-									timeClock.append(std::to_string(2359));
+									timeClock.append(make12Hr(2359));
 								}
 								else
 								{
-									timeClock.append(std::to_string(startTime));
+									timeClock.append(make12Hr(startTime));
 									timeClock.append(" - ");
-									timeClock.append(std::to_string(startTime+naturalTimeInterval));
+									timeClock.append(make12Hr(startTime+naturalTimeInterval));
 								}
 							}
 
@@ -1588,6 +1588,84 @@ void exec :: print(bool time)
 	std::cout << "====================" << '\n' <<  "====================" << '\n';
 }
 
+
+std::string exec::make12Hr(int num)
+{
+	std::string AmPmTime;
+	if(num > 1230)
+	{
+		num = num - 1200;
+		AmPmTime = std::to_string(num);
+
+		if(AmPmTime.length() == 4)
+		{
+			AmPmTime.insert(2,":");
+		}
+		else
+		{
+			AmPmTime.insert(1,":");
+		}
+
+		AmPmTime.append(" PM");
+	}
+	else if(num < 100)
+	{
+		num = num + 1200;
+		AmPmTime = std::to_string(num);
+
+		if(AmPmTime.length() == 4)
+		{
+			AmPmTime.insert(2,":");
+		}
+		else
+		{
+			AmPmTime.insert(1,":");
+		}
+
+		AmPmTime.append(" AM");
+	}
+	else
+	{
+		AmPmTime = std::to_string(num);
+
+		if(AmPmTime.length() == 4)
+		{
+			AmPmTime.insert(2,":");
+		}
+		else
+		{
+			AmPmTime.insert(1,":");
+		}
+
+		AmPmTime.append(" AM");
+	}
+	return(AmPmTime);
+}
+
+std::string exec::format24Hr(int num)
+{
+	std::string worldTime;
+	if(num == 0)
+	{
+		worldTime = "00:00";
+	}
+	else if(num == 30)
+	{
+		worldTime = "00:30";
+	}
+	else if(num < 1000)
+	{
+		worldTime = std::to_string(num);
+		worldTime.insert(1,":");
+	}
+	else
+	{
+		worldTime = std::to_string(num);
+		worldTime.insert(2,":");
+
+	}
+	return(worldTime);
+}
 
 void exec::test()
     {
