@@ -1163,8 +1163,13 @@ void exec :: print(bool time)
 		timeClock = eventsList.getEntry(pos).getTime();
 		eventName = eventsList.getEntry(pos).getEvent();
 		attending = eventsList.getEntry(pos).getAttendance();
+<<<<<<< HEAD
 
 
+=======
+	
+		std::cout << "Time block: " << timeClock<< '\n';
+>>>>>>> Lammey-branch
 
 
 		//inputs blocks of time into an integer array timeKeeper
@@ -1192,14 +1197,51 @@ void exec :: print(bool time)
 			timeClock = "";
 			int i = 0; //position in array
 			int naturalTimeInterval = 0; //end time to be printed for each block
+<<<<<<< HEAD
 			lastPosition--;
 			while(i <= lastPosition)
 			{
 
+=======
+			
+			while(i < lastPosition)
+			{	
+				std::cout << "Working " << '\n';
+>>>>>>> Lammey-branch
 				if(i==0)
 				{
 					startTime = timeKeeper[i];
 					i++;
+
+					if(lastPosition == i)
+					{
+						std::cout << "Last position" << '\n';
+						if(startTime % 100 != 0)
+						{
+							naturalTimeInterval = 70;
+						}
+						else
+						{
+							naturalTimeInterval = 30;
+						}
+
+						if(startTime == 2330)
+						{
+							timeClock.append(std::to_string(startTime));
+							timeClock.append(" - ");
+							timeClock.append(std::to_string(2359));
+						}
+						else
+						{
+							timeClock.append(std::to_string(startTime));
+							timeClock.append(" - ");
+							timeClock.append(std::to_string(startTime+naturalTimeInterval));
+							
+						}
+
+
+					}
+
 				}
 				else
 				{
@@ -1235,15 +1277,21 @@ void exec :: print(bool time)
 					if(startTime == (timeKeeper[i]-naturalTimeInterval))
 					{
 						endTime = timeKeeper[i];
+<<<<<<< HEAD
+=======
+
+>>>>>>> Lammey-branch
 					}
 					else if(endTime == (timeKeeper[i] - naturalTimeInterval))
 					{
 						endTime = timeKeeper[i];
+
 					}
-					else
+					else //complete time block
 					{
 						if (endTime == 0)
 						{
+<<<<<<< HEAD
 
 							timeClock.append(std::to_string(startTime));
 							timeClock.append(" - ");
@@ -1252,7 +1300,34 @@ void exec :: print(bool time)
 
 							startTime = timeKeeper[i];
 							if (i == lastPosition)
+=======
+							
+
+							if(startTime % 100 != 0)
 							{
+								naturalTimeInterval = 70;
+							}
+							else
+							{
+								naturalTimeInterval = 30;
+							}
+							
+							if(startTime == 2330)
+>>>>>>> Lammey-branch
+							{
+								timeClock.append(std::to_string(startTime));
+								timeClock.append(" - ");
+								timeClock.append(std::to_string(2359));
+							}
+							else if(i == lastPosition-1)
+							{
+								timeClock.append(std::to_string(startTime));
+								timeClock.append(" - ");
+								timeClock.append(std::to_string(startTime+naturalTimeInterval));
+								timeClock.append(", ");
+
+								//print last option
+								startTime = timeKeeper[i];
 								if(startTime % 100 != 0)
 								{
 									naturalTimeInterval = 70;
@@ -1266,9 +1341,26 @@ void exec :: print(bool time)
 								timeClock.append(" - ");
 								timeClock.append(std::to_string(startTime+naturalTimeInterval));
 							}
+<<<<<<< HEAD
 						}
 						else
 						{
+=======
+							else
+							{
+								timeClock.append(std::to_string(startTime));
+								timeClock.append(" - ");
+								timeClock.append(std::to_string(startTime+naturalTimeInterval));
+								timeClock.append(", ");
+							}
+
+							startTime = timeKeeper[i];	
+
+						}
+						else
+						{
+							
+>>>>>>> Lammey-branch
 
 							timeClock.append(std::to_string(startTime));
 							timeClock.append(" - ");
@@ -1279,7 +1371,7 @@ void exec :: print(bool time)
 							endTime = 0;
 
 
-							if (i == lastPosition)
+							if (i == lastPosition-1)
 							{
 								if(startTime % 100 != 0)
 								{
@@ -1290,19 +1382,30 @@ void exec :: print(bool time)
 									naturalTimeInterval = 30;
 								}
 
-								timeClock.append(std::to_string(startTime));
-								timeClock.append(" - ");
-								timeClock.append(std::to_string(startTime+naturalTimeInterval));
+								if(startTime == 2330)
+								{
+									timeClock.append(std::to_string(startTime));
+									timeClock.append(" - ");
+									timeClock.append(std::to_string(2359));
+								}
+								else
+								{
+									timeClock.append(std::to_string(startTime));
+									timeClock.append(" - ");
+									timeClock.append(std::to_string(startTime+naturalTimeInterval));
+								}
 							}
 
 						}
 					}
+
 					i++;
 				}
 			}
 		}
 		else //12 hour
 		{
+<<<<<<< HEAD
 //parse array for start and end times of each block, append to end of string
 timeClock = "";
 int i = 0; //position in array
@@ -1367,15 +1470,48 @@ while(i <= lastPosition)
 
 				startTime = timeKeeper[i];
 				if (i == lastPosition)
+=======
+			//parse array for start and end times of each block, append to end of string
+			timeClock = ""; 
+			int i = 0; //position in array
+			int naturalTimeInterval = 0; //end time to be printed for each block
+			lastPosition--;
+			while(i <= lastPosition)
+			{	
+
+				if(i==0)
 				{
-					if(startTime % 100 != 0)
+					startTime = timeKeeper[i];
+					i++;
+				}
+				else
+>>>>>>> Lammey-branch
+				{
+					//Check to determine whether time is on an hour or 30-minute interval
+					//update officialTime to be used for appropriate output 
+					if(endTime == 0)
 					{
-						naturalTimeInterval = 70;
+						if(startTime % 100 != 0)
+						{
+							naturalTimeInterval = 70;
+						}
+						else
+						{
+							naturalTimeInterval = 30;
+						}
 					}
 					else
 					{
-						naturalTimeInterval = 30;
+						if(endTime % 100 != 0)
+						{
+							naturalTimeInterval = 70;
+						}
+						else
+						{
+							naturalTimeInterval = 30;
+						}
 					}
+<<<<<<< HEAD
 
 					timeClock.append(std::to_string(startTime));
 					timeClock.append(" - ");
@@ -1397,24 +1533,81 @@ while(i <= lastPosition)
 				if (i == lastPosition)
 				{
 					if(startTime % 100 != 0)
+=======
+				
+					//Check to determine if endTime should be updated 
+					//or if time block complete and move to next time block 
+					//append completed time to string
+					//2400 becomes 2359
+					if(startTime == (timeKeeper[i]-naturalTimeInterval))
+>>>>>>> Lammey-branch
 					{
-						naturalTimeInterval = 70;
+						endTime = timeKeeper[i];	
+					}
+					else if(endTime == (timeKeeper[i] - naturalTimeInterval))
+					{
+						endTime = timeKeeper[i];
 					}
 					else
 					{
-						naturalTimeInterval = 30;
+						if (endTime == 0)
+						{
+							
+							timeClock.append(std::to_string(startTime));
+							timeClock.append(" - ");
+							timeClock.append(std::to_string(startTime+naturalTimeInterval));
+							timeClock.append(", ");
+
+							startTime = timeKeeper[i];	
+							if (i == lastPosition)
+							{
+								if(startTime % 100 != 0)
+								{
+									naturalTimeInterval = 70;
+								}
+								else
+								{
+									naturalTimeInterval = 30;
+								}
+
+								timeClock.append(std::to_string(startTime));
+								timeClock.append(" - ");
+								timeClock.append(std::to_string(startTime+naturalTimeInterval));
+							} 
+						}
+						else
+						{
+							
+							timeClock.append(std::to_string(startTime));
+							timeClock.append(" - ");
+							timeClock.append(std::to_string(endTime+naturalTimeInterval));
+							timeClock.append(", ");
+				
+							startTime = timeKeeper[i];
+							endTime = 0;
+							
+
+							if (i == lastPosition)
+							{
+								if(startTime % 100 != 0)
+								{
+									naturalTimeInterval = 70;
+								}
+								else
+								{
+									naturalTimeInterval = 30;
+								}
+
+								timeClock.append(std::to_string(startTime));
+								timeClock.append(" - ");
+								timeClock.append(std::to_string(startTime+naturalTimeInterval));
+							}
+
+						}
 					}
-
-					timeClock.append(std::to_string(startTime));
-					timeClock.append(" - ");
-					timeClock.append(std::to_string(startTime+naturalTimeInterval));
+					i++;
 				}
-
 			}
-		}
-		i++;
-	}
-}
 		}
 
 
