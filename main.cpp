@@ -19,6 +19,6 @@
 int main()
 {
     exec Executive;
-    Executive.print(true);
+    Executive.run();
     return(0);
 }
