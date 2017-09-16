@@ -98,7 +98,7 @@ template <typename T>
 void linkedList<T>::addBack(T value)
 {
 	node<T>* temp = nullptr;
-	
+
 	if(isEmpty())
 	{
 		m_front = new node<T>(value);
@@ -144,7 +144,7 @@ void linkedList<T>::sortList()
         temp = currentNode->getNext();
         currentNode->setNext(currentNode->getNext()->getNext());
         temp->setNext(currentNode);
-        
+
         if(currentNode == m_front)
 				{
 					prevNode = temp;
@@ -166,7 +166,7 @@ template <typename T>
 bool linkedList<T>::compareDates(T value0, T value1)
 {
 	bool comparer = false;
-  
+
 	if(value0.getYear() < value1.getYear())
 	{
 		comparer = true;
@@ -182,7 +182,7 @@ bool linkedList<T>::compareDates(T value0, T value1)
 		comparer = true;
 		return(comparer);
 	}
-	  
+
 	return(comparer);
 }
 
@@ -192,16 +192,16 @@ bool linkedList<T>::removeBack()
 	node<T>* lastNode = nullptr;
 	node<T>* secondintoLast = nullptr;
 	bool isRemoved = false;
-	
+
 	if(m_size==0)
 	{
-		isRemoved = false; 
+		isRemoved = false;
 	}
 	else
 	{
 		lastNode = m_front;
 		secondintoLast = m_front;
-		
+
 		while(lastNode-> getNext() != nullptr)
 		{
 			lastNode = lastNode -> getNext();
@@ -210,7 +210,7 @@ bool linkedList<T>::removeBack()
 				secondintoLast = secondintoLast -> getNext();
 			}
 		}
-		
+
 		delete(lastNode);
 		secondintoLast -> setNext(nullptr);
 		lastNode = nullptr;
@@ -260,9 +260,9 @@ template<typename T>
 bool linkedList<T>::insert(int position, T value)
 {
 
-  if(position > m_size || position < 1) 
-  { 
-	  return(false); 
+  if(position > m_size || position < 1)
+  {
+	  return(false);
   }
   else if(position == 1) //If the position is at the front we use addfront instead
   {
@@ -295,8 +295,8 @@ T linkedList<T>::getEntry(int position) const
 	int tempPos = 1;
 	while(tempPos < position) //Traverses list and gets entry
 	{
-		temp = temp->getNext(); 
-		tempPos++; 
+		temp = temp->getNext();
+		tempPos++;
 	}
 	return temp->getValue();
 }
