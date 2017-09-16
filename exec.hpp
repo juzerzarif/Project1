@@ -877,13 +877,20 @@ void exec :: admin()
 										}
 									}
 
-									repeat = timeCheck(endTime, len, hoursChoiceBool);
-									if (endTime <= initialTime)
+									if (endTime == 2359)
 									{
-										std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time\n";
-										repeat = true;
+										skipAll = true;
+										repeat = false;
 									}
-
+									else
+									{
+										repeat = timeCheck(endTime, len, hoursChoiceBool);
+										if (endTime <= initialTime)
+										{
+											std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time\n";
+											repeat = true;
+										}
+									}
 								}
 							}while(repeat);
 						}
