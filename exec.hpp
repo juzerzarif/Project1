@@ -896,7 +896,7 @@ void exec :: admin()
 						}
 						else
 						{
-							std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break). If you want your event to go until 11:59 p.m. enter 1159 \n";																			do
+							std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break). If you want your event to go until 11:59 p.m. enter 1159 p.m. \n";																			do
 							{
 								bool shouldSkip = false; //Determines whether given time is valid by checking if its between 1 and 1230. True if invalid time is given
 								repeat = true;
@@ -913,13 +913,6 @@ void exec :: admin()
 								}
 								else
 								{
-									if (endTime == 2359)
-									{
-										//skipAll = true;
-										//repeat = false;
-									}
-									else
-									{
 										int i = endTime;
 										int len = 1;
 
@@ -974,7 +967,15 @@ void exec :: admin()
 												{
 													endTime = 0;
 												}
-												repeat = timeCheck(endTime, len, hoursChoiceBool);
+												if (timeOfDay == "2" && endTime == 2359)
+												{
+													skipAll = true;
+													repeat = false;
+												}
+												if (!skipAll)
+												{
+													repeat = timeCheck(endTime, len, hoursChoiceBool);
+												}
 												if (endTime <= initialTime)
 												{
 													std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time\n";
@@ -983,7 +984,6 @@ void exec :: admin()
 											}
 
 										}
-									}
 								}
 							}while(repeat);
 						}
