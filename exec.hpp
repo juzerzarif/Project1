@@ -94,9 +94,11 @@ void exec :: admin()
 		bool superBool = false; //Handles looping of various while loops
 		bool hoursChoiceBool = true; //Handles looping of the choice of 12 or 24 hours
 
+		std::cout << "==============================\n";
 		std::cout << "Would you like your times displayed on a 12 hour or 24 hour clock?\n";
 		std::cout << "1) 12 hour clock\n";
 		std::cout << "2) 24 hour clock\n";
+		std::cout << "==============================\n";
 		std::string hoursChoice = "";
 
 		//std::cin.ignore();
@@ -144,10 +146,12 @@ void exec :: admin()
 			bool bogo = true; //Tells program whether or not to add a space after user gives breaks
 			bool skipAll = false; //True if event goes until midnight.
 
+			std::cout << "==============================\n";
 			std::cout << "Select an option:\n";
 			std::cout << "1) Create new event\n";
 			std::cout << "2) View current activities\n";
 			std::cout << "3) Back to Login selection\n";
+			std::cout << "==============================\n";
 
 			std::getline(std::cin, stringChoice);
 
@@ -213,6 +217,7 @@ void exec :: admin()
 				//Choose month of event
 				do
 				{
+					std::cout << "==============================\n";
 					std::cout << "What month will the event be on?:\n";
 					std::cout << "1) January\n";
 					std::cout << "2) February\n";
@@ -226,6 +231,7 @@ void exec :: admin()
 					std::cout << "10) October\n";
 					std::cout << "11) November\n";
 					std::cout << "12) December\n";
+					std::cout << "==============================\n";
 					std::cin >> eventMonth;
 					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
@@ -922,9 +928,11 @@ void exec :: admin()
 
 											while(superBool)
 											{
+												std::cout << "==============================\n";
 												std::cout << "Do you want a.m. or p.m.?\n";
 												std::cout << "1) a.m.\n";
 												std::cout << "2) p.m.\n";
+												std::cout << "==============================\n";
 
 												std::getline(std::cin, timeOfDay);
 
@@ -1060,9 +1068,11 @@ void exec :: admin()
 
 						while(superBool)
 						{
+							std::cout << "==============================\n";
 							std::cout << "Are there any more breaks in your event?\n";
 							std::cout << "1) Yes\n";
 							std::cout << "2) No\n";
+							std::cout << "==============================\n";
 
 							std::getline(std::cin, eventBreak);
 
