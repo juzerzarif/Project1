@@ -252,7 +252,9 @@ void exec :: admin()
 					}
 				}while(eventMonthCheck);
 
+				std::cout << "==============================\n";
 				std::cout << "What day will your event be on?\n";
+				std::cout << "==============================\n";
 
 				//Choose day of event
 				do
@@ -321,8 +323,10 @@ void exec :: admin()
 
 				if(hoursChoiceBool)
 				{
+					std::cout << "==============================\n";
 					std::cout << "At what time will your event start? (Time is meassured in half hour intervals)\n";
 					std::cout << "Example times: 14:30 is 1430. 9:00 is either 0900 or 900.\n";
+					std::cout << "==============================\n";
 
 					do
 					{
@@ -353,9 +357,11 @@ void exec :: admin()
 				}
 				else
 				{
+					std::cout << "==============================\n";
 					std::cout << "At what time will your event start? (Time is meassured in half hour intervals)\n";
 					std::cout << "Example times: 12:30 is 1230. 9:00 is either 0900 or 900.\n";
 					std::cout << "a.m. or p.m. will be asked later. Just input the number.\n";
+					std::cout << "==============================\n";
 
 					do
 					{
@@ -399,9 +405,11 @@ void exec :: admin()
 								//std::cin.ignore();
 								while(superBool)
 								{
+									std::cout << "==============================\n";
 									std::cout << "Do you want a.m. or p.m.?\n";
 									std::cout << "1) a.m.\n";
 									std::cout << "2) p.m.\n";
+									std::cout << "==============================\n";
 
 									std::getline(std::cin, timeOfDay);
 
@@ -438,7 +446,9 @@ void exec :: admin()
 				{
 					if(hoursChoiceBool)
 					{
-						std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break). If you want your event to go until 23:59 enter 2359 \n";
+						std::cout << "==============================\n";
+						std::cout << "At what time will your event end? \n(If there are breaks in the event, input the end time before a break). \nIf you want your event to go until 23:59 enter 2359 \n";
+						std::cout << "==============================\n";
 
 						do
 						{
@@ -482,7 +492,9 @@ void exec :: admin()
 					}
 					else
 					{
-						std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break). If you want your event to go until 11:59 p.m. enter 1159\n";
+						std::cout << "==============================\n";
+						std::cout << "At what time will your event end?\n(If there are breaks in the event, input the end time before a break).\nIf you want your event to go until 11:59 p.m. enter 1159\n";
+						std::cout << "==============================\n";
 						do
 						{
 							bool shouldSkip = false; //Determines whether given time is valid by checking if its between 1 and 1230. True if invalid time is given
@@ -532,9 +544,11 @@ void exec :: admin()
 
 										while(superBool)
 										{
+											std::cout << "==============================\n";
 											std::cout << "Do you want a.m. or p.m.?\n";
 											std::cout << "1) a.m.\n";
 											std::cout << "2) p.m.\n";
+											std::cout << "==============================\n";
 
 											std::getline(std::cin, timeOfDay);
 
@@ -689,9 +703,11 @@ void exec :: admin()
 					superBool = true;
 					while(superBool)
 					{
+						std::cout << "==============================\n";
 						std::cout << "Are there breaks in your event?\n";
 						std::cout << "1) Yes\n";
 						std::cout << "2) No\n";
+						std::cout << "==============================\n";
 
 						std::getline(std::cin, eventBreak);
 
@@ -718,7 +734,9 @@ void exec :: admin()
 					if(bogo)
 					{
 						eventTime = eventTime + " "; //Adds a space between times when event is added
+						std::cout << "==============================\n";
 						std::cout << "At what time will your event start again?\n";
+						std::cout << "==============================\n";
 						bogo = false;
 					}
 					if(hoursChoiceBool)
@@ -770,7 +788,9 @@ void exec :: admin()
 
 							if(std::cin.fail())
 							{
+									std::cout << "==============================\n";
 									std::cout << "Invalid input. Please enter a valid input:\n";
+									std::cout << "==============================\n";
 									std::cin.clear();
 									std::cin.ignore(256,'\n');
 									repeat = true;
@@ -808,9 +828,11 @@ void exec :: admin()
 
 								while(superBool)
 								{
+									std::cout << "==============================\n";
 									std::cout << "Do you want a.m. or p.m.?\n";
 									std::cout << "1) a.m.\n";
 									std::cout << "2) p.m.\n";
+									std::cout << "==============================\n";
 
 									std::getline(std::cin, timeOfDay);
 
@@ -842,7 +864,7 @@ void exec :: admin()
 
 										if (initialTime <= endTime)
 										{
-											std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time\n";
+											std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time:\n";
 											repeat = true;
 										}
 									}
@@ -856,7 +878,9 @@ void exec :: admin()
 					{
 						if(hoursChoiceBool)
 						{
-							std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break). If you want your event to go until 23:59 enter 2359 \n";
+							std::cout << "==============================\n";
+							std::cout << "At what time will your event end?\n(If there are breaks in the event, input the end time before a break).\nIf you want your event to go until 23:59 enter 2359 \n";
+							std::cout << "==============================\n";
 							do
 							{
 								std::cin >> endTime;
@@ -900,7 +924,10 @@ void exec :: admin()
 						}
 						else
 						{
-							std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break). If you want your event to go until 11:59 p.m. enter 1159 p.m. \n";																			do
+							std::cout << "==============================\n";
+							std::cout << "At what time will your event end? (If there are breaks in the event, input the end time before a break). If you want your event to go until 11:59 p.m. enter 1159 p.m. \n";
+							std::cout << "==============================\n";
+							do
 							{
 								bool shouldSkip = false; //Determines whether given time is valid by checking if its between 1 and 1230. True if invalid time is given
 								repeat = true;
