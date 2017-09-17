@@ -18,7 +18,7 @@ void exec :: run()
 		std::string choice;
 		bool choiceRepeat = true;
 		bool skipInterface = true;
-		
+
 
 		if(!fileExists)
 		{
@@ -35,11 +35,11 @@ void exec :: run()
 				if(choice == "1")
 				{
 					choiceRepeat = admin(choiceRepeat);
-					
+
 					if (choiceRepeat == false)
 					{
 						skipInterface = false;
-						
+
 					}
 					//call to the admin method
 				}
@@ -63,9 +63,9 @@ void exec :: run()
 		}
 
 		choiceRepeat = true;
-		
-		
-		if(skipInterface == false)
+
+
+		if(skipInterface == true)
 		{
 			while(choiceRepeat)
 			{
@@ -75,7 +75,7 @@ void exec :: run()
 				std::cout << "2) User\n";
 				std::cout << "3) Quit\n";
 				std::cout << "==============================\n";
-	
+
 				std::getline(std::cin, choice);
 				if(choice == "1")
 				{
@@ -94,9 +94,9 @@ void exec :: run()
 				}
 				else //if the user gives something that isnt a vaild input it will tell them it is invalid and restart
 				{
-	
+
 						std::cout << "Invalid input.\n\n";
-	
+
 				}
 			}
 		}
