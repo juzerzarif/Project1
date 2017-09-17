@@ -1121,7 +1121,7 @@ void exec :: admin()
 
 				if(initialTime == 2330)
 				{
-					eventTime = eventTime + "2330";
+					eventTime = eventTime + "2300";
 				}
 
 				std::ifstream fileExists("eventFile.txt");
