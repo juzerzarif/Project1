@@ -11,17 +11,15 @@
 \item 
 \hyperlink{classexec_a663a64f17c5431dc01a829f5633e4f56}{$\sim$exec} ()
 \item 
-void \hyperlink{classexec_a9d632d01c033f970fb246864bff38b60}{admin} ()
+bool \hyperlink{classexec_ab114315e1bb0daff8f96dc03e7c88392}{admin} (bool ultimate\+Event\+Check)
 \item 
 void \hyperlink{classexec_a924407f4d277807e949aa9e97470f536}{user} ()
 \item 
 void \hyperlink{classexec_a4cf771a565711689023aa75141f82c52}{print} (bool time)
 \item 
-std\+::string {\bfseries make12\+Hr} (int num)\hypertarget{classexec_ade14fc20cd40b2d5e3e8e5abbda382d4}{}\label{classexec_ade14fc20cd40b2d5e3e8e5abbda382d4}
-
+std\+::string \hyperlink{classexec_ade14fc20cd40b2d5e3e8e5abbda382d4}{make12\+Hr} (int num)
 \item 
-std\+::string {\bfseries format24\+Hr} (int num)\hypertarget{classexec_a24a4ca6c8f63a73ed38ddc8e9d015c46}{}\label{classexec_a24a4ca6c8f63a73ed38ddc8e9d015c46}
-
+std\+::string \hyperlink{classexec_a24a4ca6c8f63a73ed38ddc8e9d015c46}{format24\+Hr} (int num)
 \item 
 void \hyperlink{classexec_aad3ea9a2cd99fc28471062719b85b1f6}{run} ()
 \item 
@@ -69,12 +67,20 @@ Destructor for the exec class.
 \subsection{Member Function Documentation}
 \index{exec@{exec}!admin@{admin}}
 \index{admin@{admin}!exec@{exec}}
-\subsubsection[{\texorpdfstring{admin()}{admin()}}]{\setlength{\rightskip}{0pt plus 5cm}void exec\+::admin (
+\subsubsection[{\texorpdfstring{admin(bool ultimate\+Event\+Check)}{admin(bool ultimateEventCheck)}}]{\setlength{\rightskip}{0pt plus 5cm}bool exec\+::admin (
 \begin{DoxyParamCaption}
-{}
+\item[{bool}]{ultimate\+Event\+Check}
 \end{DoxyParamCaption}
-)}\hypertarget{classexec_a9d632d01c033f970fb246864bff38b60}{}\label{classexec_a9d632d01c033f970fb246864bff38b60}
-Public method that takes in no arguments and does not return. Grants user to use admin options. Details\+: Able to create events (creates date object and prints to text file) and preview the current list of events. \index{exec@{exec}!event\+Check@{event\+Check}}
+)}\hypertarget{classexec_ab114315e1bb0daff8f96dc03e7c88392}{}\label{classexec_ab114315e1bb0daff8f96dc03e7c88392}
+Public method that takes in no arguments and does not return. Grants user to use admin options. Details\+: Able to create events (creates date object and prints to text file) and preview the current list of events. 
+\begin{DoxyParams}{Parameters}
+{\em ultimate\+Event\+Check} & is the first parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+false if the file has been created, true otherwise. 
+\end{DoxyReturn}
+\index{exec@{exec}!event\+Check@{event\+Check}}
 \index{event\+Check@{event\+Check}!exec@{exec}}
 \subsubsection[{\texorpdfstring{event\+Check(std\+::string event\+Name\+Check)}{eventCheck(std::string eventNameCheck)}}]{\setlength{\rightskip}{0pt plus 5cm}bool exec\+::event\+Check (
 \begin{DoxyParamCaption}
@@ -88,6 +94,36 @@ Public method that takes in one argument as a string and returns a bool. Details
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 true if the event was found in the list, false otherwise. 
+\end{DoxyReturn}
+\index{exec@{exec}!format24\+Hr@{format24\+Hr}}
+\index{format24\+Hr@{format24\+Hr}!exec@{exec}}
+\subsubsection[{\texorpdfstring{format24\+Hr(int num)}{format24Hr(int num)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string exec\+::format24\+Hr (
+\begin{DoxyParamCaption}
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)}\hypertarget{classexec_a24a4ca6c8f63a73ed38ddc8e9d015c46}{}\label{classexec_a24a4ca6c8f63a73ed38ddc8e9d015c46}
+Public method that takes in one argument as an int and returns a string. Details\+: Formats 24hour int into a readable string (00\+:00). 
+\begin{DoxyParams}{Parameters}
+{\em num} & is the first parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+formatted string. 
+\end{DoxyReturn}
+\index{exec@{exec}!make12\+Hr@{make12\+Hr}}
+\index{make12\+Hr@{make12\+Hr}!exec@{exec}}
+\subsubsection[{\texorpdfstring{make12\+Hr(int num)}{make12Hr(int num)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string exec\+::make12\+Hr (
+\begin{DoxyParamCaption}
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)}\hypertarget{classexec_ade14fc20cd40b2d5e3e8e5abbda382d4}{}\label{classexec_ade14fc20cd40b2d5e3e8e5abbda382d4}
+Public method that takes in one argument as an int and returns a string. Details\+: Converts 24hour to 12hour format and formats text (00\+:00 with AM or PM) for easy readablility. 
+\begin{DoxyParams}{Parameters}
+{\em num} & is the first parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+formatted string. 
 \end{DoxyReturn}
 \index{exec@{exec}!print@{print}}
 \index{print@{print}!exec@{exec}}

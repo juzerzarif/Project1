@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['node',['node',['../classnode.html',1,'node&lt; T &gt;'],['../classnode.html#a8b84a889cdb6da341c5c930ec13ed7ff',1,'node::node()']]]
+  ['linkedlist',['linkedList',['../classlinkedList.html',1,'linkedList&lt; T &gt;'],['../classlinkedList.html#a63f463149258669636253a7977157c9c',1,'linkedList::linkedList()']]]
 ];

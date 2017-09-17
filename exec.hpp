@@ -90,7 +90,7 @@ void exec :: run()
 		}
 	}
 
-bool exec :: admin(bool ultimanteEventCheck)
+bool exec :: admin(bool ultimateEventCheck)
 	{
 		bool adminLoop = true; //Handles looping of the admin method
 		bool superBool = false; //Handles looping of various while loops
@@ -1172,7 +1172,7 @@ bool exec :: admin(bool ultimanteEventCheck)
 					outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
 					outFile << eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
 					outFile.close();
-					ultimanteEventCheck = false;
+					ultimateEventCheck = false;
 				}
 				std::cout << "Event created!\n";
 				eventBreak = "";
@@ -1192,7 +1192,7 @@ bool exec :: admin(bool ultimanteEventCheck)
 				std::cout << "Invalid Input.\n";
 			}
 		}
-		return(ultimanteEventCheck);
+		return(ultimateEventCheck);
 	}
 
 void exec :: user()
