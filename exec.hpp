@@ -1051,7 +1051,7 @@ void exec :: admin()
 					}
 					else if(endTime == (initialTime + 30))
 					{
-						eventTime = eventTime + std::to_string(initialTime) + " " +std::to_string(endTime);
+						eventTime = eventTime + std::to_string(initialTime);
 					}
 
 					if(!skipAll)
