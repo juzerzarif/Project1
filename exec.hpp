@@ -1252,7 +1252,7 @@ void exec :: user()
 		}while(!aproval);
 
 			std::cout << "==============================" << '\n';
-			std::cout << "Please enter the name of the event you wish to attend: \n";
+			std::cout << "Please enter the name of the event you wish to attend.\nEvent names lie between colons(:), don't include them! :D \n";
 			std::cin.ignore();
 			std::getline (std::cin,eventName,'\n');
 			std::cout << "==============================" << '\n';
