@@ -583,6 +583,10 @@ bool exec :: admin(bool ultimateEventCheck)
 											{
 												initialTime = 30;
 											}
+											else if (timeOfDay == "1" && endTime == 1230)
+											{
+												endTime = 30;
+											}
 											repeat = timeCheck(endTime, len, hoursChoiceBool);
 											if (endTime <= initialTime)
 											{
