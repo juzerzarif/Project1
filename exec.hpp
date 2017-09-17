@@ -657,11 +657,15 @@ void exec :: admin()
 
 					if(!hoursChoiceBool)
 					{
-						eventTime = eventTime + " " + "2330";
-					}
-					else
-					{
-						eventTime = eventTime + "2330";
+						if(!hoursChoiceBool)
+						{
+							eventTime = eventTime + " " + "2330";
+						}
+						else
+						{
+							eventTime = eventTime + "2330";
+						}
+	
 					}
 
 					noMore = true;
