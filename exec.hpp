@@ -37,7 +37,7 @@ void exec :: run()
 				}
 				else if (choice == "2")
 				{
-					std::cout << "No save file found! Create a save file by going through admin first.\n";
+					std::cout << "Empty Calander, you must create an event through admin first.\n";
 					//call to the user method
 				}
 				else if(choice == "3")
