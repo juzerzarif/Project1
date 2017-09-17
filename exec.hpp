@@ -1154,7 +1154,7 @@ bool exec :: admin(bool ultimateEventCheck)
 
 				if(initialTime == 2330)
 				{
-					eventTime = eventTime + "2300";
+					eventTime = eventTime + "2330";
 				}
 
 				std::ifstream fileExists("eventFile.txt");
