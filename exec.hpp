@@ -252,7 +252,7 @@ void exec :: admin()
 					}
 				}while(eventMonthCheck);
 
-				std::cout << "What day will you event be on?\n";
+				std::cout << "What day will your event be on?\n";
 
 				//Choose day of event
 				do
@@ -1177,14 +1177,14 @@ void exec :: user()
 
 				if(choice == 1)
 				{
-					print(true);
+					print(false);
 
 					aproval = true;
 
 				}
 				else if(choice == 2)
 				{
-					print(false);
+					print(true);
 
 					aproval = true;
 
@@ -1340,12 +1340,12 @@ void exec :: print(bool time)
 			}
 
 		}
-		
+
 
 		//Prints in either 12 or 24 hour
 		if(time == true) //24 hour
 		{
-			
+
 			//parse array for start and end times of each block, append to end of string
 			timeClock = "";
 			int i = 0; //position in array
@@ -1379,7 +1379,7 @@ void exec :: print(bool time)
 						}
 						else
 						{
-							
+
 							timeClock.append(format24Hr(startTime));
 							timeClock.append(" - ");
 							timeClock.append(format24Hr(startTime+naturalTimeInterval));
@@ -1464,7 +1464,7 @@ void exec :: print(bool time)
 						if (endTime == 0)
 						{
 
-							
+
 							if(startTime % 100 != 0)
 							{
 								naturalTimeInterval = 70;
@@ -1497,7 +1497,7 @@ void exec :: print(bool time)
 								{
 									naturalTimeInterval = 30;
 								}
-								
+
 								timeClock.append(format24Hr(startTime));
 								timeClock.append(" - ");
 								timeClock.append(format24Hr(startTime+naturalTimeInterval));
@@ -1556,13 +1556,13 @@ void exec :: print(bool time)
 
 					i++;
 				}
-				
+
 			}
 		}
 		else //12 hour
 		{
-			
-			
+
+
 			//parse array for start and end times of each block, append to end of string
 			timeClock = "";
 			int i = 0; //position in array
@@ -1596,7 +1596,7 @@ void exec :: print(bool time)
 						}
 						else
 						{
-							
+
 							timeClock.append(make12Hr(startTime));
 							timeClock.append(" - ");
 							timeClock.append(make12Hr(startTime+naturalTimeInterval));
@@ -1681,7 +1681,7 @@ void exec :: print(bool time)
 						if (endTime == 0)
 						{
 
-							
+
 							if(startTime % 100 != 0)
 							{
 								naturalTimeInterval = 70;
@@ -1714,7 +1714,7 @@ void exec :: print(bool time)
 								{
 									naturalTimeInterval = 30;
 								}
-								
+
 								timeClock.append(make12Hr(startTime));
 								timeClock.append(" - ");
 								timeClock.append(make12Hr(startTime+naturalTimeInterval));
@@ -1770,7 +1770,7 @@ void exec :: print(bool time)
 						}
 					}
 					i++;
-				}	
+				}
 			}
 		}
 
@@ -1792,7 +1792,7 @@ void exec :: print(bool time)
 			case 12 : nameMonth = "December";  break;
 		}
 
-		
+
 		std::cout << "Event: " << eventName << "\n";
 		std::cout << "Date: " << nameMonth << " " << day << ", " << year << "\n";
 		std::cout << "Time: " << timeClock << '\n';
