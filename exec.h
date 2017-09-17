@@ -1,4 +1,3 @@
-//ADMIN AND USER METHODS
 #ifndef EXEC_H
 #define EXEC_H
 
@@ -14,58 +13,111 @@
 #include "date.h"
 #include "linkedList.h"
 
+/**
+ *	Executive class. This defines all of the executive class' private member variables and public methods.
+ *	@author	Giovanni Artavia
+ *	@author Brandon Lammey
+ *	@author	Dylan Herrig
+ *	@author James Glass
+ */
 class exec
 {
 	private:
 
-		
-
 	public:
-		//constructor and destructor
+		/**
+		 *	Constructor for the exec class.
+		 */
 		exec();
+		/**
+		 *	Destructor for the exec class.
+		 */
 		~exec();
 
-		/* admin method controls admin options
-		* Option 1: Creates event (creates date object and prints to text file)
-		* Option 2: Look at event
-		*/
-		void admin();
+		/**
+		 *	Public method that takes in no arguments and does not return.
+		 * 	Grants user to use admin options.
+		 * 	Details: Able to create events (creates date object and prints to text file) and preview the current list of events.
+		 *	@param ultimateEventCheck is the first parameter.
+		 *	@return false if the file has been created, true otherwise.
+		 */
+		bool admin(bool ultimateEventCheck);
 
-		/* user method controls user options
-		* Option 1: Check Active Events
-		* 	- Select Available Event (Update text file)
-		*/
+		/**
+		 *	Public method that takes in no arguments and does not return.
+		 * 	Grants user to use user options.
+		 * 	Details: Able preview the current list of events and then select which event they'd like to attend (Updates text file).
+		 */
 		void user();
 
-		/* print method creates linked list, accesses text file, creates date objects,
-		* and places date objects into sorted linked list
-		* @return Print list in readable form to terminal (uses time parameter to determine 12/24 hr clock)
-		*/
+		/**
+		 *	Public method that takes in one argument as a bool and does not return.
+		 * 	Details: Creates linked list, accesses text file, creates date objects, and places date objects into sorted linkedList. Prints linkedList in readable form to terminal (uses time parameter to determine 12/24 hr clock).
+		 */
 		void print(bool time);
 
-		/*
-		* Method runs the program and calls to the admin or user based on what is selected
-		*/
+		/**
+		 *	Public method that takes in one argument as an int and returns a string.
+		 * 	Details: Converts 24hour to 12hour format and formats text (00:00 with AM or PM) for easy readablility.
+		 *	@param num is the first parameter.
+		 *	@return formatted string.
+		 */
+		std::string make12Hr(int num);
+
+		/**
+		 *	Public method that takes in one argument as an int and returns a string.
+		 * 	Details: Formats 24hour int into a readable string (00:00).
+		 *	@param num is the first parameter.
+		 *	@return formatted string.
+		 */
+		std::string format24Hr(int num);
+
+		/**
+		 *	Public method that takes in no arguments and does not return.
+		 * 	Details: Runs the program and calls to admin or user based on user input.
+		 */
 		void run();
 
-		void test();
-		
-		
-		/* Method searches the .txt file and updates attendence
-		*@return if the event was found in the list
-		*/
+		/**
+		 *	Public method that takes in no arguments and does not return.
+		 * 	Details: Used for testing linkedList sort and early printing.
+		 */
+		//void test();
+
+		/**
+		 *	Public method that takes in one argument as a string and returns a bool.
+		 * 	Details: Searches the .txt file and updates attendence.
+		 * 	@param eventNameCheck is the first parameter.
+		 *	@return true if the event was found in the list, false otherwise.
+		 */
 		bool updateEvent(std::string eventNameCheck);
-		
-		/* Method searches the .txt file for the event
-		*@return if the event was found in the list
-		*/
+
+		/**
+		 *	Public method that takes in one argument as a string and returns a bool.
+		 * 	Details: Searches the .txt file for the event.
+		 * 	@param eventNameCheck is the first parameter.
+		 *	@return true if the event was found in the list, false otherwise.
+		 */
 		bool eventCheck(std::string eventNameCheck);
 
+		/**
+		 *	Public method that takes in two argument and returns a bool.
+		 * 	Details: Checks to see if given time is valid.
+		 * 	@param time is the first parameter.
+		 *	@param len is the second parameter.
+		 *	@return true if time is valid, false otherwise.
+		 */
 		bool timeCheck (int time, int len);
-		
-		//linkedList<date> eventList;
-		bool timeCheck (int time, int len, bool timeMode);
 
+		/**
+		 *	Public method that takes in two argument and returns a bool.
+		 * 	Details: Checks to see if given time is valid. timeMode is true if in 24 hour mode, false is 12 hour.
+		 * 	@param time is the first parameter.
+		 *	@param len is the second parameter.
+		 *	@param timeMode is the third parameter.
+		 *	@return true if time is valid, false otherwise.
+		 */
+		bool timeCheck (int time, int len, bool timeMode);
 };
 
 #include "exec.hpp"
