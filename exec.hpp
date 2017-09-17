@@ -607,7 +607,7 @@ bool exec :: admin(bool ultimateEventCheck)
 				else
 				{
 					noMore = true;
-					if(hoursChoiceBool)
+					if(!hoursChoiceBool)
 					{
 						std::cout << "Event started at 11:30 p.m. It will run until 11:59 p.m.\n";
 					}
@@ -1039,7 +1039,7 @@ bool exec :: admin(bool ultimateEventCheck)
 							eventTime = eventTime + std::to_string(initialTime);
 						}
 
-						if(hoursChoiceBool)
+						if(!hoursChoiceBool)
 						{
 							std::cout << "Break started at 11:30 p.m. It will run until 11:59 p.m.\n";
 						}
