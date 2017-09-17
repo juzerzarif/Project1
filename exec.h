@@ -38,8 +38,9 @@ class exec
 		 *	Public method that takes in no arguments and does not return.
 		 * 	Grants user to use admin options.
 		 * 	Details: Able to create events (creates date object and prints to text file) and preview the current list of events.
+		 *	@return if the file has been created
 		 */
-		void admin();
+		bool admin(bool ultimanteEventCheck);
 
 		/**
 		 *	Public method that takes in no arguments and does not return.
