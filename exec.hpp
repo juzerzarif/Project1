@@ -1836,10 +1836,10 @@ void exec :: print(bool time)
 		}
 
 
-		std::cout << "Event: " << eventName << "\n";
-		std::cout << "Date: " << nameMonth << " " << day << ", " << year << "\n";
-		std::cout << "Time: " << timeClock << '\n';
-		std::cout << "Attending: " << attending << '\n'<<'\n';
+		std::cout << "Event      => " << ':' <<eventName << ':' << "\n";
+		std::cout << "Date       => " << nameMonth << " " << day << ", " << year << "\n";
+		std::cout << "Time       => " << timeClock << '\n';
+		std::cout << "Attending  => " << attending << '\n'<<'\n';
 
 	}
 
