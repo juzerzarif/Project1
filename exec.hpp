@@ -449,7 +449,7 @@ bool exec :: admin(bool ultimanteEventCheck)
 					if(hoursChoiceBool)
 					{
 						std::cout << "==============================\n";
-						std::cout << "At what time will your event end? \n(If there are breaks in the event, input the end time before a break). \nIf you want your event to go until 23:59 enter 2359 \n";
+						std::cout << "At what time will your event end? \n(If there are breaks in the event, input the end time before a break). \nIf you want your event to go until 23:59 enter 2359  \n";
 						std::cout << "==============================\n";
 
 						do
@@ -495,7 +495,7 @@ bool exec :: admin(bool ultimanteEventCheck)
 					else
 					{
 						std::cout << "==============================\n";
-						std::cout << "At what time will your event end?\n(If there are breaks in the event, input the end time before a break).\nIf you want your event to go until 11:59 p.m. enter 1159\n";
+						std::cout << "At what time will your event end?\n(If there are breaks in the event, input the end time before a break).\nIf you want your event to go until 11:59 p.m. enter 1159 (then p.m.)\n";
 						std::cout << "==============================\n";
 						do
 						{
@@ -1248,21 +1248,22 @@ void exec :: user()
 		}while(!aproval);
 
 			std::cout << "==============================" << '\n';
-			std::cout << "Please enter the name of the event you wish to attend: ";
+			std::cout << "Please enter the name of the event you wish to attend: \n";
+			std::cin.ignore();
+			std::getline (std::cin,eventName,'\n');
+			std::cout << "==============================" << '\n';
 
-		std::cin.ignore();
-		std::getline (std::cin,eventName,'\n');
 
 	   	bool foundCheck = updateEvent(eventName);
 
 
 	   	if(foundCheck == true)
 	   	{
-	   		std::cout << "You are now signed up for the event, don't forget to go!\n\n";
+	   		std::cout << "You are now signed up for the event, don't forget to go!\n";
 	   	}
 	   	else
 	   	{
-	   		std::cout << "The event name you entered was unfortunatly not found in the list of events.\n\n";
+	   		std::cout << "The event name you entered was unfortunatly not found in the list of events.\n";
 	   	}
 
 
@@ -1975,6 +1976,7 @@ bool exec::timeCheck (int time, int len, bool timeMode)
 	if(len == 3 && (time/10)%10 != 3 && (time/10)%10 != 0)
 	{
 		std::cout << "Invalid time. Times must be in thirty minute intervals i.e. End in 00 or 30.\n";
+		std::cout << "Pick a new time:\n";
 		return true;
 	}
 	else if (time < 0 || time > 2330)
@@ -1992,16 +1994,19 @@ bool exec::timeCheck (int time, int len, bool timeMode)
 	else if ((len == 4 && (time/10)%10 != 0) && (len == 4 && (time/10)%10 != 3))
 	{
 		std::cout << "Invalid time. Times must be in thirty minute intervals i.e. End in 00 or 30.\n";
+		std::cout << "Pick a new time:\n";
 		return true;
 	}
 	else if ((len == 3 && (time%10) != 0) && (len == 3 && (time%10) !=3))
 	{
 		std::cout << "Invalid time. Times must be in thirty minute intervals i.e. End in 00 or 30.\n";
+		std::cout << "Pick a new time:\n";
 		return true;
 	}
 	else if ((time%10) != 0)
 	{
 		std::cout << "Invalid time. Times must be in thirty minute intervals i.e. End in 00 or 30.\n";
+		std::cout << "Pick a new time:\n";
 		return true;
 	}
 	else
