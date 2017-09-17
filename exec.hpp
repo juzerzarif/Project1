@@ -1923,6 +1923,7 @@ std::string exec::format24Hr(int num)
 	{
 		worldTime = std::to_string(num);
 		worldTime.insert(1,":");
+		worldTime.insert(0,"0");
 	}
 	else
 	{
