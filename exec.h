@@ -38,8 +38,10 @@ class exec
 		 *	Public method that takes in no arguments and does not return.
 		 * 	Grants user to use admin options.
 		 * 	Details: Able to create events (creates date object and prints to text file) and preview the current list of events.
+		 *	@param ultimateEventCheck is the first parameter.
+		 *	@return false if the file has been created, true otherwise.
 		 */
-		void admin();
+		bool admin(bool ultimateEventCheck);
 
 		/**
 		 *	Public method that takes in no arguments and does not return.
@@ -54,8 +56,20 @@ class exec
 		 */
 		void print(bool time);
 
-
+		/**
+		 *	Public method that takes in one argument as an int and returns a string.
+		 * 	Details: Converts 24hour to 12hour format and formats text (00:00 with AM or PM) for easy readablility.
+		 *	@param num is the first parameter.
+		 *	@return formatted string.
+		 */
 		std::string make12Hr(int num);
+
+		/**
+		 *	Public method that takes in one argument as an int and returns a string.
+		 * 	Details: Formats 24hour int into a readable string (00:00).
+		 *	@param num is the first parameter.
+		 *	@return formatted string.
+		 */
 		std::string format24Hr(int num);
 
 		/**

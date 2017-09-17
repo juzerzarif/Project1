@@ -32,7 +32,7 @@ void exec :: run()
 				std::getline(std::cin, choice);
 				if(choice == "1")
 				{
-					admin();
+					choiceRepeat = admin(choiceRepeat);
 					//call to the admin method
 				}
 				else if (choice == "2")
@@ -54,6 +54,8 @@ void exec :: run()
 			}
 		}
 
+		choiceRepeat = true;
+
 		while(choiceRepeat)
 		{
 			std::cout << "==============================\n";
@@ -66,7 +68,7 @@ void exec :: run()
 			std::getline(std::cin, choice);
 			if(choice == "1")
 			{
-				admin();
+				admin(choiceRepeat);
 				//call to the admin method
 			}
 			else if (choice == "2")
@@ -88,7 +90,7 @@ void exec :: run()
 		}
 	}
 
-void exec :: admin()
+bool exec :: admin(bool ultimateEventCheck)
 	{
 		bool adminLoop = true; //Handles looping of the admin method
 		bool superBool = false; //Handles looping of various while loops
@@ -483,7 +485,7 @@ void exec :: admin()
 									repeat = timeCheck(endTime, len, hoursChoiceBool);
 									if (endTime <= initialTime)
 									{
-										std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time\n";
+										std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time:\n";
 										repeat = true;
 									}
 								}
@@ -584,7 +586,7 @@ void exec :: admin()
 											repeat = timeCheck(endTime, len, hoursChoiceBool);
 											if (endTime <= initialTime)
 											{
-												std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time\n";
+												std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time:\n";
 												repeat = true;
 											}
 										}
@@ -679,7 +681,7 @@ void exec :: admin()
 						{
 							eventTime = eventTime + "2330";
 						}
-	
+
 					}
 
 					noMore = true;
@@ -915,7 +917,7 @@ void exec :: admin()
 										repeat = timeCheck(endTime, len, hoursChoiceBool);
 										if (endTime <= initialTime)
 										{
-											std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time\n";
+											std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time:\n";
 											repeat = true;
 										}
 									}
@@ -1009,7 +1011,7 @@ void exec :: admin()
 												}
 												if (endTime <= initialTime)
 												{
-													std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time\n";
+													std::cout << "Events can't go through multiple days. Please enter an end time that is after the initial time:\n";
 													repeat = true;
 												}
 											}
@@ -1162,6 +1164,7 @@ void exec :: admin()
 					outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
 					outFile << '\n' << eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
 					outFile.close();
+
 				}
 				else //If file does not exist, create it and add info
 				{
@@ -1169,6 +1172,7 @@ void exec :: admin()
 					outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
 					outFile << eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
 					outFile.close();
+					ultimateEventCheck = false;
 				}
 				std::cout << "Event created!\n";
 				eventBreak = "";
@@ -1188,6 +1192,7 @@ void exec :: admin()
 				std::cout << "Invalid Input.\n";
 			}
 		}
+		return(ultimateEventCheck);
 	}
 
 void exec :: user()
@@ -1259,6 +1264,8 @@ void exec :: user()
 	   	{
 	   		std::cout << "The event name you entered was unfortunatly not found in the list of events.\n\n";
 	   	}
+
+
 
 
 	}
@@ -1338,7 +1345,7 @@ void exec :: print(bool time)
 	}
 	else
 	{
-		std::cout << "Empty Calendar!" << '\n';
+		std::cout << "Empty Calendar!" << '\n' << '\n';
 	}
 
 
@@ -2007,7 +2014,7 @@ bool exec::timeCheck (int time, int len, bool timeMode)
 bool exec::updateEvent(std::string eventNameCheck)
 	{
 		//define used varibles
-		int year = 0;
+		//int year = 0;
 		int attending = 0;
 
 		std::ifstream readFile;
@@ -2041,7 +2048,7 @@ bool exec::updateEvent(std::string eventNameCheck)
 				std::string entry;
 
 				std::getline(readFile, entry, ':');
-				year = std::atoi(entry.c_str());
+				//year = std::atoi(entry.c_str());
 				yearString = entry;
 
 				std::getline(readFile, entry, ':');
@@ -2090,7 +2097,7 @@ bool exec::updateEvent(std::string eventNameCheck)
 						std::cout << "Replace with: ";
 						std::cout << replace_string;
 						*/
-						
+
 
 
 					}
@@ -2113,15 +2120,15 @@ bool exec::updateEvent(std::string eventNameCheck)
 			std::fstream input_file("eventFile.txt", std::ios::in);
 			//open the output file
 			std::ofstream output_file("update.txt");
-	
+
 				  while (!input_file.eof())
 				  {
 				  	  //each line to a tempoary varible inbuf
 				      std::getline(input_file, inbuf);
-	
+
 					  //search each tempoary string for the search string, and record location in spot
 				      int spot = inbuf.find(search_string);
-	
+
 				      if(spot >= 0)
 				      {
 				      	 //subtract search string from the file and record location in tmpstring
@@ -2131,20 +2138,20 @@ bool exec::updateEvent(std::string eventNameCheck)
 				         tmpstring += inbuf.substr(spot + search_string.length(), inbuf.length());
 				         inbuf = tmpstring;
 				      }
-	
+
 				      //doesnt print any empty lines
 				      if ( ! inbuf.empty() )
 				      {
 				         output_file << inbuf << std::endl;
 				      }
-	
-	
-	
+
+
+
 					}
 
 				//deletes the original textfile
 				remove("eventFile.txt");
-	
+
 				//renames the newly created textfile to the old name
 				rename(oldFileName, newFileName);
 		}
