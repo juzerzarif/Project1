@@ -1849,7 +1849,11 @@ void exec :: print(bool time)
 std::string exec::make12Hr(int num)
 {
 	std::string AmPmTime;
-	if(num > 1230)
+	if(num == 2400)
+	{
+		AmPmTime= "11:59 PM";
+	}
+	else if(num > 1230)
 	{
 		num = num - 1200;
 		AmPmTime = std::to_string(num);
@@ -1909,6 +1913,10 @@ std::string exec::format24Hr(int num)
 	else if(num == 30)
 	{
 		worldTime = "00:30";
+	}
+	else if(num == 2400)
+	{
+		worldTime = "23:59";
 	}
 	else if(num < 1000)
 	{
