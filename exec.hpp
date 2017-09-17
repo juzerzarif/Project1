@@ -16,7 +16,9 @@ void exec :: run()
 		std::ifstream fileExists("eventFile.txt");
 
 		std::string choice;
-		int choiceRepeat = true;
+		bool choiceRepeat = true;
+		bool skipInterface = true;
+		
 
 		if(!fileExists)
 		{
@@ -33,6 +35,12 @@ void exec :: run()
 				if(choice == "1")
 				{
 					choiceRepeat = admin(choiceRepeat);
+					
+					if (choiceRepeat == false)
+					{
+						skipInterface = false;
+						
+					}
 					//call to the admin method
 				}
 				else if (choice == "2")
@@ -55,37 +63,41 @@ void exec :: run()
 		}
 
 		choiceRepeat = true;
-
-		while(choiceRepeat)
+		
+		
+		if(skipInterface == false)
 		{
-			std::cout << "==============================\n";
-			std::cout << "Please select a login in mode:\n";
-			std::cout << "1) Admin\n";
-			std::cout << "2) User\n";
-			std::cout << "3) Quit\n";
-			std::cout << "==============================\n";
-
-			std::getline(std::cin, choice);
-			if(choice == "1")
+			while(choiceRepeat)
 			{
-				admin(choiceRepeat);
-				//call to the admin method
-			}
-			else if (choice == "2")
-			{
-				user();
-				//call to the user method
-			}
-			else if(choice == "3")
-			{
-				choiceRepeat = false;
-				std::cout << "Bye!\n";
-			}
-			else //if the user gives something that isnt a vaild input it will tell them it is invalid and restart
-			{
-
-					std::cout << "Invalid input.\n\n";
-
+				std::cout << "==============================\n";
+				std::cout << "Please select a login in mode:\n";
+				std::cout << "1) Admin\n";
+				std::cout << "2) User\n";
+				std::cout << "3) Quit\n";
+				std::cout << "==============================\n";
+	
+				std::getline(std::cin, choice);
+				if(choice == "1")
+				{
+					admin(choiceRepeat);
+					//call to the admin method
+				}
+				else if (choice == "2")
+				{
+					user();
+					//call to the user method
+				}
+				else if(choice == "3")
+				{
+					choiceRepeat = false;
+					std::cout << "Bye!\n";
+				}
+				else //if the user gives something that isnt a vaild input it will tell them it is invalid and restart
+				{
+	
+						std::cout << "Invalid input.\n\n";
+	
+				}
 			}
 		}
 	}
