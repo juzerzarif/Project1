@@ -98,17 +98,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2fac94db8f997a01a590c01478662339"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a663a64f17c5431dc01a829f5633e4f56"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexec.html#a663a64f17c5431dc01a829f5633e4f56">~exec</a> ()</td></tr>
 <tr class="separator:a663a64f17c5431dc01a829f5633e4f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d632d01c033f970fb246864bff38b60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexec.html#a9d632d01c033f970fb246864bff38b60">admin</a> ()</td></tr>
-<tr class="separator:a9d632d01c033f970fb246864bff38b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab114315e1bb0daff8f96dc03e7c88392"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexec.html#ab114315e1bb0daff8f96dc03e7c88392">admin</a> (bool ultimateEventCheck)</td></tr>
+<tr class="separator:ab114315e1bb0daff8f96dc03e7c88392"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a924407f4d277807e949aa9e97470f536"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexec.html#a924407f4d277807e949aa9e97470f536">user</a> ()</td></tr>
 <tr class="separator:a924407f4d277807e949aa9e97470f536"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cf771a565711689023aa75141f82c52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexec.html#a4cf771a565711689023aa75141f82c52">print</a> (bool time)</td></tr>
 <tr class="separator:a4cf771a565711689023aa75141f82c52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade14fc20cd40b2d5e3e8e5abbda382d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade14fc20cd40b2d5e3e8e5abbda382d4"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>make12Hr</b> (int num)</td></tr>
+<tr class="memitem:ade14fc20cd40b2d5e3e8e5abbda382d4"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexec.html#ade14fc20cd40b2d5e3e8e5abbda382d4">make12Hr</a> (int num)</td></tr>
 <tr class="separator:ade14fc20cd40b2d5e3e8e5abbda382d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24a4ca6c8f63a73ed38ddc8e9d015c46"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24a4ca6c8f63a73ed38ddc8e9d015c46"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>format24Hr</b> (int num)</td></tr>
+<tr class="memitem:a24a4ca6c8f63a73ed38ddc8e9d015c46"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexec.html#a24a4ca6c8f63a73ed38ddc8e9d015c46">format24Hr</a> (int num)</td></tr>
 <tr class="separator:a24a4ca6c8f63a73ed38ddc8e9d015c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad3ea9a2cd99fc28471062719b85b1f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexec.html#aad3ea9a2cd99fc28471062719b85b1f6">run</a> ()</td></tr>
 <tr class="separator:aad3ea9a2cd99fc28471062719b85b1f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,19 +163,26 @@ James Glass </dd></dl>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a9d632d01c033f970fb246864bff38b60"></a>
+<a class="anchor" id="ab114315e1bb0daff8f96dc03e7c88392"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void exec::admin </td>
+          <td class="memname">bool exec::admin </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>ultimateEventCheck</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Public method that takes in no arguments and does not return. Grants user to use admin options. Details: Able to create events (creates date object and prints to text file) and preview the current list of events. </p>
+<p>Public method that takes in no arguments and does not return. Grants user to use admin options. Details: Able to create events (creates date object and prints to text file) and preview the current list of events. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ultimateEventCheck</td><td>is the first parameter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>false if the file has been created, true otherwise. </dd></dl>
 
 </div>
 </div>
@@ -201,6 +206,52 @@ James Glass </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if the event was found in the list, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a24a4ca6c8f63a73ed38ddc8e9d015c46"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string exec::format24Hr </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Public method that takes in one argument as an int and returns a string. Details: Formats 24hour int into a readable string (00:00). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>is the first parameter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>formatted string. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ade14fc20cd40b2d5e3e8e5abbda382d4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string exec::make12Hr </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Public method that takes in one argument as an int and returns a string. Details: Converts 24hour to 12hour format and formats text (00:00 with AM or PM) for easy readablility. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>is the first parameter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>formatted string. </dd></dl>
 
 </div>
 </div>

@@ -90,7 +90,7 @@ void exec :: run()
 		}
 	}
 
-bool exec :: admin(bool ultimanteEventCheck)
+bool exec :: admin(bool ultimateEventCheck)
 	{
 		bool adminLoop = true; //Handles looping of the admin method
 		bool superBool = false; //Handles looping of various while loops
@@ -583,6 +583,10 @@ bool exec :: admin(bool ultimanteEventCheck)
 											{
 												initialTime = 30;
 											}
+											else if (timeOfDay == "1" && endTime == 1230)
+											{
+												endTime = 30;
+											}
 											repeat = timeCheck(endTime, len, hoursChoiceBool);
 											if (endTime <= initialTime)
 											{
@@ -603,7 +607,7 @@ bool exec :: admin(bool ultimanteEventCheck)
 				else
 				{
 					noMore = true;
-					if(hoursChoiceBool)
+					if(!hoursChoiceBool)
 					{
 						std::cout << "Event started at 11:30 p.m. It will run until 11:59 p.m.\n";
 					}
@@ -1035,7 +1039,7 @@ bool exec :: admin(bool ultimanteEventCheck)
 							eventTime = eventTime + std::to_string(initialTime);
 						}
 
-						if(hoursChoiceBool)
+						if(!hoursChoiceBool)
 						{
 							std::cout << "Break started at 11:30 p.m. It will run until 11:59 p.m.\n";
 						}
@@ -1053,7 +1057,7 @@ bool exec :: admin(bool ultimanteEventCheck)
 					}
 					else if(endTime == (initialTime + 30))
 					{
-						eventTime = eventTime + std::to_string(initialTime) + " " +std::to_string(endTime);
+						eventTime = eventTime + std::to_string(initialTime);
 					}
 
 					if(!skipAll)
@@ -1154,7 +1158,7 @@ bool exec :: admin(bool ultimanteEventCheck)
 
 				if(initialTime == 2330)
 				{
-					eventTime = eventTime + "2300";
+					eventTime = eventTime + "2330";
 				}
 
 				std::ifstream fileExists("eventFile.txt");
@@ -1172,7 +1176,7 @@ bool exec :: admin(bool ultimanteEventCheck)
 					outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
 					outFile << eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
 					outFile.close();
-					ultimanteEventCheck = false;
+					ultimateEventCheck = false;
 				}
 				std::cout << "Event created!\n";
 				eventBreak = "";
@@ -1192,7 +1196,7 @@ bool exec :: admin(bool ultimanteEventCheck)
 				std::cout << "Invalid Input.\n";
 			}
 		}
-		return(ultimanteEventCheck);
+		return(ultimateEventCheck);
 	}
 
 void exec :: user()
@@ -1846,7 +1850,11 @@ void exec :: print(bool time)
 std::string exec::make12Hr(int num)
 {
 	std::string AmPmTime;
-	if(num > 1230)
+	if(num == 2400)
+	{
+		AmPmTime= "11:59 PM";
+	}
+	else if(num > 1230)
 	{
 		num = num - 1200;
 		AmPmTime = std::to_string(num);
@@ -1906,6 +1914,10 @@ std::string exec::format24Hr(int num)
 	else if(num == 30)
 	{
 		worldTime = "00:30";
+	}
+	else if(num == 2400)
+	{
+		worldTime = "23:59";
 	}
 	else if(num < 1000)
 	{
