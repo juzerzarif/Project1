@@ -12,7 +12,7 @@ Step 2: Navigate to the repository folder in your local directory. Use the comma
 
 Step 3: Type "make" into the console to compile the program.
 
-Step 4: Type "./Project1" into the console to run the program!
+Step 4: Type "./Project1" into the console to run the program.
 
 Step 5: Type "make clean" if you ever feel like cleaning out the .o files in the directory.
 
