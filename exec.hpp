@@ -37,7 +37,7 @@ void exec :: run()
 				}
 				else if (choice == "2")
 				{
-					std::cout << "No save file found! Create a save file by going through admin first.";
+					std::cout << "No save file found! Create a save file by going through admin first.\n";
 					//call to the user method
 				}
 				else if(choice == "3")
@@ -2033,7 +2033,7 @@ bool exec::updateEvent(std::string eventNameCheck)
 				attending = std::atoi(entry.c_str());
 
 					//check that the line isnt blank, and that the temprary even name read in equals the one we are searching for
-					if((year != 0) && (eventName == eventNameCheck))
+					if((eventName == eventNameCheck))
 					{
 						//set the fact that we found the event to true
 						removeCheck = true;
@@ -2063,6 +2063,7 @@ bool exec::updateEvent(std::string eventNameCheck)
 						std::cout << "Replace with: ";
 						std::cout << replace_string;
 						*/
+						
 
 
 					}
@@ -2078,44 +2079,48 @@ bool exec::updateEvent(std::string eventNameCheck)
 
 		}
 
-		//open the input file
-		std::fstream input_file("eventFile.txt", std::ios::in);
-		//open the output file
-		std::ofstream output_file("update.txt");
+		if(removeCheck == true)
+		{
 
-			  while (!input_file.eof())
-			  {
-			  	  //each line to a tempoary varible inbuf
-			      std::getline(input_file, inbuf);
+			//open the input file
+			std::fstream input_file("eventFile.txt", std::ios::in);
+			//open the output file
+			std::ofstream output_file("update.txt");
+	
+				  while (!input_file.eof())
+				  {
+				  	  //each line to a tempoary varible inbuf
+				      std::getline(input_file, inbuf);
+	
+					  //search each tempoary string for the search string, and record location in spot
+				      int spot = inbuf.find(search_string);
+	
+				      if(spot >= 0)
+				      {
+				      	 //subtract search string from the file and record location in tmpstring
+				         std::string tmpstring = inbuf.substr(0,spot);
+				         //replace the subtracted string with the replace string in that place
+				         tmpstring += replace_string;
+				         tmpstring += inbuf.substr(spot + search_string.length(), inbuf.length());
+				         inbuf = tmpstring;
+				      }
+	
+				      //doesnt print any empty lines
+				      if ( ! inbuf.empty() )
+				      {
+				         output_file << inbuf << std::endl;
+				      }
+	
+	
+	
+					}
 
-				  //search each tempoary string for the search string, and record location in spot
-			      int spot = inbuf.find(search_string);
-
-			      if(spot >= 0)
-			      {
-			      	 //subtract search string from the file and record location in tmpstring
-			         std::string tmpstring = inbuf.substr(0,spot);
-			         //replace the subtracted string with the replace string in that place
-			         tmpstring += replace_string;
-			         tmpstring += inbuf.substr(spot + search_string.length(), inbuf.length());
-			         inbuf = tmpstring;
-			      }
-
-			      //doesnt print any empty lines
-			      if ( ! inbuf.empty() )
-			      {
-			         output_file << inbuf << std::endl;
-			      }
-
-
-
-				}
-
-			//deletes the original textfile
-			remove("eventFile.txt");
-
-			//renames the newly created textfile to the old name
-			rename(oldFileName, newFileName);
+				//deletes the original textfile
+				remove("eventFile.txt");
+	
+				//renames the newly created textfile to the old name
+				rename(oldFileName, newFileName);
+		}
 
 			//returns if the event was found
 			return(removeCheck);
