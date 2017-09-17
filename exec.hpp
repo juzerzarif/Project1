@@ -1934,6 +1934,7 @@ std::string exec::format24Hr(int num)
 	return(worldTime);
 }
 
+/*
 void exec::test()
     {
 
@@ -1950,7 +1951,7 @@ void exec::test()
 
 		//print(true);
 
-		/*std::cout << "Enter Year:";
+		std::cout << "Enter Year:";
 		std::cin >> year;
 		std::cout << "Enter Month:";
 		std::cin >> month;
@@ -1961,7 +1962,7 @@ void exec::test()
 		std::getline(std::cin, timeClock);
 		std::cout << "Enter Event Name:";
 		std::cin.ignore(0, '\n');
-		std::getline(std::cin, eventName);*/
+		std::getline(std::cin, eventName);
 
 		eventDate.setYear(year);
 		eventDate.setMonth(month);
@@ -1977,7 +1978,7 @@ void exec::test()
 		//eventList.printList();
 
 	}
-
+*/
 
 bool exec::timeCheck (int time, int len, bool timeMode)
 {

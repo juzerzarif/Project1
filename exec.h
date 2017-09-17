@@ -82,7 +82,7 @@ class exec
 		 *	Public method that takes in no arguments and does not return.
 		 * 	Details: Used for testing linkedList sort and early printing.
 		 */
-		void test();
+		//void test();
 
 		/**
 		 *	Public method that takes in one argument as a string and returns a bool.
