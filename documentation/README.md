@@ -18,7 +18,7 @@ Step 5: Type "make clean" if you ever feel like cleaning out the .o files in the
 
 ## Documentation
 
-Click this link to view our documentation page: https://codedocs.xyz/glassguy/Project1/index.html
+Click this link to view our documentation page: https://codedocs.xyz/brandonlammey/Project1/
 
 To generate and host this documentation page, we used CodeDocs. This service lets you document and publish code documentaion using Doxygen.
 
