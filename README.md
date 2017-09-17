@@ -8,7 +8,7 @@ Follow these steps to get this code up and running on your machine!
 
 Step 1: In Terminal, use the command: git clone https://github.com/brandonlammey/Project1.git
 
-Step 2: Navigate to the repository folder in your local directory. Use the command: cd ~/<folder you downloaded repo to>/Project1
+Step 2: Navigate to the repository folder in your local directory. Use the command: cd ~/folder you downloaded repo into/Project1
 
 Step 3: Type "make" into the console to compile the program.
 
