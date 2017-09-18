@@ -267,7 +267,7 @@ bool exec :: admin(bool ultimateEventCheck)
 				}while(eventMonthCheck);
 
 				std::cout << "==============================\n";
-				std::cout << "What day will your event be on?\n";
+				std::cout << "What numerical day will your event be on?\n";
 				std::cout << "==============================\n";
 
 				//Choose day of event
@@ -1290,7 +1290,7 @@ void exec :: user()
 void exec :: print(bool time)
 {
 
-	std::cout << "==============================" << '\n' << "Events List		(Furthest in the future at top)" << '\n' << "==============================" << '\n' <<'\n';
+	std::cout << "==============================" << '\n' << "Events List (Furthest in the future at top)" << '\n' << "==============================" << '\n' <<'\n';
 
 	linkedList<date> eventsList;
 
