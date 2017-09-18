@@ -1367,6 +1367,7 @@ void exec :: print(bool time)
 
 				//std::cout << "6." << '\n';
 				eventsList.addBack(eventDate);//adds new date to back of the list
+				eventNum ++;
 				//std::cout << "7." << '\n';
 
 				//std::cout << "8." << '\n';
@@ -2068,6 +2069,7 @@ bool exec::updateEvent(std::string eventNameCheck)
 		//define used varibles
 		//int year = 0;
 		int attending = 0;
+		int i = 0;
 
 		std::ifstream readFile;
 		std::string temp;
@@ -2078,21 +2080,57 @@ bool exec::updateEvent(std::string eventNameCheck)
 		std::string eventName;
 		std::string attendingString;
 		std::string inbuf;
+		std::string initalLine;
 		std::string replace_string;
 		std::string search_string = eventNameCheck;
 
 		char oldFileName[] ="update.txt";
 		char newFileName[] ="eventFile.txt";
+		
+		
 
 		bool removeCheck = false;
 
+		std::cout << eventNum;
 
 		//open the event file
+		std::fstream input_file1("eventFile.txt", std::ios::in);
+		//open the output file
+		std::ofstream output_file1("update.txt");
+		
+
+		while(getline(input_file1, initalLine))
+		{
+			if(!initalLine.empty())
+			{
+				   
+		      	if(i == eventNum)
+		      	{
+		        	output_file1 << initalLine;
+		    	}
+		    	else
+		    	{
+					output_file1 << initalLine << std::endl;
+		    	}
+				i++;
+						
+			}
+		}
+
+				//deletes the original textfile
+				remove("eventFile.txt");
+
+				//renames the newly created textfile to the old name
+				rename(oldFileName, newFileName);
+
+
 
 		readFile.open("eventFile.txt");
 
 		if(readFile.is_open())
 		{
+		//	std::ifstream in_file
+			
 			//read through the whole list
 			while(!readFile.eof())
 			{
@@ -2126,6 +2164,8 @@ bool exec::updateEvent(std::string eventNameCheck)
 
 						//set the attending string to the number that is was found
 						attendingString = std::to_string(attending);
+						
+						//std::cout << attendingString;
 
 						//assemble the string that includes the event name as one string that can be searched
 						search_string = yearString + ":" + month + ":" + day + ":" + timeClock + ":" + eventName + ":" + attendingString;
@@ -2196,8 +2236,6 @@ bool exec::updateEvent(std::string eventNameCheck)
 				      {
 				         output_file << inbuf << std::endl;
 				      }
-
-
 
 					}
 
