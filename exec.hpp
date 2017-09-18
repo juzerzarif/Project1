@@ -1367,7 +1367,7 @@ void exec :: print(bool time)
 
 				//std::cout << "6." << '\n';
 				eventsList.addBack(eventDate);//adds new date to back of the list
-				eventNum ++;
+				//eventNum ++;
 				//std::cout << "7." << '\n';
 
 				//std::cout << "8." << '\n';
@@ -2069,7 +2069,7 @@ bool exec::updateEvent(std::string eventNameCheck)
 		//define used varibles
 		//int year = 0;
 		int attending = 0;
-		int i = 0;
+		//int i = 0;
 
 		std::ifstream readFile;
 		std::string temp;
@@ -2091,7 +2091,7 @@ bool exec::updateEvent(std::string eventNameCheck)
 
 		bool removeCheck = false;
 
-		std::cout << eventNum;
+		//std::cout << eventNum;
 
 		//open the event file
 		std::fstream input_file1("eventFile.txt", std::ios::in);
@@ -2104,15 +2104,15 @@ bool exec::updateEvent(std::string eventNameCheck)
 			if(!initalLine.empty())
 			{
 				   
-		      	if(i == eventNum)
-		      	{
-		        	output_file1 << initalLine;
-		    	}
-		    	else
-		    	{
+		      	//if(i == eventNum)
+		      //	{
+		        //	output_file1 << initalLine;
+		    //	}
+		    //	else
+		    //	{
 					output_file1 << initalLine << std::endl;
-		    	}
-				i++;
+		    //	}
+			//	i++;
 						
 			}
 		}

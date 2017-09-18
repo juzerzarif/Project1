@@ -23,12 +23,6 @@
 class exec
 {
 	private:
-	
-		 /**
-		  *	Private member variable. Number of events.
-		 */
-		int eventNum = 0;
-	
 
 	public:
 		/**
