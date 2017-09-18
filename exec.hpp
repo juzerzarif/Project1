@@ -1294,10 +1294,16 @@ void exec :: print(bool time)
 
 	linkedList<date> eventsList;
 
+	
+
 	std::ifstream readFile;
 	readFile.open("eventFile.txt");
 
-	linkedList<date> eventList;
+	
+
+	//linkedList<date> eventList;
+
+	
 
 	int year = 0;
 	int month = 0;
@@ -1310,21 +1316,26 @@ void exec :: print(bool time)
 	int startTime = 0;
 	int endTime = 0;
 
+	
 
 	//read each value and assign to a date object
 	//insert date object into the sorted linked list
 	//output error if file is not open
 	if(readFile.is_open())
 	{
+		std::cout << "1." << '\n';
 
 		while(!readFile.eof())
 		{
+			std::cout << "2." << '\n';
 			std::string entry;
 
 			std::getline(readFile, entry, ':' ); //read line by ':' separated value
+			std::cout << "3." << '\n';
 
 			if(entry != "") //check for case in which return is done after last line in text file
 			{
+				std::cout << "4." << '\n';
 
 				date eventDate = date();
 
@@ -1345,6 +1356,7 @@ void exec :: print(bool time)
 				std::getline(readFile, entry);
 				attending = std::stoi(entry);
 
+				std::cout << "5." << '\n';
 
 				eventDate.setYear(year);
 				eventDate.setMonth(month);
@@ -1353,8 +1365,11 @@ void exec :: print(bool time)
 				eventDate.setEvent(eventName);
 				eventDate.setAttendance(attending);
 
+				std::cout << "6." << '\n';
 				eventsList.addBack(eventDate);//adds new date to back of the list
+				std::cout << "7." << '\n';
 				eventsList.sortList();//sorts list
+				std::cout << "8." << '\n';
 			}
 		}
 
@@ -1365,6 +1380,8 @@ void exec :: print(bool time)
 		std::cout << "Empty Calendar!" << '\n' << '\n';
 	}
 
+
+	std::cout << "END." << '\n';
 
 	//Prints all objects in linkedList in readable format
 	for(int pos = 1; pos <= eventsList.size(); pos++)
