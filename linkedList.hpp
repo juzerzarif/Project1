@@ -132,34 +132,50 @@ void linkedList<T>::sortList()
   node<T>* prevNode = nullptr;
   node<T>* temp = nullptr;
 
-  for(int i = 0; i <= size(); i++)
+	if(size() == 1)
+	{
+		//no need to sort
+	}
+	else if(size() == 2)
 	{
 		currentNode = m_front;
-		prevNode = m_front;
-
-    while(currentNode->getNext() != nullptr)
-	{
-      if (compareDates(currentNode->getValue(), currentNode->getNext()->getValue()) == true)
+		if (compareDates(currentNode->getValue(), currentNode->getNext()->getValue()) == true)
 		{
-        temp = currentNode->getNext();
-        currentNode->setNext(currentNode->getNext()->getNext());
-        temp->setNext(currentNode);
+			addBack(currentNode->getValue());
+			removeFront();
+		}
+	}
+	else
+	{
+		for(int i = 0; i <= size(); i++)
+		{
+			currentNode = m_front;
+			prevNode = m_front;
 
-        if(currentNode == m_front)
-				{
-					prevNode = temp;
-					m_front = prevNode;
-				}
-        else
-				{
-					prevNode->setNext(temp);
-        	currentNode = temp;
-				}
-    	}
-      prevNode = currentNode;
-      currentNode = currentNode->getNext();
-    }
-  }
+	    while(currentNode->getNext() != nullptr)
+		{
+	      if (compareDates(currentNode->getValue(), currentNode->getNext()->getValue()) == true)
+			{
+	        temp = currentNode->getNext();
+	        currentNode->setNext(currentNode->getNext()->getNext());
+	        temp->setNext(currentNode);
+
+	        if(currentNode == m_front)
+					{
+						prevNode = temp;
+						m_front = prevNode;
+					}
+	        else
+					{
+						prevNode->setNext(temp);
+	        	currentNode = temp;
+					}
+	    	}
+	      prevNode = currentNode;
+	      currentNode = currentNode->getNext();
+	    }
+	  }
+	}
 }
 
 template <typename T>

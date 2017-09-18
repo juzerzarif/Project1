@@ -17,7 +17,7 @@ void exec :: run()
 
 		std::string choice;
 		bool choiceRepeat = true;
-		bool skipInterface = true;
+		//bool skipInterface = true;
 
 
 		if(!fileExists)
@@ -36,11 +36,11 @@ void exec :: run()
 				{
 					choiceRepeat = admin(choiceRepeat);
 
-					if (choiceRepeat == false)
+					/*if (choiceRepeat == false)
 					{
 						skipInterface = false;
 
-					}
+					}*/
 					//call to the admin method
 				}
 				else if (choice == "2")
@@ -63,9 +63,9 @@ void exec :: run()
 		}
 
 		choiceRepeat = true;
+		std::ifstream newfileExists("eventFile.txt");
 
-
-		if(skipInterface == true)
+		if(newfileExists)
 		{
 			while(choiceRepeat)
 			{
@@ -1290,20 +1290,20 @@ void exec :: user()
 void exec :: print(bool time)
 {
 
-	std::cout << "==============================" << '\n' << "Events List" << '\n' << "==============================" << '\n' <<'\n';
+	std::cout << "==============================" << '\n' << "Events List		(Furthest in the future at top)" << '\n' << "==============================" << '\n' <<'\n';
 
 	linkedList<date> eventsList;
 
-	
+
 
 	std::ifstream readFile;
 	readFile.open("eventFile.txt");
 
-	
+
 
 	//linkedList<date> eventList;
 
-	
+
 
 	int year = 0;
 	int month = 0;
@@ -1316,26 +1316,26 @@ void exec :: print(bool time)
 	int startTime = 0;
 	int endTime = 0;
 
-	
+
 
 	//read each value and assign to a date object
 	//insert date object into the sorted linked list
 	//output error if file is not open
 	if(readFile.is_open())
 	{
-		std::cout << "1." << '\n';
+		//std::cout << "1." << '\n';
 
 		while(!readFile.eof())
 		{
-			std::cout << "2." << '\n';
+			//std::cout << "2." << '\n';
 			std::string entry;
 
 			std::getline(readFile, entry, ':' ); //read line by ':' separated value
-			std::cout << "3." << '\n';
+			//std::cout << "3." << '\n';
 
 			if(entry != "") //check for case in which return is done after last line in text file
 			{
-				std::cout << "4." << '\n';
+				//std::cout << "4." << '\n';
 
 				date eventDate = date();
 
@@ -1356,7 +1356,7 @@ void exec :: print(bool time)
 				std::getline(readFile, entry);
 				attending = std::stoi(entry);
 
-				std::cout << "5." << '\n';
+				//std::cout << "5." << '\n';
 
 				eventDate.setYear(year);
 				eventDate.setMonth(month);
@@ -1365,11 +1365,11 @@ void exec :: print(bool time)
 				eventDate.setEvent(eventName);
 				eventDate.setAttendance(attending);
 
-				std::cout << "6." << '\n';
+				//std::cout << "6." << '\n';
 				eventsList.addBack(eventDate);//adds new date to back of the list
-				std::cout << "7." << '\n';
-				eventsList.sortList();//sorts list
-				std::cout << "8." << '\n';
+				//std::cout << "7." << '\n';
+
+				//std::cout << "8." << '\n';
 			}
 		}
 
@@ -1380,8 +1380,12 @@ void exec :: print(bool time)
 		std::cout << "Empty Calendar!" << '\n' << '\n';
 	}
 
+	if(eventsList.size() != 0)
+	{
+		eventsList.sortList();//sorts list
+	}
 
-	std::cout << "END." << '\n';
+	//std::cout << "END." << '\n';
 
 	//Prints all objects in linkedList in readable format
 	for(int pos = 1; pos <= eventsList.size(); pos++)
