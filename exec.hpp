@@ -140,7 +140,6 @@ bool exec :: admin(bool ultimateEventCheck)
 				superBool = false;
 			}
 		}while(!superBool);
-		system("cls");
 		while(adminLoop)
 		{
 			std::string stringChoice = ""; //Choice on creating event, looking at events, or quitting
@@ -169,7 +168,6 @@ bool exec :: admin(bool ultimateEventCheck)
 			std::cout << "==============================\n";
 
 			std::getline(std::cin, stringChoice);
-			system("cls");
 			//std::cin.ignore();
 
 			//Choose Add Event or Show Events
@@ -180,7 +178,6 @@ bool exec :: admin(bool ultimateEventCheck)
 
 				std::cout << "Admin, please enter your name\n";
 				std::getline(std::cin, eventCreator);
-				system("cls");
 				peopleAttending += (eventCreator + ", ");
 
 				std::cout << "Enter the name of the event. Please no colons (:).\n";
@@ -205,7 +202,6 @@ bool exec :: admin(bool ultimateEventCheck)
 						eventNameCheck = false;
 					}
 				}while(eventNameCheck);
-				system("cls");
 
 				std::cout << "What year will the event be on? It can be from 2017 to 2021.\n";
 
@@ -233,7 +229,6 @@ bool exec :: admin(bool ultimateEventCheck)
 						superBool = false;
 					}
 				}while(!superBool);
-				system("cls");
 				//Choose month of event
 				do
 				{
@@ -271,7 +266,6 @@ bool exec :: admin(bool ultimateEventCheck)
 						eventMonthCheck = false;
 					}
 				}while(eventMonthCheck);
-				system("cls");
 				std::cout << "==============================\n";
 				std::cout << "What numerical day will your event be on?\n";
 				std::cout << "==============================\n";
@@ -340,7 +334,6 @@ bool exec :: admin(bool ultimateEventCheck)
 						std::cout << "This should never print";
 					}
 				}while(eventDayCheck);
-				system("cls");
 				if(hoursChoiceBool)
 				{
 					std::cout << "==============================\n";
@@ -374,7 +367,6 @@ bool exec :: admin(bool ultimateEventCheck)
 							repeat = timeCheck(initialTime, len, hoursChoiceBool);
 						}
 					}while(repeat);
-					system("cls");
 				}
 				else
 				{
@@ -461,7 +453,6 @@ bool exec :: admin(bool ultimateEventCheck)
 						}
 
 					}while(repeat);
-					system("cls");
 				}
 
 				if (initialTime != 2330)
@@ -636,7 +627,6 @@ bool exec :: admin(bool ultimateEventCheck)
 						std::cout << "Event started at 23:30. It will run until 23:59.\n";
 					}
 				}
-				system("cls");
 				if(!skipAll)
 				{
 					for(int i = initialTime; i < endTime-60; i+=30)
@@ -710,7 +700,6 @@ bool exec :: admin(bool ultimateEventCheck)
 
 					noMore = true;
 				}
-				system("cls");
 				if(endTime == 2330) //Dont allow user to input breaks if end time is 11:30 pm
 				{
 					noMore = true;
@@ -724,7 +713,6 @@ bool exec :: admin(bool ultimateEventCheck)
 				{
 					eventTime = std::to_string(initialTime);
 				}
-				system("cls");
 				if(!noMore)
 				{
 					superBool = true;
@@ -754,7 +742,6 @@ bool exec :: admin(bool ultimateEventCheck)
 				{
 					eventBreak = "2";
 				}
-				system("cls");
 				//Choose if break
 				while(eventBreak == "1")
 				{
@@ -1176,7 +1163,6 @@ bool exec :: admin(bool ultimateEventCheck)
 						bogo = true;
 					}
 				}
-				system("cls");
 				if(initialTime == 2330)
 				{
 					eventTime = eventTime + "2330";
@@ -1207,12 +1193,10 @@ bool exec :: admin(bool ultimateEventCheck)
 			}
 			else if(stringChoice == "2")
 			{
-				system("cls");
 				print(hoursChoiceBool);
 			}
 			else if(stringChoice == "3")
 			{
-				system("cls");
 				std::cout << '\n';
 				adminLoop = false;
 			}
@@ -2099,40 +2083,6 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 
 		bool removeCheck = false;
 
-		//std::cout << eventNum;
-
-		////open the event file
-		//std::fstream input_file1("eventFile.txt", std::ios::in);
-		////open the output file
-		//std::ofstream output_file1("update.txt");
-		
-
-		//while(getline(input_file1, initalLine))
-		//{
-		//	if(!initalLine.empty())
-		//	{
-		//		   
-		//      	//if(i == eventNum)
-		//      //	{
-		//        //	output_file1 << initalLine;
-		//    //	}
-		//    //	else
-		//    //	{
-		//			output_file1 << initalLine << std::endl;
-		//    //	}
-		//	//	i++;
-		//				
-		//	}
-		//}
-
-		//		//deletes the original textfile
-		//		remove("eventFile.txt");
-
-		//		//renames the newly created textfile to the old name
-		//		rename("update.txt", "eventFile.txt");
-
-
-
 		readFile.open("eventFile.txt");
 
 		if(readFile.is_open())
@@ -2220,8 +2170,7 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 			std::fstream input_file("eventFile.txt", std::ios::in);
 			
 			//open the output file
-			std::ofstream output_file("update.txt");
-			//2017:1:31:800 830:Birthday Bash:Kaiser, 
+			std::ofstream output_file("update.txt"); 
 				  while (!input_file.eof())
 				  {
 					  std::getline(input_file, inbuf);
@@ -2249,30 +2198,6 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 							  output_file << std::endl;
 						  }
 					  }
-					  
-					  
-					  //  //each line to a tempoary varible inbuf
-				   //   std::getline(input_file, inbuf);
-
-					  ////search each tempoary string for the search string, and record location in spot
-				   //   int spot = inbuf.find(search_string);
-
-				   //   if(spot >= 0)
-				   //   {
-				   //   	 //subtract search string from the file and record location in tmpstring
-				   //      std::string tmpstring = inbuf.substr(0,spot);
-				   //      //replace the subtracted string with the replace string in that place
-				   //      tmpstring += replace_string;
-				   //      tmpstring += inbuf.substr(spot + search_string.length(), inbuf.length());
-				   //      inbuf = tmpstring;
-				   //   }
-
-				   //   //doesnt print any empty lines
-				   //   if ( ! inbuf.empty() )
-				   //   {
-				   //      output_file << inbuf << std::endl;
-				   //   }
-
 				}
 				  input_file.close();
 				  output_file.close();
