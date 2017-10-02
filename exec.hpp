@@ -2212,7 +2212,7 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 			std::cout << "Error Opening File!" << '\n';
 
 		}
-		readFile.close();
+		
 		if(removeCheck == true)
 		{
 
@@ -2235,11 +2235,11 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 					  event_name = event_name.substr(0, event_name.find(delimiter));
 					  if (event_name == eventNameCheck)
 					  {
-						  output_file << (replace_string + "\n");
+						  output_file << (replace_string) << std::endl;
 					  }
 					  else
 					  {
-						  output_file << (inbuf + "\n");
+						  output_file << (inbuf) << std::endl;
 					  }
 					  
 					  
