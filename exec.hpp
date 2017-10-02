@@ -2235,11 +2235,19 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 					  event_name = event_name.substr(0, event_name.find(delimiter));
 					  if (event_name == eventNameCheck)
 					  {
-						  output_file << (replace_string) << std::endl;
+						  output_file << (replace_string);
+						  if (!input_file.eof())
+						  {
+							  output_file << std::endl;
+						  }
 					  }
 					  else
 					  {
-						  output_file << (inbuf) << std::endl;
+						  output_file << (inbuf);
+						  if (!input_file.eof())
+						  {
+							  output_file << std::endl;
+						  }
 					  }
 					  
 					  
