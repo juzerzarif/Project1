@@ -25,7 +25,7 @@ void exec :: run()
 			while(choiceRepeat)
 			{
 				std::cout << "==============================\n";
-				std::cout << "Please select a login in mode:\n";
+				std::cout << "Please select a login mode:\n";
 				std::cout << "1) Admin\n";
 				std::cout << "2) User\n";
 				std::cout << "3) Quit\n";
@@ -70,7 +70,7 @@ void exec :: run()
 			while(choiceRepeat)
 			{
 				std::cout << "==============================\n";
-				std::cout << "Please select a login in mode:\n";
+				std::cout << "Please select a login mode:\n";
 				std::cout << "1) Admin\n";
 				std::cout << "2) User\n";
 				std::cout << "3) Quit\n";
@@ -2076,10 +2076,6 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 		std::string replace_string;
 		std::string search_string = eventNameCheck;
 
-		char oldFileName[] ="update.txt";
-		char newFileName[] ="eventFile.txt";
-		
-		
 
 		bool removeCheck = false;
 
@@ -2088,7 +2084,7 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 		if(readFile.is_open())
 		{
 		//	std::ifstream in_file
-			
+
 			//read through the whole list
 			while(!readFile.eof())
 			{
@@ -2122,7 +2118,7 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 
 						//set the attending string to the number that is was found
 						attendingString = (attending);
-						
+
 						//std::cout << attendingString;
 
 						//assemble the string that includes the event name as one string that can be searched
@@ -2162,20 +2158,20 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 			std::cout << "Error Opening File!" << '\n';
 
 		}
-		
+
 		if(removeCheck == true)
 		{
 
 			//open the input file
 			std::fstream input_file("eventFile.txt", std::ios::in);
-			
+
 			//open the output file
-			std::ofstream output_file("update.txt"); 
+			std::ofstream output_file("update.txt");
 				  while (!input_file.eof())
 				  {
 					  std::getline(input_file, inbuf);
 					  std::string event_name;
-					  
+
 					  std::string delimiter = ":";
 					  event_name = inbuf.substr(inbuf.find(delimiter)+1, std::string::npos);
 					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos);
