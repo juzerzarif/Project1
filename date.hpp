@@ -6,7 +6,7 @@ date::date()
   day = 0;
   time = "";
   event = "";
-  attendance = 0;
+  attendance = "";
 }
 
 /*bool operator == (const date& date1, const date& date2)
@@ -64,12 +64,12 @@ std::string date::getEvent()
   return event;
 }
 
-void date::setAttendance(int a)
+void date::setAttendance(std::string a)
 {
   attendance = a;
 }
 
-int date::getAttendance()
+std::string date::getAttendance()
 {
   return attendance;
 }

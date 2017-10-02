@@ -90,7 +90,7 @@ class exec
 		 * 	@param eventNameCheck is the first parameter.
 		 *	@return true if the event was found in the list, false otherwise.
 		 */
-		bool updateEvent(std::string eventNameCheck);
+		bool updateEvent(std::string eventNameCheck, std::string userName);
 
 		/**
 		 *	Public method that takes in one argument as a string and returns a bool.

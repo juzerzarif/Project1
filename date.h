@@ -42,7 +42,7 @@ class date
 		/**
 		 *	Private member variable. Holds the date's total amount of people attending.
 		 */
-		int attendance;
+		std::string attendance;
 
 	public:
 
@@ -91,7 +91,7 @@ class date
 		 *	Details: Sets the date's total amount of attendees.
 		 *	@param a the first argument.
 		 */
-		void setAttendance(int a);
+		void setAttendance(std::string a);
 
 		/**
 		 *	Public method that takes no arguments and returns an int.
@@ -127,7 +127,7 @@ class date
 		 *	Public method that takes no arguments and returns an int.
 		 *	@returns the date's current total number of attendees.
 		 */
-		int getAttendance();
+		std::string getAttendance();
 };
 
 #include "date.hpp"
