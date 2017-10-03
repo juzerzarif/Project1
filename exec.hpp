@@ -25,7 +25,7 @@ void exec :: run()
 			while(choiceRepeat)
 			{
 				std::cout << "==============================\n";
-				std::cout << "Please select a login in mode:\n";
+				std::cout << "Please select a login mode:\n";
 				std::cout << "1) Admin\n";
 				std::cout << "2) User\n";
 				std::cout << "3) Quit\n";
@@ -70,7 +70,7 @@ void exec :: run()
 			while(choiceRepeat)
 			{
 				std::cout << "==============================\n";
-				std::cout << "Please select a login in mode:\n";
+				std::cout << "Please select a login mode:\n";
 				std::cout << "1) Admin\n";
 				std::cout << "2) User\n";
 				std::cout << "3) Quit\n";
@@ -3210,7 +3210,6 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 
 		char oldFileName[] ="update.txt";
 		char newFileName[] ="eventFile.txt";
-
 
 
 		bool removeCheck = false;
