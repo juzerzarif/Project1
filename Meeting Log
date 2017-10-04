@@ -19,3 +19,10 @@
   - We decided upon a new way of writing the events into the file
   - We talked about how we are going to make the Tasks and how to tell whether they are signed up for or not
   - We worked on fixing the issues we found on Monday
+  
+  6) Wednesday October 4th at 11:40 in Class
+    - We talked about colons because we are using the number of colons in the file to display the data in the correct places in the terminal
+    - We have some merge conflicts we need to work out
+    - We are still working on resolving the attendee time selection issue -> we are using vectors to fix this currently
+    - We need to work on the attendee task view still
+    - We are still working on the multi-day scheduling
