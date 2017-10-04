@@ -1217,14 +1217,96 @@ bool exec :: admin(bool ultimateEventCheck)
 					{
 						eventTime = eventTime + "2330";
 					}
+					//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+					//Tasks menu
+					//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+					int taskChoice = 0;
+					std::string eventTask;
+					std::string eventTaskList;
+					bool eventTaskCheck = false;
+					do
+					{
+						eventTaskCheck = true;
+						std::cout<<"==============================\n";
+						std::cout<<"Do you want to add tasks?\n";
+						std::cout<<"1) Yes\n";
+						std::cout<<"2) No\n";
+						std::cout<<"==============================\n";
 
+						std::cin>>taskChoice;
+						std::cin.ignore(256, '\n');
+						//std::getline(std::cin, taskChoice);
+						if(std::cin.fail())
+						{
+							eventTaskCheck = false;
+							std::cout<<"Invalid input. Please try againn\n";
+							std::cin.clear();
+							std::cin.ignore(256, '\n');
+						}
+
+						if(taskChoice>2 || taskChoice<1)
+						{
+							eventTaskCheck = false;
+							std::cout<<"Invalid option. Please try again\n";
+						}
+
+					}while(!eventTaskCheck);
+
+					if(taskChoice == 1)
+					{
+						do
+						{
+							std::cout<<"What's the name of your task? No special characters (:,;,/)\n";
+							do
+							{
+								std::getline(std::cin, eventTask);
+								eventTaskCheck = false;
+								if(eventTask.find(':') != std::string::npos || eventTask.find(';') != std::string::npos || eventTask.find('/') != std::string::npos)
+								{
+									std::cout << "Invalid task name. Please no special characters (:,;,/) in the name of the task: \n";
+									eventTaskCheck = true;
+								}
+							}while(eventTaskCheck);
+
+							eventTaskList += eventTask+"/0;";
+							do
+							{
+								taskChoice = 0;
+								eventTaskCheck = true;
+								std::cout<<"==============================\n";
+								std::cout<<"Do you want to add more tasks?\n";
+								std::cout<<"1) Yes\n";
+								std::cout<<"2) No\n";
+								std::cout<<"==============================\n";
+								std::cin>>taskChoice;
+								std::cin.ignore(256, '\n');
+								if(std::cin.fail())
+								{
+									eventTaskCheck = false;
+									std::cout<<"Invalid input. Please try again:\n";
+									std::cin.clear();
+									std::cin.ignore(256, '\n');
+								}
+
+								if(taskChoice>2 || taskChoice<1)
+								{
+									eventTaskCheck = false;
+									std::cout<<"Invalid option. Please try again:\n";
+								}
+							}while(!eventTaskCheck);
+						}while(taskChoice == 1);
+					}
+
+					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+					//END of Tasks
+					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 					std::ifstream fileExists("eventFile.txt");
 					if(fileExists) //If file exists, start at the end, add new line and add info
 					{
 						std::ofstream outFile;
 						outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
 						std::cout << peopleAttending;
-						outFile << '\n' << multiDayInt <<":"<< eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
+						outFile << '\n' << multiDayInt <<":"<< eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending<<":"<<eventTaskList; //Juzer: Added Tasks
 						outFile.close();
 
 					}
@@ -1233,7 +1315,7 @@ bool exec :: admin(bool ultimateEventCheck)
 						std::ofstream outFile;
 						outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
 						std::cout << peopleAttending;
-						outFile << multiDayInt <<":"<< eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
+						outFile << multiDayInt <<":"<< eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending<<":"<<eventTaskList; //Juzer: Added Tasks
 						outFile.close();
 						ultimateEventCheck = false;
 					}
