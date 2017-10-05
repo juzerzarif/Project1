@@ -33,7 +33,8 @@ class exec
 		 *	Destructor for the exec class.
 		 */
 		~exec();
-
+		std::vector<std::vector<std::string>> getTimes();
+		std::vector<std::string> getTimeOfSingleEvent(std::string event_name);
 		/**
 		 *	Public method that takes in no arguments and does not return.
 		 * 	Grants user to use admin options.
@@ -90,7 +91,9 @@ class exec
 		 * 	@param eventNameCheck is the first parameter.
 		 *	@return true if the event was found in the list, false otherwise.
 		 */
-		bool updateEvent(std::string eventNameCheck, std::string userName);
+		bool updateEvent(std::string eventNameCheck, std::string userName, std::vector<std::vector<std::string>> times);
+
+		void userChooseHours(std::vector<std::vector<std::string>> times);
 
 		/**
 		 *	Public method that takes in one argument as a string and returns a bool.

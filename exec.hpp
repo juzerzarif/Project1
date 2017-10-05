@@ -25,7 +25,7 @@ void exec :: run()
 			while(choiceRepeat)
 			{
 				std::cout << "==============================\n";
-				std::cout << "Please select a login in mode:\n";
+				std::cout << "Please select a login mode:\n";
 				std::cout << "1) Admin\n";
 				std::cout << "2) User\n";
 				std::cout << "3) Quit\n";
@@ -70,7 +70,7 @@ void exec :: run()
 			while(choiceRepeat)
 			{
 				std::cout << "==============================\n";
-				std::cout << "Please select a login in mode:\n";
+				std::cout << "Please select a login mode:\n";
 				std::cout << "1) Admin\n";
 				std::cout << "2) User\n";
 				std::cout << "3) Quit\n";
@@ -178,7 +178,7 @@ bool exec :: admin(bool ultimateEventCheck)
 
 				std::cout << "Admin, please enter your name\n";
 				std::getline(std::cin, eventCreator);
-				peopleAttending += (eventCreator + ", ");
+				peopleAttending += (eventCreator);
 
 				std::cout << "Enter the name of the event. Please no colons (:).\n";
 
@@ -1174,7 +1174,7 @@ bool exec :: admin(bool ultimateEventCheck)
 					std::ofstream outFile;
 					outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
 					std::cout << peopleAttending;
-					outFile << '\n' << eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
+					outFile << '\n' << eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << (peopleAttending + "/" + eventTime + "/,");
 					outFile.close();
 
 				}
@@ -1183,7 +1183,7 @@ bool exec :: admin(bool ultimateEventCheck)
 					std::ofstream outFile;
 					outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
 					std::cout << peopleAttending;
-					outFile << eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
+					outFile << eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << (peopleAttending + "/" + eventTime + "/,");
 					outFile.close();
 					ultimateEventCheck = false;
 				}
@@ -1193,6 +1193,9 @@ bool exec :: admin(bool ultimateEventCheck)
 			}
 			else if(stringChoice == "2")
 			{
+				//KHM
+				//std::vector<std::vector<std::string>> boob = getTimes();
+				
 				print(hoursChoiceBool);
 			}
 			else if(stringChoice == "3")
@@ -1224,7 +1227,7 @@ void exec :: user()
 				std::cout << "==============================\n";
 
 				std::cin >> choice;
-
+				//KHM std::vector<std::vector<std::string>> times = getTimes();
 				if(choice == 1)
 				{
 					print(false);
@@ -1270,7 +1273,9 @@ void exec :: user()
 			std::cout << "User, what is your name?\n";
 			//std::cin.ignore();
 			std::getline(std::cin, userName);
-	   	bool foundCheck = updateEvent(eventName, userName);
+			
+
+	   	bool foundCheck = updateEvent(eventName, userName, getTimes());
 
 
 	   	if(foundCheck == true)
@@ -1286,6 +1291,104 @@ void exec :: user()
 
 
 	}
+
+std::vector<std::string> exec::getTimeOfSingleEvent(std::string eventName)
+{
+	//open the input file
+	std::fstream input_file("eventFile.txt", std::ios::in);
+	std::vector<std::string> times;
+	std::string inbuf;
+	int index = 0;
+	while (!input_file.eof())
+	{
+		std::getline(input_file, inbuf);
+		std::string event_name;
+		std::string event_time;
+
+
+		std::string delimiter = ":";
+		std::string timeDelimiter = " ";
+		event_name = inbuf.substr(inbuf.find(delimiter) + 1, std::string::npos);
+		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);
+		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);
+		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);
+		event_name = event_name.substr(0, event_name.find(delimiter));
+		if (event_name == eventName)
+		{
+			event_time = inbuf.substr(inbuf.find(delimiter) + 1, std::string::npos);
+			event_time = event_time.substr(event_name.find(delimiter) + 1, std::string::npos);
+			event_time = event_time.substr(event_name.find(delimiter) + 1, std::string::npos);
+			event_time = event_time.substr(0, event_name.find(delimiter));
+			event_time = event_time.substr(event_time.find("/") + 1, std::string::npos);
+			event_time = event_time.substr(0, event_time.find("/"));
+			
+			while (event_time.find(timeDelimiter) != std::string::npos)
+			{
+				std::string temp = event_time.substr(0, event_time.find(timeDelimiter));
+				times.push_back(temp);
+				event_time = event_time.substr(event_time.find(timeDelimiter) + 1, std::string::npos);
+				if (event_time.find(timeDelimiter) == std::string::npos)
+				{
+					times.push_back(event_time);
+				}
+			}
+
+		}
+		index++;
+	}
+	input_file.close();
+	return times;
+}
+
+std::vector<std::vector<std::string>> exec :: getTimes()
+{
+	//open the input file
+	std::fstream input_file("eventFile.txt", std::ios::in);
+	std::vector<std::vector<std::string>> times;
+	std::string inbuf;
+	int index = 0;
+	while (!input_file.eof())
+	{
+		std::getline(input_file, inbuf);
+		std::string event_name;
+		std::string event_time;
+
+
+		std::string delimiter = ":";
+		std::string timeDelimiter = " ";
+		event_name = inbuf.substr(inbuf.find(delimiter)+1, std::string::npos);
+		event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos);
+		event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos);
+		event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos);
+		event_name = event_name.substr(0, event_name.find(delimiter));
+		if (true)//event_name == eventName)
+		{
+			event_time = inbuf.substr(inbuf.find(delimiter)+1, std::string::npos);
+			event_time = event_time.substr(event_name.find(delimiter)+1, std::string::npos);
+			event_time = event_time.substr(event_name.find(delimiter)+1, std::string::npos);
+			event_time = event_time.substr(0, event_name.find(delimiter));
+			event_time = event_time.substr(event_time.find("/")+1, std::string::npos);
+			event_time = event_time.substr(0 , event_time.find("/"));
+			std::vector <std::string> temp;
+			times.push_back(temp);
+			while(event_time.find(timeDelimiter) != std::string::npos)
+			{
+				std::string temp = event_time.substr(0, event_time.find(timeDelimiter));
+				times[index].push_back(temp);
+				event_time = event_time.substr(event_time.find(timeDelimiter)+1, std::string::npos);
+				if (event_time.find(timeDelimiter) == std::string::npos)
+				{
+					times[index].push_back(event_time);
+				}
+			}
+
+		}
+		index++;
+	}
+	input_file.close();
+	return times;
+
+}
 
 void exec :: print(bool time)
 {
@@ -1865,13 +1968,23 @@ void exec :: print(bool time)
 		std::cout << "Event      => " << ':' <<eventName << ':' << "\n";
 		std::cout << "Date       => " << nameMonth << " " << day << ", " << year << "\n";
 		std::cout << "Time       => " << timeClock << '\n';
-		std::cout << "Attending  => " << attending << '\n'<<'\n';
-
+		std::cout << "Attending  => ";
+		for(int i = 0; i < attending.length(); i++)
+		{
+			if(attending[i] == ','){std::cout<<"\n              ";}
+			else {std::cout << attending[i];}
+		}
+		std::cout << std::endl;
+		
 	}
 
 	std::cout << "==============================" << '\n';
 }
 
+void exec::userChooseHours(std::vector<std::vector<std::string>> times)
+{
+	
+}
 
 std::string exec::make12Hr(int num)
 {
@@ -2055,8 +2168,7 @@ bool exec::timeCheck (int time, int len, bool timeMode)
 	}
 }
 
-
-bool exec::updateEvent(std::string eventNameCheck, std::string userName)
+bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::vector<std::vector<std::string>> times)
 	{
 		//define used varibles
 		//int year = 0;
@@ -2076,10 +2188,6 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 		std::string replace_string;
 		std::string search_string = eventNameCheck;
 
-		char oldFileName[] ="update.txt";
-		char newFileName[] ="eventFile.txt";
-		
-		
 
 		bool removeCheck = false;
 
@@ -2088,7 +2196,7 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 		if(readFile.is_open())
 		{
 		//	std::ifstream in_file
-			
+
 			//read through the whole list
 			while(!readFile.eof())
 			{
@@ -2122,7 +2230,7 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 
 						//set the attending string to the number that is was found
 						attendingString = (attending);
-						
+
 						//std::cout << attendingString;
 
 						//assemble the string that includes the event name as one string that can be searched
@@ -2133,12 +2241,13 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 						std::cout << search_string ;
 						std::cout << '\n';
 						*/
+						//Let the user choose hours to attend
 
-						//Add username to attending
-						attending += (userName + ", ");
-
+						//Add username to attending here if called from admin
+						//attending += (userName + ",");
 						//update the attending string to reflect the incremented attendence
-						attendingString = (attending);
+						//attendingString = (attending);
+						
 
 						//set the replace string to the original string with the new incremented attendence
 						replace_string  = yearString + ":" + month + ":" + day + ":" + timeClock + ":" + eventName + ":" + attendingString;
@@ -2162,20 +2271,20 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 			std::cout << "Error Opening File!" << '\n';
 
 		}
-		
+
 		if(removeCheck == true)
 		{
 
 			//open the input file
 			std::fstream input_file("eventFile.txt", std::ios::in);
-			
+
 			//open the output file
-			std::ofstream output_file("update.txt"); 
+			std::ofstream output_file("update.txt");
 				  while (!input_file.eof())
 				  {
 					  std::getline(input_file, inbuf);
 					  std::string event_name;
-					  
+
 					  std::string delimiter = ":";
 					  event_name = inbuf.substr(inbuf.find(delimiter)+1, std::string::npos);
 					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos);
@@ -2184,7 +2293,54 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName)
 					  event_name = event_name.substr(0, event_name.find(delimiter));
 					  if (event_name == eventNameCheck)
 					  {
-						  output_file << (replace_string);
+						  std::vector<std::string> vec = getTimeOfSingleEvent(event_name);
+						  int i = 1;
+						  std::cout << "Which times can you attend? Enter 0 when done selecting\n";
+						  for (auto it = vec.begin(); it != vec.end(); ++it)
+						  {
+							  std::cout << i << ") " << *it << "\n";
+							  i++;
+						  }
+						  std::cout << std::endl;
+						  std::cout << std::endl;
+						  std::vector<int> chosenTimes;
+						  std::string chosenTimes_string;
+						  std::string input_string;
+						  int input_number = 1;
+						  while (input_number > 0 && input_number < (i))
+						  {
+							  std::getline(std::cin, input_string);
+							  input_number = std::atoi(input_string.c_str());
+							  if (input_number > 0 && input_number < (i))
+							  {
+								  if (chosenTimes_string.find(input_string) == std::string::npos)
+								  {
+									  chosenTimes_string += (input_string + ",");
+									  chosenTimes.push_back(input_number);
+								  }
+								  else
+								  {
+									  //entered a duplicate
+									  std::cout << "You entered a duplicate, your entry was not added.\n";
+								  }
+							  }
+						  }
+						  std::string toAdd = "/";
+						  int j = 0;
+						  std::sort(chosenTimes.begin(), chosenTimes.end());
+						  std::vector<std::string> finalTimes;
+						  for (auto it = chosenTimes.begin(); it != chosenTimes.end(); ++it)
+						  {
+							  finalTimes.push_back(vec[(*it -1)]);
+						  }
+						  for (auto it = finalTimes.begin(); it != finalTimes.end(); ++it)
+						  {
+							  toAdd += (*it + " ");
+						  }
+						  std::string mod = toAdd.substr(0, toAdd.find_last_not_of(" ")+1);
+						  toAdd = mod;
+						  toAdd += "/,";
+						  output_file << (replace_string + userName + toAdd);
 						  if (!input_file.eof())
 						  {
 							  output_file << std::endl;

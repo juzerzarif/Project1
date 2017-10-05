@@ -40,9 +40,14 @@ class date
 		std::string event;
 
 		/**
-		 *	Private member variable. Holds the date's total amount of people attending.
+		 *	Private member variable. Holds the date's list of people attending.
 		 */
 		std::string attendance;
+		
+		/**
+		 *	Private member variable. Holds the tasks of the date and attendees assigned to those tasks.
+		 */
+		std::string tasks;
 
 	public:
 
@@ -92,12 +97,24 @@ class date
 		 *	@param a the first argument.
 		 */
 		void setAttendance(std::string a);
+		
+		/**
+		 *	Public method that takes one argument of type string and does not return.
+		 *	Details: Sets the date's task information.
+		 *	@param t the first argument.
+		void setTasks(std::string t);
 
 		/**
 		 *	Public method that takes no arguments and returns an int.
 		 *	@returns the date's current year.
 		 */
 		int getYear();
+		
+		/**
+		 *	Public method that takes no arguments and returns a string.
+		 *	@returns the date's task information.
+		 */
+		std::string getTasks();
 
 		/**
 		 *	Public method that takes no arguments and returns an int.

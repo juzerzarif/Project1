@@ -7,6 +7,7 @@ date::date()
   time = "";
   event = "";
   attendance = "";
+  tasks = "";
 }
 
 /*bool operator == (const date& date1, const date& date2)
