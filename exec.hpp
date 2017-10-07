@@ -229,7 +229,7 @@ bool exec :: admin(bool ultimateEventCheck)
 
 					std::cout << "Admin, please enter your name\n";
 					std::getline(std::cin, eventCreator);
-					peopleAttending += (eventCreator + ", ");
+					peopleAttending += (eventCreator);
 
 					std::cout << "Enter the name of the event. Please no colons (:).\n";
 
@@ -1307,7 +1307,7 @@ bool exec :: admin(bool ultimateEventCheck)
 						std::ofstream outFile;
 						outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
 						std::cout << peopleAttending;
-						outFile << '\n' << multiDayInt <<":"<< eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending<<":"<<eventTaskList; //Juzer: Added Tasks
+						outFile << '\n' << multiDayInt <<":"<< eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << (peopleAttending + "/" + eventTime + "/,") <<":"<<eventTaskList; //Juzer: Added Tasks
 						outFile.close();
 
 					}
@@ -1316,7 +1316,7 @@ bool exec :: admin(bool ultimateEventCheck)
 						std::ofstream outFile;
 						outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
 						std::cout << peopleAttending;
-						outFile << multiDayInt <<":"<< eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending<<":"<<eventTaskList; //Juzer: Added Tasks
+						outFile << multiDayInt <<":"<< eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << (peopleAttending + "/" + eventTime + "/,") <<":"<<eventTaskList; //Juzer: Added Tasks
 						outFile.close();
 						ultimateEventCheck = false;
 					}
@@ -2557,10 +2557,12 @@ std::vector<std::string> exec::getTimeOfSingleEvent(std::string eventName)
 		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);
 		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);
 		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);
+		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);
 		event_name = event_name.substr(0, event_name.find(delimiter));
 		if (event_name == eventName)
 		{
 			event_time = inbuf.substr(inbuf.find(delimiter) + 1, std::string::npos);
+			event_time = event_time.substr(event_name.find(delimiter) + 1, std::string::npos);
 			event_time = event_time.substr(event_name.find(delimiter) + 1, std::string::npos);
 			event_time = event_time.substr(event_name.find(delimiter) + 1, std::string::npos);
 			event_time = event_time.substr(0, event_name.find(delimiter));
@@ -2699,9 +2701,10 @@ void exec :: print(bool time)
 				std::getline(readFile, entry, ':');
 				eventName = entry;
 
-				std::getline(readFile, entry);
+				std::getline(readFile, entry, ':');
 				attending = entry;
 
+				std::getline(readFile, entry);
 				//std::cout << "5." << '\n';
 
 				eventDate.setYear(year);
@@ -3428,12 +3431,14 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 
 		std::ifstream readFile;
 		std::string temp;
+		std::string isMultiDayFlag;
 		std::string yearString;
 		std::string month;
 		std::string day;
 		std::string timeClock;
 		std::string eventName;
 		std::string attendingString;
+		std::string tasks;
 		std::string inbuf;
 		std::string initalLine;
 		std::string replace_string;
@@ -3454,6 +3459,9 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 				//store each value of each event in temparary varibles
 				std::string entry;
 
+				std::getline(readFile, entry, ':'); 
+				isMultiDayFlag = entry;
+
 				std::getline(readFile, entry, ':');
 				//year = std::atoi(entry.c_str());
 				yearString = entry;
@@ -3470,8 +3478,12 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 				std::getline(readFile, entry, ':');
 				eventName = entry;
 
-				std::getline(readFile, entry, '\n');
+				std::getline(readFile, entry, ':');
 				attending = entry;
+				
+				std::getline(readFile, entry, '\n'); 
+				tasks = entry;
+
 
 					//check that the line isnt blank, and that the temprary even name read in equals the one we are searching for
 					if((eventName == eventNameCheck))
@@ -3485,7 +3497,7 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 						//std::cout << attendingString;
 
 						//assemble the string that includes the event name as one string that can be searched
-						search_string = yearString + ":" + month + ":" + day + ":" + timeClock + ":" + eventName + ":" + attendingString;
+						search_string = yearString + ":" + month + ":" + day + ":" + timeClock + ":" + eventName + ":" + attendingString + ":" + tasks;
 
 						/* //was used to check that search_string was outputting correctly
 						std::cout << "Find: ";
@@ -3501,7 +3513,12 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 						
 
 						//set the replace string to the original string with the new incremented attendence
-						replace_string  = yearString + ":" + month + ":" + day + ":" + timeClock + ":" + eventName + ":" + attendingString;
+						//DO NOT ADD ANYTHING MORE TO replace_string HERE. ADD IT BELOW AFTER THE CORRECT LINE IN THE FILE HAS BEEN FOUND
+						//DO NOT ADD ANYTHING MORE TO replace_string HERE. ADD IT BELOW AFTER THE CORRECT LINE IN THE FILE HAS BEEN FOUND
+						//DO NOT ADD ANYTHING MORE TO replace_string HERE. ADD IT BELOW AFTER THE CORRECT LINE IN THE FILE HAS BEEN FOUND
+						//DO NOT ADD ANYTHING MORE TO replace_string HERE. ADD IT BELOW AFTER THE CORRECT LINE IN THE FILE HAS BEEN FOUND
+						//DO NOT ADD ANYTHING MORE TO replace_string HERE. ADD IT BELOW AFTER THE CORRECT LINE IN THE FILE HAS BEEN FOUND
+						replace_string  = isMultiDayFlag + ":" + yearString + ":" + month + ":" + day + ":" + timeClock + ":" + eventName + ":" + attendingString;
 
 						/* //was used to check that replace_string was outputting correctly
 						std::cout << "Replace with: ";
@@ -3538,6 +3555,7 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 
 					  std::string delimiter = ":";
 					  event_name = inbuf.substr(inbuf.find(delimiter)+1, std::string::npos);
+					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos);
 					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos);
 					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos);
 					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos);
@@ -3578,8 +3596,10 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 						  }
 						  std::string toAdd = "/";
 						  int j = 0;
+						  
 						  std::sort(chosenTimes.begin(), chosenTimes.end());
 						  std::vector<std::string> finalTimes;
+						  
 						  for (auto it = chosenTimes.begin(); it != chosenTimes.end(); ++it)
 						  {
 							  finalTimes.push_back(vec[(*it -1)]);
@@ -3588,10 +3608,11 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 						  {
 							  toAdd += (*it + " ");
 						  }
+						  
 						  std::string mod = toAdd.substr(0, toAdd.find_last_not_of(" ")+1);
 						  toAdd = mod;
 						  toAdd += "/,";
-						  output_file << (replace_string + userName + toAdd);
+						  output_file << (replace_string + userName + toAdd) << ":" << tasks;
 						  if (!input_file.eof())
 						  {
 							  output_file << std::endl;
