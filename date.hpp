@@ -1,4 +1,3 @@
-
 date::date()
 {
   year = 0;

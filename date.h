@@ -146,6 +146,6 @@ class date
 		 */
 		std::string getAttendance();
 };
-
-#include "date.hpp"
+#include "date.hpp";
 #endif
+
