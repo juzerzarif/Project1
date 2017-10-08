@@ -2017,8 +2017,29 @@ bool exec :: admin(bool ultimateEventCheck)
 												}
 											}
 
-											if((eventEndDay - eventStartDay) > 1){
-												int daysBetween = eventEndDay - eventStartDay - 1;
+											if(((eventEndDay - eventStartDay) > 1) || (eventEndMonth!= eventStartMonth)){
+												int daysBetween=0;
+
+												if(eventEndMonth==eventStartMonth){
+													daysBetween = eventEndDay - eventStartDay - 1;
+												}
+
+												if(eventEndMonth!= eventStartMonth){
+															if (eventStartMonth == 1 || eventStartMonth == 3 || eventStartMonth == 5 || eventStartMonth == 7 || eventStartMonth == 8 || eventStartMonth == 10 || eventStartMonth == 12){
+																daysBetween += (31 - eventStartDay);
+																daysBetween += (eventEndDay-1);
+
+															}
+															else if (eventStartMonth==4 || eventStartMonth==6 || eventStartMonth==9 || eventStartMonth==11){
+																daysBetween += (30 - eventStartDay);
+																daysBetween += (eventEndDay-1);
+
+															}else if(eventStartMonth == 2){
+																daysBetween += (28 - eventStartDay);
+																daysBetween += (eventEndDay-1);
+															}
+												}
+
 												for(int g = 0; g<daysBetween; g++){
 													midTime_String3 += wholeDay;
 												}
@@ -2878,18 +2899,11 @@ void exec :: print(bool time)
 		std::cout << "Time       => " << timeClock << '\n';
 		std::cout << "Tasks      => " ;
 		bool spaceFlag = false;
-		if(tasks == "") //IF NO TASKS FOR EVENT, NEWLINE, OTHERWISE PRINT TASKS
+		for(int i = 0; i < tasks.length(); i++)
 		{
-			std::cout << std::endl;
-		}
-		else 
-		{
-			for(int i = 0; i < tasks.length(); i++)
-			{
-				if(spaceFlag){std::cout <<"              ";}
-				if(tasks[i] == ';'){std::cout<<"\n"; spaceFlag = true;}
-				else {std::cout << tasks[i]; spaceFlag = false;}
-			}
+			if(spaceFlag){std::cout <<"              ";}
+			if(tasks[i] == ';'){std::cout<<"\n"; spaceFlag = true;}
+			else {std::cout << tasks[i]; spaceFlag = false;}
 		}
 		std::cout << "Attending  => ";
 		for(int i = 0; i < attending.length(); i++)
@@ -3318,7 +3332,7 @@ bool exec::eventCheck(std::string eventNameCheck)
 		int year = 0;
 
 		std::ifstream readFile;
-		std::string eventName;
+		std::string eventName = eventNameCheck;
 		bool removeCheck = false;
 
 		//open the event file
@@ -3333,20 +3347,29 @@ bool exec::eventCheck(std::string eventNameCheck)
 				//store each value of each event in temparary varibles
 				std::string entry;
 
-				std::getline(readFile, entry, ':'); //multi day
-				std::getline(readFile, entry, ':'); //year
-				std::getline(readFile, entry, ':'); //month
-				std::getline(readFile, entry, ':'); //day
-				std::getline(readFile, entry, ':'); //times
-				std::getline(readFile, eventName, ':'); //event name
-				std::getline(readFile, entry, ':'); //atendees
-				std::getline(readFile, entry, '\n'); //tasks
-				//check that the line isnt blank, and that the temprary event name read in equals the one we are searching for
-				if((eventName == eventNameCheck))
-				{
-					//set the fact that we found the event to true
-					removeCheck = true;
-				}
+				std::getline(readFile, entry, ':');
+				year = std::atoi(entry.c_str());
+
+				/*
+				* ignore the info we dont care about
+				*/
+				std::getline(readFile, entry, ':');
+				std::getline(readFile, entry, ':');
+				std::getline(readFile, entry, ':');
+
+				std::getline(readFile, entry, ':');
+				eventName = entry;
+
+				std::getline(readFile, entry, '\n');
+
+					//check that the line isnt blank, and that the temprary event name read in equals the one we are searching for
+					if((year != 0) && (eventName == eventNameCheck))
+					{
+						//set the fact that we found the event to true
+						removeCheck = true;
+					}
+
+
 			}
 			readFile.close();//close file
 		}
