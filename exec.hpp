@@ -2536,7 +2536,42 @@ void exec :: user()
 
 
 	}
+std::string exec::getTasksForSingleEvent(std::string eventName)
+{
+	//open the input file
+	std::fstream input_file("eventFile.txt", std::ios::in);
+	std::string tasks;
+	std::string inbuf;
+	int index = 0;
+	while (!input_file.eof())
+	{
+		std::getline(input_file, inbuf);
+		std::string event_name;
+		std::string delimiter = ":";
+		std::string timeDelimiter = " ";
 
+		event_name = inbuf.substr(inbuf.find(delimiter) + 1, std::string::npos);
+		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);
+		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);
+		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);
+		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);
+		event_name = event_name.substr(0, event_name.find(delimiter));
+		if (event_name == eventName)
+		{//0:2017:10:3:800 830 900 930:Birthday:Kaiser/800 830 900 930/,:Bring Chips/0;
+			tasks = inbuf.substr(inbuf.find(delimiter) + 1, std::string::npos);//multi day
+			tasks = tasks.substr(tasks.find(delimiter) + 1, std::string::npos);//year
+			tasks = tasks.substr(tasks.find(delimiter) + 1, std::string::npos);//month
+			tasks = tasks.substr(tasks.find(delimiter) + 1, std::string::npos);//day
+			tasks = tasks.substr(tasks.find(delimiter) + 1, std::string::npos);//times
+			tasks = tasks.substr(tasks.find(delimiter) + 1, std::string::npos);//Event Name
+			tasks = tasks.substr(tasks.find(delimiter) + 1, std::string::npos);//Attendees
+			tasks = tasks.substr(tasks.find(delimiter) + 1, std::string::npos);//Tasks
+		}
+	}
+	input_file.close();
+
+	return tasks;
+}
 std::vector<std::string> exec::getTimeOfSingleEvent(std::string eventName)
 {
 	//open the input file
@@ -2561,6 +2596,7 @@ std::vector<std::string> exec::getTimeOfSingleEvent(std::string eventName)
 		event_name = event_name.substr(0, event_name.find(delimiter));
 		if (event_name == eventName)
 		{
+			
 			event_time = inbuf.substr(inbuf.find(delimiter) + 1, std::string::npos);
 			event_time = event_time.substr(event_name.find(delimiter) + 1, std::string::npos);
 			event_time = event_time.substr(event_name.find(delimiter) + 1, std::string::npos);
@@ -2655,7 +2691,7 @@ void exec :: print(bool time)
 	std::string timeClock;
 	std::string eventName;
 	std::string attending = "";
-
+	std::string tasks;
 	std::string nameMonth;
 	int startTime = 0;
 	int endTime = 0;
@@ -3218,10 +3254,18 @@ void exec :: print(bool time)
 			case 12 : nameMonth = "December";  break;
 		}
 
-
+		tasks = getTasksForSingleEvent(eventName);
 		std::cout << "Event      => " << ':' <<eventName << ':' << "\n";
 		std::cout << "Date       => " << nameMonth << " " << day << ", " << year << "\n";
 		std::cout << "Time       => " << timeClock << '\n';
+		std::cout << "Tasks      => " ;
+		bool spaceFlag = false;
+		for(int i = 0; i < tasks.length(); i++)
+		{
+			if(spaceFlag){std::cout <<"              ";}
+			if(tasks[i] == ';'){std::cout<<"\n"; spaceFlag = true;}
+			else {std::cout << tasks[i]; spaceFlag = false;}
+		}
 		std::cout << "Attending  => ";
 		for(int i = 0; i < attending.length(); i++)
 		{
