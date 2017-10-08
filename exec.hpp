@@ -1851,7 +1851,7 @@ bool exec :: admin(bool ultimateEventCheck)
 
 											do
 											{
-												std::cin >> initialTime;
+												std::cin >> endTime;
 												std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 												if(std::cin.fail())
@@ -1863,7 +1863,7 @@ bool exec :: admin(bool ultimateEventCheck)
 												}
 												else
 												{
-													int i = initialTime;
+													int i = endTime;
 													int len = 1;
 
 													if (i > 0) { //Count number of digits in given time.
@@ -1872,7 +1872,7 @@ bool exec :: admin(bool ultimateEventCheck)
 														}
 													}
 
-													repeat = timeCheck(initialTime, len, hoursChoiceBool);
+													repeat = timeCheck(endTime, len, hoursChoiceBool);
 												}
 											}while(repeat);
 
@@ -1972,21 +1972,62 @@ bool exec :: admin(bool ultimateEventCheck)
 
 										std::string initialTime_String = std::to_string(initialTime);
 										std::string endTime_String = std::to_string(endTime);
-										/*
-										std::string midTimeChoices_24 [];
-										std::string hourString_12 [] = ["1200"]
+										std::string midTime_String1 = "";
+										std::string midTime_String2 = "";
+										std::string midTime_String3  =  "";
+										std::string wholeDay="000 030 100 130 200 230 300 330 400 430 500 530 600 630 700 730 800 830 900 930 1000 1030 1100 1130 1200 1230 1300 1330 1400 1430 1500 1530 1600 1630 1700 1730 1800 1830 1900 1930 2000 2030 2100 2130 2200 2230 2300 2330 ,";
 
-										for(int i=0; i<47;i++){
-											midTimeChoices_24[i] =
-										}
-										if(hoursChoiceBool){
+										bool timeIsFound1 = false;
 
-										}else{
+										std::string hourString_24 [24]  = {"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"};
+										std::string minuteString [2] = {"00","30"};
 
-										}
-										*/
 
-										eventTime = initialTime_String +" "+endTime_String;
+											for(int i=0; i<24;i++){
+												for(int j=0; j<2;j++){
+													std::string checkTime = hourString_24[i] + minuteString[j];
+
+													if(timeIsFound1){
+														midTime_String1 += checkTime + " ";
+													}
+
+													if(initialTime_String == checkTime){
+														std::cout<<"It found it\n";
+														timeIsFound1 = true;
+													}
+
+												}
+											}
+
+											bool timeIsFound2 = false;
+											for(int m=0; m<24;m++){
+												for(int n=0; n<2;n++){
+													std::string checkTime = hourString_24[m] + minuteString[n];
+
+
+													if(endTime_String == checkTime){
+														std::cout<<"It found it\n";
+														timeIsFound2 = true;
+													}
+													if(!timeIsFound2){
+														midTime_String2 += checkTime + " ";
+													}
+
+
+												}
+											}
+
+											if((eventEndDay - eventStartDay) > 1){
+												int daysBetween = eventEndDay - eventStartDay - 1;
+												for(int g = 0; g<daysBetween; g++){
+													midTime_String3 += wholeDay;
+												}
+											}
+
+
+
+
+										eventTime = initialTime_String + " "+ midTime_String1+"," + midTime_String3+ midTime_String2+ endTime_String;
 
 
 
@@ -2173,7 +2214,7 @@ std::vector<std::string> exec::getTimeOfSingleEvent(std::string eventName)
 		event_name = event_name.substr(0, event_name.find(delimiter));
 		if (event_name == eventName)
 		{
-			
+
 			event_time = inbuf.substr(inbuf.find(delimiter) + 1, std::string::npos);
 			event_time = event_time.substr(event_name.find(delimiter) + 1, std::string::npos);
 			event_time = event_time.substr(event_name.find(delimiter) + 1, std::string::npos);
