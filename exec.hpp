@@ -3260,11 +3260,18 @@ void exec :: print(bool time)
 		std::cout << "Time       => " << timeClock << '\n';
 		std::cout << "Tasks      => " ;
 		bool spaceFlag = false;
-		for(int i = 0; i < tasks.length(); i++)
+		if(tasks == "") //IF NO TASKS FOR EVENT, NEWLINE, OTHERWISE PRINT TASKS
 		{
-			if(spaceFlag){std::cout <<"              ";}
-			if(tasks[i] == ';'){std::cout<<"\n"; spaceFlag = true;}
-			else {std::cout << tasks[i]; spaceFlag = false;}
+			std::cout << std::endl;
+		}
+		else 
+		{
+			for(int i = 0; i < tasks.length(); i++)
+			{
+				if(spaceFlag){std::cout <<"              ";}
+				if(tasks[i] == ';'){std::cout<<"\n"; spaceFlag = true;}
+				else {std::cout << tasks[i]; spaceFlag = false;}
+			}
 		}
 		std::cout << "Attending  => ";
 		for(int i = 0; i < attending.length(); i++)
