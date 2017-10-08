@@ -1302,6 +1302,8 @@ bool exec :: admin(bool ultimateEventCheck)
 					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 					//END of Tasks
 					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 					std::ifstream fileExists("eventFile.txt");
 					if(fileExists) //If file exists, start at the end, add new line and add info
 					{
@@ -1322,6 +1324,210 @@ bool exec :: admin(bool ultimateEventCheck)
 						ultimateEventCheck = false;
 					}
 					std::cout << "Event created!\n";
+
+					/*
+					----------------Repeat the Event Creation--------------------------
+					*/
+					bool repeatEventBool = false;
+					bool validRepeatResponse = false;
+					do{
+
+						std::cout << "==============================\n";
+						std::cout << "Would you like to create a repeat the event on another day?\n";
+						std::cout << "1)Yes\n";
+						std::cout << "2)No\n";
+						std::cout << "==============================\n";
+						std::string eventRepeatChoice = "";
+
+						//std::cin.ignore();
+
+						//Choose Single Day Or multiDay
+						do
+						{
+
+							std::getline(std::cin, eventRepeatChoice);
+
+							if(eventRepeatChoice == "2") //Don't Repeat
+							{
+								multiDayInt = 1;
+								validRepeatResponse = true;
+								repeatEventBool=false;
+							}
+							else if (eventRepeatChoice == "1") //Do Repeat
+							{
+								multiDayInt = 0;
+								validRepeatResponse = true;
+								repeatEventBool = true;
+
+								//
+								//------------------Repeat Select Year, Month, Day-------------
+								//
+
+								std::cout << "What year will the event be on? It can be from 2017 to 2021.\n";
+
+								//Choose year of event
+								do
+								{
+									superBool = true;
+
+
+									std::cin >> eventYear;
+									std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+									if(std::cin.fail())
+									{
+										while(std::cin.fail()) {
+											std::cout << "Invalid input. Please enter a valid input:\n";
+											std::cin.clear();
+											std::cin.ignore(256,'\n');
+											superBool = false;
+										}
+									}
+									else if(eventYear < 2017 || eventYear > 2021)
+									{
+										std::cout << "Invalid year. Years have to be between 2017 and 2021.\n";
+										superBool = false;
+									}
+								}while(!superBool);
+								//Choose month of event
+								do
+								{
+									std::cout << "==============================\n";
+									std::cout << "What month will the event be on?:\n";
+									std::cout << "1) January\n";
+									std::cout << "2) February\n";
+									std::cout << "3) March\n";
+									std::cout << "4) April\n";
+									std::cout << "5) May\n";
+									std::cout << "6) June\n";
+									std::cout << "7) July\n";
+									std::cout << "8) August\n";
+									std::cout << "9) September\n";
+									std::cout << "10) October\n";
+									std::cout << "11) November\n";
+									std::cout << "12) December\n";
+									std::cout << "==============================\n";
+									std::cin >> eventMonth;
+									std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+									if(std::cin.fail()) {
+										//std::cout << "Invalid input. Please enter a valid input:\n";
+										std::cin.clear();
+										std::cin.ignore(256,'\n');
+										eventMonthCheck = true;
+									}
+
+									if(eventMonth < 1 || eventMonth > 12)
+									{
+										std::cout << "\nINVALID INPUT. Please choose a valid option: \n \n";
+									}
+									else
+									{
+										eventMonthCheck = false;
+									}
+								}while(eventMonthCheck);
+								std::cout << "==============================\n";
+								std::cout << "What numerical day will your event be on?\n";
+								std::cout << "==============================\n";
+
+								//Choose day of event
+								do
+								{
+									std::cin >> eventDay;
+									std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+									if(std::cin.fail()) {
+										//std::cout << "Invalid input. Please enter a valid input:\n";
+										std::cin.clear();
+										std::cin.ignore(256,'\n');
+										eventDayCheck = true;
+									}
+
+									if(eventDay < 1)
+									{
+										std::cout << "Invalid day.\n";
+										eventDayCheck = true;
+									}
+									else if (eventMonth == 1 || eventMonth == 3 || eventMonth == 5 || eventMonth == 7 || eventMonth == 8 || eventMonth == 10 || eventMonth == 12)
+									{
+										if(eventDay < 0 || eventDay > 31)
+										{
+											std::cout << "Invalid day for the chosen month. Please enter a valid day:\n";
+											eventDayCheck = true;
+										}
+										else
+										{
+											eventDayCheck = false;
+										}
+									}
+									else if (eventMonth == 4 || eventMonth == 6 || eventMonth == 9 || eventMonth == 11)
+									{
+										if(eventDay < 0 || eventDay > 30)
+										{
+											std::cout << "Invalid day for the chosen month. Please enter a valid day:\n";
+											eventDayCheck = true;
+										}
+										else
+										{
+											eventDayCheck = false;
+										}
+									}
+									else if (eventMonth == 2)
+									{
+										if(eventYear != 2020 && (eventDay < 0 || eventDay > 28))
+										{
+											std::cout << "Invalid day for the chosen month. Please enter a valid day:\n";
+											eventDayCheck = true;
+										}
+										else if(eventYear == 2020 && (eventDay < 0 || eventDay > 29))
+										{
+											std::cout << "Invalid day for the chosen month. Please enter a valid day:\n";
+											eventDayCheck = true;
+										}
+										else
+										{
+											eventDayCheck = false;
+										}
+									}
+									else
+									{
+										std::cout << "This should never print";
+									}
+								}while(eventDayCheck);
+
+								//
+								//--------------Event End Select year month day----------------
+								//
+
+								//
+								//--------------Event Repeat Write out to file---------------------
+								//
+
+								std::ofstream outFile;
+								outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
+								std::cout << peopleAttending;
+								outFile << '\n' << multiDayInt <<":"<< eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << (peopleAttending + "/" + eventTime + "/,") <<":"<<eventTaskList; //Juzer: Added Tasks
+								outFile.close();
+
+								//
+								//---------------End of event repeat write to file----------------
+								//
+
+
+							}
+							else
+							{
+								std::cout << "Invalid input. Please enter a valid input:\n";
+								validRepeatResponse = false;
+							}
+						}while(!validRepeatResponse);
+					}while(repeatEventBool);
+
+					//
+					//--------------------End of Event Repeat
+					//
+
+
 					eventBreak = "";
 					//std::cin.ignore();
 				}
@@ -1992,7 +2198,6 @@ bool exec :: admin(bool ultimateEventCheck)
 													}
 
 													if(initialTime_String == checkTime){
-														std::cout<<"It found it\n";
 														timeIsFound1 = true;
 													}
 
@@ -2006,7 +2211,6 @@ bool exec :: admin(bool ultimateEventCheck)
 
 
 													if(endTime_String == checkTime){
-														std::cout<<"It found it\n";
 														timeIsFound2 = true;
 													}
 													if(!timeIsFound2){
@@ -2048,7 +2252,7 @@ bool exec :: admin(bool ultimateEventCheck)
 
 
 
-										eventTime = initialTime_String + " "+ midTime_String1+"," + midTime_String3+ midTime_String2+ endTime_String;
+										eventTime = initialTime_String + " "+ midTime_String1+"," + midTime_String3 + midTime_String2 + endTime_String;
 
 
 
@@ -2062,7 +2266,6 @@ bool exec :: admin(bool ultimateEventCheck)
 						outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
 						std::cout << peopleAttending;
 						outFile << '\n' << multiDayInt <<":"<< eventStartYear <<" "<< eventEndYear << ":" << eventStartMonth <<" "<< eventEndMonth << ":" << eventStartDay <<" "<< eventEndDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
-						std::cout <<"Writing this to file"<< multiDayInt <<":"<< eventStartYear <<" "<< eventEndYear << ":" << eventStartMonth <<" "<< eventEndMonth << ":" << eventStartDay <<" "<< eventEndDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
 						outFile.close();
 
 					}
@@ -2072,7 +2275,6 @@ bool exec :: admin(bool ultimateEventCheck)
 						outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
 						std::cout << peopleAttending;
 						outFile << multiDayInt <<":"<< eventStartYear <<" "<< eventEndYear << ":" << eventStartMonth <<" "<< eventEndMonth << ":" << eventStartDay <<" "<< eventEndDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
-						std::cout <<"Writing this to file"<< multiDayInt <<":"<< eventStartYear <<" "<< eventEndYear << ":" << eventStartMonth <<" "<< eventEndMonth << ":" << eventStartDay <<" "<< eventEndDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
 						outFile.close();
 						ultimateEventCheck = false;
 					}
