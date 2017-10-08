@@ -2878,11 +2878,18 @@ void exec :: print(bool time)
 		std::cout << "Time       => " << timeClock << '\n';
 		std::cout << "Tasks      => " ;
 		bool spaceFlag = false;
-		for(int i = 0; i < tasks.length(); i++)
+		if(tasks == "") //IF NO TASKS FOR EVENT, NEWLINE, OTHERWISE PRINT TASKS
 		{
-			if(spaceFlag){std::cout <<"              ";}
-			if(tasks[i] == ';'){std::cout<<"\n"; spaceFlag = true;}
-			else {std::cout << tasks[i]; spaceFlag = false;}
+			std::cout << std::endl;
+		}
+		else 
+		{
+			for(int i = 0; i < tasks.length(); i++)
+			{
+				if(spaceFlag){std::cout <<"              ";}
+				if(tasks[i] == ';'){std::cout<<"\n"; spaceFlag = true;}
+				else {std::cout << tasks[i]; spaceFlag = false;}
+			}
 		}
 		std::cout << "Attending  => ";
 		for(int i = 0; i < attending.length(); i++)
@@ -3311,7 +3318,7 @@ bool exec::eventCheck(std::string eventNameCheck)
 		int year = 0;
 
 		std::ifstream readFile;
-		std::string eventName = eventNameCheck;
+		std::string eventName;
 		bool removeCheck = false;
 
 		//open the event file
@@ -3326,29 +3333,20 @@ bool exec::eventCheck(std::string eventNameCheck)
 				//store each value of each event in temparary varibles
 				std::string entry;
 
-				std::getline(readFile, entry, ':');
-				year = std::atoi(entry.c_str());
-
-				/*
-				* ignore the info we dont care about
-				*/
-				std::getline(readFile, entry, ':');
-				std::getline(readFile, entry, ':');
-				std::getline(readFile, entry, ':');
-
-				std::getline(readFile, entry, ':');
-				eventName = entry;
-
-				std::getline(readFile, entry, '\n');
-
-					//check that the line isnt blank, and that the temprary event name read in equals the one we are searching for
-					if((year != 0) && (eventName == eventNameCheck))
-					{
-						//set the fact that we found the event to true
-						removeCheck = true;
-					}
-
-
+				std::getline(readFile, entry, ':'); //multi day
+				std::getline(readFile, entry, ':'); //year
+				std::getline(readFile, entry, ':'); //month
+				std::getline(readFile, entry, ':'); //day
+				std::getline(readFile, entry, ':'); //times
+				std::getline(readFile, eventName, ':'); //event name
+				std::getline(readFile, entry, ':'); //atendees
+				std::getline(readFile, entry, '\n'); //tasks
+				//check that the line isnt blank, and that the temprary event name read in equals the one we are searching for
+				if((eventName == eventNameCheck))
+				{
+					//set the fact that we found the event to true
+					removeCheck = true;
+				}
 			}
 			readFile.close();//close file
 		}
