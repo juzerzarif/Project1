@@ -36,6 +36,7 @@ class exec
 		std::vector<std::vector<std::string>> getTimes();
 		std::vector<std::string> getTimeOfSingleEvent(std::string event_name);
 		std::string getTasksForSingleEvent(std::string event_name);
+		std::vector<std::string> generateTaskList(std::string event_tasks);
 		/**
 		 *	Public method that takes in no arguments and does not return.
 		 * 	Grants user to use admin options.

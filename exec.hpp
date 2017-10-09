@@ -3466,6 +3466,36 @@ bool exec::timeCheck (int time, int len, bool timeMode)
 	}
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Juzer - Generates a task list of available tasks for user to sign up for
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::vector<std::string> exec::generateTaskList(std::string event_tasks)
+{
+	std::vector<std::string> task;
+	std::string singleTask;
+	std::string userAssign;
+	
+	while(event_tasks != "")
+	{
+		singleTask = event_tasks.substr(0, event_tasks.find("/"));
+		event_tasks = event_tasks.substr(event_tasks.find("/")+1, std::string::npos);
+		
+		userAssign = event_tasks.substr(0, event_tasks.find(";"));
+		
+		event_tasks = event_tasks.substr(event_tasks.find(";")+1, std::string::npos);
+		
+		
+		if(userAssign.compare("0") == 0)
+		{
+			task.push_back(singleTask);
+		}
+	}
+	return task;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//END
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::vector<std::vector<std::string>> times)
 	{
 		//define used varibles
@@ -3586,7 +3616,6 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 
 		if(removeCheck == true)
 		{
-
 			//open the input file
 			std::fstream input_file("eventFile.txt", std::ios::in);
 
@@ -3596,14 +3625,20 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 				  {
 					  std::getline(input_file, inbuf);
 					  std::string event_name;
+					  std::string event_tasks;
 
 					  std::string delimiter = ":";
-					  event_name = inbuf.substr(inbuf.find(delimiter)+1, std::string::npos);
-					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos);
-					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos);
-					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos);
-					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos);
-					  event_name = event_name.substr(0, event_name.find(delimiter));
+					  event_name = inbuf.substr(inbuf.find(delimiter)+1, std::string::npos); //multiDay flag
+					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos); //year
+					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos); //month
+					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos); //day
+					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos); //times
+					  event_tasks = event_name.substr(event_name.find(delimiter)+1, std::string::npos); //event name + everything else. Gonna use this string to store tasks. event_name will be used to store the name of the event - Juzer
+					  event_tasks = event_tasks.substr(event_tasks.find(delimiter)+1, std::string::npos); //attendees
+					  event_tasks = event_tasks.substr(event_tasks.find(delimiter)+1, std::string::npos); //tasks
+					  //std::cout<<event_tasks; 
+					  event_name = event_name.substr(0, event_name.find(delimiter)); //event name
+					  //std::cout<<event_name;
 					  if (event_name == eventNameCheck)
 					  {
 						  std::vector<std::string> vec = getTimeOfSingleEvent(event_name);
@@ -3656,7 +3691,104 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 						  std::string mod = toAdd.substr(0, toAdd.find_last_not_of(" ")+1);
 						  toAdd = mod;
 						  toAdd += "/,";
-						  output_file << (replace_string + userName + toAdd) << ":" << tasks;
+
+						//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+						//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+						//User sign up for events
+						/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+						/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+						  
+
+						int userTaskChoice = 0;
+						bool userTaskCheck = false;
+						do
+						{
+							userTaskCheck = true;
+							std::cout<<"==============================\n";
+							std::cout<<"Do you want to sign up for tasks?\n";
+							std::cout<<"1) Yes\n";
+							std::cout<<"2) No\n";
+							std::cout<<"==============================\n";
+	
+							std::cin>>userTaskChoice;
+							std::cin.ignore(256, '\n');
+							//std::getline(std::cin, taskChoice);
+							if(std::cin.fail())
+							{
+								userTaskCheck = false;
+								std::cout<<"Invalid input. Please try againn\n";
+								std::cin.clear();
+								std::cin.ignore(256, '\n');
+							}
+	
+							if(userTaskChoice>2 || userTaskChoice<1)
+							{
+								userTaskCheck = false;
+								std::cout<<"Invalid option. Please try again\n";
+							}
+	
+						}while(!userTaskCheck);
+
+						if(userTaskChoice == 1)
+						{
+							
+							std::vector<std::string> task = generateTaskList(event_tasks);
+							if(task.size() == 0)
+							{
+								std::cout<<"==============================\n";
+								std::cout<<"There are no tasks left to be done. You lucked out!\n";
+								std::cout<<"==============================\n";
+							}
+							else
+							{
+								std::cout<<"==============================\n";
+								std::cout<<"Here are the available events:\n";
+								for(int i=0; i<task.size(); i++)
+								{
+									std::cout<<i+1<<") "<<task[i]<<"\n";
+								}
+								std::cout<<"==============================\n";
+								
+								int userChoice;
+								std::cout<<"What tasks do you wanna sign up for? Enter 0 when done selecting\n";
+								do
+								{
+									bool check = false;
+									do
+									{
+										check = true;
+										std::cin>>userChoice;
+										std::cin.ignore(256, '\n');
+										if(std::cin.fail())
+										{
+											check = false;
+											std::cout<<"Invalid input. Please try againn\n";
+											std::cin.clear();
+											std::cin.ignore(256, '\n');
+										}
+										if(userChoice>task.size() || userChoice<0)
+										{
+											check = false;
+											std::cout<<"Invalid option. Please try again\n";
+										}
+									}while(!check);
+
+									if(userChoice != 0)
+									{
+										std::string selectedTask = task.at(userChoice-1);
+										int len = selectedTask.size();
+										int pos = event_tasks.find(selectedTask)+len+1;
+										event_tasks.replace(pos, 1, userName);
+									}
+								}while(userChoice != 0);
+							}
+								
+						  }
+						  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+						  //END OF USER TASK SIGN UP
+						  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+						  output_file << (replace_string + userName + toAdd) << ":" << event_tasks;
 						  if (!input_file.eof())
 						  {
 							  output_file << std::endl;
@@ -3686,6 +3818,7 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 			//returns if the event was found
 			return(removeCheck);
 	}
+
 
 bool exec::eventCheck(std::string eventNameCheck)
 	{
