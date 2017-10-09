@@ -3605,7 +3605,7 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 		else
 		{
 			//if file dint open for some reason output that.
-			std::cout << "Error Opening File!" << '\n';
+			//std::cout << "Error Opening File!" << '\n';
 
 		}
 
@@ -3886,7 +3886,7 @@ bool exec::eventCheck(std::string eventNameCheck)
 		else
 		{
 			//if file didnt open for some reason output that.
-			std::cout << "Error Opening File!" << '\n';
+			//std::cout << "Error Opening File!" << '\n';
 
 		}
 		return(removeCheck);
