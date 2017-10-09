@@ -1505,7 +1505,7 @@ bool exec :: admin(bool ultimateEventCheck)
 
 								std::ofstream outFile;
 								outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
-								std::cout << peopleAttending;
+								//std::cout << peopleAttending;
 								outFile << '\n' << multiDayInt <<":"<< eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << (peopleAttending + "/" + eventTime + "/,") <<":"<<eventTaskList; //Juzer: Added Tasks
 								outFile.close();
 
