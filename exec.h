@@ -93,7 +93,7 @@ class exec
 		 * 	@param eventNameCheck is the first parameter.
 		 *	@return true if the event was found in the list, false otherwise.
 		 */
-		bool updateEvent(std::string eventNameCheck, std::string userName, std::vector<std::vector<std::string>> times);
+		bool updateEvent(std::string eventNameCheck, std::string userName, std::vector<std::vector<std::string>> times, std::string year, std::string month, std::string day);
 
 		void userChooseHours(std::vector<std::vector<std::string>> times);
 
