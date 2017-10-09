@@ -3591,6 +3591,7 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 								userTaskCheck = false;
 								std::cout<<"Invalid option. Please try again\n";
 							}
+
 	
 						}while(!userTaskCheck);
 
@@ -3615,10 +3616,12 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 								std::cout<<"==============================\n";
 								
 								int userChoice;
+								std::string input;
 								std::cout<<"What tasks do you wanna sign up for? Enter 0 when done selecting\n";
 								do
 								{
 									bool check = false;
+									
 									do
 									{
 										check = true;
@@ -3636,10 +3639,16 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 											check = false;
 											std::cout<<"Invalid option. Please try again\n";
 										}
+										if(input.find(std::to_string(userChoice)) != std::string::npos)
+										{
+											check = false;
+											std::cout<<"You entered a duplicate, your entry was not added.\n";
+										}
 									}while(!check);
 
 									if(userChoice != 0)
 									{
+										input += (std::to_string(userChoice)+",");
 										std::string selectedTask = task.at(userChoice-1);
 										int len = selectedTask.size();
 										int pos = event_tasks.find(selectedTask)+len+1;
