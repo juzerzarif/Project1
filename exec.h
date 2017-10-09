@@ -36,7 +36,15 @@ class exec
 		std::vector<std::vector<std::string>> getTimes();
 		std::vector<std::string> getTimeOfSingleEvent(std::string event_name);
 		std::string getTasksForSingleEvent(std::string event_name);
+
+		/**
+		 * Public method that takes as argument the task list section from the output file, and returns a vector of tasks.
+		 * Details: Creates a vector of tasks that haven't already been signed up for by other users
+		 * @param std::string event_name: The entire task list as formatted in the output file. example: Task1_Name/Task1_User;Tas2_Name/Task2_User;Task3...
+		 * @return vector of undone tasks  
+		 */
 		std::vector<std::string> generateTaskList(std::string event_tasks);
+		
 		/**
 		 *	Public method that takes in no arguments and does not return.
 		 * 	Grants user to use admin options.
