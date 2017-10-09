@@ -3121,11 +3121,17 @@ void exec :: print(bool time)
 		std::cout << "Time       => " << timeClock << '\n';
 		std::cout << "Tasks      => " ;
 		bool spaceFlag = false;
+		bool isTasks = false;
 		for(int i = 0; i < tasks.length(); i++)
 		{
+			isTasks = true;
 			if(spaceFlag){std::cout <<"              ";}
 			if(tasks[i] == ';'){std::cout<<"\n"; spaceFlag = true;}
 			else {std::cout << tasks[i]; spaceFlag = false;}
+		}
+		if(!isTasks)
+		{
+			std::cout << std::endl;
 		}
 		std::cout << "Attending  => ";
 		for(int i = 0; i < attending.length(); i++)
