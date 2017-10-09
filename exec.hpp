@@ -3822,10 +3822,8 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 				  input_file.close();
 				  output_file.close();
 				//deletes the original textfile
-				if (remove("eventFile.txt") != 0)
-					perror("Error deleting file");
-				else
-					puts("File successfully deleted");
+				remove("eventFile.txt")
+
 
 				//renames the newly created textfile to the old name
 				rename("update.txt", "eventFile.txt");
