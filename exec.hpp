@@ -2354,6 +2354,20 @@ void exec :: user(){
 			std::cout << "Please enter the name of the event you wish to attend.\nEvent names lie between colons(:), don't include them! :D \n";
 			std::cin.ignore();
 			std::getline (std::cin,eventName,'\n');
+
+			std::string c_year;
+			std::string c_month;
+			std::string c_day;
+
+			std::cout << "Please enter the year of the event you want to attend.";
+			std::getline(std::cin, c_year, '\n');
+
+			std::cout << "Please enter the month (in number form) of the event you want to attend.";
+			std::getline(std::cin, c_month, '\n');
+
+			std::cout << "Please enter the day (in number form) of the event you want to attend.";
+			std::getline(std::cin, c_day, '\n');
+
 			std::cout << "==============================" << '\n';
 
 			std::cout << "User, what is your name?\n";
@@ -2361,7 +2375,7 @@ void exec :: user(){
 			std::getline(std::cin, userName);
 
 
-	   	bool foundCheck = updateEvent(eventName, userName, getTimes());
+	   	bool foundCheck = updateEvent(eventName, userName, getTimes(), c_year, c_month, c_day);
 
 
 	   	if(foundCheck == true)
@@ -2456,7 +2470,7 @@ std::vector<std::string> exec::getTimeOfSingleEvent(std::string eventName)
 					times.push_back(event_time);
 				}
 			}
-
+			break;
 		}
 		index++;
 	}
@@ -3337,12 +3351,14 @@ std::vector<std::string> exec::generateTaskList(std::string event_tasks)
 //END
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::vector<std::vector<std::string>> times)
+bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::vector<std::vector<std::string>> times, std::string a_year, std::string a_month, std::string a_day)
 	{
 		//define used varibles
 		//int year = 0;
 		std::string attending = "";
 		//int i = 0;
+
+
 
 		std::ifstream readFile;
 		std::string temp;
@@ -3401,7 +3417,7 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 
 
 					//check that the line isnt blank, and that the temprary even name read in equals the one we are searching for
-					if((eventName == eventNameCheck))
+					if((eventName == eventNameCheck) && (a_year == yearString) && (a_month == month) && (a_day == day))
 					{
 						//set the fact that we found the event to true
 						removeCheck = true;
@@ -3467,11 +3483,19 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 					  std::getline(input_file, inbuf);
 					  std::string event_name;
 					  std::string event_tasks;
+					  std::string b_year;
+					  std::string b_month;
+					  std::string b_day;
+
+
 
 					  std::string delimiter = ":";
 					  event_name = inbuf.substr(inbuf.find(delimiter)+1, std::string::npos); //multiDay flag
+					  b_year = event_name.substr(0, event_name.find(delimiter));
 					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos); //year
+					  b_month = event_name.substr(0, event_name.find(delimiter));
 					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos); //month
+					  b_day = event_name.substr(0, event_name.find(delimiter));
 					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos); //day
 					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos); //times
 					  event_tasks = event_name.substr(event_name.find(delimiter)+1, std::string::npos); //event name + everything else. Gonna use this string to store tasks. event_name will be used to store the name of the event - Juzer
@@ -3480,7 +3504,7 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 					  //std::cout<<event_tasks; 
 					  event_name = event_name.substr(0, event_name.find(delimiter)); //event name
 					  //std::cout<<event_name;
-					  if (event_name == eventNameCheck)
+					  if ((event_name == eventNameCheck) && (a_year == b_year) && (a_month == b_month) && (a_year == b_year))
 					  {
 						  std::vector<std::string> vec = getTimeOfSingleEvent(event_name);
 						  int i = 1;
