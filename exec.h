@@ -35,7 +35,7 @@ class exec
 		~exec();
 		std::vector<std::vector<std::string>> getTimes();
 		std::vector<std::string> getTimeOfSingleEvent(std::string event_name);
-		std::string getTasksForSingleEvent(std::string event_name);
+		std::string getTasksForSingleEvent(std::string event_name, std::string year, std::string month, std::string day);
 
 		/**
 		 * Public method that takes as argument the task list section from the output file, and returns a vector of tasks.

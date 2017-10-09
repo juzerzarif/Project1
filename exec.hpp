@@ -2391,7 +2391,7 @@ void exec :: user(){
 
 
 	}
-std::string exec::getTasksForSingleEvent(std::string eventName)
+std::string exec::getTasksForSingleEvent(std::string eventName, std::string a_year, std::string a_month, std::string a_day)
 {
 	//open the input file
 	std::fstream input_file("eventFile.txt", std::ios::in);
@@ -2404,14 +2404,20 @@ std::string exec::getTasksForSingleEvent(std::string eventName)
 		std::string event_name;
 		std::string delimiter = ":";
 		std::string timeDelimiter = " ";
+		std::string b_year;
+		std::string b_month;
+		std::string b_day;
 
-		event_name = inbuf.substr(inbuf.find(delimiter) + 1, std::string::npos);
-		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);
-		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);
-		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);
-		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);
+		event_name = inbuf.substr(inbuf.find(delimiter) + 1, std::string::npos);//multi
+		b_year = event_name.substr(0, event_name.find(delimiter));
+		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);//year
+		b_month = event_name.substr(0, event_name.find(delimiter));
+		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);//month
+		b_day = event_name.substr(0, event_name.find(delimiter));
+		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);//day
+		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);//times
 		event_name = event_name.substr(0, event_name.find(delimiter));
-		if (event_name == eventName)
+		if ((event_name == eventName) && (a_year == b_year) && (a_month == b_month) && (a_day == b_day))
 		{//0:2017:10:3:800 830 900 930:Birthday:Kaiser/800 830 900 930/,:Bring Chips/0;
 			tasks = inbuf.substr(inbuf.find(delimiter) + 1, std::string::npos);//multi day
 			tasks = tasks.substr(tasks.find(delimiter) + 1, std::string::npos);//year
@@ -3109,7 +3115,7 @@ void exec :: print(bool time)
 			case 12 : nameMonth = "December";  break;
 		}
 
-		tasks = getTasksForSingleEvent(eventName);
+		tasks = getTasksForSingleEvent(eventName, std::to_string(year), std::to_string(month), std::to_string(day));
 		std::cout << "Event      => " << ':' <<eventName << ':' << "\n";
 		std::cout << "Date       => " << nameMonth << " " << day << ", " << year << "\n";
 		std::cout << "Time       => " << timeClock << '\n';
