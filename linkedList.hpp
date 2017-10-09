@@ -183,17 +183,17 @@ bool linkedList<T>::compareDates(T value0, T value1)
 {
 	bool comparer = false;
 
-	if(value0.getYear() < value1.getYear())
+	if(value0.initial_year < value1.initial_year)
 	{
 		comparer = true;
 		return(comparer);
 	}
-	if(value0.getYear() == value1.getYear() && value0.getMonth() < value1.getMonth())
+	if(value0.initial_year == value1.initial_year && value0.initial_month < value1.initial_month)
 	{
 		comparer = true;
 		return(comparer);
 	}
-	if(value0.getYear() == value1.getYear() && value0.getMonth() == value1.getMonth() && value0.getDay() < value1.getDay())
+	if(value0.initial_year == value1.initial_year && value0.initial_month == value1.initial_month && value0.initial_day < value1.initial_day)
 	{
 		comparer = true;
 		return(comparer);

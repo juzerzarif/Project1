@@ -1,12 +1,15 @@
 date::date()
 {
-  year = 0;
-  month = 0;
-  day = 0;
+  year = "";
+  month = "";
+  day = "";
   time = "";
   event = "";
   attendance = "";
   tasks = "";
+  initial_year = 0;
+  initial_month = 0;
+  initial_day = 0;
 }
 
 /*bool operator == (const date& date1, const date& date2)
@@ -14,32 +17,32 @@ date::date()
   return(year == year && month == month && day == day)
 }*/
 
-void date::setYear(int y)
+void date::setYear(std::string y)
 {
   year = y;
 }
 
-int date::getYear()
+std::string date::getYear()
 {
   return year;
 }
 
-void date::setMonth(int m)
+void date::setMonth(std::string m)
 {
   month = m;
 }
 
-int date::getMonth()
+std::string date::getMonth()
 {
   return month;
 }
 
-void date::setDay(int d)
+void date::setDay(std::string d)
 {
   day = d;
 }
 
-int date::getDay()
+std::string date::getDay()
 {
   return day;
 }

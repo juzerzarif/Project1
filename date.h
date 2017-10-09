@@ -17,17 +17,19 @@ class date
 		/**
 		 *	Private member variable. Holds the date's year.
 		 */
-		int year;
+		std::string year;
+
+
 
 		/**
 		 *	Private member variable. Holds the date's month.
 		 */
-		int month;
+		std::string month;
 
 		/**
 		 *	Private member variable. Holds the date's day.
 		 */
-		int day;
+		std::string day;
 
 		/**
 		 *	Private member variable. Holds the date's time. startTime endTime = hourMinute hourMinute
@@ -43,7 +45,7 @@ class date
 		 *	Private member variable. Holds the date's list of people attending.
 		 */
 		std::string attendance;
-		
+
 		/**
 		 *	Private member variable. Holds the tasks of the date and attendees assigned to those tasks.
 		 */
@@ -56,26 +58,30 @@ class date
 		 */
 		date();
 
+		int initial_year;
+		int initial_month;
+		int initial_day;
+
 		/**
 		 *	Public method that takes one argument of type int and does not return.
 		 *	Details: Sets the date's year.
 		 *	@param y the first argument.
 		 */
-		void setYear(int y);
+		void setYear(std::string y);
 
 		/**
 		 *	Public method that takes one argument of type int and does not return.
 		 *	Details: Sets the date's month.
 		 *	@param m the first argument.
 		 */
-		void setMonth(int m);
+		void setMonth(std::string m);
 
 		/**
 		 *	Public method that takes one argument of type int and does not return.
 		 *	Details: Sets the date's day.
 		 *	@param d the first argument.
 		 */
-		void setDay(int d);
+		void setDay(std::string d);
 
 		/**
 		 *	Public method that takes one argument of type string and does not return.
@@ -97,7 +103,7 @@ class date
 		 *	@param a the first argument.
 		 */
 		void setAttendance(std::string a);
-		
+
 		/**
 		 *	Public method that takes one argument of type string and does not return.
 		 *	Details: Sets the date's task information.
@@ -108,8 +114,8 @@ class date
 		 *	Public method that takes no arguments and returns an int.
 		 *	@returns the date's current year.
 		 */
-		int getYear();
-		
+		std::string getYear();
+
 		/**
 		 *	Public method that takes no arguments and returns a string.
 		 *	@returns the date's task information.
@@ -120,13 +126,13 @@ class date
 		 *	Public method that takes no arguments and returns an int.
 		 *	@returns the date's current month.
 		 */
-		int getMonth();
+		std::string getMonth();
 
 		/**
 		 *	Public method that takes no arguments and returns an int.
 		 *	@returns the date's current day.
 		 */
-		int getDay();
+		std::string getDay();
 
 		/**
 		 *	Public method that takes no arguments and returns an string.
@@ -148,4 +154,3 @@ class date
 };
 #include "date.hpp"
 #endif
-

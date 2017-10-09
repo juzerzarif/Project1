@@ -1309,7 +1309,7 @@ bool exec :: admin(bool ultimateEventCheck)
 					{
 						std::ofstream outFile;
 						outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
-						std::cout << peopleAttending;
+						//std::cout << peopleAttending;
 						outFile << '\n' << multiDayInt <<":"<< eventYear << ":" << eventMonth << ":" << eventDay << ":" << eventTime << ":" << eventName << ":" << (peopleAttending + "/" + eventTime + "/,") <<":"<<eventTaskList; //Juzer: Added Tasks
 						outFile.close();
 
@@ -1595,7 +1595,7 @@ bool exec :: admin(bool ultimateEventCheck)
 
 					std::cout << "Admin, please enter your name\n";
 					std::getline(std::cin, eventCreator);
-					peopleAttending += (eventCreator + ", ");
+					peopleAttending += (eventCreator);
 
 					std::cout << "Enter the name of the event. Please no colons (:).\n";
 
@@ -2181,7 +2181,7 @@ bool exec :: admin(bool ultimateEventCheck)
 										std::string midTime_String1 = "";
 										std::string midTime_String2 = "";
 										std::string midTime_String3  =  "";
-										std::string wholeDay="000 030 100 130 200 230 300 330 400 430 500 530 600 630 700 730 800 830 900 930 1000 1030 1100 1130 1200 1230 1300 1330 1400 1430 1500 1530 1600 1630 1700 1730 1800 1830 1900 1930 2000 2030 2100 2130 2200 2230 2300 2330 ,";
+										std::string wholeDay="000 030 100 130 200 230 300 330 400 430 500 530 600 630 700 730 800 830 900 930 1000 1030 1100 1130 1200 1230 1300 1330 1400 1430 1500 1530 1600 1630 1700 1730 1800 1830 1900 1930 2000 2030 2100 2130 2200 2230 2300 2330 ";
 
 										bool timeIsFound1 = false;
 
@@ -2252,8 +2252,91 @@ bool exec :: admin(bool ultimateEventCheck)
 
 
 
-										eventTime = initialTime_String + " "+ midTime_String1+"," + midTime_String3 + midTime_String2 + endTime_String;
+										eventTime = initialTime_String + " "+ midTime_String1 + midTime_String3 + midTime_String2 + endTime_String;
 
+										//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+										//Tasks menu
+										//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+										int taskChoice = 0;
+										std::string eventTask;
+										std::string eventTaskList;
+										bool eventTaskCheck = false;
+										do
+										{
+											eventTaskCheck = true;
+											std::cout<<"==============================\n";
+											std::cout<<"Do you want to add tasks?\n";
+											std::cout<<"1) Yes\n";
+											std::cout<<"2) No\n";
+											std::cout<<"==============================\n";
+
+											std::cin>>taskChoice;
+											std::cin.ignore(256, '\n');
+											//std::getline(std::cin, taskChoice);
+											if(std::cin.fail())
+											{
+												eventTaskCheck = false;
+												std::cout<<"Invalid input. Please try againn\n";
+												std::cin.clear();
+												std::cin.ignore(256, '\n');
+											}
+
+											if(taskChoice>2 || taskChoice<1)
+											{
+												eventTaskCheck = false;
+												std::cout<<"Invalid option. Please try again\n";
+											}
+
+										}while(!eventTaskCheck);
+
+										if(taskChoice == 1)
+										{
+											do
+											{
+												std::cout<<"What's the name of your task? No special characters (:,;,/)\n";
+												do
+												{
+													std::getline(std::cin, eventTask);
+													eventTaskCheck = false;
+													if(eventTask.find(':') != std::string::npos || eventTask.find(';') != std::string::npos || eventTask.find('/') != std::string::npos)
+													{
+														std::cout << "Invalid task name. Please no special characters (:,;,/) in the name of the task: \n";
+														eventTaskCheck = true;
+													}
+												}while(eventTaskCheck);
+
+												eventTaskList += eventTask+"/0;";
+												do
+												{
+													taskChoice = 0;
+													eventTaskCheck = true;
+													std::cout<<"==============================\n";
+													std::cout<<"Do you want to add more tasks?\n";
+													std::cout<<"1) Yes\n";
+													std::cout<<"2) No\n";
+													std::cout<<"==============================\n";
+													std::cin>>taskChoice;
+													std::cin.ignore(256, '\n');
+													if(std::cin.fail())
+													{
+														eventTaskCheck = false;
+														std::cout<<"Invalid input. Please try again:\n";
+														std::cin.clear();
+														std::cin.ignore(256, '\n');
+													}
+
+													if(taskChoice>2 || taskChoice<1)
+													{
+														eventTaskCheck = false;
+														std::cout<<"Invalid option. Please try again:\n";
+													}
+												}while(!eventTaskCheck);
+											}while(taskChoice == 1);
+										}
+
+										///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+										//END of Tasks
+										///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -2264,8 +2347,8 @@ bool exec :: admin(bool ultimateEventCheck)
 					{
 						std::ofstream outFile;
 						outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
-						std::cout << peopleAttending;
-						outFile << '\n' << multiDayInt <<":"<< eventStartYear <<" "<< eventEndYear << ":" << eventStartMonth <<" "<< eventEndMonth << ":" << eventStartDay <<" "<< eventEndDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
+						//std::cout << peopleAttending;
+						outFile << '\n' << multiDayInt <<":"<< eventStartYear <<" "<< eventEndYear << ":" << eventStartMonth <<" "<< eventEndMonth << ":" << eventStartDay <<" "<< eventEndDay << ":" << eventTime << ":" << eventName << ":" << (peopleAttending + "/" + eventTime + "/,") <<":"<<eventTaskList;
 						outFile.close();
 
 					}
@@ -2273,8 +2356,8 @@ bool exec :: admin(bool ultimateEventCheck)
 					{
 						std::ofstream outFile;
 						outFile.open("eventFile.txt", std::ios_base::app | std::ios_base::out);
-						std::cout << peopleAttending;
-						outFile << multiDayInt <<":"<< eventStartYear <<" "<< eventEndYear << ":" << eventStartMonth <<" "<< eventEndMonth << ":" << eventStartDay <<" "<< eventEndDay << ":" << eventTime << ":" << eventName << ":" << peopleAttending;
+						//std::cout << peopleAttending;
+						outFile << multiDayInt <<":"<< eventStartYear <<" "<< eventEndYear << ":" << eventStartMonth <<" "<< eventEndMonth << ":" << eventStartDay <<" "<< eventEndDay << ":" << eventTime << ":" << eventName << ":" << (peopleAttending + "/" + eventTime + "/,") <<":"<<eventTaskList;
 						outFile.close();
 						ultimateEventCheck = false;
 					}
@@ -2410,10 +2493,13 @@ std::string exec::getTasksForSingleEvent(std::string eventName, std::string a_ye
 
 		event_name = inbuf.substr(inbuf.find(delimiter) + 1, std::string::npos);//multi
 		b_year = event_name.substr(0, event_name.find(delimiter));
+		b_year = b_year.substr(0, b_year.find(" "));
 		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);//year
 		b_month = event_name.substr(0, event_name.find(delimiter));
+		b_month = b_month.substr(0, b_month.find(" "));
 		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);//month
 		b_day = event_name.substr(0, event_name.find(delimiter));
+		b_day = b_day.substr(0, b_day.find(" "));
 		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);//day
 		event_name = event_name.substr(event_name.find(delimiter) + 1, std::string::npos);//times
 		event_name = event_name.substr(0, event_name.find(delimiter));
@@ -2536,6 +2622,8 @@ std::vector<std::vector<std::string>> exec :: getTimes()
 
 void exec :: print(bool time)
 {
+	int month_int = 0;
+
 
 	std::cout << "==============================" << '\n' << "Events List (Furthest in the future at top)" << '\n' << "==============================" << '\n' <<'\n';
 
@@ -2546,9 +2634,9 @@ void exec :: print(bool time)
 
 	//linkedList<date> eventList;
 
-	int year = 0;
-	int month = 0;
-	int day = 0;
+	std::string year = "";
+	std::string month = "";
+	std::string day = "";
 	std::string timeClock;
 	std::string eventName;
 	std::string attending = "";
@@ -2571,6 +2659,7 @@ void exec :: print(bool time)
 
 			std::getline(readFile, entry, ':' ); //read line by ':' separated value
 			//std::cout << "3." << '\n';
+			std::string multiDayFlag = entry.substr(0,entry.find(":"));
 
 
 			//
@@ -2584,14 +2673,12 @@ void exec :: print(bool time)
 
 				date eventDate = date();
 
-				year = std::stoi(entry);
+				year = (entry);
 
 				std::getline(readFile, entry, ':');
-				month = std::stoi(entry);
-
+				month = (entry);
 				std::getline(readFile, entry, ':');
-				day = std::stoi(entry);
-
+				day = (entry);
 				std::getline(readFile, entry, ':');
 				timeClock = entry;
 
@@ -2601,18 +2688,43 @@ void exec :: print(bool time)
 				std::getline(readFile, entry, ':');
 				attending = entry;
 
-				std::getline(readFile, entry);
+				std::getline(readFile, entry, '\n');
+				tasks = entry;
 				//std::cout << "5." << '\n';
 
-				eventDate.setYear(year);
-				eventDate.setMonth(month);
-				eventDate.setDay(day);
-				eventDate.setTime(timeClock);
-				eventDate.setEvent(eventName);
-				eventDate.setAttendance(attending);
+				if(multiDayFlag=="0"){
+					eventDate.setYear(year);
+					eventDate.initial_year = std::stoi(year);
+					eventDate.setMonth(month);
+					eventDate.initial_month = std::stoi(month);
+					eventDate.setDay(day);
+					eventDate.initial_day = std::stoi(day);
+					eventDate.setTime(timeClock);
+					eventDate.setEvent(eventName);
+					eventDate.setAttendance(attending);
+				}else{
+
+					eventDate.setYear(year);
+
+					std::string s1= year.substr(0,year.find(" "));
+					int n1= std::stoi(s1);
+					eventDate.initial_year = n1;
+					eventDate.setMonth(month);
+					std::string s2 = month.substr(0,month.find(" "));
+					int n2= std::stoi(s2);
+					eventDate.initial_month = n2;
+					eventDate.setDay(day);
+					std::string s3 = day.substr(0,day.find(" "));
+					int n3= std::stoi(s3);
+					eventDate.initial_day = n3;
+					eventDate.setTime(timeClock);
+					eventDate.setEvent(eventName);
+					eventDate.setAttendance(attending);
+				}
 
 				//std::cout << "6." << '\n';
 				eventsList.addBack(eventDate);//adds new date to back of the list
+
 				//eventNum ++;
 				//std::cout << "7." << '\n';
 
@@ -2626,12 +2738,10 @@ void exec :: print(bool time)
 	{
 		std::cout << "Empty Calendar!" << '\n' << '\n';
 	}
-
 	if(eventsList.size() != 0)
 	{
 		eventsList.sortList();//sorts list
 	}
-
 	//std::cout << "END." << '\n';
 
 	//Prints all objects in linkedList in readable format
@@ -2640,6 +2750,7 @@ void exec :: print(bool time)
 
 		year = eventsList.getEntry(pos).getYear();
 		month = eventsList.getEntry(pos).getMonth();
+		month_int = eventsList.getEntry(pos).initial_month;
 		day = eventsList.getEntry(pos).getDay();
 		timeClock = eventsList.getEntry(pos).getTime();
 		eventName = eventsList.getEntry(pos).getEvent();
@@ -2655,13 +2766,13 @@ void exec :: print(bool time)
 			int temp;
 			std::string timeBlock;
 			sortedTime >> timeBlock;
+
 			if(timeBlock != "")//skip extra space at end
 			{
 			temp = std::stoi(timeBlock);
 			timeKeeper[lastPosition]=temp;
 			lastPosition++;
 			}
-
 		}
 
 
@@ -3097,9 +3208,8 @@ void exec :: print(bool time)
 			}
 		}
 
-
 		//Puts month selection in readable format
-		switch(month)
+		switch(month_int)
 		{
 			case 1 : nameMonth = "January";  break;
 			case 2 : nameMonth = "February";  break;
@@ -3115,7 +3225,7 @@ void exec :: print(bool time)
 			case 12 : nameMonth = "December";  break;
 		}
 
-		tasks = getTasksForSingleEvent(eventName, std::to_string(year), std::to_string(month), std::to_string(day));
+		tasks = getTasksForSingleEvent(eventName, (year.substr(0, year.find(" "))), (month.substr(0, month.find(" "))), (day.substr(0, day.find(" "))));
 		std::cout << "Event      => " << ':' <<eventName << ':' << "\n";
 		std::cout << "Date       => " << nameMonth << " " << day << ", " << year << "\n";
 		std::cout << "Time       => " << timeClock << '\n';
@@ -3341,17 +3451,17 @@ std::vector<std::string> exec::generateTaskList(std::string event_tasks)
 	std::vector<std::string> task;
 	std::string singleTask;
 	std::string userAssign;
-	
+
 	while(event_tasks != "")
 	{
 		singleTask = event_tasks.substr(0, event_tasks.find("/"));
 		event_tasks = event_tasks.substr(event_tasks.find("/")+1, std::string::npos);
-		
+
 		userAssign = event_tasks.substr(0, event_tasks.find(";"));
-		
+
 		event_tasks = event_tasks.substr(event_tasks.find(";")+1, std::string::npos);
-		
-		
+
+
 		if(userAssign.compare("0") == 0)
 		{
 			task.push_back(singleTask);
@@ -3386,6 +3496,9 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 		std::string initalLine;
 		std::string replace_string;
 		std::string search_string = eventNameCheck;
+		std::string multi_year;
+		std::string multi_month;
+		std::string multi_day;
 
 
 		bool removeCheck = false;
@@ -3427,9 +3540,22 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 				std::getline(readFile, entry, '\n');
 				tasks = entry;
 
+				if(isMultiDayFlag == "1")
+				{
+					multi_year = yearString.substr(0, yearString.find(" "));
+					multi_month = month.substr(0, month.find(" "));
+					multi_day = day.substr(0, day.find(" "));
+				}
+				else
+				{
+					multi_year = yearString;
+					multi_month = month;
+					multi_day = day;
+				}
+
 
 					//check that the line isnt blank, and that the temprary even name read in equals the one we are searching for
-					if((eventName == eventNameCheck) && (a_year == yearString) && (a_month == month) && (a_day == day))
+					if((eventName == eventNameCheck) && (a_year == multi_year) && (a_month == multi_month) && (a_day == multi_day))
 					{
 						//set the fact that we found the event to true
 						removeCheck = true;
@@ -3504,18 +3630,22 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 					  std::string delimiter = ":";
 					  event_name = inbuf.substr(inbuf.find(delimiter)+1, std::string::npos); //multiDay flag
 					  b_year = event_name.substr(0, event_name.find(delimiter));
+						b_year = b_year.substr(0, b_year.find(" "));
 					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos); //year
 					  b_month = event_name.substr(0, event_name.find(delimiter));
+						b_month = b_month.substr(0, b_month.find(" "));
 					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos); //month
 					  b_day = event_name.substr(0, event_name.find(delimiter));
+						b_day = b_day.substr(0, b_day.find(" "));
 					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos); //day
 					  event_name = event_name.substr(event_name.find(delimiter)+1, std::string::npos); //times
 					  event_tasks = event_name.substr(event_name.find(delimiter)+1, std::string::npos); //event name + everything else. Gonna use this string to store tasks. event_name will be used to store the name of the event - Juzer
 					  event_tasks = event_tasks.substr(event_tasks.find(delimiter)+1, std::string::npos); //attendees
 					  event_tasks = event_tasks.substr(event_tasks.find(delimiter)+1, std::string::npos); //tasks
-					  //std::cout<<event_tasks; 
+					  //std::cout<<event_tasks;
 					  event_name = event_name.substr(0, event_name.find(delimiter)); //event name
 					  //std::cout<<event_name;
+
 					  if ((event_name == eventNameCheck) && (a_year == b_year) && (a_month == b_month) && (a_year == b_year))
 					  {
 						  std::vector<std::string> vec = getTimeOfSingleEvent(event_name);
@@ -3574,7 +3704,7 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 						//User sign up for tasks
 						/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 						/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-						  
+
 
 						int userTaskChoice = 0;
 						bool userTaskCheck = false;
@@ -3586,7 +3716,7 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 							std::cout<<"1) Yes\n";
 							std::cout<<"2) No\n";
 							std::cout<<"==============================\n";
-	
+
 							std::cin>>userTaskChoice;
 							std::cin.ignore(256, '\n');
 							//std::getline(std::cin, taskChoice);
@@ -3597,19 +3727,19 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 								std::cin.clear();
 								std::cin.ignore(256, '\n');
 							}
-	
+
 							if(userTaskChoice>2 || userTaskChoice<1)
 							{
 								userTaskCheck = false;
 								std::cout<<"Invalid option. Please try again\n";
 							}
 
-	
+
 						}while(!userTaskCheck);
 
 						if(userTaskChoice == 1)
 						{
-							
+
 							std::vector<std::string> task = generateTaskList(event_tasks);
 							if(task.size() == 0)
 							{
@@ -3626,14 +3756,14 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 									std::cout<<i+1<<") "<<task[i]<<"\n";
 								}
 								std::cout<<"==============================\n";
-								
+
 								int userChoice;
 								std::string input;
 								std::cout<<"What tasks do you wanna sign up for? Enter 0 when done selecting\n";
 								do
 								{
 									bool check = false;
-									
+
 									do
 									{
 										check = true;
@@ -3668,7 +3798,7 @@ bool exec::updateEvent(std::string eventNameCheck, std::string userName, std::ve
 									}
 								}while(userChoice != 0);
 							}
-								
+
 						  }
 						  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 						  //END OF USER TASK SIGN UP
