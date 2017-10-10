@@ -11,8 +11,7 @@
 \item 
 \hyperlink{classexec_a663a64f17c5431dc01a829f5633e4f56}{$\sim$exec} ()
 \item 
-\mbox{\Hypertarget{classexec_a4ca78729a8eabc233fd936948c85565e}\label{classexec_a4ca78729a8eabc233fd936948c85565e}} 
-std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ {\bfseries get\+Times} ()
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \hyperlink{classexec_a4ca78729a8eabc233fd936948c85565e}{get\+Times} ()
 \item 
 std\+::vector$<$ std\+::string $>$ \hyperlink{classexec_aa81946a7084e58b434cbbb3f41d646af}{get\+Time\+Of\+Single\+Event} (std\+::string event\+\_\+name)
 \item 
@@ -98,7 +97,17 @@ Public method that takes in one argument as a string and returns a bool. Details
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-true if the event was found in the list, false otherwise. 
+true if the event was found in the list, false otherwise. Public method that takes in two argument and returns a bool. Details\+: Checks to see if given time is valid. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em time} & is the first parameter. \\
+\hline
+{\em len} & is the second parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if time is valid, false otherwise. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classexec_a24a4ca6c8f63a73ed38ddc8e9d015c46}\label{classexec_a24a4ca6c8f63a73ed38ddc8e9d015c46}} 
 \index{exec@{exec}!format24\+Hr@{format24\+Hr}}
@@ -134,6 +143,20 @@ vector of undone tasks
 \subsubsection{\texorpdfstring{get\+Tasks\+For\+Single\+Event()}{getTasksForSingleEvent()}}
 {\footnotesize\ttfamily std\+::string exec\+::get\+Tasks\+For\+Single\+Event (\begin{DoxyParamCaption}\item[{std\+::string}]{event\+\_\+name,  }\item[{std\+::string}]{year,  }\item[{std\+::string}]{month,  }\item[{std\+::string}]{day }\end{DoxyParamCaption})}
 
+Public method that takes as argument the task list section from the output file, and returns a vector of tasks. Details\+: Creates a vector of tasks that haven\textquotesingle{}t already been signed up for by other users 
+\begin{DoxyParams}{Parameters}
+{\em std\+::string} & event\+\_\+name\+: The entire task list as formatted in the output file. example\+: Task1\+\_\+\+Name/\+Task1\+\_\+\+User;Tas2\+\_\+\+Name/\+Task2\+\_\+\+User;Task3... \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of undone tasks 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classexec_aa81946a7084e58b434cbbb3f41d646af}\label{classexec_aa81946a7084e58b434cbbb3f41d646af}} 
+\index{exec@{exec}!get\+Time\+Of\+Single\+Event@{get\+Time\+Of\+Single\+Event}}
+\index{get\+Time\+Of\+Single\+Event@{get\+Time\+Of\+Single\+Event}!exec@{exec}}
+\subsubsection{\texorpdfstring{get\+Time\+Of\+Single\+Event()}{getTimeOfSingleEvent()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ exec\+::get\+Time\+Of\+Single\+Event (\begin{DoxyParamCaption}\item[{std\+::string}]{event\+\_\+name }\end{DoxyParamCaption})}
+
 Public method that takes as argument the event name from the output file, and returns a vector of times for that event. Details\+: Creates a vector of the half hour time slots for that event 
 \begin{DoxyParams}{Parameters}
 {\em std\+::string} & event\+\_\+name\+: The entire time list as formatted in the output file. example\+: time1 time2 time3.... \\
@@ -142,11 +165,11 @@ Public method that takes as argument the event name from the output file, and re
 \begin{DoxyReturn}{Returns}
 vector of event times 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classexec_aa81946a7084e58b434cbbb3f41d646af}\label{classexec_aa81946a7084e58b434cbbb3f41d646af}} 
-\index{exec@{exec}!get\+Time\+Of\+Single\+Event@{get\+Time\+Of\+Single\+Event}}
-\index{get\+Time\+Of\+Single\+Event@{get\+Time\+Of\+Single\+Event}!exec@{exec}}
-\subsubsection{\texorpdfstring{get\+Time\+Of\+Single\+Event()}{getTimeOfSingleEvent()}}
-{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ exec\+::get\+Time\+Of\+Single\+Event (\begin{DoxyParamCaption}\item[{std\+::string}]{event\+\_\+name }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classexec_a4ca78729a8eabc233fd936948c85565e}\label{classexec_a4ca78729a8eabc233fd936948c85565e}} 
+\index{exec@{exec}!get\+Times@{get\+Times}}
+\index{get\+Times@{get\+Times}!exec@{exec}}
+\subsubsection{\texorpdfstring{get\+Times()}{getTimes()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ exec\+::get\+Times (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Public method that returns a vector of times for that event. Details\+: Creates a vector of the half hour time slots for that event 
 \begin{DoxyParams}{Parameters}
@@ -176,7 +199,12 @@ formatted string.
 \subsubsection{\texorpdfstring{print()}{print()}}
 {\footnotesize\ttfamily void exec\+::print (\begin{DoxyParamCaption}\item[{bool}]{time }\end{DoxyParamCaption})}
 
-Public method that takes in one argument as a bool and does not return. Details\+: Creates linked list, accesses text file, creates date objects, and places date objects into sorted \hyperlink{classlinked_list}{linked\+List}. Prints \hyperlink{classlinked_list}{linked\+List} in readable form to terminal (uses time parameter to determine 12/24 hr clock). \mbox{\Hypertarget{classexec_aad3ea9a2cd99fc28471062719b85b1f6}\label{classexec_aad3ea9a2cd99fc28471062719b85b1f6}} 
+Public method that takes in one argument as a bool and does not return. Details\+: Creates linked list, accesses text file, creates date objects, and places date objects into sorted \hyperlink{classlinked_list}{linked\+List}. Prints \hyperlink{classlinked_list}{linked\+List} in readable form to terminal (uses time parameter to determine 12/24 hr clock). 
+\begin{DoxyParams}{Parameters}
+{\em takes} & in time \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classexec_aad3ea9a2cd99fc28471062719b85b1f6}\label{classexec_aad3ea9a2cd99fc28471062719b85b1f6}} 
 \index{exec@{exec}!run@{run}}
 \index{run@{run}!exec@{exec}}
 \subsubsection{\texorpdfstring{run()}{run()}}
@@ -187,22 +215,6 @@ Public method that takes in no arguments and does not return. Details\+: Runs th
 \index{time\+Check@{time\+Check}!exec@{exec}}
 \subsubsection{\texorpdfstring{time\+Check()}{timeCheck()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily bool exec\+::time\+Check (\begin{DoxyParamCaption}\item[{int}]{time,  }\item[{int}]{len }\end{DoxyParamCaption})}
-
-Public method that takes in two argument and returns a bool. Details\+: Checks to see if given time is valid. 
-\begin{DoxyParams}{Parameters}
-{\em time} & is the first parameter. \\
-\hline
-{\em len} & is the second parameter. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-true if time is valid, false otherwise. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classexec_afc82b1343e127d9a7bdc36f050bdf605}\label{classexec_afc82b1343e127d9a7bdc36f050bdf605}} 
-\index{exec@{exec}!time\+Check@{time\+Check}}
-\index{time\+Check@{time\+Check}!exec@{exec}}
-\subsubsection{\texorpdfstring{time\+Check()}{timeCheck()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily bool exec\+::time\+Check (\begin{DoxyParamCaption}\item[{int}]{time,  }\item[{int}]{len,  }\item[{bool}]{time\+Mode }\end{DoxyParamCaption})}
 
 Public method that takes in two argument and returns a bool. Details\+: Checks to see if given time is valid. time\+Mode is true if in 24 hour mode, false is 12 hour. 
 \begin{DoxyParams}{Parameters}
@@ -216,6 +228,20 @@ Public method that takes in two argument and returns a bool. Details\+: Checks t
 \begin{DoxyReturn}{Returns}
 true if time is valid, false otherwise. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classexec_afc82b1343e127d9a7bdc36f050bdf605}\label{classexec_afc82b1343e127d9a7bdc36f050bdf605}} 
+\index{exec@{exec}!time\+Check@{time\+Check}}
+\index{time\+Check@{time\+Check}!exec@{exec}}
+\subsubsection{\texorpdfstring{time\+Check()}{timeCheck()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool exec\+::time\+Check (\begin{DoxyParamCaption}\item[{int}]{time,  }\item[{int}]{len,  }\item[{bool}]{time\+Mode }\end{DoxyParamCaption})}
+
+Public method that takes in the time, the length, and the time mode (12 hour or 24 hour as a bool) and returns true if the user inputs an invalid time Details\+: comfirms that the user enters a valid time in. 
+\begin{DoxyParams}{Parameters}
+{\em len} & makes sure the time is 3 or 4 digits long. time\+Mode determines whether it is 12 or 24 hour mode. Time is the time. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the user inputs something invalid, false otherwise 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classexec_a53711d45518e4b3b690db15f057c1452}\label{classexec_a53711d45518e4b3b690db15f057c1452}} 
 \index{exec@{exec}!update\+Event@{update\+Event}}
 \index{update\+Event@{update\+Event}!exec@{exec}}
@@ -223,6 +249,14 @@ true if time is valid, false otherwise.
 {\footnotesize\ttfamily bool exec\+::update\+Event (\begin{DoxyParamCaption}\item[{std\+::string}]{event\+Name\+Check,  }\item[{std\+::string}]{user\+Name,  }\item[{std\+::vector$<$ std\+::vector$<$ std\+::string $>$$>$}]{times,  }\item[{std\+::string}]{year,  }\item[{std\+::string}]{month,  }\item[{std\+::string}]{day }\end{DoxyParamCaption})}
 
 Public method that takes in no arguments and does not return. Details\+: Used for testing \hyperlink{classlinked_list}{linked\+List} sort and early printing. Public method that takes in one argument as a string and returns a bool. Details\+: Searches the .txt file and updates attendence. 
+\begin{DoxyParams}{Parameters}
+{\em event\+Name\+Check} & is the first parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the event was found in the list, false otherwise. Public method that takes in the event\+Name\+Check, the user\textquotesingle{}s name, the vector of times, the year, the month, and the day and updates the event with input from the user. Details\+: Searches the .txt file for the event then updates it based on input from the user. 
+\end{DoxyReturn}
+
 \begin{DoxyParams}{Parameters}
 {\em event\+Name\+Check} & is the first parameter. \\
 \hline
@@ -242,7 +276,7 @@ Public method that takes in no arguments and does not return. Grants user to use
 \subsubsection{\texorpdfstring{user\+Choose\+Hours()}{userChooseHours()}}
 {\footnotesize\ttfamily void exec\+::user\+Choose\+Hours (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ std\+::string $>$$>$}]{times }\end{DoxyParamCaption})}
 
-Public method that takes in the event\+Name\+Check, the user\textquotesingle{}s name, the vector of times, the year, the month, and the day and updates the event with input from the user. Details\+: Searches the .txt file for the event then updates it based on input from the user. 
+Public method that takes in one argument as a string and returns a bool. Details\+: Searches the .txt file for the event. 
 \begin{DoxyParams}{Parameters}
 {\em event\+Name\+Check} & is the first parameter. \\
 \hline

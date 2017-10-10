@@ -11,6 +11,7 @@ var searchData=
   ['gettasksforsingleevent',['getTasksForSingleEvent',['../classexec.html#a82e4d3616bf5ef3790b343de9f255548',1,'exec']]],
   ['gettime',['getTime',['../classdate.html#abc00445f7dad83e1b6bc7c7a27736ef5',1,'date']]],
   ['gettimeofsingleevent',['getTimeOfSingleEvent',['../classexec.html#aa81946a7084e58b434cbbb3f41d646af',1,'exec']]],
+  ['gettimes',['getTimes',['../classexec.html#a4ca78729a8eabc233fd936948c85565e',1,'exec']]],
   ['getvalue',['getValue',['../classnode.html#a48d5a4f57ab731018e412f5dbf0d95bc',1,'node']]],
   ['getyear',['getYear',['../classdate.html#af1fb1701086c8aac3b480ff52f48065b',1,'date']]]
 ];
