@@ -14,11 +14,9 @@
 \mbox{\Hypertarget{classexec_a4ca78729a8eabc233fd936948c85565e}\label{classexec_a4ca78729a8eabc233fd936948c85565e}} 
 std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ {\bfseries get\+Times} ()
 \item 
-\mbox{\Hypertarget{classexec_aa81946a7084e58b434cbbb3f41d646af}\label{classexec_aa81946a7084e58b434cbbb3f41d646af}} 
-std\+::vector$<$ std\+::string $>$ {\bfseries get\+Time\+Of\+Single\+Event} (std\+::string event\+\_\+name)
+std\+::vector$<$ std\+::string $>$ \hyperlink{classexec_aa81946a7084e58b434cbbb3f41d646af}{get\+Time\+Of\+Single\+Event} (std\+::string event\+\_\+name)
 \item 
-\mbox{\Hypertarget{classexec_a82e4d3616bf5ef3790b343de9f255548}\label{classexec_a82e4d3616bf5ef3790b343de9f255548}} 
-std\+::string {\bfseries get\+Tasks\+For\+Single\+Event} (std\+::string event\+\_\+name, std\+::string year, std\+::string month, std\+::string day)
+std\+::string \hyperlink{classexec_a82e4d3616bf5ef3790b343de9f255548}{get\+Tasks\+For\+Single\+Event} (std\+::string event\+\_\+name, std\+::string year, std\+::string month, std\+::string day)
 \item 
 std\+::vector$<$ std\+::string $>$ \hyperlink{classexec_a056e0f55ae4c4661f7485fe8fc221210}{generate\+Task\+List} (std\+::string event\+\_\+tasks)
 \item 
@@ -36,8 +34,7 @@ void \hyperlink{classexec_aad3ea9a2cd99fc28471062719b85b1f6}{run} ()
 \item 
 bool \hyperlink{classexec_a53711d45518e4b3b690db15f057c1452}{update\+Event} (std\+::string event\+Name\+Check, std\+::string user\+Name, std\+::vector$<$ std\+::vector$<$ std\+::string $>$$>$ times, std\+::string year, std\+::string month, std\+::string day)
 \item 
-\mbox{\Hypertarget{classexec_a24fd11e0df1de9dee4fcc41623815aea}\label{classexec_a24fd11e0df1de9dee4fcc41623815aea}} 
-void {\bfseries user\+Choose\+Hours} (std\+::vector$<$ std\+::vector$<$ std\+::string $>$$>$ times)
+void \hyperlink{classexec_a24fd11e0df1de9dee4fcc41623815aea}{user\+Choose\+Hours} (std\+::vector$<$ std\+::vector$<$ std\+::string $>$$>$ times)
 \item 
 bool \hyperlink{classexec_abf1c735a300deae3f5de4bf6891f2190}{event\+Check} (std\+::string event\+Name\+Check)
 \item 
@@ -131,6 +128,34 @@ Public method that takes as argument the task list section from the output file,
 \begin{DoxyReturn}{Returns}
 vector of undone tasks 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classexec_a82e4d3616bf5ef3790b343de9f255548}\label{classexec_a82e4d3616bf5ef3790b343de9f255548}} 
+\index{exec@{exec}!get\+Tasks\+For\+Single\+Event@{get\+Tasks\+For\+Single\+Event}}
+\index{get\+Tasks\+For\+Single\+Event@{get\+Tasks\+For\+Single\+Event}!exec@{exec}}
+\subsubsection{\texorpdfstring{get\+Tasks\+For\+Single\+Event()}{getTasksForSingleEvent()}}
+{\footnotesize\ttfamily std\+::string exec\+::get\+Tasks\+For\+Single\+Event (\begin{DoxyParamCaption}\item[{std\+::string}]{event\+\_\+name,  }\item[{std\+::string}]{year,  }\item[{std\+::string}]{month,  }\item[{std\+::string}]{day }\end{DoxyParamCaption})}
+
+Public method that takes as argument the event name from the output file, and returns a vector of times for that event. Details\+: Creates a vector of the half hour time slots for that event 
+\begin{DoxyParams}{Parameters}
+{\em std\+::string} & event\+\_\+name\+: The entire time list as formatted in the output file. example\+: time1 time2 time3.... \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of event times 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classexec_aa81946a7084e58b434cbbb3f41d646af}\label{classexec_aa81946a7084e58b434cbbb3f41d646af}} 
+\index{exec@{exec}!get\+Time\+Of\+Single\+Event@{get\+Time\+Of\+Single\+Event}}
+\index{get\+Time\+Of\+Single\+Event@{get\+Time\+Of\+Single\+Event}!exec@{exec}}
+\subsubsection{\texorpdfstring{get\+Time\+Of\+Single\+Event()}{getTimeOfSingleEvent()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ exec\+::get\+Time\+Of\+Single\+Event (\begin{DoxyParamCaption}\item[{std\+::string}]{event\+\_\+name }\end{DoxyParamCaption})}
+
+Public method that returns a vector of times for that event. Details\+: Creates a vector of the half hour time slots for that event 
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of event times 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classexec_ade14fc20cd40b2d5e3e8e5abbda382d4}\label{classexec_ade14fc20cd40b2d5e3e8e5abbda382d4}} 
 \index{exec@{exec}!make12\+Hr@{make12\+Hr}}
 \index{make12\+Hr@{make12\+Hr}!exec@{exec}}
@@ -211,7 +236,21 @@ true if the event was found in the list, false otherwise.
 \subsubsection{\texorpdfstring{user()}{user()}}
 {\footnotesize\ttfamily void exec\+::user (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Public method that takes in no arguments and does not return. Grants user to use user options. Details\+: Able preview the current list of events and then select which event they\textquotesingle{}d like to attend (Updates text file). 
+Public method that takes in no arguments and does not return. Grants user to use user options. Details\+: Able preview the current list of events and then select which event they\textquotesingle{}d like to attend (Updates text file). \mbox{\Hypertarget{classexec_a24fd11e0df1de9dee4fcc41623815aea}\label{classexec_a24fd11e0df1de9dee4fcc41623815aea}} 
+\index{exec@{exec}!user\+Choose\+Hours@{user\+Choose\+Hours}}
+\index{user\+Choose\+Hours@{user\+Choose\+Hours}!exec@{exec}}
+\subsubsection{\texorpdfstring{user\+Choose\+Hours()}{userChooseHours()}}
+{\footnotesize\ttfamily void exec\+::user\+Choose\+Hours (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ std\+::string $>$$>$}]{times }\end{DoxyParamCaption})}
+
+Public method that takes in the event\+Name\+Check, the user\textquotesingle{}s name, the vector of times, the year, the month, and the day and updates the event with input from the user. Details\+: Searches the .txt file for the event then updates it based on input from the user. 
+\begin{DoxyParams}{Parameters}
+{\em event\+Name\+Check} & is the first parameter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the event was found in the list, false otherwise. 
+\end{DoxyReturn}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

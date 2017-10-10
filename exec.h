@@ -34,17 +34,31 @@ class exec
 		 */
 		~exec();
 		std::vector<std::vector<std::string>> getTimes();
+
+		/**
+		 * Public method that returns a vector of times for that event.
+		 * Details: Creates a vector of the half hour time slots for that event
+		 * @param none
+		 * @return vector of event times
+		 */
 		std::vector<std::string> getTimeOfSingleEvent(std::string event_name);
+
+		/**
+		 * Public method that takes as argument the event name from the output file, and returns a vector of times for that event.
+		 * Details: Creates a vector of the half hour time slots for that event
+		 * @param std::string event_name: The entire time list as formatted in the output file. example: time1 time2 time3....
+		 * @return vector of event times
+		 */
 		std::string getTasksForSingleEvent(std::string event_name, std::string year, std::string month, std::string day);
 
 		/**
 		 * Public method that takes as argument the task list section from the output file, and returns a vector of tasks.
 		 * Details: Creates a vector of tasks that haven't already been signed up for by other users
 		 * @param std::string event_name: The entire task list as formatted in the output file. example: Task1_Name/Task1_User;Tas2_Name/Task2_User;Task3...
-		 * @return vector of undone tasks  
+		 * @return vector of undone tasks
 		 */
 		std::vector<std::string> generateTaskList(std::string event_tasks);
-		
+
 		/**
 		 *	Public method that takes in no arguments and does not return.
 		 * 	Grants user to use admin options.
@@ -103,6 +117,12 @@ class exec
 		 */
 		bool updateEvent(std::string eventNameCheck, std::string userName, std::vector<std::vector<std::string>> times, std::string year, std::string month, std::string day);
 
+				/**
+				 *	Public method that takes in the eventNameCheck, the user's name, the vector of times, the year, the month, and the day and updates the event with input from the user.
+				 * 	Details: Searches the .txt file for the event then updates it based on input from the user.
+				 * 	@param eventNameCheck is the first parameter.
+				 *	@return true if the event was found in the list, false otherwise.
+				 */
 		void userChooseHours(std::vector<std::vector<std::string>> times);
 
 		/**
@@ -131,6 +151,13 @@ class exec
 		 *	@return true if time is valid, false otherwise.
 		 */
 		bool timeCheck (int time, int len, bool timeMode);
+
+		/**
+		 * Public method that takes in the time, the length, and the time mode (12 hour or 24 hour as a bool) and returns true if the user inputs an invalid time
+		 * Details: comfirms that the user enters a valid time in.
+		 * @param len makes sure the time is 3 or 4 digits long. timeMode determines whether it is 12 or 24 hour mode. Time is the time.
+		 * @return true if the user inputs something invalid, false otherwise
+		 */
 };
 
 #include "exec.hpp"

@@ -77,11 +77,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4ca78729a8eabc233fd936948c85565e"><td class="memItemLeft" align="right" valign="top"><a id="a4ca78729a8eabc233fd936948c85565e"></a>
 std::vector&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getTimes</b> ()</td></tr>
 <tr class="separator:a4ca78729a8eabc233fd936948c85565e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa81946a7084e58b434cbbb3f41d646af"><td class="memItemLeft" align="right" valign="top"><a id="aa81946a7084e58b434cbbb3f41d646af"></a>
-std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getTimeOfSingleEvent</b> (std::string event_name)</td></tr>
+<tr class="memitem:aa81946a7084e58b434cbbb3f41d646af"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexec.html#aa81946a7084e58b434cbbb3f41d646af">getTimeOfSingleEvent</a> (std::string event_name)</td></tr>
 <tr class="separator:aa81946a7084e58b434cbbb3f41d646af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82e4d3616bf5ef3790b343de9f255548"><td class="memItemLeft" align="right" valign="top"><a id="a82e4d3616bf5ef3790b343de9f255548"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getTasksForSingleEvent</b> (std::string event_name, std::string year, std::string month, std::string day)</td></tr>
+<tr class="memitem:a82e4d3616bf5ef3790b343de9f255548"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexec.html#a82e4d3616bf5ef3790b343de9f255548">getTasksForSingleEvent</a> (std::string event_name, std::string year, std::string month, std::string day)</td></tr>
 <tr class="separator:a82e4d3616bf5ef3790b343de9f255548"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a056e0f55ae4c4661f7485fe8fc221210"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexec.html#a056e0f55ae4c4661f7485fe8fc221210">generateTaskList</a> (std::string event_tasks)</td></tr>
 <tr class="separator:a056e0f55ae4c4661f7485fe8fc221210"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -99,8 +97,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getTasksForSin
 <tr class="separator:aad3ea9a2cd99fc28471062719b85b1f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53711d45518e4b3b690db15f057c1452"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexec.html#a53711d45518e4b3b690db15f057c1452">updateEvent</a> (std::string eventNameCheck, std::string userName, std::vector&lt; std::vector&lt; std::string &gt;&gt; times, std::string year, std::string month, std::string day)</td></tr>
 <tr class="separator:a53711d45518e4b3b690db15f057c1452"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24fd11e0df1de9dee4fcc41623815aea"><td class="memItemLeft" align="right" valign="top"><a id="a24fd11e0df1de9dee4fcc41623815aea"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>userChooseHours</b> (std::vector&lt; std::vector&lt; std::string &gt;&gt; times)</td></tr>
+<tr class="memitem:a24fd11e0df1de9dee4fcc41623815aea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexec.html#a24fd11e0df1de9dee4fcc41623815aea">userChooseHours</a> (std::vector&lt; std::vector&lt; std::string &gt;&gt; times)</td></tr>
 <tr class="separator:a24fd11e0df1de9dee4fcc41623815aea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf1c735a300deae3f5de4bf6891f2190"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexec.html#abf1c735a300deae3f5de4bf6891f2190">eventCheck</a> (std::string eventNameCheck)</td></tr>
 <tr class="separator:abf1c735a300deae3f5de4bf6891f2190"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -252,6 +249,78 @@ James Glass </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>vector of undone tasks </dd></dl>
+
+</div>
+</div>
+<a id="a82e4d3616bf5ef3790b343de9f255548"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82e4d3616bf5ef3790b343de9f255548">&#9670;&nbsp;</a></span>getTasksForSingleEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string exec::getTasksForSingleEvent </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>event_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>year</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>month</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>day</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Public method that takes as argument the event name from the output file, and returns a vector of times for that event. Details: Creates a vector of the half hour time slots for that event </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">std::string</td><td>event_name: The entire time list as formatted in the output file. example: time1 time2 time3.... </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>vector of event times </dd></dl>
+
+</div>
+</div>
+<a id="aa81946a7084e58b434cbbb3f41d646af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa81946a7084e58b434cbbb3f41d646af">&#9670;&nbsp;</a></span>getTimeOfSingleEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; exec::getTimeOfSingleEvent </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>event_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Public method that returns a vector of times for that event. Details: Creates a vector of the half hour time slots for that event </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">none</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>vector of event times </dd></dl>
 
 </div>
 </div>
@@ -470,6 +539,31 @@ James Glass </dd></dl>
       </table>
 </div><div class="memdoc">
 <p>Public method that takes in no arguments and does not return. Grants user to use user options. Details: Able preview the current list of events and then select which event they'd like to attend (Updates text file). </p>
+
+</div>
+</div>
+<a id="a24fd11e0df1de9dee4fcc41623815aea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24fd11e0df1de9dee4fcc41623815aea">&#9670;&nbsp;</a></span>userChooseHours()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void exec::userChooseHours </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::vector&lt; std::string &gt;&gt;&#160;</td>
+          <td class="paramname"><em>times</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Public method that takes in the eventNameCheck, the user's name, the vector of times, the year, the month, and the day and updates the event with input from the user. Details: Searches the .txt file for the event then updates it based on input from the user. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eventNameCheck</td><td>is the first parameter. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the event was found in the list, false otherwise. </dd></dl>
 
 </div>
 </div>
